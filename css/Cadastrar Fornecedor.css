@@ -1,0 +1,64 @@
+#navegador{
+	background-image: linear-gradient(to bottom, #272020, #8C1818);
+	height: 30px;
+
+}
+
+
+#conta{
+	margin-left: 1120px;
+	margin-right: -10px;
+}
+
+#selecionar{
+	width: 10%;
+	margin-left: 70%;
+	padding: 4px 15px 3px 15px;
+	border-radius: 50px;
+}
+#imagem{
+	margin-bottom: 170px;
+}
+
+body{
+	background-color: #140C0C
+}
+
+#Container{
+	margin-top: 5px;  	
+	height: 100%; 	
+	background-image: linear-gradient(to bottom, #272020, #8C1818);  
+}
+
+#dados{
+	margin-left: 500px;
+	margin-top: 70px;
+	width: 20%;
+	display: inline-block;
+}
+
+#titulo{
+	padding: 4px 15px 3px 15px;
+	border-radius: 50px;
+}
+
+#localizaçãoBotões{
+	margin-top: 100px;
+	margin-left: 1000px;
+}
+#botão{
+	padding: 4px 15px 3px 15px;
+	border-radius: 50px;
+}
+
+#texto{
+	color: white;
+}
+
+h1{
+	text-align: center;
+	margin-top: 5px;
+}
+
+
+

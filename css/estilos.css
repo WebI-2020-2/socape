@@ -1,0 +1,54 @@
+#navegador{
+	background-image: linear-gradient(to bottom, #272020, #8C1818);
+	height: 30px;
+
+}
+
+
+#produtos{
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	margin-right: 6px;
+	margin-left: 6px;
+	margin-top: 13px;
+
+}
+
+#conta{
+	margin-left: 1120px;
+	margin-right: -10px;
+}
+
+#barraPesquisa{
+	width: 50%;
+	height: 30px;
+	margin-left: 740px;
+	margin-top: 10px;
+
+}
+
+#paginação{
+	margin-top: 50px;
+
+}
+
+#textoDestaque{
+	color: FFFFFF;
+	text-align: center;
+}
+#codigo{
+	color: FFFFFF;
+	text-align: left;
+}
+
+body{
+	background-color: #140C0C
+}
+
+#imagemDestaque{
+	margin-top: 10px;
+	width: 100%; 
+}
+
+
