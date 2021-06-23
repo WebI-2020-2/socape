@@ -1,0 +1,44 @@
+<?php
+
+require_once '../../model/Marca.php';
+require_once '../../model/Database.php';
+
+class MarcasController extends Marca
+{
+    protected $tabela = 'marca';
+
+    public function __construct()
+    {
+    }
+
+    public function findOne($idmarca)
+    {
+        $query = "SELECT * FROM $this->tabela WHERE idmarca = :idmarca";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idmarca', $idmarca, PDO::PARAM_INT);
+        $stm->execute();
+
+        foreach ($stm->fetchAll() as $obj) {
+            $marca = new Marca(null, null);
+            $marca->setIdmarca($obj->idmarca);
+            $marca->setMarca($obj->marca);
+        }
+        return $marca;  
+    }
+
+    public function findAll()
+    {
+        $query = "SELECT * FROM $this->tabela";
+        $stm = Database::prepare($query);
+        $stm->execute();
+        $marcas = array();
+
+        foreach ($stm->fetchAll() as $obj) {
+            array_push(
+                $marcas,
+                new Marca($obj->idmarca, $obj->marca)
+            );
+        }
+        return $marcas;
+    }
+}
