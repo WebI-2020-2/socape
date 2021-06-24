@@ -41,4 +41,29 @@ class CategoriaController extends Categoria
         }
         return $categorias;
     }
+    public function insert($categoria)
+    {
+        $query = "INSERT INTO $this->tabela (categoria)
+        VALUES (:categoria)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':categoria', $categoria);
+        return $stm->execute();
+    }
+
+    public function update($idcategoria)
+    {
+        $query = "UPDATE $this->tabela SET modelo = :modelo WHERE idcategoria = :idcategoria";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idcategoria', $idcategoria, PDO::PARAM_INT);
+        $stm->bindValue(':categoria', $this->getCategoria());
+        return $stm->execute();
+    }
+
+    public function delete($idcategoria)
+    {
+        $query = "DELETE FROM $this->tabela WHERE idcategoria = :idcategoria";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idcategoria', $idcategoria, PDO::PARAM_INT);
+        return $stm->execute();
+    }
 }

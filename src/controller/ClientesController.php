@@ -64,7 +64,7 @@ class ClientesController extends Cliente {
         return $stm->execute();
     }
 
-    public function delete($idfornecedor) {
+    public function delete($idcliente) {
         $query = "DELETE FROM $this->tabela WHERE idcliente = :idcliente";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);

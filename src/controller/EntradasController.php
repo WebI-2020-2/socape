@@ -38,4 +38,34 @@ class EntradasController extends Entrada {
         }
         return $entradas;
     }
+    public function insert($idfornecedor, $valortotalnota, $datacompra)
+    {
+        $query = "INSERT INTO $this->tabela (idfornecedor, valortotalnota, datacompra)
+        VALUES (:idfornecedor, :valortotalnota, :datacompra)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idfornecedor', $idfornecedor);
+        $stm->bindParam(':valortotalnota', $valortotalnota);
+        $stm->bindParam(':datacompra', $datacompra);
+        return $stm->execute();
+    }
+
+    public function update($identrada)
+    {
+        $query = "UPDATE $this->tabela SET idfornecedor = :idfornecedor, valortotalnota = :valortotalnota, datacompra = :datacompra WHERE identrada = :identrada";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
+        $stm->bindValue(':idfornecedor', $this->getIdfornecedor());
+        $stm->bindValue(':valortotalnota', $this->getValortotalnota());
+        $stm->bindValue(':datacompra', $this->getDatacompra());
+
+        return $stm->execute();
+    }
+
+    public function delete($identrada)
+    {
+        $query = "DELETE FROM $this->tabela WHERE identrada = :identrada";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
+        return $stm->execute();
+    }
 }

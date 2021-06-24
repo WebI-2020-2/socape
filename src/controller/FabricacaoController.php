@@ -41,4 +41,30 @@ class FabricacaoController extends Fabricacao
         }
         return $fabricacoes;
     }
+    public function insert($ano)
+    {
+        $query = "INSERT INTO $this->tabela (ano)
+        VALUES (:ano)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':ano', $ano);
+        return $stm->execute();
+    }
+
+    public function update($idfabricacao)
+    {
+        $query = "UPDATE $this->tabela SET ano = :ano WHERE idfabricacao = :idfabricacao";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idfabricacao', $idfabricacao, PDO::PARAM_INT);
+        $stm->bindValue(':ano', $this->getAno());
+
+        return $stm->execute();
+    }
+
+    public function delete($idfabricacao)
+    {
+        $query = "DELETE FROM $this->tabela WHERE idfabricacao = :idfabricacao";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idfabricacao', $idfabricacao, PDO::PARAM_INT);
+        return $stm->execute();
+    }
 }

@@ -41,4 +41,29 @@ class CarroController extends Carro
         }
         return $carros;
     }
+    public function insert($modelo)
+    {
+        $query = "INSERT INTO $this->tabela (modelo)
+        VALUES (:modelo)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':modelo', $modelo);
+        return $stm->execute();
+    }
+
+    public function update($idcarro)
+    {
+        $query = "UPDATE $this->tabela SET modelo = :modelo WHERE idcarro = :idcarro";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idcarro', $idcarro, PDO::PARAM_INT);
+        $stm->bindValue(':modelo', $this->getModelo());
+        return $stm->execute();
+    }
+
+    public function delete($idcarro)
+    {
+        $query = "DELETE FROM $this->tabela WHERE idcarro = :idcarro";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idcarro', $idcarro, PDO::PARAM_INT);
+        return $stm->execute();
+    }
 }

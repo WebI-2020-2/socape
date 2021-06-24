@@ -41,4 +41,31 @@ class LocalizacaoController extends Localizacao
         }
         return $localizacoes;
     }
+    public function insert($departamento)
+    {
+        $query = "INSERT INTO $this->tabela (departamento)
+        VALUES (:departamento)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':departamento', $departamento);        
+
+        return $stm->execute();
+    }
+
+    public function update($idlocalizacao)
+    {
+        $query = "UPDATE $this->tabela SET departamento = :departamento WHERE idlocalizacao = :idlocalizacao";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idlocalizacao', $idlocalizacao, PDO::PARAM_INT);
+        $stm->bindValue(':departamento', $this->getDepartamento());
+        
+        return $stm->execute();
+    }
+
+    public function delete($idlocalizacao)
+    {
+        $query = "DELETE FROM $this->tabela WHERE idlocalizacao = :idlocalizacao";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idlocalizacao', $idlocalizacao, PDO::PARAM_INT);
+        return $stm->execute();
+    }
 }

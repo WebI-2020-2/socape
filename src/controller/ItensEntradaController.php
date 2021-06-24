@@ -43,4 +43,44 @@ class ItensEntradaController extends ItensEntrada {
         }
         return $itensEntradas;
     }
+    public function insert($idproduto, $precocompra, $quantidade, $unidade, $ipi, $frete, $icms)
+    {
+        $query = "INSERT INTO $this->tabela (idproduto, precocompra, quantidade, unidade, ipi, frete, icms)
+        VALUES (:idproduto, :precocompra, :quantidade, :unidade, :ipi, :frete, :icms)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idproduto', $idproduto);
+        $stm->bindParam(':precocompra', $precocompra);
+        $stm->bindParam(':quantidade', $quantidade);
+        $stm->bindParam(':unidade', $unidade);
+        $stm->bindParam(':ipi', $ipi);
+        $stm->bindParam(':frete', $frete);
+        $stm->bindParam(':icms', $icms);
+
+        return $stm->execute();
+    }
+
+    public function update($iditensentrada)
+    {
+        $query = "UPDATE $this->tabela SET idproduto = :idproduto, precocompra = :precocompra, quantidade = :quantidade, 
+        unidade = :unidade, ipi = :ipi, frete = :frete, icms = :icms WHERE iditensentrada = :iditensentrada";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':iditensentrada', $iditensentrada, PDO::PARAM_INT);
+        $stm->bindValue(':idproduto', $this->getIdproduto());
+        $stm->bindValue(':precocompra', $this->getPrecocompra());
+        $stm->bindValue(':quantidade', $this->getQuantidade());
+        $stm->bindValue(':unidade', $this->getUnidade());
+        $stm->bindValue(':ipi', $this->getIpi());
+        $stm->bindValue(':frete', $this->getFrete());
+        $stm->bindValue(':icms', $this->getIcms());
+        
+        return $stm->execute();
+    }
+
+    public function delete($iditensentrada)
+    {
+        $query = "DELETE FROM $this->tabela WHERE iditensentrada = :iditensentrada";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':iditensentrada', $iditensentrada, PDO::PARAM_INT);
+        return $stm->execute();
+    }
 }

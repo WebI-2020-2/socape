@@ -42,4 +42,33 @@ class FormaPagamentoController extends FormaPagamento
         }
         return $formaPagamento;
     }
+    public function insert($condicao, $forma)
+    {
+        $query = "INSERT INTO $this->tabela (condicao, forma)
+        VALUES (:condicao, :forma)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':condicao', $condicao);
+        $stm->bindParam(':forma', $forma);
+        return $stm->execute();
+    }
+
+    public function update($idformapagamento)
+    {
+        $query = "UPDATE $this->tabela SET condicao = :condicao, forma = :forma WHERE idformapagamento = :idformapagamento";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idformapagamento', $idformapagamento, PDO::PARAM_INT);
+        $stm->bindValue(':condicao', $this->getCondicao());
+        $stm->bindValue(':forma', $this->getForma());
+        
+        return $stm->execute();
+    }
+
+    public function delete($idformapagamento)
+    {
+        $query = "DELETE FROM $this->tabela WHERE idformapagamento = :idformapagamento";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idformapagamento', $idformapagamento, PDO::PARAM_INT);
+        return $stm->execute();
+    }
+
 }

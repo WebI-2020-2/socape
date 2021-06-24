@@ -41,4 +41,33 @@ class MotorController extends Motor
         }
         return $motores;
     }
+
+    public function insert($potencia)
+    {
+        $query = "INSERT INTO $this->tabela (potencia)
+        VALUES (:potencia)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':potencia', $potencia);        
+
+        return $stm->execute();
+    }
+
+    public function update($idmotor)
+    {
+        $query = "UPDATE $this->tabela SET marca = :marca WHERE idmotor = :idmotor";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idmotor', $idmotor, PDO::PARAM_INT);
+        $stm->bindValue(':potencia', $this->getPotencia());
+        
+        return $stm->execute();
+    }
+
+    public function delete($idmotor)
+    {
+        $query = "DELETE FROM $this->tabela WHERE idmotor = :idmotor";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idmotor', $idmotor, PDO::PARAM_INT);
+        return $stm->execute();
+    }
+    
 }

@@ -41,4 +41,33 @@ class MarcasController extends Marca
         }
         return $marcas;
     }
+
+    public function insert($marca)
+    {
+        $query = "INSERT INTO $this->tabela (marca)
+        VALUES (:marca)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':marca', $marca);        
+
+        return $stm->execute();
+    }
+
+    public function update($idmarca)
+    {
+        $query = "UPDATE $this->tabela SET marca = :marca WHERE idmarca = :idmarca";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idmarca', $idmarca, PDO::PARAM_INT);
+        $stm->bindValue(':marca', $this->getMarca());
+        
+        return $stm->execute();
+    }
+
+    public function delete($idmarca)
+    {
+        $query = "DELETE FROM $this->tabela WHERE idmarca = :idmarca";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idmarca', $idmarca, PDO::PARAM_INT);
+        return $stm->execute();
+    }
+    
 }
