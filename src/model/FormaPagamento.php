@@ -11,7 +11,7 @@ class FormaPagamento {
         $this->forma = $forma;  
     }
 
-	public function getIdformapagamento(){
+  public function getIdformapagamento(){
 		return $this->idformapagamento;
 	}
 

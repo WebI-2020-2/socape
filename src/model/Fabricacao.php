@@ -1,6 +1,6 @@
 <?php
 
-class Fabricacao {
+class Fabricaçao {
     private $idfabricacao;
     private $ano;
 
