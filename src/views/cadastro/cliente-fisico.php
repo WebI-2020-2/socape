@@ -1,3 +1,6 @@
+<?php
+    require_once '../../controller/ClientesController.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,25 +59,46 @@
     </nav>
 
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Cadastrar Cliente Físico</span></h1>
-        <select id="selecionar" class="form-select" aria-label="Default select example">
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Cadastrar Cliente Físico</span>
+        </h1>
+        <?php
+            if($_POST){
+                $cliente = new ClientesController();
+                $cliente->setNome($_POST['nome']);
+                $cliente->setTelefone($_POST['telefone']);
+                $cliente->setCpf($_POST['cpf']);
+                $cliente->setDebito(0);
+
+                try {
+                    $cliente->insertPF($cliente->getNome(), $cliente->getTelefone(), $cliente->getCpf(), $cliente->getDebito());
+                    echo
+                        '<div class="success callout">
+                            <h5>Cliente cadastrado</h5>
+                            <p>Cliente cadastrado com sucesso!.</p>
+                        </div>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
+            }
+        ?>
+        <select id="selecionar" class="form-select">
             <option selected>Física</option>
             <option value="1">Juridica</option>
         </select>
         <img id="imagem" src="./../../../public/imagens/usuario.png">
-        <form id="dados">
+        <form id="dados" action="" method="post">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" class="form-control" placeholder="Nome">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CPF">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" class="form-control" placeholder="Telefone">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cpf" class="form-control" placeholder="CPF">
             </div>
+            <input id="botão" type="submit" class="btn btn-light" value="Cadastrar">
         </form>
-        <button id="botão" type="button" class="btn btn-light">Cadastrar</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

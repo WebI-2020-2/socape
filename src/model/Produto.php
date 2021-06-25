@@ -11,7 +11,7 @@ class Produto {
     private $icms;
     private $ipi;
     private $frete;
-    private $valorfabrica;
+    private $valornafabrica;
     private $valordecompra;
     private $lucro;
     private $valorvenda;
@@ -21,7 +21,7 @@ class Produto {
     private $idlocalizacao;
     private $referencia;
 
-    public function __construct($idproduto, $idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valorfabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia) {
+    public function __construct($idproduto, $idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia) {
         $this->idproduto = $idproduto;
         $this->idmotor = $idmotor;
         $this->idcarro = $idcarro;
@@ -32,7 +32,7 @@ class Produto {
         $this->icms = $icms;
         $this->ipi = $ipi;
         $this->frete = $frete;
-        $this->valorfabrica = $valorfabrica;
+        $this->valornafabrica = $valornafabrica;
         $this->valordecompra = $valordecompra;
         $this->lucro = $lucro;
         $this->valorvenda = $valorvenda;
@@ -123,12 +123,12 @@ class Produto {
 		$this->frete = $frete;
 	}
 
-	public function getValorfabrica(){
-		return $this->valorfabrica;
+	public function getValornafabrica(){
+		return $this->valornafabrica;
 	}
 
-	public function setValorfabrica($valorfabrica){
-		$this->valorfabrica = $valorfabrica;
+	public function setValornafabrica($valornafabrica){
+		$this->valornafabrica = $valornafabrica;
 	}
 
 	public function getValordecompra(){

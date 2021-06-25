@@ -1,3 +1,7 @@
+<?php
+    require_once '../../controller/FornecedoresController.php';
+    $fornecedores = new FornecedoresController();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,25 +60,64 @@
     </nav>
 
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Consultar Fornecedor</span></h1>
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Consultar Fornecedor</span>
+        </h1>
         <div class="input-group">
             <input id="fornecedor" style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="IDfornecedor">
             <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button id="botãopequisa" class="btn btn-outline-success" type="submit">Pesquisar</button>
         </div>
+        <?php if($_GET["id"]){
+        if($fornecedores->findOne($_GET["id"])){
+            $fornecedor = $fornecedores->findOne($_GET["id"]);
+        ?>
         <form id="dados">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço">
+                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço" value="<?= $fornecedor->getEndereco(); ?>" disabled>
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ">
+                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone">
+                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>" disabled>
             </div>
         </form>
-        <img id="imagem" src="imagens/caminhão.png">
+        <img id="imagem" src="./../../../public/imagens/caminhão.png">
+        <?php
+            }
+        } ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">CNPJ</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                foreach ($fornecedores->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdfornecedor() ?></td>
+                        <td><?= $obj->getNome() ?></td>
+                        <td><?= $obj->getEndereco() ?></td>
+                        <td><?= $obj->getTelefone() ?></td>
+                        <td><?= $obj->getCnpj() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="success button" href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</a>
+                                <a class="success button" href="./editar.php?id=<?= $obj->getIdfornecedor() ?>">Editar</a>
+                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+            <?php } ?>
+            </tbody>
+        </table>
         <div id="localizaçãoBotões">
             <button id="botão" type="button" class="btn btn-light">Editar</button>
             <button id="botão" type="button" class="btn btn-light">Salvar</button>
