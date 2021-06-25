@@ -1,3 +1,6 @@
+<?php
+    require_once '../../controller/FornecedoresController.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,23 +59,47 @@
     </nav>
 
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Cadastrar Fornecedor</span></h1>
-        <form id="dados">
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Cadastrar Fornecedor</span>
+        </h1>
+        <?php
+            if($_POST){
+                $fornecedor = new FornecedoresController();
+                $fornecedor->setNome($_POST['nome']);
+                $fornecedor->setEndereco($_POST['endereco']);
+                $fornecedor->setTelefone($_POST['telefone']);
+                $fornecedor->setCnpj($_POST['cnpj']);
+
+                try {
+                    $fornecedor->insert($fornecedor->getNome(), $fornecedor->getEndereco(), $fornecedor->getTelefone(), $fornecedor->getCnpj());
+                    echo
+                        '<div class="success callout">
+                            <h5>Fornecedor cadastrado</h5>
+                            <p>Fornecedor cadastrado com sucesso!.</p>
+                        </div>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
+            }
+        ?>
+        <form id="dados" action="" method="post">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" class="form-control" placeholder="Nome">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="endereco" class="form-control" placeholder="Endereço">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" class="form-control" placeholder="Telefone">
             </div>
-        </form>
+            <div class="mb-3">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" class="form-control" placeholder="CNPJ">
+            </div>
         <img id="imagem" src="./../../../public/imagens/caminhão.png">
         <div id="localizaçãoBotões">
-            <button id="botão" type="button" class="btn btn-light">Salvar</button>
+            <input id="botão" type="submit" class="btn btn-light" value="Salvar">
         </div>
+        </form>
 
     </div>
 

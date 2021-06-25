@@ -5,7 +5,7 @@ require_once '../../model/Database.php';
 
 class ValvulasController extends Valvulas
 {
-    protected $tabela = 'valvula';
+    protected $tabela = 'valvulas';
 
     public function __construct()
     {

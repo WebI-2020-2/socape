@@ -1,3 +1,7 @@
+<?php
+    require_once '../../controller/ClientesController.php';
+    $clientes = new ClientesController();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,56 +60,71 @@
     </nav>
 
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Consultar Cliente</span></h1>
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Consultar Cliente</span>
+        </h1>
         <form class="d-flex">
             <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button id="barraPesquisa" class="btn btn-outline-success" type="submit">Pesquisar</button>
         </form>
+        <?php if($_GET["id"]){
+        if($clientes->findOne($_GET["id"])){
+            $cliente = $clientes->findOne($_GET["id"]);
+        ?>
         <img id="imagem" src="./../../../public/imagens/usuario.png">
         <form id="dados">
             <div class="input-group">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome" value="<?= $cliente->getNome(); ?>" disabled>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $cliente->getTelefone(); ?>" disabled>
             </div>
             <div style="margin-top: 5px" class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CPF/CNPJ">
-            </div>
+                <?php
+                    if(empty($cliente->getCpf())){
+                ?>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $cliente->getCnpj(); ?>" disabled>
+                <?php
+                } else {
+                ?>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="CPF" value="<?= $cliente->getCpf(); ?>" disabled>
+                <?php
+                    }
+                ?>
+                </div>
         </form>
-
+        <?php
+            }
+        } ?>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Produtos</th>
-                    <th scope="col">Descrição</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Débito</th>
                 </tr>
             </thead>
             <tbody>
+                <?php
+                foreach ($clientes->findAll() as $obj) { ?>
                 <tr>
-                    <th scope="row">escapamento 1</th>
-                    <td>valvulas: 8, valor R$ 302,32</td>
+                    <td><?= $obj->getIdcliente() ?></td>
+                    <td><?= $obj->getNome() ?></td>
+                    <td><?= $obj->getTelefone() ?></td>
+                    <td><?= $obj->getCnpj() ?></td>
+                    <td><?= $obj->getCpf() ?></td>
+                    <td><?= $obj->getDebito() ?></td>
+                    <td>
+                        <div class="button-group clear">
+                            <a class="success button" href="./cliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</a>
+                            <a class="success button" href="./editar.php?id=<?= $obj->getIdcliente() ?>">Editar</a>
+                            <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</a>
+                        </div>
+                    </td>
                 </tr>
-                <tr>
-                    <th scope="row">escapamento 2</th>
-                    <td>valvulas: 16, valor R$ 300,90</td>
-                </tr>
-                <tr>
-                    <th scope="row">escapamento 3</th>
-                    <td>valvulas: 8, valor R$ 280,80</td>
-                </tr>
-                <tr>
-                    <th scope="row">escapamento 4</th>
-                    <td>valvulas: 16, valor R$ 289,44,</td>
-                </tr>
-                <tr>
-                    <th scope="row">escapamento 5</th>
-                    <td>valvulas: 8, valor R$ 302,32</td>
-                </tr>
-                <tr>
-                    <th scope="row">escapamento 6</th>
-                    <td>valvulas: 16, valor R$ 330,87</td>
-                </tr>
+                <?php } ?>
             </tbody>
         </table>
         <div id="localizaçãoBotões">

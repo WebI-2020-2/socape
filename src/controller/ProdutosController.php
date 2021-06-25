@@ -30,7 +30,7 @@ class ProdutosController extends Produto
             $produto->setIcms($obj->icms);
             $produto->setIpi($obj->ipi);
             $produto->setFrete($obj->frete);
-            $produto->setValorfabrica($obj->valorfabrica);
+            $produto->setValornafabrica($obj->valornafabrica);
             $produto->setValordecompra($obj->valordecompra);
             $produto->setLucro($obj->lucro);
             $produto->setValorvenda($obj->valorvenda);
@@ -64,7 +64,7 @@ class ProdutosController extends Produto
                     $obj->icms,
                     $obj->ipi,
                     $obj->frete,
-                    $obj->valorfabrica,
+                    $obj->valornafabrica,
                     $obj->valordecompra,
                     $obj->lucro,
                     $obj->valorvenda,
@@ -79,11 +79,11 @@ class ProdutosController extends Produto
         return $produtos;
     }
 
-    public function insert($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valorfabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia)
+    public function insert($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia)
     {
         $query = "INSERT INTO $this->tabela (idmotor, idcarro, idvalvulas, idfabricacao, idcategoria, idmarca, icms, ipi, frete, 
-        valorfabrica, valordecompra, lucro, valorvenda, desconto, quantidade, unidade, idlocalizacao, referencia)
-        VALUES (:idmotor, :idcarro, :idvalvulas, :idfabricacao, :idcategoria, :idmarca, :icms, :ipi, :frete, :valorfabrica, 
+        valornafabrica, valordecompra, lucro, valorvenda, desconto, quantidade, unidade, idlocalizacao, referencia)
+        VALUES (:idmotor, :idcarro, :idvalvulas, :idfabricacao, :idcategoria, :idmarca, :icms, :ipi, :frete, :valornafabrica, 
         :valordecompra, :lucro, :valorvenda, :desconto, :quantidade, :unidade, :idlocalizacao,: referencia)";
         $stm = Database::prepare($query);
         $stm->bindParam(':idmotor', $idmotor);
@@ -95,7 +95,7 @@ class ProdutosController extends Produto
         $stm->bindParam(':icms', $icms);
         $stm->bindParam(':ipi', $ipi);
         $stm->bindParam(':frete', $frete);
-        $stm->bindParam(':valorfabrica', $valorfabrica);
+        $stm->bindParam(':valornafabrica', $valornafabrica);
         $stm->bindParam(':valordecompra', $valordecompra);
         $stm->bindParam(':lucro', $lucro);
         $stm->bindParam(':valorvenda', $valorvenda);
@@ -110,7 +110,7 @@ class ProdutosController extends Produto
     public function update($idproduto)
     {
         $query = "UPDATE $this->tabela SET idmotor = :idmotor, idcarro = :idcarro, idvalvulas = :idvalvulas, idfabricacao = :idfabricacao, idcategoria = :idcategoria, 
-        idmarca = :idmarca, icms = :icms, ipi = :ipi, frete = :frete, valorfabrica = :valorfabrica, valordecompra = :valordecompra, 
+        idmarca = :idmarca, icms = :icms, ipi = :ipi, frete = :frete, valornafabrica = :valornafabrica, valordecompra = :valordecompra, 
         lucro = :lucro, valorvenda = :valorvenda, desconto = :desconto, quantidade = :quantidade, unidade = :unidade, 
         idlocalizacao = :idlocalizacao, referencia = :referencia WHERE idproduto = :idproduto";
         $stm = Database::prepare($query);
@@ -124,7 +124,7 @@ class ProdutosController extends Produto
         $stm->bindValue(':icms', $this->getIcms());
         $stm->bindValue(':ipi', $this->getIpi());
         $stm->bindValue(':frete', $this->getFrete());
-        $stm->bindValue(':valorfabrica', $this->getValorfabrica());
+        $stm->bindValue(':valornafabrica', $this->getValornafabrica());
         $stm->bindValue(':valordecompra', $this->getValordecompra());
         $stm->bindValue(':lucro', $this->getLucro());
         $stm->bindValue(':valorvenda', $this->getValorvenda());

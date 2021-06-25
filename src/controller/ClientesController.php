@@ -41,26 +41,43 @@ class ClientesController extends Cliente {
         return $clientes;
     }
 
-    public function insert($nome, $telefone, $cnpj, $cpf, $debito) {
-        $query = "INSERT INTO $this->tabela (nome, telefone, cnpj, cpf, debito) VALUES (:nome, :telefone, :cnpj, :cpf, :debito)";
+    public function insertPF($nome, $telefone, $cpf, $debito) {
+        $query = "INSERT INTO $this->tabela (nome, telefone, cpf, debito) VALUES (:nome, :telefone, :cpf, :debito)";
         $stm = Database::prepare($query);
         $stm->bindParam(':nome', $nome);
         $stm->bindParam(':telefone', $telefone);
-        $stm->bindParam(':cnpj', $cnpj);
         $stm->bindParam(':cpf', $cpf);
         $stm->bindParam(':debito', $debito);
         return $stm->execute();
     }
 
-    public function update($idcliente) {
-        $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cnpj = :cnpj, cpf = :cpf, debito = :debito WHERE idcliente = :idcliente";
+    public function updatePF($idcliente) {
+        $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cpf = :cpf WHERE idcliente = :idcliente";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
+        $stm->bindValue(':nome', $this->getNome());
+        $stm->bindValue(':telefone', $this->getTelefone());
+        $stm->bindValue(':cpf', $this->getCpf());
+        return $stm->execute();
+    }
+
+    public function insertPJ($nome, $telefone, $cnpj, $debito) {
+        $query = "INSERT INTO $this->tabela (nome, telefone, cnpj, debito) VALUES (:nome, :telefone, :cnpj, :debito)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':nome', $nome);
+        $stm->bindParam(':telefone', $telefone);
+        $stm->bindParam(':cnpj', $cnpj);
+        $stm->bindParam(':debito', $debito);
+        return $stm->execute();
+    }
+
+    public function updatePJ($idcliente) {
+        $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cnpj = :cnpj WHERE idcliente = :idcliente";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
         $stm->bindValue(':nome', $this->getNome());
         $stm->bindValue(':telefone', $this->getTelefone());
         $stm->bindValue(':cnpj', $this->getCnpj());
-        $stm->bindValue(':cpf', $this->getCpf());
-        $stm->bindValue(':debito', $this->getDebito());
         return $stm->execute();
     }
 
