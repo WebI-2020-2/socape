@@ -1,3 +1,6 @@
+<?php
+    require_once '../../controller/ValvulasController.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,18 +59,38 @@
     </nav>
 
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Cadastrar Valvula</span></h1>
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Cadastrar Valvula</span>
+        </h1>
+        <?php
+            if($_POST){
+                $valvulas = new ValvulasController();
+                $valvulas->setQuantidade($_POST['quantidade']);
 
-        <form id="dados">
+                try {
+                    $valvulas->insert($valvulas->getQuantidade());
+                    echo
+                        '<div class="success callout">
+                            <h5>Valvula cadastrada</h5>
+                            <p>Valvula cadastrada com sucesso!.</p>
+                        </div>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
+            }
+        ?>
+
+        <form id="dados" action="" method="POST">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Quantidade">
+                <input style="border-radius: 30px 30px 30px 30px" type="number" name="quantidade" class="form-control" placeholder="Quantidade">
             </div>
-        </form>
+
         <div id="localizaçãoBotões">
             <button id="botão" type="button" class="btn btn-light">Editar</button>
-            <button id="botão" type="button" class="btn btn-light">Cadastrar</button>
+            <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </div>
+
+        </form>
 
     </div>
 

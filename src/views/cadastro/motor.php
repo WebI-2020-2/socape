@@ -1,3 +1,6 @@
+<?php
+    require_once '../../controller/MotorController.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,18 +59,38 @@
     </nav>
 
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Cadastrar Motor</span></h1>
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Cadastrar Motor</span>
+        </h1>
+        <?php
+            if($_POST){
+                $motor = new MotorController();
+                $motor->setPotencia($_POST['potencia']);
 
-        <form id="dados">
+                try {
+                    $motor->insert($motor->getPotencia());
+                    echo
+                        '<div class="success callout">
+                            <h5>Motor cadastrado</h5>
+                            <p>Motor cadastrado com sucesso!.</p>
+                        </div>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
+            }
+        ?>
+
+        <form id="dados" action="" method="POST">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Potência">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="potencia" class="form-control" placeholder="Potencia">
             </div>
-        </form>
+
         <div id="localizaçãoBotões">
             <button id="botão" type="button" class="btn btn-light">Editar</button>
-            <button id="botão" type="button" class="btn btn-light">Cadastrar</button>
+            <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </div>
+
+        </form>
 
     </div>
 
