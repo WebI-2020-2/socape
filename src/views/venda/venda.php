@@ -79,7 +79,7 @@
             <h2 style="text-align: center;">
                 <span id="titulo" class="badge bg-light text-dark">Realizar venda</span>
             </h2>
-            <form class="d-flex">
+            <form class="d-flex" action="./realizarVenda.php" method="POST">
                 <div class="input-group">
                     <label for="formaPagamento" class="form-label">Forma de Pagamento</label>
                     <select id="formaPagamento" name="idformapagamento" style="border-radius: 30px 30px 30px 30px" class="form-control">
@@ -110,7 +110,9 @@
                     <th scope="col">#</th>
                     <th scope="col">Cliente</th>
                     <th scope="col">Forma de Pagamento</th>
+                    <th scope="col">Data</th>
                     <th scope="col">Valor total</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
