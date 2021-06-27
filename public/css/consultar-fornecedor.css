@@ -76,4 +76,14 @@ h1{
 }
 
 
+table{
+	margin-top: 20px;
+}
 
+table th{
+	color: white;
+}
+
+table td{
+	color: white;
+}
