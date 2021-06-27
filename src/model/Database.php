@@ -22,6 +22,10 @@ class Database {
         return self::getInstance()->prepare($sql);
     }
 
+    public static function lastInsertId(){
+        return self::getInstance()->lastInsertId();
+    }
+
     public function testaConexao() {
         try {
             $this->getInstance();
