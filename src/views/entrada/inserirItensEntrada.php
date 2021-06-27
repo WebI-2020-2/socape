@@ -1,11 +1,12 @@
 <?php
-require_once '../../controller/EntradasController.php';
-$entradas = new EntradasController();
+        require_once '../../controller/ItensEntradaController.php';
+        $itensEntrada = new ItensEntradaController();
 
-require_once '../../controller/FornecedoresController.php';
-$fornecedores = new FornecedoresController();
-
+        require_once '../../controller/EntradasController.php';
+        $entrada = new EntradasController();
+        $entrada = $entrada->findOne($_GET['identrada']);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -13,7 +14,7 @@ $fornecedores = new FornecedoresController();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Entrada</title>
+    <title>SOCAPE | Inserir Itens Entrada</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/entrada.css" rel="stylesheet">
@@ -47,7 +48,7 @@ $fornecedores = new FornecedoresController();
                         <a class="nav-link" style="color: FFFFFF" href="../../views/venda/venda.php">Vender</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: FFFFFF" href="../../views/entrada/entrada.php">Entrada</a>
+                        <a class="nav-link" style="color: FFFFFF" href="../../views/entrada/entrada.php">Inserir</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="color: FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultar</a>
@@ -69,70 +70,120 @@ $fornecedores = new FornecedoresController();
     <div id="Container">
         <br>
         <h1>
-            <span id="titulo" class="badge bg-light text-dark">Entrada</span>
+            <span id="titulo" class="badge bg-light text-dark">Inserir Itens Entrada</span>
         </h1>
 
-        <form id="dados" method="POST" action="realizarEntrada.php">
+        <?php
+        if ($_POST) {
+            $itenEntrada = new ItensEntradaController();
+            $itenEntrada->setIdentrada($entrada->getIdentrada());
+            $itenEntrada->setIdproduto($_POST['idproduto']);
+            $itenEntrada->setPrecocompra($_POST['precoCompra']);
+            $itenEntrada->setQuantidade($_POST['quantidade']);
+            $itenEntrada->setUnidade($_POST['unidade']);
+            $itenEntrada->setIpi($_POST['ipi']);
+            $itenEntrada->setFrete($_POST['frete']);
+            $itenEntrada->setIcms($_POST['icms']);
+
+            try {
+                $itenEntrada->insert($itenEntrada->getIdentrada(), $itenEntrada->getIdproduto(), $itenEntrada->getPrecocompra(), $itenEntrada->getQuantidade(), $itenEntrada->getUnidade(), $itenEntrada->getIpi(), $itenEntrada->getFrete(), $itenEntrada->getIcms());
+                echo
+                '<div class="success callout">
+                            <h5>Item cadastrado</h5>
+                </div>';
+            } catch (PDOException $err) {
+                echo $err->getMessage();
+            }
+        }
+        ?>
+
+        <form id="dados" method="POST" action="">
 
             <div class="mb-3">
-                <label for="barraPesquisa" class="form-label">Fornecedor:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="barraPesquisa" class="form-control" type="search" placeholder="Fornecedor" aria-label="Search">
-                <input id="idfornecedor" type="hidden" name="idfornecedor">
+
+                <label for="barraPesquisa">Produto:</label>
+                <input style="border-radius: 30px 30px 30px 30px" id="barraPesquisa" class="form-control" type="search" placeholder="Produto">
+                <input id="idproduto" type="hidden" name="idproduto">
+
+                <label for="preco" class="form-label">Preço Compra:</label>
+                <input style="border-radius: 30px 30px 30px 30px" id="preco" name="precoCompra" class="form-control" type="search" placeholder="Preço Compra" aria-label="Search">
+
+                <label for="quantidade" class="form-label">Quantidade:</label>
+                <input style="border-radius: 30px 30px 30px 30px" id="quantidade" name="quantidade" class="form-control" type="search" placeholder="Quantidade" aria-label="Search">
+
+                <label for="unidade" class="form-label">Unidade:</label>
+                <input style="border-radius: 30px 30px 30px 30px" id="unidade" name="unidade" class="form-control" type="search" placeholder="Unidade" aria-label="Search">
+
+                <label for="ipi" class="form-label">Ipi:</label>
+                <input style="border-radius: 30px 30px 30px 30px" id="ipi" name="ipi" class="form-control" type="search" placeholder="Ipi" aria-label="Search">
+
+                <label for="frete" class="form-label">Frete:</label>
+                <input style="border-radius: 30px 30px 30px 30px" id="frete" name="frete" class="form-control" type="search" placeholder="Frete" aria-label="Search">
+
+                <label for="icms" class="form-label">Icms:</label>
+                <input style="border-radius: 30px 30px 30px 30px" id="icms" name="icms" class="form-control" type="search" placeholder="Icms" aria-label="Search">
+
             </div>
-           
+
             <div id="localizaçãoBotões">
                 <input id="botão" type="submit" class="btn btn-light" value="Confirma">
             </div>
         </form>
+        valortotalnota:<?=$entrada->getValortotalnota();?>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Fornecedor</th>
-                    <th scope="col">Valor Total</th>
-                    <th scope="col">Data</th>
+                    <th scope="col">ID Entrada</th>
+                    <th scope="col">ID Produto</th>
+                    <th scope="col">Preço Compra</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Unidade</th>
+                    <th scope="col">ipi</th>
+                    <th scope="col">frete</th>
+                    <th scope="col">icms</th>
+                    <th scope="col">ações</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($entradas->findAll() as $obj) { ?>
+                foreach ($itensEntrada->findAllByIdEntrada($entrada->getIdentrada()) as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdentrada() ?></td>
-                        <td><?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?></td>
-                        <td><?= $obj->getValortotalnota() ?></td>
-                                                <td><?= $obj->getDatacompra() ?></td>
-
-                        <td>
-                            <div class="button-group clear">
-                                <a class="success button" href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdentrada() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $obj->getIdentrada() ?>')">Apagar</a>
-                            </div>
-                        </td>
+                        <td><?= $obj->getIditensentrada(); ?></td>
+                        <td><?= $obj->getIdentrada(); ?></td>
+                        <td><?= $obj->getIdproduto(); ?></td>
+                        <td><?= $obj->getPrecocompra(); ?></td>
+                        <td><?= $obj->getQuantidade(); ?></td>
+                        <td><?= $obj->getUnidade(); ?></td>
+                        <td><?= $obj->getIpi(); ?></td>
+                        <td><?= $obj->getFrete(); ?></td>
+                        <td><?= $obj->getIcms(); ?></td>
+                        <td>Atualizar/Remover</td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
+
     </div>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $.getJSON('./retornaFornecedor.php', function(data) {
-                var fornecedor = [];
+            $.getJSON('./retornaProduto.php', function(data) {
+                var produto = [];
 
                 $(data).each(function(key, value) {
-                    fornecedor.push({
-                        label: value.nome,
-                        value: value.idfornecedor
+                    produto.push({
+                        label: value.idproduto,
+                        value: value.idproduto
                     });
                 });
 
                 $('#barraPesquisa').autocomplete({
-                    source: fornecedor,
-                    minLength: 3,
+                    source: produto,
+                    minLength: 1,
                     select: (event, ui) => {
                         $("#barraPesquisa").val(ui.item.label);
-                        $("#idfornecedor").val(ui.item.value);
+                        $("#idproduto").val(ui.item.value);
 
                         return false;
                     }

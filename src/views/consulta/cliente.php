@@ -1,6 +1,6 @@
 <?php
-    require_once '../../controller/ClientesController.php';
-    $clientes = new ClientesController();
+require_once '../../controller/ClientesController.php';
+$clientes = new ClientesController();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -63,38 +63,40 @@
         <h1>
             <span id="titulo" class="badge bg-light text-dark">Consultar Cliente</span>
         </h1>
-        <form class="d-flex">
-            <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+        <div class="d-flex" style="text-align:center">
+            <input id="barraPesquisa" class="form-control mb-2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button id="barraPesquisa" class="btn btn-outline-success" type="submit">Pesquisar</button>
-        </form>
-        <?php if($_GET["id"]){
-        if($clientes->findOne($_GET["id"])){
-            $cliente = $clientes->findOne($_GET["id"]);
+        </div>
+        <?php if (isset($_GET["id"])) {
+            if ($clientes->findOne($_GET["id"])) {
+                $cliente = $clientes->findOne($_GET["id"]);
         ?>
-        <img id="imagem" src="./../../../public/imagens/usuario.png">
-        <form id="dados">
-            <div class="input-group">
-                <label for="Nome" class="form-label">Nome:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome" value="<?= $cliente->getNome(); ?>" disabled>
-                <label for="Telefone" class="form-label">Telefone:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $cliente->getTelefone(); ?>" disabled>
-            </div>
-            <div style="margin-top: 5px" class="mb-3">
-                <?php
-                    if(empty($cliente->getCpf())){
-                ?>
-                    <label for="CNPJ" class="form-label">Cnpj:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $cliente->getCnpj(); ?>" disabled>
-                <?php
-                } else {
-                ?>
-                    <label for="CPF" class="form-label">Cpf:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="CPF" value="<?= $cliente->getCpf(); ?>" disabled>
-                <?php
-                    }
-                ?>
-                </div>
-        </form>
+                <img id="imagem" src="./../../../public/imagens/usuario.png">
+                <form id="dados">
+                    <div class="input-group">
+                        <div> <label for="Nome" class="form-label">Nome:</label>
+                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome" value="<?= $cliente->getNome(); ?>" disabled>
+                        </div>
+                        <div> <label for="Telefone" class="form-label">Telefone:</label>
+                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $cliente->getTelefone(); ?>" disabled>
+                        </div>
+                    </div>
+                    <div style="margin-top: 5px" class="mb-3">
+                        <?php
+                        if (empty($cliente->getCpf())) {
+                        ?>
+                            <label for="CNPJ" class="form-label">Cnpj:</label>
+                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $cliente->getCnpj(); ?>" disabled>
+                        <?php
+                        } else {
+                        ?>
+                            <label for="CPF" class="form-label">Cpf:</label>
+                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="CPF" value="<?= $cliente->getCpf(); ?>" disabled>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                </form>
         <?php
             }
         } ?>
@@ -113,21 +115,21 @@
             <tbody>
                 <?php
                 foreach ($clientes->findAll() as $obj) { ?>
-                <tr>
-                    <td><?= $obj->getIdcliente() ?></td>
-                    <td><?= $obj->getNome() ?></td>
-                    <td><?= $obj->getTelefone() ?></td>
-                    <td><?= $obj->getCnpj() ?></td>
-                    <td><?= $obj->getCpf() ?></td>
-                    <td><?= $obj->getDebito() ?></td>
-                    <td>
-                        <div class="button-group clear">
-                            <a class="success button" href="./cliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</a>
-                            <a class="success button" href="./editar.php?id=<?= $obj->getIdcliente() ?>">Editar</a>
-                            <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</a>
-                        </div>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?= $obj->getIdcliente() ?></td>
+                        <td><?= $obj->getNome() ?></td>
+                        <td><?= $obj->getTelefone() ?></td>
+                        <td><?= $obj->getCnpj() ?></td>
+                        <td><?= $obj->getCpf() ?></td>
+                        <td><?= $obj->getDebito() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="success button" href="./cliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</a>
+                                <a class="success button" href="./editar.php?id=<?= $obj->getIdcliente() ?>">Editar</a>
+                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
                 <?php } ?>
             </tbody>
         </table>

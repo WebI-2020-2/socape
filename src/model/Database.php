@@ -29,4 +29,8 @@ class Database {
             echo $err->getMessage();
         }
     }
+    
+    public static function lastInsertId(){
+        return self::getInstance()->lastInsertId();
+    }
 }
