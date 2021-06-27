@@ -80,7 +80,8 @@
         ?>
         <form id="dados" action="" method="POST">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="departamento" class="form-control" placeholder="Departamento">
+                <label for="Departamento" class="form-label">Departamento:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="departamento" id= "departamento" class="form-control" placeholder="Departamento">
             </div>
 
         <div id="localizaçãoBotões">

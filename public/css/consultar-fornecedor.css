@@ -6,7 +6,7 @@
 
 
 #conta{
-	margin-left: 1120px;
+	margin-left: 895px;
 	margin-right: -10px;
 }
 
@@ -17,23 +17,24 @@
 	border-radius: 50px;
 }
 #imagem{
-	margin-left: 150px;
+	margin-left: 100px
 }
 
 body{
+	color: #ffffff;
 	background-color: #140C0C
 }
 
 #Container{
 	margin-top: 5px;  	
-	height: 100%; 	
+	height: 90%; 
+
 	background-image: linear-gradient(to bottom, #272020, #8C1818);  
 }
 
 #dados{
-	margin-left: 150px;
+
 	margin-top: 15px;
-	width: 20%;
 }
 #fornecedor{
 	margin-top: 30px;
@@ -58,7 +59,7 @@ body{
 
 #localizaçãoBotões{
 	margin-top: 50px;
-	margin-left: 1000px;
+	margin-left: 800px;
 }
 #botão{
 	padding: 4px 15px 3px 15px;

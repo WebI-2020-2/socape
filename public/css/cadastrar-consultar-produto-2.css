@@ -5,7 +5,7 @@
 }
 
 #conta{
-	margin-left: 1120px;
+	margin-left: 895px;
 	margin-right: -10px;
 }
 
@@ -17,6 +17,7 @@
 }
 
 body{
+	color: #ffffff;
 	background-color: #140C0C
 }
 
@@ -63,7 +64,7 @@ body{
 }
 
 #localizaçãoBotões{
-	margin-left: 1000px;
+	margin-left: 800px;
 	margin-top: 50px;
 }
 #botão{

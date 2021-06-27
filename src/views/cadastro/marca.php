@@ -82,7 +82,8 @@
 
         <form id="dados" action="" method="POST">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="marca" class="form-control" placeholder="Marca">
+                <label for="Marca" class="form-label">Marca:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="marca" id= "marca" class="form-control" placeholder="Marca">
             </div>
 
         <div id="localizaçãoBotões">

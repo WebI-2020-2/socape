@@ -82,23 +82,28 @@
                 }
             }
         ?>
+        <img id="imagem" src="./../../../public/imagens/caminhão.png" align="right">
         <form id="dados" action="" method="post">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" class="form-control" placeholder="Nome">
+                <label for="Nome" class="form-label">Nome:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" id= "nome" class="form-control" placeholder="Nome">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="endereco" class="form-control" placeholder="Endereço">
+                <label for="Endereço" class="form-label">Endereço:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="endereco" id= "endereco" class="form-control" placeholder="Endereco">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" class="form-control" placeholder="Telefone">
+                <label for="Telefone" class="form-label">Telefone:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" id= "telefone" class="form-control" placeholder="Telefone">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" class="form-control" placeholder="CNPJ">
+                <label for="CNPJ" class="form-label">Cnpj:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="CNPJ" id= "cnpj" class="form-control" placeholder="CNPJ">
             </div>
-        <img id="imagem" src="./../../../public/imagens/caminhão.png">
-        <div id="localizaçãoBotões">
-            <input id="botão" type="submit" class="btn btn-light" value="Salvar">
-        </div>
+            
+             <div id="localizaçãoBotões">
+                <input id="botão" type="submit" class="btn btn-light" value="Salvar">
+            </div>
         </form>
 
     </div>

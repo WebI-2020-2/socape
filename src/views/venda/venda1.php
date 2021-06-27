@@ -60,7 +60,9 @@
         <h1><span id="titulo" class="badge bg-light text-dark">Vendas</span></h1>
         <form>
             <div style="margin-top: 30px" class="input-group">
+                <label for="Forma de Pagamento" class="form-label">Forma de Pagamento:</label>
                 <input id="FormaDePagamento" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Dinheiro" aria-label="Disabled input example" disabled>
+                <label for="Condicao De Pagamento" class="form-label">Condição De Pagamento:</label>
                 <input id="CondiçãoDePagamento" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Á Vista" aria-label="Disabled input example" disabled>
             </div>
         </form>

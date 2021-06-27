@@ -82,7 +82,8 @@
 
         <form id="dados" action="" method="POST">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="potencia" class="form-control" placeholder="Potencia">
+                <label for="Potencia" class="form-label">Potência do motor:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="potencia" id= "potencia" class="form-control" placeholder="Potência">
             </div>
 
         <div id="localizaçãoBotões">
@@ -91,7 +92,7 @@
         </div>
 
         </form>
-
+      
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
