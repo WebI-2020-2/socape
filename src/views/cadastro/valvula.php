@@ -85,11 +85,13 @@
                 <label for="Quantidade" class="form-label">Quantidade de Válvulas:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="text" name="quantitade" id= "quantidade" class="form-control" placeholder="Quantidade">
             </div>
-        </form>
+
         <div id="localizaçãoBotões">
             <button id="botão" type="button" class="btn btn-light">Editar</button>
             <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </div>
+
+        </form>
 
     </div>
 
