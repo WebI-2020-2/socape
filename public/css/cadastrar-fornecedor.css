@@ -6,7 +6,7 @@
 
 
 #conta{
-	margin-left: 1120px;
+	margin-left: 895px;
 	margin-right: -10px;
 }
 
@@ -17,10 +17,12 @@
 	border-radius: 50px;
 }
 #imagem{
-	margin-bottom: 170px;
+	margin-top: 100px;
+	margin-right: 400px;
 }
 
 body{
+	color: #ffffff;
 	background-color: #140C0C
 }
 
@@ -31,7 +33,7 @@ body{
 }
 
 #dados{
-	margin-left: 500px;
+	margin-left: 300px;
 	margin-top: 70px;
 	width: 20%;
 	display: inline-block;
@@ -43,8 +45,9 @@ body{
 }
 
 #localizaçãoBotões{
-	margin-top: 100px;
-	margin-left: 1000px;
+	margin-top: 30px;
+	margin-bottom: 100px;
+	margin-left: 700px;
 }
 #botão{
 	padding: 4px 15px 3px 15px;

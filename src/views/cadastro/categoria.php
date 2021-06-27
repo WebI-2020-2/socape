@@ -61,7 +61,8 @@
 
         <form id="dados">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Categoria">
+                <label for="Categoria" class="form-label">Categoria:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="categoria" id= "categoria" class="form-control" placeholder="Categoria">
             </div>
         </form>
         <div id="localizaçãoBotões">

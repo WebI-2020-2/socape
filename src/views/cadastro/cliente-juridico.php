@@ -63,16 +63,20 @@
             <option value="1">Juridica</option>
         </select>
         <img id="imagem" src="./../../../public/imagens/usuario.png">
-        <form id="dados">
+        <form id="dados" action="" method="post">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome">
+                <label for="Nome" class="form-label">Nome:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" id= "nome" class="form-control" placeholder="Nome">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ">
+                <label for="Telefone" class="form-label">Telefone:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" id= "telefone" class="form-control" placeholder="Telefone">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone">
+                <label for="CNPJ" class="form-label">Cnpj:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="CNPJ" id= "cnpj" class="form-control" placeholder="CNPJ">
             </div>
+            <input id="botão" type="submit" class="btn btn-light" value="Cadastrar">
         </form>
         <button id="botão" type="button" class="btn btn-light">Cadastrar</button>
     </div>

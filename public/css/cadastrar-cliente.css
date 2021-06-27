@@ -6,7 +6,7 @@
 
 
 #conta{
-	margin-left: 1120px;
+	margin-left: 895px;
 	margin-right: -10px;
 }
 
@@ -17,12 +17,15 @@
 	border-radius: 50px;
 }
 #imagem{
+	margin-top: 82px;
 	width: 20%;
-	margin-left: 200px;
+	margin-left: 100px;
 }
 
 body{
+	color: #ffffff;
 	background-color: #140C0C
+
 }
 
 #Container{
@@ -47,8 +50,9 @@ body{
 #botão{
 	padding: 4px 15px 3px 15px;
 	border-radius: 50px;
-	margin-top: 600px;
-	margin-left: 280px;
+	margin-top: 40px;
+	margin-bottom: 100px;
+	margin-left: 450px;
 }
 
 #texto{

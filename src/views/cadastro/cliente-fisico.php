@@ -86,19 +86,23 @@
             <option selected>Física</option>
             <option value="1">Juridica</option>
         </select>
-        <img id="imagem" src="./../../../public/imagens/usuario.png">
+        <img id="imagem" src="./../../../public/imagens/usuario.png" align="left">
         <form id="dados" action="" method="post">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" class="form-control" placeholder="Nome">
+                <label for="Nome" class="form-label">Nome:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" id= "nome" class="form-control" placeholder="Nome">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" class="form-control" placeholder="Telefone">
+                <label for="Telefone" class="form-label">Telefone:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" id= "telefone" class="form-control" placeholder="Telefone">
             </div>
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cpf" class="form-control" placeholder="CPF">
+                <label for="CPF" class="form-label">Cpf:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="CPF" id= "cpf" class="form-control" placeholder="Cpf">
             </div>
             <input id="botão" type="submit" class="btn btn-light" value="Cadastrar">
         </form>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

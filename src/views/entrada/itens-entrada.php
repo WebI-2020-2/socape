@@ -60,27 +60,35 @@
         <h1><span id="titulo" class="badge bg-light text-dark">Itens Entrada</span></h1>
         <form id="grupoFor">
             <div class="input-group" style="margin-top: 50px">
+                <label for="Codigo de Barra" class="form-label">Codigo de Barra:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Codigo de Barras">
+                <label for="Descricao" class="form-label">Descrição:</label>
                 <input id="descrição" style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Descrição">
             </div>
         </form>
         <form id="dados">
             <div style="margin-top: 5px" class="mb-3">
+                <label for="Valor de compra" class="form-label">Valor de Compra:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Preço de Compra">
             </div>
             <div style="margin-top: 5px" class="mb-3">
+                <label for="Icms" class="form-label">Icms:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Icms">
             </div>
             <div style="margin-top: 5px" class="mb-3">
+                <label for="Ipi" class="form-label">Ipi:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ipi">
             </div>
             <div style="margin-top: 5px" class="mb-3">
+                <label for="Unidade" class="form-label">Unidade:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Unidade">
             </div>
             <div style="margin-top: 5px" class="mb-3">
+                <label for="Frete" class="form-label">Frete:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Frete">
             </div>
             <div style="margin-top: 5px" class="mb-3">
+                <label for="Quantidade" class="form-label">Quantidade</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Quantidade">
             </div>
         </form>

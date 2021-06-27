@@ -65,10 +65,13 @@
                     <option>Jorge</option>
                 </select>
             </div>
+
             <div style="margin-top: 17px" class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="valor Total de Compra">
+                <label for="Valor Total da Compra" class="form-label">Valor Total:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="email"  class="form-control" id="exampleFormControlInput1" placeholder="valor Total de Compra">
             </div>
             <div style="margin-top: 5px" class="mb-3">
+                <label for="Data de Compra" class="form-label">Data:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Data de Compra">
             </div>
         </form>

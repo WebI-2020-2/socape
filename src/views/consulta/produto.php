@@ -91,44 +91,64 @@
         <form id="grupoFor">
             <div class="input-group">
                 <img id="imagem" src="./../../../public/imagens/imagem.png" alt="..." class="img-thumbnail">
+                <label for="Descricao" class="form-label">Descrição:</label>
                 <input id="descrição" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Descrição" disabled>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Codigo de Barra" class="form-label">Codigo de Barra:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Codigo de Barra" disabled>
+                    <label for="Lucro" class="form-label">Lucro:</label>
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Lucro" value="<?= $produto->getLucro(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Motor" class="form-label">Motor:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Motor" value="<?= $motores->findOne($produto->getIdmotor())->getPotencia(); ?>" disabled>
+                    <label for="Desconto" class="form-label">Desconto:</label>                    
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Desconto" value="<?= $produto->getDesconto(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Carro" class="form-label">Carro:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Carro" value="<?= $carros->findOne($produto->getIdcarro())->getModelo(); ?>" disabled>
+                    <label for="Unidade" class="form-label">Unidade:</label>
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Unidade" value="<?= $produto->getUnidade(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Valvula" class="form-label">Valvula:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Valvula" value="<?= $valvulas->findOne($produto->getIdvalvulas())->getQuantidade(); ?>" disabled>
+                    <label for="Valor de Fabrica" class="form-label">Valor de Fábrica:</label>
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Valor de Fabrica" value="<?= $produto->getValornafabrica(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Fabricacao" class="form-label">Fabricação:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Fabricação" value="<?= $fabricacoes->findOne($produto->getIdfabricacao())->getAno(); ?>" disabled>
+                    <label for="Valor de compra" class="form-label">Valor de Compra:</label>
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Valor de compra" value="<?= $produto->getValordecompra(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Categoria" class="form-label">Categoria:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Categoria" value="<?= $categorias->findOne($produto->getIdcategoria())->getCategoria(); ?>" disabled>
+                    <label for="Icms" class="form-label">Icms:</label>
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Icms" value="<?= $produto->getIcms(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Marca" class="form-label">Marca:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Marca" value="<?= $marcas->findOne($produto->getIdmarca())->getMarca(); ?>" disabled>
+                    <label for="Ipi" class="form-label">Ipi:</label>
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Ipi" value="<?= $produto->getIpi(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Localizacao" class="form-label">Localização:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Localização" value="<?= $localizacoes->findOne($produto->getIdlocalizacao())->getDepartamento(); ?>" disabled>
+                    <label for="Frete" class="form-label">Frete:</label>
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Frete" value="<?= $produto->getFrete(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 10px">
+                    <label for="Referência" class="form-label">Referência:</label>
                     <input id="referência" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Referência" value="<?= $produto->getReferencia(); ?>" disabled>
                 </div>
                 <div id="grupo" class="input-group" style="margin-top: 80px">
+                    <label for="Quantidade" class="form-label">Quantidade:</label>
                     <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Quantidade" value="<?= $produto->getQuantidade(); ?>" disabled>
+                    <label for="Valor de venda" class="form-label">Valor de Venda:</label>
                     <input id="dados" style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="Valor de venda" value="<?= $produto->getValorvenda(); ?>" disabled>
                 </div>
             </div>

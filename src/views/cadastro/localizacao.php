@@ -1,3 +1,6 @@
+<?php
+    require_once '../../controller/LocalizacaoController.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -54,21 +57,37 @@
             </div>
         </div>
     </nav>
-
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Cadastrar Localização</span></h1>
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Cadastrar Localização</span>
+        </h1>
+        <?php
+            if($_POST){
+                $localizacao = new LocalizacaoController();
+                $localizacao->setDepartamento($_POST['departamento']);
 
-        <form id="dados">
+                try {
+                    $localizacao->insert($localizacao->getDepartamento());
+                    echo
+                        '<div class="success callout">
+                            <h5>Departamento cadastrado</h5>
+                            <p>Departamento cadastrado com sucesso!.</p>
+                        </div>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
+            }
+        ?>
+        <form id="dados" action="" method="POST">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Departamento">
+                <label for="Departamento" class="form-label">Departamento:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="departamento" id= "departamento" class="form-control" placeholder="Departamento">
             </div>
         </form>
         <div id="localizaçãoBotões">
             <button id="botão" type="button" class="btn btn-light">Editar</button>
-            <button id="botão" type="button" class="btn btn-light">Cadastrar</button>
+            <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </div>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

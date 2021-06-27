@@ -74,12 +74,15 @@
         ?>
         <form id="dados">
             <div class="mb-3">
+                <label for="Endereco" class="form-label">Endereço</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço" value="<?= $fornecedor->getEndereco(); ?>" disabled>
             </div>
             <div class="mb-3">
+                <label for="CNPJ" class="form-label">CNPJ:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
             </div>
             <div class="mb-3">
+                <label for="Telefone" class="form-label">Telefone:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>" disabled>
             </div>
         </form>

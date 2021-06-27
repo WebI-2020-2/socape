@@ -1,3 +1,6 @@
+<?php
+    require_once '../../controller/FabricacaoController.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,20 +59,37 @@
     </nav>
 
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Cadastrar Fabricação</span></h1>
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Cadastrar Ano de Fabricação</span>
+        </h1>
+        <?php
+            if($_POST){
+                $fabricacao = new FabricacaoController();
+                $fabricacao->setAno($_POST['ano']);
 
-        <form id="dados">
+                try {
+                    $fabricacao->insert($fabricacao->getAno());
+                    echo
+                        '<div class="success callout">
+                            <h5>Ano de fabricação cadastrado</h5>
+                            <p>Ano de fabricação cadastrado com sucesso!.</p>
+                        </div>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
+            }
+        ?>
+
+        <form id="dados" action="" method="POST">
             <div class="mb-3">
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Ano">
+                <label for="Ano" class="form-label">Ano de Fabricação:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="ano" id= "ano" class="form-control" placeholder="Ano de Fabricação">
             </div>
         </form>
         <div id="localizaçãoBotões">
             <button id="botão" type="button" class="btn btn-light">Editar</button>
-            <button id="botão" type="button" class="btn btn-light">Cadastrar</button>
+            <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </div>
-
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
