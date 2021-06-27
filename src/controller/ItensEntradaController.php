@@ -6,7 +6,9 @@ require_once '../../model/Database.php';
 class ItensEntradaController extends ItensEntrada {
     protected $tabela = 'itensEntrada';
 
-    public function __construct() { }
+    public function __construct() { 
+
+    }
 
     public function findOne($iditensentrada) {
         $query = "SELECT * FROM $this->tabela WHERE iditensentrada = :iditensentrada";
@@ -43,11 +45,29 @@ class ItensEntradaController extends ItensEntrada {
         }
         return $itensEntradas;
     }
-    public function insert($idproduto, $precocompra, $quantidade, $unidade, $ipi, $frete, $icms)
-    {
-        $query = "INSERT INTO $this->tabela (idproduto, precocompra, quantidade, unidade, ipi, frete, icms)
-        VALUES (:idproduto, :precocompra, :quantidade, :unidade, :ipi, :frete, :icms)";
+
+    public function findAllByIdEntrada($identrada) {
+        $query = "SELECT * FROM $this->tabela WHERE identrada = :identrada";
         $stm = Database::prepare($query);
+        $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
+        $stm->execute();
+        $itensEntradas = array();
+
+        foreach ($stm->fetchAll() as $obj) {
+            array_push(
+                $itensEntradas,
+                new ItensEntrada($obj->iditensentrada, $obj->identrada, $obj->idproduto, $obj->precocompra, $obj->quantidade, $obj->unidade, $obj->ipi, $obj->frete, $obj->icms)
+            );
+        }
+        return $itensEntradas;
+    }
+
+    public function insert($identrada, $idproduto, $precocompra, $quantidade, $unidade, $ipi, $frete, $icms)
+    {
+        $query = "INSERT INTO $this->tabela (identrada, idproduto, precocompra, quantidade, unidade, ipi, frete, icms)
+        VALUES (:identrada, :idproduto, :precocompra, :quantidade, :unidade, :ipi, :frete, :icms)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':identrada', $identrada);
         $stm->bindParam(':idproduto', $idproduto);
         $stm->bindParam(':precocompra', $precocompra);
         $stm->bindParam(':quantidade', $quantidade);

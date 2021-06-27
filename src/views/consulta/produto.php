@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/ProdutosController.php';
+    require_once '../../controller/ProdutosController.php'; 
     $produtos = new ProdutosController();
 
     require_once '../../controller/MarcasController.php';
@@ -81,7 +81,7 @@
     </nav>
 
     <div id="Container">
-        <?php if($_GET["id"]){
+        <?php if(isset($_GET["id"])){
         if($produtos->findOne($_GET["id"])){
             $produto = $produtos->findOne($_GET["id"]);
         ?>

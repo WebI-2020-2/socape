@@ -68,7 +68,7 @@
             <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button id="botãopequisa" class="btn btn-outline-success" type="submit">Pesquisar</button>
         </div>
-        <?php if($_GET["id"]){
+        <?php if(isset($_GET["id"])){
         if($fornecedores->findOne($_GET["id"])){
             $fornecedor = $fornecedores->findOne($_GET["id"]);
         ?>

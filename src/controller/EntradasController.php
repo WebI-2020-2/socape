@@ -46,7 +46,9 @@ class EntradasController extends Entrada {
         $stm->bindParam(':idfornecedor', $idfornecedor);
         $stm->bindParam(':valortotalnota', $valortotalnota);
         $stm->bindParam(':datacompra', $datacompra);
-        return $stm->execute();
+
+        $stm->execute();
+        return Database::lastInsertId();
     }
 
     public function update($identrada)
