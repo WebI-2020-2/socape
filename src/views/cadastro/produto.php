@@ -1,15 +1,26 @@
 <?php
     require_once '../../controller/ProdutosController.php';
-    $produto = new ProdutosController();
 
     require_once '../../controller/MotorController.php';
-    $motor = new MotorController();
+    $motores = new MotorController();
 
     require_once '../../controller/CarrosController.php';
-    $carro = new CarroController();
+    $carros = new CarroController();
 
     require_once '../../controller/ValvulasController.php';
-    $valvula = new ValvulasController();
+    $valvulas = new ValvulasController();
+
+    require_once '../../controller/FabricacaoController.php';
+    $fabricacoes = new FabricacaoController();
+
+    require_once '../../controller/LocalizacaoController.php';
+    $localizacoes = new LocalizacaoController();
+
+    require_once '../../controller/CategoriaController.php';
+    $categorias = new CategoriaController();
+
+    require_once '../../controller/MarcasController.php';
+    $marcas = new MarcasController();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -73,134 +84,146 @@
             <span id="titulo" class="badge bg-light text-dark">Cadastrar Produto</span>
         </h1>
         <?php
-            if($_POST){
+        if ($_POST) {
+            $produto = new ProdutosController();
+            $produto->setIdmotor($_POST['idmotor']);
+            $produto->setIdcarro($_POST['idcarro']);
+            $produto->setIdvalvulas($_POST['idvalvulas']);
+            $produto->setIdfabricacao($_POST['idfabricacao']);
+            $produto->setIdcategoria($_POST['idcategoria']);
+            $produto->setIdmarca($_POST['idmarca']);
+            $produto->setIcms($_POST['icms']); // null
+            $produto->setIpi($_POST['ipi']); // null
+            $produto->setFrete($_POST['frete']); // null
+            $produto->setValornafabrica($_POST['valornafabrica']); // null
+            $produto->setValordecompra($_POST['valordecompra']); // null
+            $produto->setLucro($_POST['lucro']); // null
+            $produto->setValorvenda($_POST['valorvenda']); // null
+            $produto->setDesconto($_POST['desconto']);
+            $produto->setQuantidade(0);
+            $produto->setUnidade($_POST['unidade']);
+            $produto->setIdlocalizacao($_POST['idlocalizacao']);
+            $produto->setReferencia($_POST['referencia']);
 
-                $produto = new ProdutosController();
-                $produto->setIdmotor($_POST['idmotor']);
-                $produto->setIdcarro($_POST['idcarro']);
-                $produto->setIdvalvulas($_POST['idvalvulas']);
-                $produto->setIdfabricacao($_POST['idfabricacao']);
-                $produto->setIdcategoria($_POST['idfabricacao']);
-                $produto->setIdmarca($_POST['idfabricacao']);
-                $produto->setIcms($_POST['idfabricacao']);
-                $produto->setIpi($_POST['idfabricacao']);
-                $produto->setFrete($_POST['idfabricacao']);
-                $produto->setValornafabrica($_POST['idfabricacao']);
-                $produto->setValordecompra($_POST['idfabricacao']);
-                $produto->setLucro($_POST['idfabricacao']);
-                $produto->setValorvenda($_POST['idfabricacao']);
-                $produto->setDesconto($_POST['idfabricacao']);
-                $produto->setQuantidade($_POST['idfabricacao']);
-                $produto->setIdlocalizacao($_POST['idfabricacao']);
-                $produto->setReferencia($_POST['idfabricacao']);
-                $produto->setQuantidade($_POST['idfabricacao']);
-
-                try {
-                    $produto->insert($produto->setIdmotor(), $produto->setIdcarro(), $produto->setIdvalvulas(), $produto->setIdfabricacao());
-                    echo
-                        '<div class="success callout">
-                            <h5>Fornecedor cadastrado</h5>
-                            <p>Fornecedor cadastrado com sucesso!.</p>
-                        </div>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
-                }
+            try {
+                $produto->insert(
+                    $produto->getIdmotor(),
+                    $produto->getIdcarro(),
+                    $produto->getIdvalvulas(),
+                    $produto->getIdfabricacao(),
+                    $produto->getIdcategoria(),
+                    $produto->getIdmarca(),
+                    $produto->getIcms(),
+                    $produto->getIpi(),
+                    $produto->getFrete(),
+                    $produto->getValornafabrica(),
+                    $produto->getValordecompra(),
+                    $produto->getLucro(),
+                    $produto->getValorvenda(),
+                    $produto->getDesconto(),
+                    $produto->getQuantidade(),
+                    $produto->getUnidade(),
+                    $produto->getIdlocalizacao(),
+                    $produto->getReferencia()
+                );
+                echo
+                '<div class="success callout">
+                    <h5>Produto cadastrado</h5>
+                </div>';
+            } catch (PDOException $err) {
+                echo $err->getMessage();
             }
+        }
         ?>
         <form id="dados" action="" method="post">
-            
+
             <div class="mb-3">
                 <label for="motor" class="form-label">Motor:</label>
-                <select id="motor" name="motor" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                        <option selected disabled>Selecione</option>
-                        <?php
-
-                            foreach ($motor->findAll() as $obj) { ?>
-                            <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia(); ?></option>
-                        <?php } ?>
+                <select id="motor" name="idmotor" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                    <option selected disabled>Selecione</option>
+                    <?php
+                        foreach ($motores->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia(); ?></option>
+                    <?php } ?>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label for="carro" class="form-label">Carro:</label>
-                <select id="carro" name="carro" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                        <option selected disabled>Selecione</option>
-                        <?php
-
-
-                            foreach ($carro->findAll() as $obj) { ?>
-                            <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo(); ?></option>
-                        <?php } ?>
-                </select>            
+                <select id="carro" name="idcarro" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                    <option selected disabled>Selecione</option>
+                    <?php
+                        foreach ($carros->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo(); ?></option>
+                    <?php } ?>
+                </select>
             </div>
 
             <div class="mb-3">
                 <label for="valvula" class="form-label">Válvula:</label>
-                <select id="valvula" name="valvula" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                        <option selected disabled>Selecione</option>
-                        <?php
-                        require_once '../../controller/ValvulasController.php';
-                        $valvula = new ValvulasController();
-
-                            foreach ($valvula->findAll() as $obj) { ?>
-                            <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade(); ?></option>
-                        <?php } ?>
-                </select>                
+                <select id="valvula" name="idvalvulas" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                    <option selected disabled>Selecione</option>
+                    <?php
+                        foreach ($valvulas->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade(); ?></option>
+                    <?php } ?>
+                </select>
             </div>
 
             <div class="mb-3">
                 <label for="fabricacao" class="form-label">Fabricação:</label>
-                <select id="fabricacao" name="fabricacao" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                        <option selected disabled>Selecione</option>
-                        <?php
-                        require_once '../../controller/FabricacaoController.php';
-                        $fabricacao = new FabricacaoController();
-
-                            foreach ($fabricacao->findAll() as $obj) { ?>
-                            <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno(); ?></option>
-                        <?php } ?>
-                </select>                
+                <select id="fabricacao" name="idfabricacao" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                    <option selected disabled>Selecione</option>
+                    <?php
+                        foreach ($fabricacoes->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno(); ?></option>
+                    <?php } ?>
+                </select>
             </div>
 
             <div class="mb-3">
                 <label for="localizacao" class="form-label">Localização:</label>
-                <select id="localizacao" name="localizacao" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                        <option selected disabled>Selecione</option>
-                        <?php
-                        require_once '../../controller/LocalizacaoController.php';
-                        $localizacao = new LocalizacaoController();
-
-                            foreach ($localizacao->findAll() as $obj) { ?>
-                            <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento(); ?></option>
-                        <?php } ?>
-                </select>                
-            </div>            
+                <select id="localizacao" name="idlocalizacao" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                    <option selected disabled>Selecione</option>
+                    <?php
+                        foreach ($localizacoes->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento(); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
 
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoria:</label>
-                <select id="categoria" name="categoria" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                        <option selected disabled>Selecione</option>
-                        <?php
-                        require_once '../../controller/CategoriaController.php';
-                        $categoria = new CategoriaController();
-
-                            foreach ($categoria->findAll() as $obj) { ?>
-                            <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getCategoria(); ?></option>
-                        <?php } ?>
-                </select>                
-            </div>    
+                <select id="categoria" name="idcategoria" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                    <option selected disabled>Selecione</option>
+                    <?php
+                        foreach ($categorias->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria(); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
 
             <div class="mb-3">
-                <label for="desconto" class="form-label">Desconto:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="desconto" id= "desconto" class="form-control" placeholder="Desconto">
-            </div>    
+                <label for="marca" class="form-label">Marca:</label>
+                <select id="marca" name="idmarca" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                    <option selected disabled>Selecione</option>
+                    <?php
+                        foreach ($marcas->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
+                    <?php } ?>
+                </select>
+            </div>
 
+            <div class="mb-3">
+                <label for="referencia" class="form-label">Referência:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="referencia" id="referencia" class="form-control" placeholder="Desconto">
+            </div>
 
             <div class="mb-3">
                 <label for="lucro" class="form-label">Lucro:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="lucro" id= "lucro" class="form-control" placeholder="Lucro">
-            </div>    
-        
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="lucro" id="lucro" class="form-control" placeholder="Lucro">
+            </div>
+
             <div id="localizaçãoBotões">
                 <input id="botão" type="submit" class="btn btn-light" value="Salvar">
             </div>
