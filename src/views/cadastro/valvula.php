@@ -83,7 +83,7 @@
         <form id="dados" action="" method="POST">
             <div class="mb-3">
                 <label for="Quantidade" class="form-label">Quantidade de Válvulas:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="quantitade" id= "quantidade" class="form-control" placeholder="Quantidade">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="quantidade" id= "quantidade" class="form-control" placeholder="Quantidade">
             </div>
 
         <div id="localizaçãoBotões">
