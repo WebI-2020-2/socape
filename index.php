@@ -9,6 +9,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./public/css/estilos.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -17,34 +18,36 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: FFFFFF" href="./index.php">Início</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Cadastrar
-                        </a>
+                        <a class="nav-link dropdown-toggle" style="color: FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastrar</a>
                         <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Cliente</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Fornecedor</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Produto</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Carro</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Localização</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Valvula</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Categoria</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Motor</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Fabricação</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Marcar</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/cliente-fisico.php">Cliente</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/fornecedor.php">Fornecedor</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/produto.php">Produto</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/carro.php">Carro</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/localizacao.php">Localização</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/valvula.php">Valvula</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/categoria.php">Categoria</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/motor.php">Motor</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/anofabricacao.php">Fabricação</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/cadastro/marca.php">Marca</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: FFFFFF" href="#">Vendas</a>
+                        <a class="nav-link" style="color: FFFFFF" href="src/views/venda/venda.php">Vender</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: FFFFFF" href="src/views/entrada/entrada.php">Entrada</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Consultar
-                        </a>
+                        <a class="nav-link dropdown-toggle" style="color: FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultar</a>
                         <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Cliente</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Fornecedor</a></li>
-                            <li><a class="dropdown-item" style="color: FFFFFF" href="#">Produto</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/consulta/cliente.php">Cliente</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/consulta/fornecedor.php">Fornecedor</a></li>
+                            <li><a class="dropdown-item" style="color: FFFFFF" href="src/views/consulta/produto.php">Produto</a></li>
 
                         </ul>
                     </li>
@@ -55,6 +58,7 @@
             </div>
         </div>
     </nav>
+
     <div>
         <form id="barraPesquisa" class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
@@ -158,22 +162,7 @@
             <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
         </div>
     </div>
-
-    <!-- <nav id="paginação" aria-label="...">
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">anterior</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Proximo</a>
-            </li>
-        </ul>
-    </nav> -->
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

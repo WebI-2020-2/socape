@@ -143,4 +143,41 @@ class ProdutosController extends Produto
         $stm->bindParam(':idproduto', $idproduto, PDO::PARAM_INT);
         return $stm->execute();
     }
+
+    public function findBestSellers()
+    {
+        $query = "SELECT * FROM PRODUTOSMAISVENDIDOS(:mes)";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':mes', date('m'), PDO::PARAM_INT);
+        $stm->execute();
+        $produtos = array();
+
+        foreach ($stm->fetchAll() as $obj) {
+            array_push(
+                $produtos,
+                new Produto(
+                    $obj->idproduto,
+                    $obj->idmotor,
+                    $obj->idcarro,
+                    $obj->idvalvulas,
+                    $obj->idfabricacao,
+                    $obj->idcategoria,
+                    $obj->idmarca,
+                    $obj->icms,
+                    $obj->ipi,
+                    $obj->frete,
+                    $obj->valornafabrica,
+                    $obj->valordecompra,
+                    $obj->lucro,
+                    $obj->valorvenda,
+                    $obj->desconto,
+                    $obj->quantidade,
+                    $obj->unidade,
+                    $obj->idlocalizacao,
+                    $obj->referencia
+                )
+            );
+        }
+        return $produtos;
+    }
 }
