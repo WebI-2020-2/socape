@@ -36,7 +36,7 @@ class FabricacaoController extends Fabricacao
         foreach ($stm->fetchAll() as $obj) {
             array_push(
                 $fabricacoes,
-                new Carro($obj->idfabricacao, $obj->ano)
+                new Fabricacao($obj->idfabricacao, $obj->ano)
             );
         }
         return $fabricacoes;

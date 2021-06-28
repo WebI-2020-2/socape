@@ -36,7 +36,7 @@ class ValvulasController extends Valvulas
         foreach ($stm->fetchAll() as $obj) {
             array_push(
                 $valvulas,
-                new Motor($obj->idvalvulas, $obj->quantidade)
+                new Valvulas($obj->idvalvulas, $obj->quantidade)
             );
         }
         return $valvulas;

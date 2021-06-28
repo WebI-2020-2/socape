@@ -84,7 +84,7 @@ class ProdutosController extends Produto
         $query = "INSERT INTO $this->tabela (idmotor, idcarro, idvalvulas, idfabricacao, idcategoria, idmarca, icms, ipi, frete, 
         valornafabrica, valordecompra, lucro, valorvenda, desconto, quantidade, unidade, idlocalizacao, referencia)
         VALUES (:idmotor, :idcarro, :idvalvulas, :idfabricacao, :idcategoria, :idmarca, :icms, :ipi, :frete, :valornafabrica, 
-        :valordecompra, :lucro, :valorvenda, :desconto, :quantidade, :unidade, :idlocalizacao,: referencia)";
+        :valordecompra, :lucro, :valorvenda, :desconto, :quantidade, :unidade, :idlocalizacao, :referencia)";
         $stm = Database::prepare($query);
         $stm->bindParam(':idmotor', $idmotor);
         $stm->bindParam(':idcarro', $idcarro);
