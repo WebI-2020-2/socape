@@ -1,3 +1,6 @@
+<?php
+    require_once '../../controller/CarrosController.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,19 +59,39 @@
     </nav>
 
     <div id="Container">
-        <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Cadastrar Carro</span></h1>
+        <h1>
+            <span id="titulo" class="badge bg-light text-dark">Cadastrar Modelo de Carro</span>
+        </h1>
+        <?php
+            if($_POST){
+                $carro = new CarroController();
+                $carro->setModelo($_POST['modelo']);
 
-        <form id="dados">
+                try {
+                    $carro->insert($carro->getModelo());
+                    echo
+                        '<div class="success callout">
+                            <h5>Modelo cadastrado</h5>
+                            <p>Modelo cadastrado com sucesso!.</p>
+                        </div>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
+            }
+        ?>
+
+        <form id="dados" action="" method="POST">
             <div class="mb-3">
                 <label for="Modelo" class="form-label">Modelo:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="text" name="modelo" id= "modelo" class="form-control" placeholder="Modelo">
             </div>
-        </form>
+
         <div id="localizaçãoBotões">
             <button id="botão" type="button" class="btn btn-light">Editar</button>
-            <button id="botão" type="button" class="btn btn-light">Cadastrar</button>
+            <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </div>
+
+        </form>
 
     </div>
 
