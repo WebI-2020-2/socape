@@ -63,7 +63,7 @@
 
     <div id="Container">
         <h1>
-            <span id="titulo" class="badge bg-light text-dark">Cadastrar nada</span>
+            <span id="titulo" class="badge bg-light text-dark">Cadastrar Marca</span>
         </h1>
         <?php
             if($_POST){
