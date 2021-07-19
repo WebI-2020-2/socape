@@ -6,7 +6,7 @@
 
 
 #conta{
-	margin-left: 895px;
+	margin-left: 838px;
 	margin-right: -10px;
 }
 
@@ -16,6 +16,8 @@
 	padding: 4px 15px 3px 15px;
 	border-radius: 50px;
 }
+
+
 
 body{
 	color: #ffffff;
@@ -37,6 +39,7 @@ body{
 #FormaDePagamento{
 	margin-left: 100px;
 	width: 10%;
+	margin-right: 10px;
 }
 #CondiçãoDePagamento{
 	margin-left: 200px;
