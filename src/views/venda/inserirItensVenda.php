@@ -1,10 +1,10 @@
 <?php
-    require_once '../../controller/ItensVendaController.php';
-    $itensVenda = new ItensVendaController();
+require_once '../../controller/ItensVendaController.php';
+$itensVenda = new ItensVendaController();
 
-    require_once '../../controller/VendasController.php';
-    $venda = new VendasController();
-    $venda = $venda->findOne($_GET['idvenda']);
+require_once '../../controller/VendasController.php';
+$venda = new VendasController();
+$venda = $venda->findOne($_GET['idvenda']);
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +84,7 @@
             $itemVenda->setQuantidade($_POST['quantidade']);
             $itemVenda->setValorvenda($_POST['valorvenda']);
             $itemVenda->setDesconto($_POST['desconto']);
-            $itemVenda->setLucro($_POST['lucro']); //
+            $itemVenda->setLucro($_POST['lucro']);
 
             try {
                 $itemVenda->insert($itemVenda->getIdproduto(), $itemVenda->getIdvenda(), $itemVenda->getQuantidade(), $itemVenda->getValorvenda(), $itemVenda->getDesconto(), $itemVenda->getLucro());
@@ -122,7 +122,8 @@
             </div>
         </form>
 
-        Valor total: R$<?=$venda->getValortotal();?>
+        Valor total: R$<?= $venda->getValortotal(); ?>
+
         <table class="table">
             <thead>
                 <tr>
@@ -137,18 +138,17 @@
             <tbody>
                 <?php
                 foreach ($itensVenda->findAllByIdVenda($venda->getIdvenda()) as $obj) { ?>
-                <tr>
-                    <td><?= $obj->getIditensvenda(); ?></td>
-                    <td><?= $obj->getIdproduto(); ?></td>
-                    <td><?= $obj->getQuantidade(); ?></td>
-                    <td><?= $obj->getValorvenda(); ?></td>
-                    <td><?= $obj->getDesconto(); ?></td>
-                    <td><?= $obj->getLucro(); ?></td>
-                </tr>
+                    <tr>
+                        <td><?= $obj->getIditensvenda(); ?></td>
+                        <td><?= $obj->getIdproduto(); ?></td>
+                        <td><?= $obj->getQuantidade(); ?></td>
+                        <td><?= $obj->getValorvenda(); ?></td>
+                        <td><?= $obj->getDesconto(); ?></td>
+                        <td><?= $obj->getLucro(); ?></td>
+                    </tr>
                 <?php } ?>
             </tbody>
         </table>
-
     </div>
 
     <script type="text/javascript">
@@ -176,8 +176,6 @@
             });
         });
     </script>
-
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

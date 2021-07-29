@@ -1,10 +1,10 @@
 <?php
-        require_once '../../controller/ItensEntradaController.php';
-        $itensEntrada = new ItensEntradaController();
+require_once '../../controller/ItensEntradaController.php';
+$itensEntrada = new ItensEntradaController();
 
-        require_once '../../controller/EntradasController.php';
-        $entrada = new EntradasController();
-        $entrada = $entrada->findOne($_GET['identrada']);
+require_once '../../controller/EntradasController.php';
+$entrada = new EntradasController();
+$entrada = $entrada->findOne($_GET['identrada']);
 ?>
 
 <!DOCTYPE html>
@@ -132,7 +132,9 @@
                 <input id="botão" type="submit" class="btn btn-light" value="Confirma">
             </div>
         </form>
-        valortotalnota:<?=$entrada->getValortotalnota();?>
+
+        Valor total da nota: R$<?= $entrada->getValortotalnota(); ?>
+        
         <table class="table">
             <thead>
                 <tr>
@@ -166,7 +168,6 @@
                 <?php } ?>
             </tbody>
         </table>
-
     </div>
 
     <script type="text/javascript">
@@ -194,8 +195,6 @@
             });
         });
     </script>
-
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

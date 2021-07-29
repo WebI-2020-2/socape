@@ -82,7 +82,7 @@ $fornecedores = new FornecedoresController();
                 <input style="border-radius: 30px 30px 30px 30px" id="barraPesquisa" class="form-control" type="search" placeholder="Fornecedor" aria-label="Search">
                 <input id="idfornecedor" type="hidden" name="idfornecedor">
             </div>
-           
+
             <div id="localizaçãoBotões">
                 <input id="botão" type="submit" class="btn btn-light" value="Confirma">
             </div>
@@ -103,8 +103,7 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getIdentrada() ?></td>
                         <td><?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?></td>
                         <td><?= $obj->getValortotalnota() ?></td>
-                                                <td><?= $obj->getDatacompra() ?></td>
-
+                        <td><?= $obj->getDatacompra() ?></td>
                         <td>
                             <div class="button-group clear">
                                 <a class="success button" href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</a>
