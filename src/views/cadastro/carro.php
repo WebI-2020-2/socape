@@ -88,11 +88,9 @@
                 <label for="Modelo" class="form-label">Modelo:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="text" name="modelo" id= "modelo" class="form-control" placeholder="Modelo">
             </div>
+            <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar">
         </form>
-        <div id="localizaçãoBotões">
-            <button id="botão" type="button" class="btn btn-light">Editar</button>
-            <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
-        </div>
+
 
         
 

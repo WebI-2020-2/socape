@@ -219,12 +219,7 @@
 
             <div class="mb-3">
                 <label for="referencia" class="form-label">Referência:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="referencia" id="referencia" class="form-control" placeholder="Desconto">
-            </div>
-
-            <div class="mb-3">
-                <label for="lucro" class="form-label">Lucro:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="lucro" id="lucro" class="form-control" placeholder="Lucro">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="referencia" id="referencia" class="form-control" placeholder="Referência">
             </div>
 
             <div id="localizaçãoBotões">
