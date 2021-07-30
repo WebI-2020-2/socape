@@ -60,7 +60,7 @@
 
     <div id="Container">
         <br>
-        <h1><span id="titulo" class="badge bg-light text-dark">Vendas</span></h1>
+        <h1><span id="titulo" class="badge bg-light text-dark">Venda</span></h1>
         <form>
             <div style="margin-top: 30px" class="input-group">
                 <label style="margin-left: 80px" for="Forma de Pagamento" class="form-label">Forma de Pagamento:</label>
