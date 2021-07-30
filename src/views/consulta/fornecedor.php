@@ -1,6 +1,6 @@
 <?php
-    require_once '../../controller/FornecedoresController.php';
-    $fornecedores = new FornecedoresController();
+require_once '../../controller/FornecedoresController.php';
+$fornecedores = new FornecedoresController();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,6 +13,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/consultar-fornecedor.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
 <body>
@@ -71,25 +72,25 @@
             <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
             <button id="botãopequisa" class="btn btn-outline-success" type="submit">Pesquisar</button>
         </div>
-        <?php if(isset($_GET["id"])){
-        if($fornecedores->findOne($_GET["id"])){
-            $fornecedor = $fornecedores->findOne($_GET["id"]);
+        <?php if (isset($_GET["id"])) {
+            if ($fornecedores->findOne($_GET["id"])) {
+                $fornecedor = $fornecedores->findOne($_GET["id"]);
         ?>
-        <form id="dados">
-            <div class="mb-3">
-                <label for="Endereco" class="form-label">Endereço</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço" value="<?= $fornecedor->getEndereco(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label for="CNPJ" class="form-label">CNPJ:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label for="Telefone" class="form-label">Telefone:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>" disabled>
-            </div>
-        </form>
-        <img id="imagem" src="./../../../public/imagens/caminhão.png">
+                <form id="dados">
+                    <div class="mb-3">
+                        <label for="Endereco" class="form-label">Endereço</label>
+                        <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="CNPJ" class="form-label">CNPJ:</label>
+                        <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Telefone" class="form-label">Telefone:</label>
+                        <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>" disabled>
+                    </div>
+                </form>
+                <img id="imagem" src="./../../../public/imagens/caminhão.png">
         <?php
             }
         } ?>
@@ -105,7 +106,7 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
+                <?php
                 foreach ($fornecedores->findAll() as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIdfornecedor() ?></td>
@@ -121,7 +122,7 @@
                             </div>
                         </td>
                     </tr>
-            <?php } ?>
+                <?php } ?>
             </tbody>
         </table>
         <div id="localizaçãoBotões">
@@ -130,6 +131,23 @@
         </div>
 
     </div>
+
+    <script>
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir o fornecedor " + nome + "?")) {
+                $.ajax({
+                    url: './apagarFornecedor.php',
+                    type: "POST",
+                    data: {"idfornecedor": id},
+                    success: () => {
+                        alert("Fornecedor excluído com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
