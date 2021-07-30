@@ -101,7 +101,7 @@
             </div>
             <div class="mb-3">
                 <label for="CPF" class="form-label">CPF:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="CPF" id= "cpf" class="form-control" placeholder="CPF">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cpf" id= "cpf" class="form-control" placeholder="CPF">
             </div>
                 <input id="botão" type="submit" class="btn btn-light" value="Salvar">
         </form>

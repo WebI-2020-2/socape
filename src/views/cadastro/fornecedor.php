@@ -100,8 +100,8 @@
                 <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" id= "telefone" class="form-control" placeholder="Telefone">
             </div>
             <div class="mb-3">
-                <label for="CNPJ" class="form-label">Cnpj:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="CNPJ" id= "cnpj" class="form-control" placeholder="CNPJ">
+                <label for="CNPJ" class="form-label">CNPJ:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" id= "cnpj" class="form-control" placeholder="CNPJ">
             </div>
             
              <div id="localizaçãoBotões">
