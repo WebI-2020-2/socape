@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../controller/ProdutosController.php';
+require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
 
 if($_POST) {

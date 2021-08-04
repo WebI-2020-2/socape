@@ -1,25 +1,25 @@
 <?php
-    require_once '../../controller/ProdutosController.php';
+    require_once __DIR__ . '/../../controller/ProdutosController.php';
 
-    require_once '../../controller/MotorController.php';
+    require_once __DIR__ . '/../../controller/MotorController.php';
     $motores = new MotorController();
 
-    require_once '../../controller/CarrosController.php';
+    require_once __DIR__ . '/../../controller/CarrosController.php';
     $carros = new CarroController();
 
-    require_once '../../controller/ValvulasController.php';
+    require_once __DIR__ . '/../../controller/ValvulasController.php';
     $valvulas = new ValvulasController();
 
-    require_once '../../controller/FabricacaoController.php';
+    require_once __DIR__ . '/../../controller/FabricacaoController.php';
     $fabricacoes = new FabricacaoController();
 
-    require_once '../../controller/LocalizacaoController.php';
+    require_once __DIR__ . '/../../controller/LocalizacaoController.php';
     $localizacoes = new LocalizacaoController();
 
-    require_once '../../controller/CategoriaController.php';
+    require_once __DIR__ . '/../../controller/CategoriaController.php';
     $categorias = new CategoriaController();
 
-    require_once '../../controller/MarcasController.php';
+    require_once __DIR__ . '/../../controller/MarcasController.php';
     $marcas = new MarcasController();
 ?>
 <!DOCTYPE html>

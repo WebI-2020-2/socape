@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/MotorController.php';
+    require_once __DIR__ . '/../../controller/MotorController.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

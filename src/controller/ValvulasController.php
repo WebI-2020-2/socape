@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/Valvulas.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/Valvulas.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class ValvulasController extends Valvulas
 {
@@ -28,7 +28,7 @@ class ValvulasController extends Valvulas
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela ORDER BY quantidade";
         $stm = Database::prepare($query);
         $stm->execute();
         $valvulas = array();

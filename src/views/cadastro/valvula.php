@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/ValvulasController.php';
+    require_once __DIR__ . '/../../controller/ValvulasController.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/ItensEntrada.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/ItensEntrada.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class ItensEntradaController extends ItensEntrada {
     protected $tabela = 'itensEntrada';

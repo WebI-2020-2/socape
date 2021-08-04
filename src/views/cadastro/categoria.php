@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/CategoriaController.php';
+    require_once __DIR__ . '/../../controller/CategoriaController.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

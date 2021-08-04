@@ -1,8 +1,8 @@
 <?php
-require_once '../../controller/ItensVendaController.php';
+require_once __DIR__ . '/../../controller/ItensVendaController.php';
 $itensVenda = new ItensVendaController();
 
-require_once '../../controller/VendasController.php';
+require_once __DIR__ . '/../../controller/VendasController.php';
 $venda = new VendasController();
 $venda = $venda->findOne($_GET['idvenda']);
 ?>
@@ -101,7 +101,14 @@ $venda = $venda->findOne($_GET['idvenda']);
         <form id="dados" method="POST" action="">
             <div class="mb-3">
                 <label for="barraPesquisa">Produto:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="barraPesquisa" class="form-control" placeholder="Produto">
+                <!-- <input style="border-radius: 30px 30px 30px 30px" id="barraPesquisa" class="form-control" placeholder="Produto"> -->
+
+                <input type="text" id="testeproduto" placeholder="Produto" />
+
+                <a title="Editar" onclick="window.open(`./pesquisaProduto.php`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                    Pesquisar
+                </a>
+
                 <input id="idproduto" type="hidden" name="idproduto">
 
                 <label for="quantidade" class="form-label">Quantidade:</label>

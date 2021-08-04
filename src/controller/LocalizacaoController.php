@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/Localizacao.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/Localizacao.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class LocalizacaoController extends Localizacao
 {
@@ -28,7 +28,7 @@ class LocalizacaoController extends Localizacao
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela ORDER BY departamento";
         $stm = Database::prepare($query);
         $stm->execute();
         $localizacoes = array();
