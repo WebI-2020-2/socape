@@ -19,7 +19,7 @@
 
 
 body{
-	height: 100vh;
+	height: 79.5vh;
 	color: #ffffff;
 	background-color: #140C0C
 }
@@ -44,14 +44,33 @@ body{
 }
 
 #localizaçãoBotões{
-	margin-top: 100px;
-	margin-left: 700px;
+	margin-top: 30px;
+	margin-left: 610px;
 	
 }
 #botão{
 	padding: 4px 15px 3px 15px;
 	border-radius: 50px;
 	margin-bottom: 100px;
+}
+#formulario{
+	
+	margin-left: 450px;
+	margin-right: 450px;
+	margin-top: 70px;
+}
+
+#carro{
+	margin-left: 30px;
+}
+#fabricacao{
+	margin-left: 30px;
+}
+#categorias{
+	margin-left: 30px;
+}
+#referencia{
+	margin-left: 30px;
 }
 
 #texto{

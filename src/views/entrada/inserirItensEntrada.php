@@ -126,15 +126,17 @@ $entrada = $entrada->findOne($_GET['identrada']);
                 <label for="icms" class="form-label">Icms:</label>
                 <input style="border-radius: 30px 30px 30px 30px" id="icms" name="icms" class="form-control" type="search" placeholder="Icms" aria-label="Search">
 
+                <label for="desconto" class="form-label">Valor total:</label>
+                <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" aria-label="Disabled input example" disabled>
+            
             </div>
-
-            <div id="localizaçãoBotões">
+                <div id="localizaçãoBotões">
                 <input id="botão" type="submit" class="btn btn-light" value="Confirma">
             </div>
+
         </form>
 
-        Valor total da nota: R$<?= $entrada->getValortotalnota(); ?>
-        
+       
         <table class="table">
             <thead>
                 <tr>
@@ -147,7 +149,7 @@ $entrada = $entrada->findOne($_GET['identrada']);
                     <th scope="col">ipi</th>
                     <th scope="col">frete</th>
                     <th scope="col">icms</th>
-                    <th scope="col">ações</th>
+                    <th scope="col"width= "18%">ações</th>
                 </tr>
             </thead>
             <tbody>

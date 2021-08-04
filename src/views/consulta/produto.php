@@ -169,6 +169,7 @@ $motores = new MotorController();
                     <th scope="col">Quantidade</th>
                     <th scope="col">Valor de venda</th>
                     <th scope="col">Localização</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -183,9 +184,9 @@ $motores = new MotorController();
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./produto.php?id=<?= $obj->getIdproduto() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdproduto() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getIdproduto() ?>')">Apagar</a>
+                            <button  class="btn btn-light"  class="success button" href="./produto.php?id=<?= $obj->getIdproduto() ?>">Visualizar</button>
+                            <button  class="btn btn-primary"  class="success button" href="./editar.php?id=<?= $obj->getIdproduto() ?>">Editar</button>
+                            <button  class="btn btn-danger"  class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getIdproduto() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

@@ -51,6 +51,11 @@ body{
 	padding: 4px 15px 3px 15px;
 	border-radius: 50px;
 }
+#valorTotal{
+	height: 100px; 
+	padding: 4px 15px 3px 15px;
+	border-radius: 50px;
+}
 
 #localizaçãoBotões{
 	margin-top: 50px;

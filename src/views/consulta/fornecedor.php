@@ -103,6 +103,7 @@ $fornecedores = new FornecedoresController();
                     <th scope="col">Endereço</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">CNPJ</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,19 +117,16 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getCnpj() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdfornecedor() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</a>
+                            <button  class="btn btn-light" href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</button>
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdfornecedor() ?>">Editar</button>
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-        <div id="localizaçãoBotões">
-            <button id="botão" type="button" class="btn btn-light">Editar</button>
-            <button id="botão" type="button" class="btn btn-light">Salvar</button>
-        </div>
+        
 
     </div>
 

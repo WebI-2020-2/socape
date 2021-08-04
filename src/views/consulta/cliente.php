@@ -113,6 +113,7 @@ $clientes = new ClientesController();
                     <th scope="col">CNPJ</th>
                     <th scope="col">CPF</th>
                     <th scope="col">Débito</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -127,19 +128,16 @@ $clientes = new ClientesController();
                         <td><?= $obj->getDebito() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./cliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdcliente() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</a>
+                                <button  class="btn btn-light" href="./cliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</button>
+                                <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdcliente() ?>">Editar</button>
+                                <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-        <div id="localizaçãoBotões">
-            <button id="botão" type="button" class="btn btn-light">Editar</button>
-            <button id="botão" type="button" class="btn btn-light">Salvar</button>
-        </div>
+        
 
     </div>
 

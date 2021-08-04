@@ -115,14 +115,16 @@ $venda = $venda->findOne($_GET['idvenda']);
 
                 <label for="lucro" class="form-label">Lucro:</label>
                 <input style="border-radius: 30px 30px 30px 30px" id="lucro" name="lucro" class="form-control" placeholder="Lucro">
-            </div>
 
-            <div id="localizaçãoBotões">
+                <label for="desconto" class="form-label">Valor total:</label>
+                <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" aria-label="Disabled input example" disabled>
+            
+            </div>
+                <div id="localizaçãoBotões">
                 <input id="botão" type="submit" class="btn btn-light" value="Confirma">
             </div>
-        </form>
 
-        Valor total: R$<?= $venda->getValortotal(); ?>
+        </form>
 
         <table class="table">
             <thead>
@@ -133,6 +135,7 @@ $venda = $venda->findOne($_GET['idvenda']);
                     <th scope="col">Valor de venda</th>
                     <th scope="col">Desconto</th>
                     <th scope="col">Lucro</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
