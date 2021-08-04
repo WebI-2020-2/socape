@@ -103,7 +103,7 @@
     <div id="produtos" class="card" style="width: 18rem;">
         <img src="./public/imagens/escapamento 2.png" class="card-img-top" alt="...">
         <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
+            <h3 class="card-title" id="textoDestaque">R$ 203.31</h3>
             <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
         </div>
     </div>
