@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/FormaPagamento.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/FormaPagamento.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class FormaPagamentoController extends FormaPagamento
 {
@@ -29,7 +29,7 @@ class FormaPagamentoController extends FormaPagamento
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela ORDER BY condicao";
         $stm = Database::prepare($query);
         $stm->execute();
         $formaPagamento = array();

@@ -1,11 +1,11 @@
 <?php
-    require_once '../../controller/VendasController.php';
+    require_once __DIR__ . '/../../controller/VendasController.php';
     $vendas = new VendasController();
 
-    require_once '../../controller/ClientesController.php';
+    require_once __DIR__ . '/../../controller/ClientesController.php';
     $clientes = new ClientesController();
 
-    require_once '../../controller/FormaPagamentoController.php';
+    require_once __DIR__ . '/../../controller/FormaPagamentoController.php';
     $formas = new FormaPagamentoController();
 ?>
 <!DOCTYPE html>

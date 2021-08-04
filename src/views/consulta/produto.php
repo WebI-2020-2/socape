@@ -1,26 +1,26 @@
 <?php
-require_once '../../controller/ProdutosController.php';
+require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
 
-require_once '../../controller/MarcasController.php';
+require_once __DIR__ . '/../../controller/MarcasController.php';
 $marcas = new MarcasController();
 
-require_once '../../controller/CategoriaController.php';
+require_once __DIR__ . '/../../controller/CategoriaController.php';
 $categorias = new CategoriaController();
 
-require_once '../../controller/LocalizacaoController.php';
+require_once __DIR__ . '/../../controller/LocalizacaoController.php';
 $localizacoes = new LocalizacaoController();
 
-require_once '../../controller/ValvulasController.php';
+require_once __DIR__ . '/../../controller/ValvulasController.php';
 $valvulas = new ValvulasController();
 
-require_once '../../controller/FabricacaoController.php';
+require_once __DIR__ . '/../../controller/FabricacaoController.php';
 $fabricacoes = new FabricacaoController();
 
-require_once '../../controller/CarrosController.php';
+require_once __DIR__ . '/../../controller/CarrosController.php';
 $carros = new CarroController();
 
-require_once '../../controller/MotorController.php';
+require_once __DIR__ . '/../../controller/MotorController.php';
 $motores = new MotorController();
 ?>
 <!DOCTYPE html>
@@ -34,6 +34,8 @@ $motores = new MotorController();
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/cadastrar-consultar-produto-2.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 </head>
 
 <body>
@@ -194,6 +196,23 @@ $motores = new MotorController();
             </tbody>
         </table>
     </div>
+
+    <script>
+        function deletar(id, referencia, categoria, marca) {
+            if (confirm("Deseja realmente excluir o produto referência " + referencia + " " + categoria + " da marca " + marca +"?")) {
+                $.ajax({
+                    url: './apagarProduto.php',
+                    type: "POST",
+                    data: {"idproduto": id},
+                    success: () => {
+                        alert("Produto excluído com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

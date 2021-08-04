@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/Motor.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/Motor.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class MotorController extends Motor
 {
@@ -28,7 +28,7 @@ class MotorController extends Motor
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela ORDER BY potencia";
         $stm = Database::prepare($query);
         $stm->execute();
         $motores = array();

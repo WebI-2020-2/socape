@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/Venda.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/Venda.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class VendasController extends Venda
 {
@@ -31,7 +31,7 @@ class VendasController extends Venda
     
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela ORDER BY data DESC";
         $stm = Database::prepare($query);
         $stm->execute();
         $vendas = array();

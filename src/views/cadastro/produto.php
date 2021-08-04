@@ -1,25 +1,25 @@
 <?php
-    require_once '../../controller/ProdutosController.php';
+    require_once __DIR__ . '/../../controller/ProdutosController.php';
 
-    require_once '../../controller/MotorController.php';
+    require_once __DIR__ . '/../../controller/MotorController.php';
     $motores = new MotorController();
 
-    require_once '../../controller/CarrosController.php';
+    require_once __DIR__ . '/../../controller/CarrosController.php';
     $carros = new CarroController();
 
-    require_once '../../controller/ValvulasController.php';
+    require_once __DIR__ . '/../../controller/ValvulasController.php';
     $valvulas = new ValvulasController();
 
-    require_once '../../controller/FabricacaoController.php';
+    require_once __DIR__ . '/../../controller/FabricacaoController.php';
     $fabricacoes = new FabricacaoController();
 
-    require_once '../../controller/LocalizacaoController.php';
+    require_once __DIR__ . '/../../controller/LocalizacaoController.php';
     $localizacoes = new LocalizacaoController();
 
-    require_once '../../controller/CategoriaController.php';
+    require_once __DIR__ . '/../../controller/CategoriaController.php';
     $categorias = new CategoriaController();
 
-    require_once '../../controller/MarcasController.php';
+    require_once __DIR__ . '/../../controller/MarcasController.php';
     $marcas = new MarcasController();
 ?>
 <!DOCTYPE html>
@@ -33,6 +33,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
 <body>
@@ -221,8 +222,59 @@
             </div>
         </form>
 
+        <?php if (isset($_GET["id"])) {
+            if ($produtos->findOne($_GET["id"])) {
+                $produto = $produtos->findOne($_GET["id"]);
+        ?>
+
+        <?php
+            }
+        } ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Referência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php    
+                $produtos = new ProdutosController();
+                foreach ($produtos->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdproduto() ?></td>
+                        <td><?= $obj->getReferencia() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="success button" href="./produto.php?id=<?= $obj->getIdproduto() ?>">Visualizar</a>
+                                <a class="success button" href="./editar.php?id=<?= $obj->getIdproduto() ?>">Editar</a>
+                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 
+    <script>
+        function deletar(id, referencia) {
+            if (confirm("Deseja realmente excluir o produto referencia  " + referencia + "?")) {
+                $.ajax({
+                    url: './apagarProduto.php',
+                    type: "POST",
+                    data: {"idproduto": id},
+                    success: () => {
+                        alert("Produto excluído com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

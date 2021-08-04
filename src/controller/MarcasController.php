@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/Marca.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/Marca.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class MarcasController extends Marca
 {
@@ -28,7 +28,7 @@ class MarcasController extends Marca
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela ORDER BY marca";
         $stm = Database::prepare($query);
         $stm->execute();
         $marcas = array();

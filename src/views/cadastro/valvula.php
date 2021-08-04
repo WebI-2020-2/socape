@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/ValvulasController.php';
+    require_once __DIR__ . '/../../controller/ValvulasController.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,7 +12,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
-</head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>  </head>
 
 <body>
     <img src="./../../../public/imagens/titulo.png" width="100%">
@@ -90,8 +90,60 @@
             </div>
             <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </form>
+        <?php if (isset($_GET["id"])) {
+            if ($valvulas->findOne($_GET["id"])) {
+                $valvula = $valvulas->findOne($_GET["id"]);
+        ?>
+
+        <?php
+            }
+        } ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Válvulas</th>
+                    <th scope="col" width="20%">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php    
+                $valvulas = new ValvulasController();
+                foreach ($valvulas->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdvalvulas() ?></td>
+                        <td><?= $obj->getQuantidade() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="btn btn-info" href="./valvula.php?id=<?= $obj->getIdvalvulas() ?>">Visualizar</a>
+                                <a class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdvalvulas() ?>">Editar</a>
+                                <a class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 
+    <script>
+        function deletar(id, quantidade) {
+            if (confirm("Deseja realmente excluir a válvula  " + quantidade + "?")) {
+                $.ajax({
+                    url: './apagarValvula.php',
+                    type: "POST",
+                    data: {"idvalvulas": id},
+                    success: () => {
+                        alert("Válvula excluída com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

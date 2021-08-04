@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/FornecedoresController.php';
+    require_once __DIR__ . '/../../controller/FornecedoresController.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,6 +12,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/cadastrar-fornecedor.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>    
+
 </head>
 
 <body>
@@ -109,6 +111,59 @@
             </div>
         </form>
 
+        <?php if (isset($_GET["id"])) {
+            if ($fornecedores->findOne($_GET["id"])) {
+                $fornecedor = $fornecedores->findOne($_GET["id"]);
+        ?>
+
+        <?php
+            }
+        } ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col" width="20%">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php    
+                $fornecedores = new FornecedoresController();
+                foreach ($fornecedores->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdfornecedor() ?></td>
+                        <td><?= $obj->getNome() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="success button" href="./anocliente.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</a>
+                                <a class="success button" href="./editar.php?id=<?= $obj->getIdfornecedor() ?>">Editar</a>
+                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir o fornecedor  " + nome + "?")) {
+                $.ajax({
+                    url: './apagarFornecedor.php',
+                    type: "POST",
+                    data: {"idfornecedor": id},
+                    success: () => {
+                        alert("Fornecedor excluído com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

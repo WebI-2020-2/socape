@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/Entrada.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/Entrada.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class EntradasController extends Entrada {
     protected $tabela = 'entrada';
@@ -25,7 +25,7 @@ class EntradasController extends Entrada {
     }
 
     public function findAll() {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela ORDER BY datacompra DESC";
         $stm = Database::prepare($query);
         $stm->execute();
         $entradas = array();

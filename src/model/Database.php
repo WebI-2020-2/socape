@@ -1,11 +1,13 @@
 <?php
 
-require '../../../config.php';
+require __DIR__ . '/../../config.php';
 
-class Database {
+class Database
+{
     private static $instance;
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (!isset(self::$instance)) {
             try {
                 self::$instance = new PDO(URLCONNECTION, USER, PASS);
@@ -18,15 +20,18 @@ class Database {
         return self::$instance;
     }
 
-    public static function prepare($sql) {
+    public static function prepare($sql)
+    {
         return self::getInstance()->prepare($sql);
     }
 
-    public static function lastInsertId(){
+    public static function lastInsertId()
+    {
         return self::getInstance()->lastInsertId();
     }
 
-    public function testaConexao() {
+    public function testaConexao()
+    {
         try {
             $this->getInstance();
         } catch (PDOException $err) {

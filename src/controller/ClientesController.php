@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/Cliente.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/Cliente.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class ClientesController extends Cliente {
     protected $tabela = 'cliente';
@@ -27,7 +27,7 @@ class ClientesController extends Cliente {
     }
 
     public function findAll() {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela ORDER BY idcliente";
         $stm = Database::prepare($query);
         $stm->execute();
         $clientes = array();
