@@ -1,8 +1,8 @@
 <?php
-require_once '../../controller/ItensEntradaController.php';
+require_once __DIR__ . '/../../controller/ItensEntradaController.php';
 $itensEntrada = new ItensEntradaController();
 
-require_once '../../controller/EntradasController.php';
+require_once __DIR__ . '/../../controller/EntradasController.php';
 $entrada = new EntradasController();
 $entrada = $entrada->findOne($_GET['identrada']);
 ?>

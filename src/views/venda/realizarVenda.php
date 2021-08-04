@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/VendasController.php';
+    require_once __DIR__ . '/../../controller/VendasController.php';
     $venda = new VendasController();
 
     $idcliente = intval($_POST['idcliente']);

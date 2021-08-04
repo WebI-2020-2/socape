@@ -1,5 +1,5 @@
 <?php
-require_once '../../controller/FornecedoresController.php';
+require_once __DIR__ . '/../../controller/FornecedoresController.php';
 $fornecedores = new FornecedoresController();
 ?>
 <!DOCTYPE html>

@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/LocalizacaoController.php';
+    require_once __DIR__ . '/../../controller/LocalizacaoController.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/CarrosController.php';
+    require_once __DIR__ . '/../../controller/CarrosController.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

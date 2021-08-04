@@ -1,5 +1,5 @@
 <?php
-    require_once '../../model/Database.php';
+    require_once __DIR__ . '/../../model/Database.php';
 
     $query = "SELECT * FROM produto";
     $stm = Database::prepare($query);

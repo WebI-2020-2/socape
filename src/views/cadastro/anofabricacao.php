@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/FabricacaoController.php';
+    require_once __DIR__ . '/../../controller/FabricacaoController.php';
     $fabricacao = new FabricacaoController();
 ?>
 <!DOCTYPE html>

@@ -1,11 +1,11 @@
 <?php
-    require_once '../../controller/VendasController.php';
+    require_once __DIR__ . '/../../controller/VendasController.php';
     $vendas = new VendasController();
 
-    require_once '../../controller/ClientesController.php';
+    require_once __DIR__ . '/../../controller/ClientesController.php';
     $clientes = new ClientesController();
 
-    require_once '../../controller/FormaPagamentoController.php';
+    require_once __DIR__ . '/../../controller/FormaPagamentoController.php';
     $formas = new FormaPagamentoController();
 ?>
 <!DOCTYPE html>
@@ -84,8 +84,8 @@
             </h2>
             <form class="d-flex" action="./realizarVenda.php" method="POST">
                 <div class="input-group">
-                    <label for="formaPagamento" class="form-label">Forma de Pagamento</label>
-                    <select id="formaPagamento" name="idformapagamento" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                    <label for="formaPagamento" class="form-label">Forma de Pagamento:</label>
+                    <select id="FormaDePagamento" name="idformapagamento" style="border-radius: 30px 30px 30px 30px" class="form-control">
                         <option selected disabled>Selecione</option>
                         <?php
                             foreach ($formas->findAll() as $obj) { ?>
@@ -94,7 +94,7 @@
                     </select>
                 </div>
                 <div class="input-group ui-widget">
-                    <label for="barraPesquisa" class="form-label">Cliente</label>
+                    <label for="barraPesquisa" class="form-label">Cliente:</label>
                     <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Cliente" aria-label="Search">
                     <input id="idcliente" type="hidden" name="idcliente">
                 </div>

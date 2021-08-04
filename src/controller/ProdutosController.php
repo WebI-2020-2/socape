@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/Produto.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/Produto.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class ProdutosController extends Produto
 {
@@ -45,7 +45,7 @@ class ProdutosController extends Produto
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela order by idproduto";
+        $query = "SELECT * FROM $this->tabela ORDER BY idproduto";
         $stm = Database::prepare($query);
         $stm->execute();
         $produtos = array();
@@ -78,6 +78,89 @@ class ProdutosController extends Produto
         }
         return $produtos;
     }
+
+    public function findWithFilter($params)
+    {
+        $query = "SELECT * FROM $this->tabela ORDER BY idproduto";
+        $stm = Database::prepare($query);
+        $stm->execute();
+        $produtos = array();
+
+        foreach ($stm->fetchAll() as $obj) {
+            array_push(
+                $produtos,
+                new Produto(
+                    $obj->idproduto,
+                    $obj->idmotor,
+                    $obj->idcarro,
+                    $obj->idvalvulas,
+                    $obj->idfabricacao,
+                    $obj->idcategoria,
+                    $obj->idmarca,
+                    $obj->icms,
+                    $obj->ipi,
+                    $obj->frete,
+                    $obj->valornafabrica,
+                    $obj->valordecompra,
+                    $obj->lucro,
+                    $obj->valorvenda,
+                    $obj->desconto,
+                    $obj->quantidade,
+                    $obj->unidade,
+                    $obj->idlocalizacao,
+                    $obj->referencia
+                )
+            );
+        }
+        return $produtos;
+    }
+
+    // public function findWithFilter(){
+
+    // }
+    // $category = isset($_GET["category"]) ? $_GET["category"] : "";
+    // $search = isset($_GET['search']) ? $_GET['search'] : "";
+    // $subcategory = isset($_GET['subcategory']) ? $_GET['subcategory'] : "";
+    // $params = array();
+
+    // function getbycategory($category, $search, $subcategory){
+    //     $sql = "SELECT * FROM parts ";
+    //     $flag = 0;
+
+    //     if($category != ""){
+    //         $sql .= " WHERE main_category = ?";
+    //         $params[] = $category;
+    //         $flag++; 
+    //     }
+
+    //     if($search != ""){
+    //        if($flag > 0){
+    //             $sql .= " AND search = ?";
+    //        }else{
+    //             $sql .= " WHERE search = ?";
+    //        }
+    //        $params[] =$search;
+    //        $flag++;
+    //     }   
+
+    //     if($subcategory != ""){
+    //        if($flag > 0){
+    //             $sql .= " AND subcategory = ?";
+    //        }else{
+    //             $sql .= " WHERE subcategory = ?";
+    //        }
+
+    //        $params[] = $subcategory;
+    //     }
+    //     $sm = $db->prepare($sql);  
+    //     $sm->execute($params);
+    //     return $sm->fetchAll();
+    // }   
+    // getbycategory($category, $search, $subcategory);
+
+
+
+    //     } 
 
     public function insert($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia)
     {
@@ -146,9 +229,8 @@ class ProdutosController extends Produto
 
     public function findBestSellers()
     {
-        $query = "SELECT * FROM PRODUTOSMAISVENDIDOS(:mes)";
+        $query = "SELECT * FROM PRODUTOSMAISVENDIDOS(" . date('m') . ")";
         $stm = Database::prepare($query);
-        $stm->bindParam(':mes', date('m'), PDO::PARAM_INT);
         $stm->execute();
         $produtos = array();
 

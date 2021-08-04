@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/src/controller/ProdutosController.php';
+$produtos = new ProdutosController();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -91,81 +95,20 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <img id="imagemDestaque" src="./public/imagens/titulo 2.png">
-    <div style = "margin-left: 60px">
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 1.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
+    <?php if ($produtos->findBestSellers()) { ?>
+        <img id="imagemDestaque" src="./public/imagens/titulo 2.png">
+        <div style = "margin-left: 60px">
+            <?php foreach ($produtos->findBestSellers() as $obj) { ?>
+                <div id="produtos" class="card" style="width: 18rem;">
+                    <img src="./public/imagens/escapamento 1.png" class="card-img-top" alt="...">
+                    <div style="background-color: #8C1818" class="card-body">
+                        <h3 class="card-title" id="textoDestaque">R$ <?= $obj->getValorvenda() ?></h3>
+                        <p class="card-text" id="codigo"><?= $obj->getReferencia() ?></p>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 2.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 3.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 4.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 5.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 1.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 2.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 3.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 4.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    <div id="produtos" class="card" style="width: 18rem;">
-        <img src="./public/imagens/escapamento 5.png" class="card-img-top" alt="...">
-        <div style="background-color: #8C1818" class="card-body">
-            <h3 class="card-title" id="textoDestaque">R$ 203.32</h3>
-            <p class="card-text" id="codigo">32dw-31da-vwsq-f452</p>
-        </div>
-    </div>
-    </div>
-
-    
+    <?php } ?>
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

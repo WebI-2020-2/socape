@@ -1,10 +1,9 @@
 <?php
-require_once '../../controller/EntradasController.php';
+require_once __DIR__ . '/../../controller/EntradasController.php';
 $entradas = new EntradasController();
 
-require_once '../../controller/FornecedoresController.php';
+require_once __DIR__ . '/../../controller/FornecedoresController.php';
 $fornecedores = new FornecedoresController();
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

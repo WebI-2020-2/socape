@@ -1,8 +1,8 @@
 <?php
-    require_once '../../controller/FornecedoresController.php';
+    require_once __DIR__ . '/../../controller/FornecedoresController.php';
     $fornecedor = new FornecedoresController();
 
-    require_once '../../controller/EntradasController.php';
+    require_once __DIR__ . '/../../controller/EntradasController.php';
     $entrada = new EntradasController();
 
     $idfornecedor = intval($_POST['idfornecedor']);

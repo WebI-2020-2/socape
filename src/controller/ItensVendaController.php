@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../model/ItensVenda.php';
-require_once '../../model/Database.php';
+require_once __DIR__ . '/../model/ItensVenda.php';
+require_once __DIR__ . '/../model/Database.php';
 
 class ItensVendaController extends ItensVenda
 {

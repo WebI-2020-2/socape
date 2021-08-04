@@ -1,5 +1,5 @@
 <?php
-    require_once '../../controller/MarcasController.php';
+    require_once __DIR__ . '/../../controller/MarcasController.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
