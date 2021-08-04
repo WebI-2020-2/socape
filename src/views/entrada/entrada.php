@@ -93,6 +93,7 @@ $fornecedores = new FornecedoresController();
                     <th scope="col">Fornecedor</th>
                     <th scope="col">Valor Total</th>
                     <th scope="col">Data</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -105,9 +106,9 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getDatacompra() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdentrada() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $obj->getIdentrada() ?>')">Apagar</a>
+                                <button class="btn btn-light"  href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</button>
+                                <button class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdentrada() ?>">Editar</button>
+                                <button class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $obj->getIdentrada() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

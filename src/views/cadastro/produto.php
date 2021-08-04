@@ -32,8 +32,9 @@
     <title>SOCAPE | Cadastrar Produto</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/cadastrar-fornecedor.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>  </head>
+    <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
 
 <body>
     <img src="./../../../public/imagens/titulo.png" width="100%">
@@ -138,10 +139,11 @@
             }
         }
         ?>
-        <form id="dados" action="" method="post">
-
-            <div class="mb-3">
-                <label for="motor" class="form-label">Motor:</label>
+        <form id="formulario" action="" method="post">
+        <label for="motor" class="form-label">Motor:</label>
+        <label for="carro" class="form-label" style="margin-left:305px">Carro:</label>
+            <div class="input-group ui-widget">
+                
                 <select id="motor" name="idmotor" style="border-radius: 30px 30px 30px 30px" class="form-control">
                     <option selected disabled>Selecione</option>
                     <?php
@@ -149,10 +151,7 @@
                         <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia(); ?></option>
                     <?php } ?>
                 </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="carro" class="form-label">Carro:</label>
+             
                 <select id="carro" name="idcarro" style="border-radius: 30px 30px 30px 30px" class="form-control">
                     <option selected disabled>Selecione</option>
                     <?php
@@ -162,8 +161,10 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label for="valvula" class="form-label">Válvula:</label>
+            <label for="valvula" class="form-label">Válvula:</label>
+            <label for="fabricacao" class="form-label" style="margin-left:300px">Fabricação:</label>
+            <div class="input-group ui-widget" >
+                
                 <select id="valvula" name="idvalvulas" style="border-radius: 30px 30px 30px 30px" class="form-control">
                     <option selected disabled>Selecione</option>
                     <?php
@@ -171,10 +172,6 @@
                         <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade(); ?></option>
                     <?php } ?>
                 </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="fabricacao" class="form-label">Fabricação:</label>
                 <select id="fabricacao" name="idfabricacao" style="border-radius: 30px 30px 30px 30px" class="form-control">
                     <option selected disabled>Selecione</option>
                     <?php
@@ -184,8 +181,11 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label for="localizacao" class="form-label">Localização:</label>
+          
+            <label for="localizacao" class="form-label">Localização:</label>
+            <label for="categorias" class="form-label" style="margin-left: 270px">Categoria:</label>
+             <div class="input-group ui-widget" >
+                
                 <select id="localizacao" name="idlocalizacao" style="border-radius: 30px 30px 30px 30px" class="form-control">
                     <option selected disabled>Selecione</option>
                     <?php
@@ -193,11 +193,7 @@
                         <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento(); ?></option>
                     <?php } ?>
                 </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="categoria" class="form-label">Categoria:</label>
-                <select id="categoria" name="idcategoria" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                <select id="categorias" name="idcategoria" style="border-radius: 30px 30px 30px 30px" class="form-control">
                     <option selected disabled>Selecione</option>
                     <?php
                         foreach ($categorias->findAll() as $obj) { ?>
@@ -206,8 +202,10 @@
                 </select>
             </div>
 
-            <div class="mb-3">
-                <label for="marca" class="form-label">Marca:</label>
+            <label for="marca" class="form-label">Marca:</label>
+            <label for="referencia" class="form-label" style="margin-left:305px">Referência:</label>
+            <div class="input-group ui-widget" >
+                
                 <select id="marca" name="idmarca" style="border-radius: 30px 30px 30px 30px" class="form-control">
                     <option selected disabled>Selecione</option>
                     <?php
@@ -215,13 +213,10 @@
                         <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
                     <?php } ?>
                 </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="referencia" class="form-label">Referência:</label>
                 <input style="border-radius: 30px 30px 30px 30px" type="text" name="referencia" id="referencia" class="form-control" placeholder="Referência">
             </div>
 
+        
             <div id="localizaçãoBotões">
                 <input id="botão" type="submit" class="btn btn-light" value="Salvar">
             </div>

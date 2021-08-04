@@ -82,26 +82,31 @@
             <h2 style="text-align: center;">
                 <span id="titulo" class="badge bg-light text-dark">Realizar venda</span>
             </h2>
+            <label for="formaPagamento" class="form-label" style="margin-left:20px">Forma de Pagamento:</label>
+            <label for="barraPesquisa" class="form-label" style="margin-left:380px">Cliente:</label>
+           
             <form class="d-flex" action="./realizarVenda.php" method="POST">
-                <div class="input-group">
-                    <label for="formaPagamento" class="form-label">Forma de Pagamento:</label>
-                    <select id="FormaDePagamento" name="idformapagamento" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                        <option selected disabled>Selecione</option>
-                        <?php
-                            foreach ($formas->findAll() as $obj) { ?>
-                            <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="input-group ui-widget">
-                    <label for="barraPesquisa" class="form-label">Cliente:</label>
-                    <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Cliente" aria-label="Search">
-                    <input id="idcliente" type="hidden" name="idcliente">
+            
+               
+            
+                <div class="input-group" id="formas">
+                    
+                        <select id="FormaDePagamento" name="idformapagamento" style="border-radius: 30px 30px 30px 30px" class="form-control">
+                            <option selected disabled>Selecione</option>
+                            <?php
+                                foreach ($formas->findAll() as $obj) { ?>
+                                <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
+                            <?php } ?>
+                        </select>
+
+                        <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Cliente" aria-label="Search">
+                        <input id="idcliente" type="hidden" name="idcliente">
+                        <div id="localizaçãoBotões">
+                            <input id="botão" type="submit" class="btn btn-light" value="Confirma">
+                        </div>
                 </div>
 
-                <div id="localizaçãoBotões">
-                    <input id="botão" type="submit" class="btn btn-light" value="Confirma">
-                </div>
+                
             </form>
         </div>
 
@@ -115,7 +120,7 @@
                     <th scope="col">Forma de Pagamento</th>
                     <th scope="col">Data</th>
                     <th scope="col">Valor total</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col"width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -128,12 +133,24 @@
                     <td><?= $obj->getData() ?></td>
                     <td><?= $obj->getValortotal() ?></td>
                     <td>
+
+
+
+
                         <div class="button-group clear">
-                            <a class="success button" href="./cliente.php?id=<?= $obj->getIdvenda() ?>">Visualizar</a>
-                            <a class="success button" href="./editar.php?id=<?= $obj->getIdvenda() ?>">Editar</a>
-                            <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdvenda() ?>', '<?= $obj->getIdvenda() ?>')">Apagar</a>
+                        <button  class="btn btn-light" type="submit" href="./cliente.php?id=<?= $obj->getIdvenda() ?>">Visualizar</button>
+                        <button  class="btn btn-primary" type="submit" href="./editar.php?id=<?= $obj->getIdvenda() ?>">Editar</button>
+                        <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdvenda() ?>', '<?= $obj->getIdvenda() ?>')">Apagar</button>
+                        
                         </div>
+                    
+                    
+                        
+                    
+                    
                     </td>
+
+
                 </tr>
                 <?php } ?>
             </tbody>
