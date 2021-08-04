@@ -11,7 +11,8 @@
     <title>SOCAPE | Cadastrar localização</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
+    <link href="./../../../public/css/venda-parte1.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>  
 </head>
 
 <body>
@@ -88,6 +89,58 @@
             </div>
             <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </form>
+        <?php if (isset($_GET["id"])) {
+            if ($localizacoes->findOne($_GET["id"])) {
+                $localizacao = $localizacoes->findOne($_GET["id"]);
+        ?>
+
+        <?php
+            }
+        } ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Localização</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php    
+                $localizacoes = new LocalizacaoController();
+                foreach ($localizacoes->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdlocalizacao() ?></td>
+                        <td><?= $obj->getDepartamento() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="success button" href="./anocliente.php?id=<?= $obj->getIdlocalizacao() ?>">Visualizar</a>
+                                <a class="success button" href="./editar.php?id=<?= $obj->getIdlocalizacao() ?>">Editar</a>
+                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function deletar(id, localizacao) {
+            if (confirm("Deseja realmente excluir a localizacao " + localizacao + "?")) {
+                $.ajax({
+                    url: './apagarLocalizacao.php',
+                    type: "POST",
+                    data: {"idlocalizacao": id},
+                    success: () => {
+                        alert("Localizacao excluído com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

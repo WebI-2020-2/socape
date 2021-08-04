@@ -11,7 +11,8 @@
     <title>SOCAPE | Cadastrar categoria</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
+    <link href="./../../../public/css/venda-parte1.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>    
 </head>
 
 <body>
@@ -89,7 +90,59 @@
             </div>
             <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </form>
+
+        <?php if (isset($_GET["id"])) {
+            if ($categorias->findOne($_GET["id"])) {
+                $categoria = $categorias->findOne($_GET["id"]);
+        ?>
+
+        <?php
+            }
+        } ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php    
+                $categorias = new CategoriaController();
+                foreach ($categorias->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdcategoria() ?></td>
+                        <td><?= $obj->getCategoria() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="success button" href="./categoria.php?id=<?= $obj->getIdcategoria() ?>">Visualizar</a>
+                                <a class="success button" href="./editar.php?id=<?= $obj->getIdcategoria() ?>">Editar</a>
+                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
+
+    <script>
+        function deletar(id, categoria) {
+            if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
+                $.ajax({
+                    url: './apagarCategoria.php',
+                    type: "POST",
+                    data: {"idcategoria": id},
+                    success: () => {
+                        alert("Categoria excluída com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

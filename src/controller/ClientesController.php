@@ -27,7 +27,7 @@ class ClientesController extends Cliente {
     }
 
     public function findAll() {
-        $query = "SELECT * FROM $this->tabela";
+        $query = "SELECT * FROM $this->tabela order by idcliente";
         $stm = Database::prepare($query);
         $stm->execute();
         $clientes = array();
