@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . '/../../controller/FabricacaoController.php';
+    $fabricacao = new FabricacaoController();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,6 +13,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>    
 </head>
 
 <body>
@@ -67,7 +69,6 @@
         </h1>
         <?php
             if($_POST){
-                $fabricacao = new FabricacaoController();
                 $fabricacao->setAno($_POST['ano']);
 
                 try {
@@ -90,7 +91,60 @@
             </div>
             <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar" >
         </form>
+        
+        <?php if (isset($_GET["id"])) {
+            if ($fabricacoes->findOne($_GET["id"])) {
+                $fabricacao = $fabricacoes->findOne($_GET["id"]);
+        ?>
+
+        <?php
+            }
+        } ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ano</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php    
+                $fabricacoes = new FabricacaoController();
+                foreach ($fabricacoes->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdfabricacao() ?></td>
+                        <td><?= $obj->getAno() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="success button" href="./anofabricacao.php?id=<?= $obj->getIdfabricacao() ?>">Visualizar</a>
+                                <a class="success button" href="./editar.php?id=<?= $obj->getIdfabricacao() ?>">Editar</a>
+                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
+
+    <script>
+        function deletar(id, ano) {
+            if (confirm("Deseja realmente excluir o ano de fabricação " + ano + "?")) {
+                $.ajax({
+                    url: './apagarAnoFabricacao.php',
+                    type: "POST",
+                    data: {"idfabricacao": id},
+                    success: () => {
+                        alert("Ano de fabricação excluído com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

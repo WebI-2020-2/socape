@@ -8,15 +8,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar carro</title>
+    <title>SOCAPE | Cadastrar Modelo de Carro</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>    
 </head>
 
 <body>
     <img src="./../../../public/imagens/titulo.png" width="100%">
-<nav id="navegador" class="navbar navbar-expand-lg navbar-black bg-black">
+    <nav id="navegador" class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -91,7 +92,58 @@
             <input id="botão" type="submit" class="btn btn-light" value ="Cadastrar">
         </form>
 
+        <?php if (isset($_GET["id"])) {
+            if ($carros->findOne($_GET["id"])) {
+                $carro = $carros->findOne($_GET["id"]);
+        ?>
 
+        <?php
+            }
+        } ?>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Modelo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php    
+                $carros = new CarroController();
+                foreach ($carros->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdcarro() ?></td>
+                        <td><?= $obj->getModelo() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a class="success button" href="./carro.php?id=<?= $obj->getIdcarro() ?>">Visualizar</a>
+                                <a class="success button" href="./editar.php?id=<?= $obj->getIdcarro() ?>">Editar</a>
+                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function deletar(id, modelo) {
+            if (confirm("Deseja realmente excluir o modelo " + modelo + "?")) {
+                $.ajax({
+                    url: './apagarCarro.php',
+                    type: "POST",
+                    data: {"idcarro": id},
+                    success: () => {
+                        alert("Modelo excluído com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
         
 
     </div>

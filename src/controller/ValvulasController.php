@@ -62,11 +62,11 @@ class ValvulasController extends Valvulas
         return $stm->execute();
     }
 
-    public function delete($idmotor)
+    public function delete($idvalvulas)
     {
-        $query = "DELETE FROM $this->tabela WHERE idmotor = :idmotor";
+        $query = "DELETE FROM $this->tabela WHERE idvalvulas = :idvalvulas";
         $stm = Database::prepare($query);
-        $stm->bindParam(':idmotor', $idmotor, PDO::PARAM_INT);
+        $stm->bindParam(':idvalvulas', $idvalvulas, PDO::PARAM_INT);
         return $stm->execute();
     }
     
