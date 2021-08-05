@@ -136,7 +136,7 @@ $fornecedores = new FornecedoresController();
 
     <script>
         function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir o fornecedor " + nome + "?")) {
+            if (confirm("Deseja realmente excluir " + nome + "?")) {
                 $.ajax({
                     url: './apagarFornecedor.php',
                     type: "POST",

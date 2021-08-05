@@ -73,7 +73,7 @@ class VendasController extends Venda
 
     public function delete($idvenda)
     {
-        $query = "DELETE FROM $this->tabela WHERE idvenda = :idvendaidvenda";
+        $query = "DELETE FROM $this->tabela WHERE idvenda = :idvenda";
         $stm = Database::prepare($query);
         $stm->bindParam(':idvenda', $idvenda, PDO::PARAM_INT);
         return $stm->execute();

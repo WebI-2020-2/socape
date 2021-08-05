@@ -144,7 +144,6 @@
                         <td><?= $obj->getCnpj() ?></td>
                         <td>
                             <div class="button-group clear">
-                              <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
                               <a href="./editar.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
                               <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
@@ -157,7 +156,7 @@
 
     <script>
         function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir o fornecedor  " + nome + "?")) {
+            if (confirm("Deseja realmente excluir o(a) fornecedor(a) " + nome + "?")) {
                 $.ajax({
                     url: './apagarFornecedor.php',
                     type: "POST",

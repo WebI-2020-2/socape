@@ -133,24 +133,12 @@
                     <td><?= $obj->getData() ?></td>
                     <td><?= $obj->getValortotal() ?></td>
                     <td>
-
-
-
-
                         <div class="button-group clear">
-                        <button  class="btn btn-light" type="submit" href="./cliente.php?id=<?= $obj->getIdvenda() ?>">Visualizar</button>
-                        <button  class="btn btn-primary" type="submit" href="./editar.php?id=<?= $obj->getIdvenda() ?>">Editar</button>
-                        <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdvenda() ?>', '<?= $obj->getIdvenda() ?>')">Apagar</button>
-                        
+                        <button  class="btn btn-sm btn-light" type="submit" href="./cliente.php?id=<?= $obj->getIdvenda() ?>">Visualizar</button>
+                        <button  class="btn btn-sm btn-primary" type="submit" href="./editar.php?id=<?= $obj->getIdvenda() ?>">Editar</button>
+                        <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdvenda() ?>','<?= $clientes->findOne($obj->getIdcliente())->getNome(); ?>')">Apagar</button>
                         </div>
-                    
-                    
-                        
-                    
-                    
                     </td>
-
-
                 </tr>
                 <?php } ?>
             </tbody>
@@ -182,6 +170,25 @@
             });
         });
     </script>
+
+    <script>
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir a venda de " + nome + "?")) {
+                $.ajax({
+                    url: './apagarVenda.php',
+                    type: "POST",
+                    data: {"idvenda": id},
+                    success: () => {
+                        alert("Venda excluída com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
