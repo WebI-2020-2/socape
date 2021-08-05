@@ -115,7 +115,7 @@
             }
         } ?>
 
-        <table class="table">
+        <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -132,9 +132,9 @@
                         <td><?= $obj->getNome() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./anocliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdcliente() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</a>
+                            <button  class="btn btn-light" href="./anocliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</button>
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdcliente() ?>">Editar</button>
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

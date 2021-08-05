@@ -50,14 +50,14 @@ class FornecedoresController extends Fornecedor {
         return $stm->execute();
     }
 
-    public function update($idfornecedor) {
-        $query = "UPDATE $this->tabela SET nome = :nome, endereco = :endereco, telefone = :telefone, cnpj = :cnpj WHERE idcliente = :idcliente";
+    public function update($idfornecedor, $nome, $endereco, $telefone, $cnpj) {
+        $query = "UPDATE $this->tabela SET nome = :nome, endereco = :endereco, telefone = :telefone, cnpj = :cnpj WHERE idfornecedor = :idfornecedor";
         $stm = Database::prepare($query);
         $stm->bindParam(':idfornecedor', $idfornecedor, PDO::PARAM_INT);
-        $stm->bindValue(':nome', $this->getNome());
-        $stm->bindValue(':endereco', $this->getEndereco());
-        $stm->bindValue(':telefone', $this->getTelefone());
-        $stm->bindValue(':cnpj', $this->getCnpj());
+        $stm->bindValue(':nome', $nome);
+        $stm->bindValue(':endereco', $endereco);
+        $stm->bindValue(':telefone', $telefone);
+        $stm->bindValue(':cnpj', $cnpj);
         return $stm->execute();
     }
 
