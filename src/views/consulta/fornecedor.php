@@ -120,10 +120,10 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getTelefone() ?></td>
                         <td><?= $obj->getCnpj() ?></td>
                         <td>
-                            <div class="button-group clear">
-                              <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
-                              <a href="./editar.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
-                              <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
+                            <div>
+                                <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
+                                <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
