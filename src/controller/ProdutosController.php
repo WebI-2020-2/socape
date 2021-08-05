@@ -143,32 +143,23 @@ class ProdutosController extends Produto
         return $stm->execute();
     }
 
-    public function update($idproduto)
+    public function update($idproduto, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $referencia)
     {
-        $query = "UPDATE $this->tabela SET idmotor = :idmotor, idcarro = :idcarro, idvalvulas = :idvalvulas, idfabricacao = :idfabricacao, idcategoria = :idcategoria, 
-        idmarca = :idmarca, icms = :icms, ipi = :ipi, frete = :frete, valornafabrica = :valornafabrica, valordecompra = :valordecompra, 
-        lucro = :lucro, valorvenda = :valorvenda, desconto = :desconto, quantidade = :quantidade, unidade = :unidade, 
-        idlocalizacao = :idlocalizacao, referencia = :referencia WHERE idproduto = :idproduto";
+        $query = "UPDATE $this->tabela SET  icms = :icms, ipi = :ipi, frete = :frete, valornafabrica = :valornafabrica, valordecompra = :valordecompra, 
+        lucro = :lucro, valorvenda = :valorvenda, desconto = :desconto, quantidade = :quantidade, unidade = :unidade, referencia = :referencia WHERE idproduto = :idproduto";
         $stm = Database::prepare($query);
         $stm->bindParam(':idproduto', $idproduto, PDO::PARAM_INT);
-        $stm->bindValue(':idmotor', $this->getIdmotor());
-        $stm->bindValue(':idcarro', $this->getIdcarro());
-        $stm->bindValue(':idvalvulas', $this->getIdvalvulas());
-        $stm->bindValue(':idfabricacao', $this->getIdfabricacao());
-        $stm->bindValue(':idcategoria', $this->getIdcategoria());
-        $stm->bindValue(':idmarca', $this->getIdmarca());
-        $stm->bindValue(':icms', $this->getIcms());
-        $stm->bindValue(':ipi', $this->getIpi());
-        $stm->bindValue(':frete', $this->getFrete());
-        $stm->bindValue(':valornafabrica', $this->getValornafabrica());
-        $stm->bindValue(':valordecompra', $this->getValordecompra());
-        $stm->bindValue(':lucro', $this->getLucro());
-        $stm->bindValue(':valorvenda', $this->getValorvenda());
-        $stm->bindValue(':desconto', $this->getDesconto());
-        $stm->bindValue(':quantidade', $this->getQuantidade());
-        $stm->bindValue(':unidade', $this->getUnidade());
-        $stm->bindValue(':idlocalizacao', $this->getIdlocalizacao());
-        $stm->bindValue(':referencia', $this->getReferencia());
+        $stm->bindValue(':icms', $icms);
+        $stm->bindValue(':ipi', $ipi);
+        $stm->bindValue(':frete', $frete);
+        $stm->bindValue(':valornafabrica', $valornafabrica);
+        $stm->bindValue(':valordecompra', $valordecompra);
+        $stm->bindValue(':lucro', $lucro);
+        $stm->bindValue(':valorvenda', $valorvenda);
+        $stm->bindValue(':desconto', $desconto);
+        $stm->bindValue(':quantidade', $quantidade);
+        $stm->bindValue(':unidade', $unidade);
+        $stm->bindValue(':referencia', $referencia);
         return $stm->execute();
     }
 

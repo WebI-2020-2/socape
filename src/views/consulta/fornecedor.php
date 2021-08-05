@@ -117,9 +117,15 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getCnpj() ?></td>
                         <td>
                             <div class="button-group clear">
+<<<<<<< HEAD
                             <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button  class="btn btn-light">Visualizar</button></a>
                             <a href="./editar.php?id=<?= $obj->getIdfornecedor() ?>"><button  class="btn btn-primary" >Editar</button></a>
                             <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
+=======
+                                <button class="btn btn-sm btn-light" href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</button>
+                                <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
+>>>>>>> 4c016848332610fcc4803dd5a6d23c91af3ae7ac
                             </div>
                         </td>
                     </tr>

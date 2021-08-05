@@ -75,13 +75,24 @@ $produto = $produtos->findOne($idproduto);
         if ($_POST) {
             try {
 
-                $produtos->update($idproduto, $_POST['icms'], $_POST['ipi'], 
-                $_POST['frete'], $_POST['valornafabrica'], $_POST['valordecompra'], $_POST['lucro'], $_POST['valorvenda'], 
-                $_POST['desconto'], $_POST['quantidade'], $_POST['unidade'], $_POST['referencia']);
+                $produtos->update(
+                    $idproduto,
+                    $_POST['icms'],
+                    $_POST['ipi'],
+                    $_POST['frete'],
+                    $_POST['valornafabrica'],
+                    $_POST['valordecompra'],
+                    $_POST['lucro'],
+                    $_POST['valorvenda'],
+                    $_POST['desconto'],
+                    $_POST['quantidade'],
+                    $_POST['unidade'],
+                    $_POST['referencia']
+                );
                 echo
                 '<div class="success callout">
-                    <h5>Cliente atualizado</h5>
-                    <p>Cliente atualizado com sucesso!</p>
+                    <h5>Produto atualizado</h5>
+                    <p>Produto atualizado com sucesso!</p>
                 </div>';
             } catch (PDOException $e) {
                 echo $e->getMessage();
@@ -91,36 +102,59 @@ $produto = $produtos->findOne($idproduto);
         <img id="imagem" src="./../../../public/imagens/usuario.png">
         <form id="dados" method="POST" action="">
             <div class="input-group">
+
                 <div>
-                    <label for="Nome" class="form-label">Nome:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" placeholder="Nome" value="<?= $cliente->getNome(); ?>">
+                    <label for="Icms" class="form-label">Icms:</label>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="icms" placeholder="Icms" value="<?= $produto->getIcms(); ?>">
                 </div>
                 <div>
-                    <label for="Telefone" class="form-label">Telefone:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" placeholder="Telefone" value="<?= $cliente->getTelefone(); ?>">
+                    <label for="Ipi" class="form-label">Ipi:</label>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="ipi" placeholder="Ipi" value="<?= $produto->getIpi(); ?>">
+                </div>
+                <div>
+                    <label for="Frete" class="form-label">Frete:</label>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="frete" placeholder="Frete" value="<?= $produto->getFrete(); ?>">
                 </div>
             </div>
-            <div style="margin-top: 5px" class="mb-3">
-                <?php
-                if (empty($cliente->getCpf())) {
-                ?>
-                    <label for="CNPJ" class="form-label">Cnpj:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" placeholder="CNPJ" value="<?= $cliente->getCnpj(); ?>">
-                <?php
-                } else {
-                ?>
-                    <label for="CPF" class="form-label">Cpf:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="cpf" placeholder="CPF" value="<?= $cliente->getCpf(); ?>">
-                <?php
-                }
-                ?>
-                <div id="localizaçãoBotões">
-                    <button class="btn btn-sm btn-primary" type="submit">Salvar</button>
-                </div>
+            <div>
+                <label for="Valornafabrica" class="form-label">Valor na fábrica:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="valornafabrica" placeholder="Valornafabrica" value="<?= $produto->getValornafabrica(); ?>">
+            </div>
+            <div>
+                <label for="Valordecompra" class="form-label">Valor de compra:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="valordecompra" placeholder="Valordecompra" value="<?= $produto->getValordecompra(); ?>">
+            </div>
+            <div>
+                <label for="Lucro" class="form-label">Lucro:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="lucro" placeholder="Lucro" value="<?= $produto->getLucro(); ?>">
+            </div>
+            <div>
+                <label for="Valorvenda" class="form-label">Valor de venda:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="valorvenda" placeholder="Valorvenda" value="<?= $produto->getValorvenda(); ?>">
+            </div>
+            <div>
+                <label for="Desconto" class="form-label">Desconto:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="desconto" placeholder="Desconto" value="<?= $produto->getDesconto(); ?>">
+            </div>
+            <div>
+                <label for="Quantidade" class="form-label">Quantidade:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="quantidade" placeholder="Quantidade" value="<?= $produto->getQuantidade(); ?>">
+            </div>
+            <div>
+                <label for="Unidade" class="form-label">Unidade:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="unidade" placeholder="Unidade" value="<?= $produto->getUnidade(); ?>">
+            </div>
+            <div>
+                <label for="Referencia" class="form-label">Referência:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="referencia" placeholder="Referencia" value="<?= $produto->getReferencia(); ?>">
+            </div>
+            <div id="localizaçãoBotões">
+                <button class="btn btn-sm btn-primary" type="submit">Salvar</button>
+            </div>
         </form>
     </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 </body>
