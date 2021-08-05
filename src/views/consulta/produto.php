@@ -190,7 +190,6 @@ $motores = new MotorController();
                                 <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
                                 <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getIdproduto() ?>')">Apagar</button>
                             </div>
-
                         </td>
                     </tr>
                 <?php } ?>

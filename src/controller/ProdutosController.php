@@ -79,9 +79,58 @@ class ProdutosController extends Produto
         return $produtos;
     }
 
-    public function findWithFilter($params)
+
+    public function findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia)
     {
-        $query = "SELECT * FROM $this->tabela ORDER BY idproduto";
+        $params = "";
+        $need = FALSE;
+
+        if ($idmotor) {
+            $params .= "IDMOTOR = $idmotor";
+            $need = TRUE;
+        }
+        if ($idcarro) {
+            if ($need) $params .= " AND ";
+            $params .= "IDCARRO = $idcarro";
+            $need = TRUE;
+        }
+        if ($idvalvulas) {
+            if ($need) $params .= " AND ";
+            $params .= "IDVALVULAS = $idvalvulas";
+            $need = TRUE;
+        }
+        if ($idfabricacao) {
+            if ($need) $params .= " AND ";
+            $params .= "IDFABRICACAO = $idfabricacao";
+            $need = TRUE;
+        }
+        if ($idcategoria) {
+            if ($need) $params .= " AND ";
+            $params .= "IDCATEGORIA = $idcategoria";
+            $need = TRUE;
+        }
+        if ($idmarca) {
+            if ($need) $params .= " AND ";
+            $params .= "IDMARCA = $idmarca";
+            $need = TRUE;
+        }
+        if ($idlocalizacao) {
+            if ($need) $params .= " AND ";
+            $params .= "IDLOCALIZACAO = $idlocalizacao";
+            $need = TRUE;
+        }
+        if ($referencia) {
+            if ($need) $params .= " AND ";
+            $params .= "REFERENCIA LIKE '%$referencia%'";
+            $need = TRUE;
+        }
+
+        $where = "";
+
+        if ($need) $where = "WHERE ";
+
+        $query = "SELECT * FROM $this->tabela $where $params ORDER BY idproduto";
+
         $stm = Database::prepare($query);
         $stm->execute();
         $produtos = array();

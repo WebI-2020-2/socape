@@ -116,8 +116,8 @@
                         <td><?= $obj->getMarca() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <button  class="btn btn-light" href="./marca.php?id=<?= $obj->getIdmarca() ?>">Visualizar</button>
-                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdmarca() ?>">Editar</button>
+                            <a href="./marca.php?id=<?= $obj->getIdmarca() ?>"> <button  class="btn btn-light" >Visualizar</button></a>
+                            <a href="./editar.php?id=<?= $obj->getIdmarca() ?>"><button  class="btn btn-primary">Editar</button></a>
                             <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">Apagar</button>
                             </div>
                         </td>

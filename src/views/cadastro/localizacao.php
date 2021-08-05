@@ -115,8 +115,8 @@
                         <td><?= $obj->getDepartamento() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <button  class="btn btn-light" href="./anocliente.php?id=<?= $obj->getIdlocalizacao() ?>">Visualizar</button>
-                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdlocalizacao() ?>">Editar</button>
+                            <a href="./anocliente.php?id=<?= $obj->getIdlocalizacao() ?>"><button  class="btn btn-light" >Visualizar</button></a>
+                            <a href="./editar.php?id=<?= $obj->getIdlocalizacao() ?>"><button  class="btn btn-primary" >Editar</button></a>
                             <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">Apagar</button>
                             </div>
                         </td>

@@ -78,6 +78,10 @@ $fornecedores = new FornecedoresController();
         ?>
                 <form id="dados">
                     <div class="mb-3">
+                        <label for="Nome" class="form-label">Nome</label>
+                        <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome" value="<?= $fornecedor->getNome(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
                         <label for="Endereco" class="form-label">Endereço</label>
                         <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço" value="<?= $fornecedor->getEndereco(); ?>" disabled>
                     </div>
@@ -103,7 +107,7 @@ $fornecedores = new FornecedoresController();
                     <th scope="col">Endereço</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">CNPJ</th>
-                    <th scope="col" width="18%">Ações</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -126,7 +130,7 @@ $fornecedores = new FornecedoresController();
                 <?php } ?>
             </tbody>
         </table>
-
+        
 
     </div>
 
@@ -136,9 +140,7 @@ $fornecedores = new FornecedoresController();
                 $.ajax({
                     url: './apagarFornecedor.php',
                     type: "POST",
-                    data: {
-                        "idfornecedor": id
-                    },
+                    data: {"idfornecedor": id},
                     success: () => {
                         alert("Fornecedor excluído com sucesso!");
                         window.location.reload(true);

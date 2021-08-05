@@ -116,8 +116,8 @@
                         <td><?= $obj->getPotencia() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <button  class="btn btn-light"href="./anocliente.php?id=<?= $obj->getIdmotor() ?>">Visualizar</button>
-                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdmotor() ?>">Editar</button>
+                            <a href="./anocliente.php?id=<?= $obj->getIdmotor() ?>"><button  class="btn btn-light">Visualizar</button></a>
+                            <a href="./editar.php?id=<?= $obj->getIdmotor() ?>"><button  class="btn btn-primary">Editar</button></a>
                             <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">Apagar</button>
                             </div>
                         </td>

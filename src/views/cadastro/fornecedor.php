@@ -120,26 +120,33 @@
             }
         } ?>
 
-        <table class="table" style="color: #FFFFFF">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
-                    <th scope="col" width="20%">Ações</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php    
+                <?php
+
                 $fornecedores = new FornecedoresController();
                 foreach ($fornecedores->findAll() as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIdfornecedor() ?></td>
                         <td><?= $obj->getNome() ?></td>
+                        <td><?= $obj->getEndereco() ?></td>
+                        <td><?= $obj->getTelefone() ?></td>
+                        <td><?= $obj->getCnpj() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <button  class="btn btn-light" href="./anocliente.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</button>
-                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdfornecedor() ?>">Editar</button>
-                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
+                              <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
+                              <a href="./editar.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                              <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
