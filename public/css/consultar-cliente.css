@@ -29,8 +29,8 @@ body{
 }
 
 #dados{
-	margin-top: 15px;
-	margin-left: 5px;
+	margin-top: 90px;
+	margin-left: 20px;
 	width: 20%;
     display: inline-block;
 }
@@ -48,7 +48,8 @@ body{
 
 #localizaçãoBotões{
 	margin-top: 50px;
-	margin-left: 800px;
+	margin-left: 450px;
+	
 }
 #botão{
 	padding: 4px 15px 3px 15px;
@@ -58,9 +59,24 @@ body{
 #texto{
 	color: white;
 }
+
+#cpf{
+	width: 105%;
+}
+#cnpj{
+	width: 105%;
+}
+#nome{
+	width: 140%;
+}
+#telefone{
+	width: 140%;
+}
 #imagem{
-	height: 20%; 
-	max-width: 40%;
+	
+	width: 20%;
+	margin-left: 100px;
+	margin-bottom: 180px;
 }
 
 h1{

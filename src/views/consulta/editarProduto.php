@@ -16,7 +16,7 @@ $produto = $produtos->findOne($idproduto);
     <title>SOCAPE | Editar produto</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/consultar-cliente.css" rel="stylesheet">
+    <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
 </head>
 
 <body>
@@ -99,58 +99,46 @@ $produto = $produtos->findOne($idproduto);
             }
         }
         ?>
-        <img id="imagem" src="./../../../public/imagens/usuario.png">
-        <form id="dados" method="POST" action="">
-            <div class="input-group">
-
-                <div>
-                    <label for="Icms" class="form-label">Icms:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="icms" placeholder="Icms" value="<?= $produto->getIcms(); ?>">
+        <form id="formulario"  method="POST" action="">
+            <div >
+                <label for="Icms" class="form-label">Icms:</label>
+                <label for="Ipi" class="form-label" style="margin-left:198px">Ipi:</label>
+                <div class="input-group ui-widget">       
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="icms" placeholder="Icms" value="<?= $produto->getIcms(); ?>">
+                    <input id ="segB" style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="ipi" placeholder="Ipi" value="<?= $produto->getIpi(); ?>">
                 </div>
-                <div>
-                    <label for="Ipi" class="form-label">Ipi:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="ipi" placeholder="Ipi" value="<?= $produto->getIpi(); ?>">
+                <label for="Frete" class="form-label">Frete:</label>
+                <label for="Valornafabrica" class="form-label" style="margin-left:191px">Valor na fábrica:</label>
+                <div class="input-group ui-widget">              
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="frete" placeholder="Frete" value="<?= $produto->getFrete(); ?>">
+                    <input id ="segB" style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="valornafabrica" placeholder="Valornafabrica" value="<?= $produto->getValornafabrica(); ?>">
                 </div>
-                <div>
-                    <label for="Frete" class="form-label">Frete:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="frete" placeholder="Frete" value="<?= $produto->getFrete(); ?>">
-                </div>
-            </div>
-            <div>
-                <label for="Valornafabrica" class="form-label">Valor na fábrica:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="valornafabrica" placeholder="Valornafabrica" value="<?= $produto->getValornafabrica(); ?>">
-            </div>
-            <div>
                 <label for="Valordecompra" class="form-label">Valor de compra:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="valordecompra" placeholder="Valordecompra" value="<?= $produto->getValordecompra(); ?>">
-            </div>
-            <div>
-                <label for="Lucro" class="form-label">Lucro:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="lucro" placeholder="Lucro" value="<?= $produto->getLucro(); ?>">
-            </div>
-            <div>
+                <label for="Lucro" class="form-label" style="margin-left:110px">Lucro:</label>
+                <div class="input-group ui-widget">            
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="valordecompra" placeholder="Valordecompra" value="<?= $produto->getValordecompra(); ?>">
+                    <input id ="segB" style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="lucro" placeholder="Lucro" value="<?= $produto->getLucro(); ?>">
+                </div>
                 <label for="Valorvenda" class="form-label">Valor de venda:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="valorvenda" placeholder="Valorvenda" value="<?= $produto->getValorvenda(); ?>">
-            </div>
-            <div>
-                <label for="Desconto" class="form-label">Desconto:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="desconto" placeholder="Desconto" value="<?= $produto->getDesconto(); ?>">
-            </div>
-            <div>
+                <label for="Desconto" class="form-label" style="margin-left:120px">Desconto:</label>
+                <div class="input-group ui-widget">
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="valorvenda" placeholder="Valorvenda" value="<?= $produto->getValorvenda(); ?>">        
+                    <input id ="segB" style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="desconto" placeholder="Desconto" value="<?= $produto->getDesconto(); ?>">
+                </div>
                 <label for="Quantidade" class="form-label">Quantidade:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="quantidade" placeholder="Quantidade" value="<?= $produto->getQuantidade(); ?>">
-            </div>
-            <div>
-                <label for="Unidade" class="form-label">Unidade:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="unidade" placeholder="Unidade" value="<?= $produto->getUnidade(); ?>">
-            </div>
-            <div>
-                <label for="Referencia" class="form-label">Referência:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="referencia" placeholder="Referencia" value="<?= $produto->getReferencia(); ?>">
-            </div>
-            <div id="localizaçãoBotões">
-                <button class="btn btn-sm btn-primary" type="submit">Salvar</button>
-            </div>
+                <label for="Unidade" class="form-label" style="margin-left:143px">Unidade:</label>
+                <div class="input-group ui-widget">
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="quantidade" placeholder="Quantidade" value="<?= $produto->getQuantidade(); ?>">  
+                    <input id ="segB" style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="unidade" placeholder="Unidade" value="<?= $produto->getUnidade(); ?>">
+                </div>
+                <div class="mb-3">
+                    <label for="Referencia" class="form-label">Referência:</label>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" name="referencia" placeholder="Referencia" value="<?= $produto->getReferencia(); ?>">
+                </div>
+                <div id="localizaçãoBotões">
+                    <button  id="botão" class="btn btn-light" type="submit">Salvar</button>
+                </div>
+            </div>    
         </form>
     </div>
     </div>

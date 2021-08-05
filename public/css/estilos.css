@@ -52,4 +52,8 @@ body{
 	width: 100%; 
 }
 
-
+#Container{
+	margin-top: 5px;  	
+	height: 100%; 	
+	background-image: linear-gradient(to bottom, #272020, #8C1818);  
+}

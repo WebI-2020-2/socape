@@ -77,12 +77,12 @@ $clientes = new ClientesController();
         ?>
                 <img id="imagem" src="./../../../public/imagens/usuario.png">
                 <form id="dados">
-                    <div class="input-group">
+                    <div style="margin-top: 5px" class="input-group">
                         <div> <label for="Nome" class="form-label">Nome:</label>
-                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nome" value="<?= $cliente->getNome(); ?>" disabled>
+                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="nome" placeholder="Nome" value="<?= $cliente->getNome(); ?>" disabled>
                         </div>
                         <div> <label for="Telefone" class="form-label">Telefone:</label>
-                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $cliente->getTelefone(); ?>" disabled>
+                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="telefone" placeholder="Telefone" value="<?= $cliente->getTelefone(); ?>" disabled>
                         </div>
                     </div>
                     <div style="margin-top: 5px" class="mb-3">
@@ -90,12 +90,12 @@ $clientes = new ClientesController();
                         if (empty($cliente->getCpf())) {
                         ?>
                             <label for="CNPJ" class="form-label">Cnpj:</label>
-                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $cliente->getCnpj(); ?>" disabled>
+                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="cnpj" placeholder="CNPJ" value="<?= $cliente->getCnpj(); ?>" disabled>
                         <?php
                         } else {
                         ?>
                             <label for="CPF" class="form-label">Cpf:</label>
-                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="exampleFormControlInput1" placeholder="CPF" value="<?= $cliente->getCpf(); ?>" disabled>
+                            <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" id="cpf" placeholder="CPF" value="<?= $cliente->getCpf(); ?>" disabled>
                         <?php
                         }
                         ?>
