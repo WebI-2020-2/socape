@@ -101,11 +101,12 @@
             }
         } ?>
 
-        <table class="table">
+        <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Ano</th>
+                    <th scope="col" width="20%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -117,9 +118,9 @@
                         <td><?= $obj->getAno() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./anofabricacao.php?id=<?= $obj->getIdfabricacao() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdfabricacao() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">Apagar</a>
+                            <button  class="btn btn-light" href="./anofabricacao.php?id=<?= $obj->getIdfabricacao() ?>">Visualizar</button>
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdfabricacao() ?>">Editar</button>
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

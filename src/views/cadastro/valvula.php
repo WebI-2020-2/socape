@@ -99,7 +99,7 @@
             }
         } ?>
 
-        <table class="table">
+        <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -116,9 +116,9 @@
                         <td><?= $obj->getQuantidade() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="btn btn-info" href="./valvula.php?id=<?= $obj->getIdvalvulas() ?>">Visualizar</a>
-                                <a class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdvalvulas() ?>">Editar</a>
-                                <a class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">Apagar</a>
+                            <button  class="btn btn-light" href="./valvula.php?id=<?= $obj->getIdvalvulas() ?>">Visualizar</button>
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdvalvulas() ?>">Editar</button>
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
