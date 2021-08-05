@@ -231,11 +231,12 @@
             }
         } ?>
 
-        <table class="table">
+        <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Referência</th>
+                    <th scope="col" width="20%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -247,9 +248,9 @@
                         <td><?= $obj->getReferencia() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./produto.php?id=<?= $obj->getIdproduto() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdproduto() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>')">Apagar</a>
+                            <button  class="btn btn-light" href="./produto.php?id=<?= $obj->getIdproduto() ?>">Visualizar</button>
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdproduto() ?>">Editar</button>
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

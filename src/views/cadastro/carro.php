@@ -101,11 +101,12 @@
             }
         } ?>
 
-        <table class="table">
+        <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Modelo</th>
+                    <th scope="col" width="20%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -117,9 +118,9 @@
                         <td><?= $obj->getModelo() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./carro.php?id=<?= $obj->getIdcarro() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdcarro() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">Apagar</a>
+                            <button  class="btn btn-light" href="./carro.php?id=<?= $obj->getIdcarro() ?>">Visualizar</button >
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdcarro() ?>">Editar</button >
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">Apagar</button >
                             </div>
                         </td>
                     </tr>

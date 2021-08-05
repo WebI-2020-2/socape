@@ -99,11 +99,12 @@
             }
         } ?>
 
-        <table class="table">
+        <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Motor</th>
+                    <th scope="col" width="20%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -115,9 +116,9 @@
                         <td><?= $obj->getPotencia() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./anocliente.php?id=<?= $obj->getIdmotor() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdmotor() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">Apagar</a>
+                            <button  class="btn btn-light"href="./anocliente.php?id=<?= $obj->getIdmotor() ?>">Visualizar</button>
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdmotor() ?>">Editar</button>
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

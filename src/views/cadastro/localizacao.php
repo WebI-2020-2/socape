@@ -98,11 +98,12 @@
             }
         } ?>
 
-        <table class="table">
+        <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Localização</th>
+                    <th scope="col" width="20%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -114,9 +115,9 @@
                         <td><?= $obj->getDepartamento() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./anocliente.php?id=<?= $obj->getIdlocalizacao() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdlocalizacao() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">Apagar</a>
+                            <button  class="btn btn-light" href="./anocliente.php?id=<?= $obj->getIdlocalizacao() ?>">Visualizar</button>
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdlocalizacao() ?>">Editar</button>
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
