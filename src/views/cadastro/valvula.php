@@ -116,8 +116,8 @@
                         <td><?= $obj->getQuantidade() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <button  class="btn btn-light" href="./valvula.php?id=<?= $obj->getIdvalvulas() ?>">Visualizar</button>
-                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdvalvulas() ?>">Editar</button>
+                            <a href="./valvula.php?id=<?= $obj->getIdvalvulas() ?>"><button  class="btn btn-light">Visualizar</button></a>
+                            <a href="./editar.php?id=<?= $obj->getIdvalvulas() ?>"><button  class="btn btn-primary" >Editar</button></a>
                             <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">Apagar</button>
                             </div>
                         </td>

@@ -117,8 +117,8 @@
                         <td><?= $obj->getCategoria() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <button  class="btn btn-light" href="./categoria.php?id=<?= $obj->getIdcategoria() ?>">Visualizar</button>
-                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdcategoria() ?>">Editar</button>
+                            <a href="./categoria.php?id=<?= $obj->getIdcategoria() ?>"><button  class="btn btn-light" >Visualizar</button></a>
+                            <a href="./editar.php?id=<?= $obj->getIdcategoria() ?>"><button  class="btn btn-primary">Editar</button></a>
                             <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">Apagar</button>
                             </div>
                         </td>

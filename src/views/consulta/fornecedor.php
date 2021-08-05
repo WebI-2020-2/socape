@@ -107,7 +107,7 @@ $fornecedores = new FornecedoresController();
                     <th scope="col">Endereço</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">CNPJ</th>
-                    <th scope="col" width="18%">Ações</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -130,7 +130,7 @@ $fornecedores = new FornecedoresController();
                 <?php } ?>
             </tbody>
         </table>
-
+        
 
     </div>
 
@@ -140,9 +140,7 @@ $fornecedores = new FornecedoresController();
                 $.ajax({
                     url: './apagarFornecedor.php',
                     type: "POST",
-                    data: {
-                        "idfornecedor": id
-                    },
+                    data: {"idfornecedor": id},
                     success: () => {
                         alert("Fornecedor excluído com sucesso!");
                         window.location.reload(true);
