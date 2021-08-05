@@ -78,6 +78,10 @@ $fornecedores = new FornecedoresController();
         ?>
                 <form id="dados">
                     <div class="mb-3">
+                        <label for="Nome" class="form-label">Nome</label>
+                        <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Nome" value="<?= $fornecedor->getNome(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
                         <label for="Endereco" class="form-label">Endereço</label>
                         <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço" value="<?= $fornecedor->getEndereco(); ?>" disabled>
                     </div>
