@@ -101,7 +101,8 @@ $produto = $produtos->findOne($idproduto);
         ?>
         <img id="imagem" src="./../../../public/imagens/usuario.png">
         <form id="dados" method="POST" action="">
-            <div class="input-group">
+
+            <div class="mb-3">
 
                 <div>
                     <label for="Icms" class="form-label">Icms:</label>
@@ -151,6 +152,7 @@ $produto = $produtos->findOne($idproduto);
             <div id="localizaçãoBotões">
                 <button class="btn btn-sm btn-primary" type="submit">Salvar</button>
             </div>
+
         </form>
     </div>
     </div>

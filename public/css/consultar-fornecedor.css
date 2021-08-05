@@ -4,7 +4,6 @@
 
 }
 
-
 #conta{
 	margin-left: 838px;
 	margin-right: -10px;
@@ -17,7 +16,8 @@
 	border-radius: 50px;
 }
 #imagem{
-	margin-left: 100px
+	margin-top: 100px;
+	margin-right: 400px;
 }
 
 body{
@@ -27,15 +27,11 @@ body{
 
 #Container{
 	margin-top: 5px;  	
-	height: 90%; 
-
+	height: 100%; 	
 	background-image: linear-gradient(to bottom, #272020, #8C1818);  
 }
 
-#dados{
 
-	margin-top: 15px;
-}
 #fornecedor{
 	margin-top: 30px;
 	margin-left: 150px;
@@ -52,14 +48,22 @@ body{
 	height: 10%;
 	margin-right: 50px;
 }
+#dados{
+	margin-left: 300px;
+	margin-top: 70px;
+	width: 20%;
+	display: inline-block;
+}
+
 #titulo{
 	padding: 4px 15px 3px 15px;
 	border-radius: 50px;
 }
 
 #localizaçãoBotões{
-	margin-top: 50px;
-	margin-left: 800px;
+	margin-top: 63px;
+	margin-bottom: 100px;
+	margin-left: 700px;
 }
 #botão{
 	padding: 4px 15px 3px 15px;
@@ -74,8 +78,6 @@ h1{
 	text-align: center;
 	margin-top: 5px;
 }
-
-
 table{
 	margin-top: 20px;
 }

@@ -70,5 +70,15 @@ h1{
 	margin-top: 5px;
 }
 
+table{
+	margin-top: 20px;
+}
 
+table th{
+	color: white;
+}
+
+table td{
+	color: white;
+}
 

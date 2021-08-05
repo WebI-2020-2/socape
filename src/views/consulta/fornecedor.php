@@ -94,7 +94,7 @@ $fornecedores = new FornecedoresController();
                         <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>" disabled>
                     </div>
                 </form>
-                <img id="imagem" src="./../../../public/imagens/caminhão.png">
+                <img id="imagem" src="./../../../public/imagens/caminhão.png" align="right">
         <?php
             }
         } ?>
