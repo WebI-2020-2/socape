@@ -1,19 +1,22 @@
 <?php
+if (!$_GET) header('Location: ./index.php');
 require_once __DIR__ . '/../../controller/FornecedoresController.php';
+
+$idfornecedor = $_GET['id'];
 $fornecedores = new FornecedoresController();
+$fornecedor = $fornecedores->findOne($idfornecedor);
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html class="no-js" lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Consultar fornecedor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOCAPE | Editar fornecedor</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/consultar-fornecedor.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link href="./../../../public/css/consultar-cliente.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,6 +24,7 @@ $fornecedores = new FornecedoresController();
     <nav id="navegador" class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">Início</a>
@@ -59,97 +63,57 @@ $fornecedores = new FornecedoresController();
                         <a class="nav-link" style="color: #FFFFFF" href="#">Minha conta</a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>
-
     <div id="Container">
         <h1>
-            <span id="titulo" class="badge bg-light text-dark">Consultar Fornecedor</span>
+            <span id="titulo" class="badge bg-light text-dark">Editar Fornecedor</span>
         </h1>
-        <div class="input-group">
-            <input id="fornecedor" style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="IDfornecedor">
-            <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-            <button id="botãopequisa" class="btn btn-outline-success" type="submit">Pesquisar</button>
-        </div>
-        <?php if (isset($_GET["id"])) {
-            if ($fornecedores->findOne($_GET["id"])) {
-                $fornecedor = $fornecedores->findOne($_GET["id"]);
-        ?>
-                <form id="dados">
-                    <div class="mb-3">
-                        <label for="Endereco" class="form-label">Endereço</label>
-                        <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Endereço" value="<?= $fornecedor->getEndereco(); ?>" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="CNPJ" class="form-label">CNPJ:</label>
-                        <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Telefone" class="form-label">Telefone:</label>
-                        <input style="border-radius: 30px 30px 30px 30px" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>" disabled>
-                    </div>
-                </form>
-                <img id="imagem" src="./../../../public/imagens/caminhão.png">
         <?php
-            }
-        } ?>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">CNPJ</th>
-                    <th scope="col" width="18%">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($fornecedores->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdfornecedor() ?></td>
-                        <td><?= $obj->getNome() ?></td>
-                        <td><?= $obj->getEndereco() ?></td>
-                        <td><?= $obj->getTelefone() ?></td>
-                        <td><?= $obj->getCnpj() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <button class="btn btn-sm btn-light" href="./cliente.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</button>
-                                <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
-                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-
-
-    </div>
-
-    <script>
-        function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir o fornecedor " + nome + "?")) {
-                $.ajax({
-                    url: './apagarFornecedor.php',
-                    type: "POST",
-                    data: {
-                        "idfornecedor": id
-                    },
-                    success: () => {
-                        alert("Fornecedor excluído com sucesso!");
-                        window.location.reload(true);
-                    }
-                });
-                return false;
+        if ($_POST) {
+            try {
+                $fornecedores->update($idfornecedor, $_POST['nome'], $_POST['endereco'], $_POST['telefone'], $_POST['cnpj']);
+                echo
+                '<div class="success callout">
+                    <h5>Fornecedor atualizado</h5>
+                    <p>Fornecedor atualizado com sucesso!</p>
+                </div>';
+            } catch (PDOException $e) {
+                echo $e->getMessage();
             }
         }
-    </script>
+        ?>
+        <img id="imagem" src="./../../../public/imagens/usuario.png">
+        <form id="dados" method="POST" action="">
+            <div class="input-group">
+                <div>
+                    <label for="Nome" class="form-label">Nome:</label>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" placeholder="Nome" value="<?= $fornecedor->getNome(); ?>">
+                </div>
+                <div>
+                    <label for="Endereco" class="form-label">Endereço:</label>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="endereco" placeholder="Endereco" value="<?= $fornecedor->getEndereco(); ?>">
+                </div>
+                <div>
+                    <label for="Telefone" class="form-label">Telefone:</label>
+                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>">
+                </div>
+            </div>
+            <div>
+                <label for="CNPJ" class="form-label">Cnpj:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>">
+            </div>
+            <div id="localizaçãoBotões">
+                <button class="btn btn-sm btn-primary" type="submit">Salvar</button>
+            </div>
+        </form>
+    </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

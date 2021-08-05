@@ -115,53 +115,6 @@ class ProdutosController extends Produto
         return $produtos;
     }
 
-    // public function findWithFilter(){
-
-    // }
-    // $category = isset($_GET["category"]) ? $_GET["category"] : "";
-    // $search = isset($_GET['search']) ? $_GET['search'] : "";
-    // $subcategory = isset($_GET['subcategory']) ? $_GET['subcategory'] : "";
-    // $params = array();
-
-    // function getbycategory($category, $search, $subcategory){
-    //     $sql = "SELECT * FROM parts ";
-    //     $flag = 0;
-
-    //     if($category != ""){
-    //         $sql .= " WHERE main_category = ?";
-    //         $params[] = $category;
-    //         $flag++; 
-    //     }
-
-    //     if($search != ""){
-    //        if($flag > 0){
-    //             $sql .= " AND search = ?";
-    //        }else{
-    //             $sql .= " WHERE search = ?";
-    //        }
-    //        $params[] =$search;
-    //        $flag++;
-    //     }   
-
-    //     if($subcategory != ""){
-    //        if($flag > 0){
-    //             $sql .= " AND subcategory = ?";
-    //        }else{
-    //             $sql .= " WHERE subcategory = ?";
-    //        }
-
-    //        $params[] = $subcategory;
-    //     }
-    //     $sm = $db->prepare($sql);  
-    //     $sm->execute($params);
-    //     return $sm->fetchAll();
-    // }   
-    // getbycategory($category, $search, $subcategory);
-
-
-
-    //     } 
-
     public function insert($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia)
     {
         $query = "INSERT INTO $this->tabela (idmotor, idcarro, idvalvulas, idfabricacao, idcategoria, idmarca, icms, ipi, frete, 
