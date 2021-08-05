@@ -26,7 +26,7 @@ class FornecedoresController extends Fornecedor {
     }
 
     public function findAll() {
-        $query = "SELECT * FROM $this->tabela ORDER BY nome";
+        $query = "SELECT * FROM $this->tabela ORDER BY idfornecedor";
         $stm = Database::prepare($query);
         $stm->execute();
         $fornecedores = array();
