@@ -128,10 +128,10 @@ $clientes = new ClientesController();
                         <td><?= $obj->getCpf() ?></td>
                         <td><?= $obj->getDebito() ?></td>
                         <td>
-                            <div class="button-group clear">
-                                <button  class="btn btn-light" href="./cliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</button>
-                                <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdcliente() ?>">Editar</button>
-                                <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
+                            <div >
+                                <button  class="btn btn-sm btn-light" href="./cliente.php?id=<?= $obj->getIdcliente() ?>">Visualizar</button>
+                                <a href="./editar.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                                <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

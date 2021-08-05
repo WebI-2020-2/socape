@@ -51,13 +51,13 @@ class ClientesController extends Cliente {
         return $stm->execute();
     }
 
-    public function updatePF($idcliente) {
+    public function updatePF($idcliente, $nome, $telefone, $cpf) {
         $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cpf = :cpf WHERE idcliente = :idcliente";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
-        $stm->bindValue(':nome', $this->getNome());
-        $stm->bindValue(':telefone', $this->getTelefone());
-        $stm->bindValue(':cpf', $this->getCpf());
+        $stm->bindValue(':nome', $nome);
+        $stm->bindValue(':telefone', $telefone);
+        $stm->bindValue(':cpf', $cpf);
         return $stm->execute();
     }
 
