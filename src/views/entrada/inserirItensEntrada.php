@@ -5,8 +5,10 @@ $itensEntrada = new ItensEntradaController();
 require_once __DIR__ . '/../../controller/EntradasController.php';
 $entrada = new EntradasController();
 $entrada = $entrada->findOne($_GET['identrada']);
-?>
 
+require_once __DIR__ . '/../../controller/ProdutosController.php';
+$produtos = new ProdutosController();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -92,7 +94,7 @@ $entrada = $entrada->findOne($_GET['identrada']);
                 $itenEntrada->insert($itenEntrada->getIdentrada(), $itenEntrada->getIdproduto(), $itenEntrada->getPrecocompra(), $itenEntrada->getQuantidade(), $itenEntrada->getUnidade(), $itenEntrada->getIpi(), $itenEntrada->getFrete(), $itenEntrada->getIcms());
                 echo
                 '<div class="success callout">
-                            <h5>Item cadastrado</h5>
+                    <h5>Item cadastrado</h5>
                 </div>';
             } catch (PDOException $err) {
                 echo $err->getMessage();
@@ -101,31 +103,40 @@ $entrada = $entrada->findOne($_GET['identrada']);
         ?>
 
         <form id="dados" method="POST" action="">
-
             <div class="mb-3">
-
-                <label for="barraPesquisa">Produto:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="barraPesquisa" class="form-control" type="search" placeholder="Produto">
-                <input id="idproduto" type="hidden" name="idproduto">
+            <label>Produto:</label>
+                <?php
+                    $inputProduto = "";
+                    if (isset($_GET['idproduto'])) {
+                        $produto = $produtos->findOne($_GET['idproduto']);
+                        $inputProduto = $produto->getReferencia();
+                    }
+                ?>
+                <a class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $_GET['identrada'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                    Pesquisar
+                </a>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" placeholder="Produto" value="<?= $inputProduto ?>" disabled />
+                <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>"/>
 
                 <label for="preco" class="form-label">Preço Compra:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="preco" name="precoCompra" class="form-control" type="search" placeholder="Preço Compra" aria-label="Search">
+                <input style="border-radius: 30px 30px 30px 30px" id="preco" name="precoCompra" class="form-control" type="text" placeholder="Preço Compra">
 
                 <label for="quantidade" class="form-label">Quantidade:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="quantidade" name="quantidade" class="form-control" type="search" placeholder="Quantidade" aria-label="Search">
+                <input style="border-radius: 30px 30px 30px 30px" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="Quantidade">
 
                 <label for="unidade" class="form-label">Unidade:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="unidade" name="unidade" class="form-control" type="search" placeholder="Unidade" aria-label="Search">
+                <input style="border-radius: 30px 30px 30px 30px" id="unidade" name="unidade" class="form-control" type="text" placeholder="Unidade">
 
                 <label for="ipi" class="form-label">Ipi:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="ipi" name="ipi" class="form-control" type="search" placeholder="Ipi" aria-label="Search">
+                <input style="border-radius: 30px 30px 30px 30px" id="ipi" name="ipi" class="form-control" type="text" placeholder="Ipi">
 
                 <label for="frete" class="form-label">Frete:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="frete" name="frete" class="form-control" type="search" placeholder="Frete" aria-label="Search">
+                <input style="border-radius: 30px 30px 30px 30px" id="frete" name="frete" class="form-control" type="text" placeholder="Frete">
 
                 <label for="icms" class="form-label">Icms:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="icms" name="icms" class="form-control" type="search" placeholder="Icms" aria-label="Search">
+                <input style="border-radius: 30px 30px 30px 30px" id="icms" name="icms" class="form-control" type="text" placeholder="Icms">
 
+                <br><br><br>
                 <label for="desconto" class="form-label">Valor total:</label>
                 <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" aria-label="Disabled input example" disabled>
             
@@ -133,9 +144,7 @@ $entrada = $entrada->findOne($_GET['identrada']);
                 <div id="localizaçãoBotões">
                 <input id="botão" type="submit" class="btn btn-light" value="Confirma">
             </div>
-
         </form>
-
        
         <table class="table">
             <thead>
@@ -171,32 +180,6 @@ $entrada = $entrada->findOne($_GET['identrada']);
             </tbody>
         </table>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.getJSON('./retornaProduto.php', function(data) {
-                var produto = [];
-
-                $(data).each(function(key, value) {
-                    produto.push({
-                        label: value.idproduto,
-                        value: value.idproduto
-                    });
-                });
-
-                $('#barraPesquisa').autocomplete({
-                    source: produto,
-                    minLength: 1,
-                    select: (event, ui) => {
-                        $("#barraPesquisa").val(ui.item.label);
-                        $("#idproduto").val(ui.item.value);
-
-                        return false;
-                    }
-                });
-            });
-        });
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

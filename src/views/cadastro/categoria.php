@@ -100,11 +100,12 @@
             }
         } ?>
 
-        <table class="table">
+        <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Categoria</th>
+                    <th scope="col" width="20%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,9 +117,9 @@
                         <td><?= $obj->getCategoria() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a class="success button" href="./categoria.php?id=<?= $obj->getIdcategoria() ?>">Visualizar</a>
-                                <a class="success button" href="./editar.php?id=<?= $obj->getIdcategoria() ?>">Editar</a>
-                                <a class="alert button" href="#" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">Apagar</a>
+                            <button  class="btn btn-light" href="./categoria.php?id=<?= $obj->getIdcategoria() ?>">Visualizar</button>
+                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdcategoria() ?>">Editar</button>
+                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

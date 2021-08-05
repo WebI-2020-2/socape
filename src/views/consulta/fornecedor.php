@@ -107,7 +107,7 @@ $fornecedores = new FornecedoresController();
                     <th scope="col">Endereço</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">CNPJ</th>
-                    <th scope="col" width= "18%">Ações</th>
+                    <th scope="col" width="18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -121,16 +121,16 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getCnpj() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
-                            <a href="./editar.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
-                            <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
+                              <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
+                              <a href="./editar.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                              <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-        
+
 
     </div>
 
@@ -140,7 +140,9 @@ $fornecedores = new FornecedoresController();
                 $.ajax({
                     url: './apagarFornecedor.php',
                     type: "POST",
-                    data: {"idfornecedor": id},
+                    data: {
+                        "idfornecedor": id
+                    },
                     success: () => {
                         alert("Fornecedor excluído com sucesso!");
                         window.location.reload(true);
