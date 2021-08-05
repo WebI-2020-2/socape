@@ -185,10 +185,10 @@ $motores = new MotorController();
                         <td><?= $obj->getValorvenda() ?></td>
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
-                            <div class="button-group clear">
-                              <a href="./produto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
-                              <a href="./editar.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
-                              <button  class="btn btn-sm btn-danger"  class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getIdproduto() ?>')">Apagar</button>
+                            <div>
+                                <a href="./produto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
+                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getIdproduto() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
