@@ -186,9 +186,9 @@ $motores = new MotorController();
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
                             <div>
-                                <button class="btn btn-sm btn-light" href="./produto.php?id=<?= $obj->getIdproduto() ?>">Visualizar</button>
+                                <a href="./produto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
                                 <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
-                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>')">Apagar</button>
+                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getIdproduto() ?>')">Apagar</button>
                             </div>
 
                         </td>
