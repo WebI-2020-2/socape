@@ -107,7 +107,7 @@ $fornecedores = new FornecedoresController();
                     <th scope="col">Endereço</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">CNPJ</th>
-                    <th scope="col" width= "18%">Ações</th>
+                    <th scope="col" width= "18%">Ações </th>
                 </tr>
             </thead>
             <tbody>
