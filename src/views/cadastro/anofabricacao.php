@@ -118,8 +118,8 @@
                         <td><?= $obj->getAno() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <button  class="btn btn-light" href="./anofabricacao.php?id=<?= $obj->getIdfabricacao() ?>">Visualizar</button>
-                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdfabricacao() ?>">Editar</button>
+                            <a href="./anofabricacao.php?id=<?= $obj->getIdfabricacao() ?>"><button  class="btn btn-light">Visualizar</button></a>
+                            <a href="./editar.php?id=<?= $obj->getIdfabricacao() ?>"><button  class="btn btn-primary" >Editar</button></a>
                             <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">Apagar</button>
                             </div>
                         </td>

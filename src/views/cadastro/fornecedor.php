@@ -137,8 +137,8 @@
                         <td><?= $obj->getNome() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <button  class="btn btn-light" href="./anocliente.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</button>
-                            <button  class="btn btn-primary" href="./editar.php?id=<?= $obj->getIdfornecedor() ?>">Editar</button>
+                            <a href="./anocliente.php?id=<?= $obj->getIdfornecedor() ?>"><button  class="btn btn-light">Visualizar</button></a>
+                            <a href="./editar.php?id=<?= $obj->getIdfornecedor() ?>"> <button  class="btn btn-primary">Editar</button></a>
                             <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
