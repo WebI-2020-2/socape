@@ -117,7 +117,7 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getCnpj() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-light" href="./cliente.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</button>
+                                <button class="btn btn-sm btn-light" href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>">Visualizar</button>
                                 <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
                                 <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>

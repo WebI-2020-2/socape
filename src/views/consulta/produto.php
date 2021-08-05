@@ -171,7 +171,7 @@ $motores = new MotorController();
                     <th scope="col">Quantidade</th>
                     <th scope="col">Valor de venda</th>
                     <th scope="col">Localização</th>
-                    <th scope="col" width= "18%">Ações</th>
+                    <th scope="col" width="18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -185,11 +185,12 @@ $motores = new MotorController();
                         <td><?= $obj->getValorvenda() ?></td>
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
-                            <div class="button-group clear">
-                            <button  class="btn btn-light"  class="success button" href="./produto.php?id=<?= $obj->getIdproduto() ?>">Visualizar</button>
-                            <button  class="btn btn-primary"  class="success button" href="./editar.php?id=<?= $obj->getIdproduto() ?>">Editar</button>
-                            <button  class="btn btn-danger"  class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getIdproduto() ?>')">Apagar</button>
+                            <div>
+                                <button class="btn btn-sm btn-light" href="./produto.php?id=<?= $obj->getIdproduto() ?>">Visualizar</button>
+                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>')">Apagar</button>
                             </div>
+
                         </td>
                     </tr>
                 <?php } ?>
@@ -199,11 +200,13 @@ $motores = new MotorController();
 
     <script>
         function deletar(id, referencia, categoria, marca) {
-            if (confirm("Deseja realmente excluir o produto referência " + referencia + " " + categoria + " da marca " + marca +"?")) {
+            if (confirm("Deseja realmente excluir o produto referência " + referencia + " " + categoria + " da marca " + marca + "?")) {
                 $.ajax({
                     url: './apagarProduto.php',
                     type: "POST",
-                    data: {"idproduto": id},
+                    data: {
+                        "idproduto": id
+                    },
                     success: () => {
                         alert("Produto excluído com sucesso!");
                         window.location.reload(true);
