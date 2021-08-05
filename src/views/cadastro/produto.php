@@ -236,7 +236,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Referência</th>
-                    <th scope="col" width="20%">Ações</th>
+                    <th scope="col" width="20%">Ações </th>
                 </tr>
             </thead>
             <tbody>
