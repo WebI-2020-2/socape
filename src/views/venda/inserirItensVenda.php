@@ -5,6 +5,9 @@ $itensVenda = new ItensVendaController();
 require_once __DIR__ . '/../../controller/VendasController.php';
 $venda = new VendasController();
 $venda = $venda->findOne($_GET['idvenda']);
+
+require_once __DIR__ . '/../../controller/ProdutosController.php';
+$produtos = new ProdutosController();
 ?>
 
 <!DOCTYPE html>
@@ -88,6 +91,7 @@ $venda = $venda->findOne($_GET['idvenda']);
 
             try {
                 $itemVenda->insert($itemVenda->getIdproduto(), $itemVenda->getIdvenda(), $itemVenda->getQuantidade(), $itemVenda->getValorvenda(), $itemVenda->getDesconto(), $itemVenda->getLucro());
+
                 echo
                 '<div class="success callout">
                     <h5>Item cadastrado</h5>
@@ -100,16 +104,19 @@ $venda = $venda->findOne($_GET['idvenda']);
 
         <form id="dados" method="POST" action="">
             <div class="mb-3">
-                <label for="barraPesquisa">Produto:</label>
-                <!-- <input style="border-radius: 30px 30px 30px 30px" id="barraPesquisa" class="form-control" placeholder="Produto"> -->
-
-                <input type="text" id="testeproduto" placeholder="Produto" />
-
-                <a title="Editar" onclick="window.open(`./pesquisaProduto.php`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                <label>Produto:</label>
+                <?php
+                $inputProduto = "";
+                if (isset($_GET['idproduto'])) {
+                    $produto = $produtos->findOne($_GET['idproduto']);
+                    $inputProduto = $produto->getReferencia();
+                }
+                ?>
+                <a class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                     Pesquisar
                 </a>
-
-                <input id="idproduto" type="hidden" name="idproduto">
+                <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" placeholder="Produto" value="<?= $inputProduto ?>" disabled>
+                <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" />
 
                 <label for="quantidade" class="form-label">Quantidade:</label>
                 <input style="border-radius: 30px 30px 30px 30px" id="quantidade" name="quantidade" class="form-control" placeholder="Quantidade">
@@ -123,11 +130,12 @@ $venda = $venda->findOne($_GET['idvenda']);
                 <label for="lucro" class="form-label">Lucro:</label>
                 <input style="border-radius: 30px 30px 30px 30px" id="lucro" name="lucro" class="form-control" placeholder="Lucro">
 
+                <br><br><br>
                 <label for="desconto" class="form-label">Valor total:</label>
                 <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" aria-label="Disabled input example" disabled>
-            
+
             </div>
-                <div id="localizaçãoBotões">
+            <div id="localizaçãoBotões">
                 <input id="botão" type="submit" class="btn btn-light" value="Confirma">
             </div>
 
@@ -142,7 +150,7 @@ $venda = $venda->findOne($_GET['idvenda']);
                     <th scope="col">Valor de venda</th>
                     <th scope="col">Desconto</th>
                     <th scope="col">Lucro</th>
-                    <th scope="col" width= "18%">Ações</th>
+                    <th scope="col" width="18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -160,32 +168,6 @@ $venda = $venda->findOne($_GET['idvenda']);
             </tbody>
         </table>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.getJSON('./retornaProduto.php', function(data) {
-                var produto = [];
-
-                $(data).each(function(key, value) {
-                    produto.push({
-                        label: value.idproduto,
-                        value: value.idproduto
-                    });
-                });
-
-                $('#barraPesquisa').autocomplete({
-                    source: produto,
-                    minLength: 1,
-                    select: (event, ui) => {
-                        $("#barraPesquisa").val(ui.item.label);
-                        $("#idproduto").val(ui.item.value);
-
-                        return false;
-                    }
-                });
-            });
-        });
-    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

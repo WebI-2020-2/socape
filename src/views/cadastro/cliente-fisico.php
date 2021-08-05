@@ -115,26 +115,32 @@
             }
         } ?>
 
-        <table class="table" style="color: #FFFFFF">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
-                    <th scope="col" width="20%">Ações</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Débito</th>
+                    <th scope="col" width= "18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php    
+                <?php
                 $clientes = new ClientesController();
                 foreach ($clientes->findAll() as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIdcliente() ?></td>
                         <td><?= $obj->getNome() ?></td>
+                        <td><?= $obj->getTelefone() ?></td>
+                        <td><?= $obj->getCpf() ?></td>
+                        <td><?= $obj->getDebito() ?></td>
                         <td>
-                            <div class="button-group clear">
-                            <a href="./anocliente.php?id=<?= $obj->getIdcliente() ?>"><button  class="btn btn-light">Visualizar</button></a>
-                            <a href="./editar.php?id=<?= $obj->getIdcliente() ?>"><button  class="btn btn-primary">Editar</button></a>
-                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
+                            <div>
+                                <a href="./cliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
+                                <a href="./editar.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                                <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>

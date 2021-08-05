@@ -27,7 +27,7 @@ $motores = new MotorController();
 <script>
     function refreshParent(idproduto) {
         window.close();
-        window.opener.location.href = "./inserirItensVenda.php?idvenda=<?= $_GET['idvenda'] ?>&idproduto=" + idproduto;
+        window.opener.location.href = "./inserirItensEntrada.php?identrada=<?= $_GET['identrada'] ?>&idproduto=" + idproduto;
     }
 </script>
 
