@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../controller/ProdutosController.php';
+$produtos = new ProdutosController();
 
 require_once __DIR__ . '/../../controller/MotorController.php';
 $motores = new MotorController();
@@ -37,45 +38,43 @@ $marcas = new MarcasController();
 </head>
 
 <body>
-    <img src="./../../../public/imagens/titulo.png" width="100%">
+    <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../index.php">INÍCIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -86,118 +85,166 @@ $marcas = new MarcasController();
 
         <?php
         if ($_POST) {
+            $data = $_POST;
             $produto = new ProdutosController();
-            $produto->setIdmotor($_POST['idmotor']);
-            $produto->setIdcarro($_POST['idcarro']);
-            $produto->setIdvalvulas($_POST['idvalvulas']);
-            $produto->setIdfabricacao($_POST['idfabricacao']);
-            $produto->setIdcategoria($_POST['idcategoria']);
-            $produto->setIdmarca($_POST['idmarca']);
-            $produto->setIcms($_POST['icms']); // null
-            $produto->setIpi($_POST['ipi']); // null
-            $produto->setFrete($_POST['frete']); // null
-            $produto->setValornafabrica($_POST['valornafabrica']); // null
-            $produto->setValordecompra($_POST['valordecompra']); // null
-            $produto->setLucro($_POST['lucro']); // null
-            $produto->setValorvenda($_POST['valorvenda']); // null
-            $produto->setDesconto($_POST['desconto']);
-            $produto->setQuantidade(0);
-            $produto->setUnidade($_POST['unidade']);
-            $produto->setIdlocalizacao($_POST['idlocalizacao']);
-            $produto->setReferencia($_POST['referencia']);
 
-            try {
-                $produto->insert(
-                    $produto->getIdmotor(),
-                    $produto->getIdcarro(),
-                    $produto->getIdvalvulas(),
-                    $produto->getIdfabricacao(),
-                    $produto->getIdcategoria(),
-                    $produto->getIdmarca(),
-                    $produto->getIcms(),
-                    $produto->getIpi(),
-                    $produto->getFrete(),
-                    $produto->getValornafabrica(),
-                    $produto->getValordecompra(),
-                    $produto->getLucro(),
-                    $produto->getValorvenda(),
-                    $produto->getDesconto(),
-                    $produto->getQuantidade(),
-                    $produto->getUnidade(),
-                    $produto->getIdlocalizacao(),
-                    $produto->getReferencia()
-                );
-                echo
-                '<div class="success callout">
-                    <h5>Produto cadastrado</h5>
-                </div>';
-            } catch (PDOException $err) {
-                echo $err->getMessage();
+            $err = FALSE;
+
+            if (!$data['idmotor']) {
+                echo "<h1>INFORME A POTÊNCIA DO MOTOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['idcarro']) {
+                echo "<h1>INFORME O MODELO DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['idvalvulas']) {
+                echo "<h1>INFORME A QUANTIDADE DE VÁLVULAS!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['idfabricacao']) {
+                echo "<h1>INFORME O ANO DE FABRICAÇÃO!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['idcategoria']) {
+                echo "<h1>INFORME A CATEGORIA!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['idmarca']) {
+                echo "<h1>INFORME A MARCA!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['unidade']) {
+                echo "<h1>INFORME A UNIDADE!</h1>";
+                $err = TRUE;
+            } else if (strlen($data['unidade']) > 2) {
+                echo "<h1>A UNIDADE SÓ PODE CONTER 2 DÍGITOS!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['idlocalizacao']) {
+                echo "<h1>INFORME A LOCALIZAÇÃO!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['referencia']) {
+                echo "<h1>INFORME A REFERÊNCIA!</h1>";
+                $err = TRUE;
+            }
+
+            $produto->setIdmotor($data['idmotor']);
+            $produto->setIdcarro($data['idcarro']);
+            $produto->setIdvalvulas($data['idvalvulas']);
+            $produto->setIdfabricacao($data['idfabricacao']);
+            $produto->setIdcategoria($data['idcategoria']);
+            $produto->setIdmarca($data['idmarca']);
+            $produto->setIdlocalizacao($data['idlocalizacao']);
+            $produto->setUnidade($data['unidade']);
+            $produto->setReferencia($data['referencia']);
+            $produto->setDesconto(0);
+            $produto->setIcms(0);
+            $produto->setIpi(0);
+            $produto->setFrete(0);
+            $produto->setValornafabrica(0);
+            $produto->setValordecompra(0);
+            $produto->setLucro(0);
+            $produto->setValorvenda(0);
+            $produto->setQuantidade(0);
+
+            if (!$err) {
+                try {
+                    $produto->insert(
+                        $produto->getIdmotor(),
+                        $produto->getIdcarro(),
+                        $produto->getIdvalvulas(),
+                        $produto->getIdfabricacao(),
+                        $produto->getIdcategoria(),
+                        $produto->getIdmarca(),
+                        $produto->getIcms(),
+                        $produto->getIpi(),
+                        $produto->getFrete(),
+                        $produto->getValornafabrica(),
+                        $produto->getValordecompra(),
+                        $produto->getLucro(),
+                        $produto->getValorvenda(),
+                        $produto->getDesconto(),
+                        $produto->getQuantidade(),
+                        $produto->getUnidade(),
+                        $produto->getIdlocalizacao(),
+                        $produto->getReferencia()
+                    );
+                    echo
+                    '<script>
+                        alert("Produto cadastrado com sucesso!");
+                    </script>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
             }
         }
         ?>
 
         <form action="" method="post">
             <label class="form-label">MOTOR</label>
-            <select name="idmotor" class="form-control">
-                <option selected disabled>SELECIONE</option>
+            <select name="idmotor" class="form-control" required>
+                <option selected disabled value>SELECIONE</option>
                 <?php
                 foreach ($motores->findAll() as $obj) { ?>
                     <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia(); ?></option>
                 <?php } ?>
             </select>
             <label class="form-label">CARRO</label>
-            <select name="idcarro" class="form-control">
-                <option selected disabled>SELECIONE</option>
+            <select name="idcarro" class="form-control" required>
+                <option selected disabled value>SELECIONE</option>
                 <?php
                 foreach ($carros->findAll() as $obj) { ?>
                     <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo(); ?></option>
                 <?php } ?>
             </select>
             <label for="valvula" class="form-label">VÁLVULA</label>
-            <select name="idvalvulas" class="form-control">
-                <option selected disabled>SELECIONE</option>
+            <select name="idvalvulas" class="form-control" required>
+                <option selected disabled value>SELECIONE</option>
                 <?php
                 foreach ($valvulas->findAll() as $obj) { ?>
                     <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade(); ?></option>
                 <?php } ?>
             </select>
             <label class="form-label">FABRICAÇÃO</label>
-            <select name="idfabricacao" class="form-control">
-                <option selected disabled>SELECIONE</option>
+            <select name="idfabricacao" class="form-control" required>
+                <option selected disabled value>SELECIONE</option>
                 <?php
                 foreach ($fabricacoes->findAll() as $obj) { ?>
                     <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno(); ?></option>
                 <?php } ?>
             </select>
             <label class="form-label">LOCALIZAÇÃO</label>
-            <select name="idlocalizacao" class="form-control">
-                <option selected disabled>SELECIONE</option>
+            <select name="idlocalizacao" class="form-control" required>
+                <option selected disabled value>SELECIONE</option>
                 <?php
                 foreach ($localizacoes->findAll() as $obj) { ?>
                     <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento(); ?></option>
                 <?php } ?>
             </select>
             <label class="form-label">CATEGORIA</label>
-            <select name="idcategoria" class="form-control">
-                <option selected disabled>SELECIONE</option>
+            <select name="idcategoria" class="form-control" required>
+                <option selected disabled value>SELECIONE</option>
                 <?php
                 foreach ($categorias->findAll() as $obj) { ?>
                     <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria(); ?></option>
                 <?php } ?>
             </select>
             <label class="form-label">MARCA</label>
-            <select name="idmarca" class="form-control">
-                <option selected disabled>SELECIONE</option>
+            <select name="idmarca" class="form-control" required>
+                <option selected disabled value>SELECIONE</option>
                 <?php
                 foreach ($marcas->findAll() as $obj) { ?>
                     <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
                 <?php } ?>
             </select>
             <label class="form-label">REFERÊNCIA</label>
-            <input type="text" name="referencia" class="form-control" placeholder="REFERÊNCIA">
+            <input type="text" name="referencia" class="form-control" placeholder="REFERÊNCIA" required>
+            <label class="form-label">UNIDADE</label>
+            <input type="text" name="unidade" class="form-control" placeholder="UNIDADE" required>
 
-            <input type="submit" class="btn btn-light" value="CADASTRAR">
+            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
         <table class="table">
@@ -213,9 +260,7 @@ $marcas = new MarcasController();
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $produtos = new ProdutosController();
-                foreach ($produtos->findAll() as $obj) { ?>
+                <?php foreach ($produtos->findAll() as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIdproduto() ?></td>
                         <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
@@ -224,9 +269,8 @@ $marcas = new MarcasController();
                         <td><?= $obj->getValorvenda() ?></td>
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
-                            <div>
-                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">EDITAR</button></a>
-                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
+                            <div class="button-group clear">
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -244,9 +288,13 @@ $marcas = new MarcasController();
                     data: {
                         id
                     },
-                    success: () => {
-                        alert("Produto excluído com sucesso!");
-                        window.location.reload(true);
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Produto excluído com sucesso!");
+                            window.location.href = './produto.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
                     }
                 });
                 return false;

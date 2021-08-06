@@ -1,5 +1,5 @@
 <?php
-if (!$_GET) header('Location: ./index.php');
+if (!$_GET['id']) header('Location: ./produto.php');
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 
 $idproduto = $_GET['id'];
@@ -20,45 +20,43 @@ $produto = $produtos->findOne($idproduto);
 </head>
 
 <body>
-    <img src="./../../../public/imagens/titulo.png" width="100%">
+    <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../index.php">INÍCIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -69,80 +67,132 @@ $produto = $produtos->findOne($idproduto);
 
         <?php
         if ($_POST) {
-            try {
-                $produtos->update(
-                    $idproduto,
-                    $_POST['icms'],
-                    $_POST['ipi'],
-                    $_POST['frete'],
-                    $_POST['valornafabrica'],
-                    $_POST['valordecompra'],
-                    $_POST['lucro'],
-                    $_POST['valorvenda'],
-                    $_POST['desconto'],
-                    $_POST['quantidade'],
-                    $_POST['unidade'],
-                    $_POST['referencia']
-                );
-                echo
-                '<div class="success callout">
-                    <h5>Produto atualizado</h5>
-                    <p>Produto atualizado com sucesso!</p>
-                </div>';
-            } catch (PDOException $e) {
-                echo $e->getMessage();
+            $data = $_POST;
+            $err = FALSE;
+
+            if (!$data['icms']) {
+                echo "<h1>INFORME O ICMS!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['ipi']) {
+                echo "<h1>INFORME O IPI!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['frete']) {
+                echo "<h1>INFORME O FRETE!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['valornafabrica']) {
+                echo "<h1>INFORME O VALOR DE FÁBRICA!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['valordecompra']) {
+                echo "<h1>INFORME O VALOR DE COMPRA!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['lucro']) {
+                echo "<h1>INFORME O LUCRO!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['valorvenda']) {
+                echo "<h1>INFORME O VALOR DE VENDA!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['desconto']) {
+                echo "<h1>INFORME O DESCONTO!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['quantidade']) {
+                echo "<h1>INFORME A QUANTIDADE!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['unidade']) {
+                echo "<h1>INFORME A UNIDADE!</h1>";
+                $err = TRUE;
+            } else if (strlen($data['unidade']) > 2) {
+                echo "<h1>A UNIDADE SÓ PODE CONTER 2 DÍGITOS!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['referencia']) {
+                echo "<h1>INFORME A REFERÊNCIA!</h1>";
+                $err = TRUE;
+            }
+
+            if (!$err) {
+                try {
+                    $produtos->update(
+                        $idproduto,
+                        $data['icms'],
+                        $data['ipi'],
+                        $data['frete'],
+                        $data['valornafabrica'],
+                        $data['valordecompra'],
+                        $data['lucro'],
+                        $data['valorvenda'],
+                        $data['desconto'],
+                        $data['quantidade'],
+                        $data['unidade'],
+                        $data['referencia']
+                    );
+                    echo
+                    '<script>
+                        alert("Cliente atualizado com sucesso!");
+                    </script>';
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                }
             }
         }
         ?>
 
-        <img id="imagem" src="./../../../public/imagens/usuario.png">
+        <img src="./../../../public/imagens/usuario.png">
         <form method="POST" action="">
             <div class="mb-3">
                 <label class="form-label">ICMS</label>
-                <input type="text" name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>">
+                <input type="text" name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">IPI</label>
-                <input type="text" name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>">
+                <input type="text" name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">FRETE</label>
-                <input type="text" class="form-control" name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>">
+                <input type="text" class="form-control" name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">VALOR NA FÁBRICA</label>
-                <input type="text" class="form-control" name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>">
+                <input type="text" class="form-control" name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">VALOR DE COMPRA</label>
-                <input type="text" class="form-control" name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>">
+                <input type="text" class="form-control" name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">LUCRO</label>
-                <input type="text" class="form-control" name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>">
+                <input type="text" class="form-control" name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">VALOR DE VENDA</label>
-                <input type="text" class="form-control" name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>">
+                <input type="text" class="form-control" name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">DESCONTO</label>
-                <input type="text" class="form-control" name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>">
+                <input type="text" class="form-control" name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">QUANTIDADE</label>
-                <input type="text" name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>">
+                <input type="text" name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">UNIDADE</label>
-                <input type="text" name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>">
+                <input type="text" name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">REFERÊNCIA</label>
-                <input type="text" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>">
+                <input type="text" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
             </div>
 
-            <button class="btn btn-sm btn-primary" type="submit">SALVAR</button>
+            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
         </form>
     </div>
 

@@ -3,10 +3,20 @@ body {
   background-color: #140c0c;
 }
 
+img { width: 100%; }
+
 /* INÍCIO NAVEGAÇÃO */
 nav {
   background-image: linear-gradient(to bottom, #272020, #8c1818);
   height: 30px;
+}
+
+nav li a {
+  color: #ffffff !important;
+}
+
+.dropdown-menu {
+  background-color: #140C0C !important;
 }
 
 .carousel-control-prev-icon,

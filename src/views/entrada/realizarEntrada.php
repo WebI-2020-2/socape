@@ -7,6 +7,8 @@ $entrada = new EntradasController();
 
 $idfornecedor = intval($_POST['idfornecedor']);
 
+if ($idfornecedor == 0) header("Location: ./entrada.php?msg=1");
+
 try {
     $identrada = $entrada->insert($idfornecedor, 0, date("Y-m-d"));
     header('Location: ./inserirItensEntrada.php?identrada=' . $identrada);

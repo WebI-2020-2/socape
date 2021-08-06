@@ -64,9 +64,18 @@ class MarcasController extends Marca
 
     public function delete($idmarca)
     {
-        $query = "DELETE FROM $this->tabela WHERE idmarca = :idmarca";
-        $stm = Database::prepare($query);
-        $stm->bindParam(':idmarca', $idmarca, PDO::PARAM_INT);
-        return $stm->execute();
+        try {
+            $query = "DELETE FROM $this->tabela WHERE idmarca = :idmarca";
+            $stm = Database::prepare($query);
+            $stm->bindParam(':idmarca', $idmarca, PDO::PARAM_INT);
+            $stm->execute();
+
+            return array('status' => TRUE);
+        } catch (PDOException $e) {
+            $arr['status'] = FALSE;
+            $arr['code'] = $e->getCode();
+
+            return $arr;
+        }
     }
 }

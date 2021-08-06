@@ -17,67 +17,75 @@ $localizacoes = new LocalizacaoController();
 </head>
 
 <body>
-    <img src="./../../../public/imagens/titulo.png" width="100%">
+    <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../index.php">INÍCIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
-    
+
     <div id="container">
         <h1>
-            <span id="titulo" class="badge bg-light text-dark">CADASTRAR LOCALIZAÇÃO</span>
+            <span class="badge bg-light text-dark">CADASTRAR LOCALIZAÇÃO</span>
         </h1>
 
         <?php
         if ($_POST) {
+            $data = $_POST;
             $localizacao = new LocalizacaoController();
-            $localizacao->setDepartamento($_POST['departamento']);
 
-            try {
-                $localizacao->insert($localizacao->getDepartamento());
-                echo
-                '<div class="success callout">
-                    <h5>Departamento cadastrado</h5>
-                    <p>Departamento cadastrado com sucesso!.</p>
-                </div>';
-            } catch (PDOException $err) {
-                echo $err->getMessage();
+            $err = FALSE;
+
+            if (!$data['departamento']) {
+                echo "<h1>INFORME O DEPARTAMENTO!</h1>";
+                $err = TRUE;
+            }
+
+            $localizacao->setDepartamento($data['departamento']);
+
+            if (!$err) {
+                try {
+                    $localizacao->insert($localizacao->getDepartamento());
+                    echo
+                    '<script>
+                        alert("Departamento cadastrado com sucesso!");
+                    </script>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
             }
         }
         ?>
@@ -85,10 +93,10 @@ $localizacoes = new LocalizacaoController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">DEPARTAMENTO</label>
-                <input type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO">
+                <input type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" required>
             </div>
 
-            <input type="submit" class="btn btn-light" value="CADASTRAR">
+            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
         <table class="table">
@@ -106,8 +114,7 @@ $localizacoes = new LocalizacaoController();
                         <td><?= $obj->getDepartamento() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-primary">EDITAR</button>
-                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -118,16 +125,20 @@ $localizacoes = new LocalizacaoController();
 
     <script>
         function deletar(id, localizacao) {
-            if (confirm("Deseja realmente excluir a localizacao " + localizacao + "?")) {
+            if (confirm("Deseja realmente excluir a localização " + localizacao + "?")) {
                 $.ajax({
                     url: '../apagar/localizacao.php',
                     type: "POST",
                     data: {
                         id
                     },
-                    success: () => {
-                        alert("Localizacao excluído com sucesso!");
-                        window.location.reload(true);
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Localização excluída com sucesso!");
+                            window.location.href = './localizacao.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
                     }
                 });
                 return false;

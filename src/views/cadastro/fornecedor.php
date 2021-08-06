@@ -17,45 +17,43 @@ $fornecedores = new FornecedoresController();
 </head>
 
 <body>
-    <img src="./../../../public/imagens/titulo.png" width="100%">
+    <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../index.php">INÍCIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -66,45 +64,67 @@ $fornecedores = new FornecedoresController();
 
         <?php
         if ($_POST) {
+            $data = $_POST;
             $fornecedor = new FornecedoresController();
-            $fornecedor->setNome($_POST['nome']);
-            $fornecedor->setEndereco($_POST['endereco']);
-            $fornecedor->setTelefone($_POST['telefone']);
-            $fornecedor->setCnpj($_POST['cnpj']);
 
-            try {
-                $fornecedor->insert($fornecedor->getNome(), $fornecedor->getEndereco(), $fornecedor->getTelefone(), $fornecedor->getCnpj());
-                echo
-                '<div class="success callout">
-                    <h5>Fornecedor cadastrado</h5>
-                    <p>Fornecedor cadastrado com sucesso!.</p>
-                </div>';
-            } catch (PDOException $err) {
-                echo $err->getMessage();
+            $err = FALSE;
+
+            if (!$data['nome']) {
+                echo "<h1>INFORME O NOME DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['endereco']) {
+                echo "<h1>INFORME O ENDEREÇO DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['telefone']) {
+                echo "<h1>INFORME O TELEFONE DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['cnpj']) {
+                echo "<h1>INFORME O CNPJ DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+
+            $fornecedor->setNome($data['nome']);
+            $fornecedor->setEndereco($data['endereco']);
+            $fornecedor->setTelefone($data['telefone']);
+            $fornecedor->setCnpj($data['cnpj']);
+
+            if (!$err) {
+                try {
+                    $fornecedor->insert($fornecedor->getNome(), $fornecedor->getEndereco(), $fornecedor->getTelefone(), $fornecedor->getCnpj());
+                    echo
+                    '<script>
+                        alert("Fornecedor cadastrado com sucesso!");
+                    </script>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
             }
         }
         ?>
 
-        <img id="imagem" src="./../../../public/imagens/caminhão.png" align="right">
+        <img src="./../../../public/imagens/caminhão.png" align="right">
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME">
+                <input type="text" name="nome" class="form-control" placeholder="NOME" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">ENDEREÇO</label>
-                <input type="text" name="endereco" class="form-control" placeholder="ENDEREÇO">
+                <input type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE">
+                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CNPJ</label>
-                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ">
+                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" required>
             </div>
 
-            <input id="button" type="submit" class="btn btn-light" value="CADASTRAR">
+            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
         <table class="table">
@@ -128,8 +148,7 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getCnpj() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-primary">EDITAR</button>
-                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -147,9 +166,13 @@ $fornecedores = new FornecedoresController();
                     data: {
                         id
                     },
-                    success: () => {
-                        alert("Fornecedor excluído com sucesso!");
-                        window.location.reload(true);
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Fornecedor excluído com sucesso!");
+                            window.location.href = './fornecedor.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
                     }
                 });
                 return false;

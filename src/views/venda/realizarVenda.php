@@ -2,8 +2,11 @@
 require_once __DIR__ . '/../../controller/VendasController.php';
 $venda = new VendasController();
 
-$idcliente = intval($_POST['idcliente']);
 $idformapagamento = intval($_POST['idformapagamento']);
+$idcliente = intval($_POST['idcliente']);
+
+if ($idformapagamento == 0) header("Location: ./venda.php?msg=1");
+if ($idcliente == 0) header("Location: ./venda.php?msg=2");
 
 try {
     $idvenda = $venda->insert($idcliente, $idformapagamento, date("Y-m-d"), 0);

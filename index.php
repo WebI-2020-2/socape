@@ -16,7 +16,7 @@ $produtos = new ProdutosController();
 </head>
 
 <body>
-    <img src="./public/imagens/titulo.png" width="100%">
+    <img src="./public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
