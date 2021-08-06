@@ -19,7 +19,7 @@ $produtos = new ProdutosController();
     <title>SOCAPE | Inserir Itens Entrada</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/entrada.css" rel="stylesheet">
+    <link href="./../../../public/css/itens-entrada.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -146,7 +146,7 @@ $produtos = new ProdutosController();
             </div>
         </form>
        
-        <table class="table">
+        <table class="table" style="color: #FFFFFF" >
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -174,7 +174,12 @@ $produtos = new ProdutosController();
                         <td><?= $obj->getIpi(); ?></td>
                         <td><?= $obj->getFrete(); ?></td>
                         <td><?= $obj->getIcms(); ?></td>
-                        <td>Atualizar/Remover</td>
+                        <td>
+                            <button class="btn btn-sm btn-light">Visualizar</button>
+                            <button class="btn btn-sm btn-primary">Editar</button>
+                            <button class="btn btn-sm btn-danger">pagar</button>
+                        </td>
+                        
                     </tr>
                 <?php } ?>
             </tbody>

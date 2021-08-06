@@ -25,7 +25,7 @@ class EntradasController extends Entrada {
     }
 
     public function findAll() {
-        $query = "SELECT * FROM $this->tabela ORDER BY datacompra DESC";
+        $query = "SELECT * FROM $this->tabela ORDER BY identrada DESC";
         $stm = Database::prepare($query);
         $stm->execute();
         $entradas = array();

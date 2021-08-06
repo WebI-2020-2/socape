@@ -106,9 +106,8 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getDatacompra() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-light" >Visualizar</button></a>
-                                <a href="./editar.php?id=<?= $obj->getIdentrada() ?>"><button class="btn btn-primary" >Editar</button></a>
-                                <button class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $obj->getIdentrada() ?>')">Apagar</button>
+                                <a href="./editar.php?id=<?= $obj->getIdentrada() ?>"><button class="btn btn-sm btn-primary" >Editar</button></a>
+                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
@@ -141,6 +140,23 @@ $fornecedores = new FornecedoresController();
                 });
             });
         });
+    </script>
+
+    <script>
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir a entrada do fornecedor " + nome + "?")) {
+                $.ajax({
+                    url: './apagarEntrada.php',
+                    type: "POST",
+                    data: {"identrada": id},
+                    success: () => {
+                        alert("Entrada excluída com sucesso!");
+                        window.location.reload(true);
+                    }
+                });
+                return false;
+            }
+        }
     </script>
 
     </div>

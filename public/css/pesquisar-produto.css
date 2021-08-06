@@ -1,0 +1,33 @@
+#Container{
+	margin-top: 5px;  	
+	height: 100%; 	
+	background-image: linear-gradient(to bottom, #272020, #8C1818);  
+}
+
+#botão{
+	padding: 4px 15px 3px 15px;
+	border-radius: 50px;
+	margin-bottom: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+label{
+    color: #FFFFFF;
+}
+
+#formulario{
+	
+	margin-left: 10px;
+	margin-right: 100px;
+	margin-top: 70px;
+}
+
+
+#buscar{
+    margin-top: 5px;
+    width: 20%;
+    margin-left: 40%; 
+    padding: 4px 15px 3px 15px;
+	border-radius: 50px;
+}

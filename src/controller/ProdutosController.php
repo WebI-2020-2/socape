@@ -45,7 +45,7 @@ class ProdutosController extends Produto
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela ORDER BY idproduto";
+        $query = "SELECT * FROM $this->tabela ORDER BY idproduto DESC";
         $stm = Database::prepare($query);
         $stm->execute();
         $produtos = array();

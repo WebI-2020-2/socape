@@ -116,9 +116,8 @@
                         <td><?= $obj->getMarca() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <a href="./marca.php?id=<?= $obj->getIdmarca() ?>"> <button  class="btn btn-light" >Visualizar</button></a>
-                            <a href="./editar.php?id=<?= $obj->getIdmarca() ?>"><button  class="btn btn-primary">Editar</button></a>
-                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">Apagar</button>
+                            <a href="./editar.php?id=<?= $obj->getIdmarca() ?>"><button  class="btn btn-sm btn-primary">Editar</button></a>
+                            <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
@@ -129,7 +128,7 @@
 
     <script>
         function deletar(id, marca) {
-            if (confirm("Deseja realmente excluir a marca  " + marca + "?")) {
+            if (confirm("Deseja realmente excluir a marca " + marca + "?")) {
                 $.ajax({
                     url: './apagarMarca.php',
                     type: "POST",

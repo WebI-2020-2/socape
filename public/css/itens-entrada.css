@@ -53,8 +53,9 @@ body{
 }
 
 #localizaçãoBotões{
-	margin-top: 50px;
-	margin-left: 800px;
+	margin-top: 20px;
+	margin-left: 500px;
+	margin-bottom: 10px;
 }
 #botão{
 	padding: 4px 15px 3px 15px;
