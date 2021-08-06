@@ -134,7 +134,6 @@
                     <td><?= $obj->getValortotal() ?></td>
                     <td>
                         <div class="button-group clear">
-                        <button  class="btn btn-sm btn-light" type="submit" href="./cliente.php?id=<?= $obj->getIdvenda() ?>">Visualizar</button>
                         <button  class="btn btn-sm btn-primary" type="submit" href="./editar.php?id=<?= $obj->getIdvenda() ?>">Editar</button>
                         <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdvenda() ?>','<?= $clientes->findOne($obj->getIdcliente())->getNome(); ?>')">Apagar</button>
                         </div>
