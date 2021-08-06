@@ -9,18 +9,17 @@ $venda = $venda->findOne($_GET['idvenda']);
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
 ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html class="no-js" lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SOCAPE | Inserir Itens Venda</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/itens-venda.css" rel="stylesheet">
+    <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -28,55 +27,50 @@ $produtos = new ProdutosController();
 
 <body>
     <img src="./../../../public/imagens/titulo.png" width="100%">
-    <nav id="navegador" class="navbar navbar-expand-lg navbar-black bg-black">
+    <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">Início</a>
+                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">INÍCIO</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastrar</a>
+                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
                         <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">Cliente</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">Fornecedor</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">Produto</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">Carro</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">Localização</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">Valvula</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">Categoria</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">Motor</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">Fabricação</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">Marca</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">Vender</a>
+                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">VENDER</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">Inserir</a>
+                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultar</a>
+                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                         <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">Cliente</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">Fornecedor</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">Produto</a></li>
-
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
                         </ul>
-                    </li>
-                    <li id="conta" class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="#">Minha conta</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div id="Container">
-        <br>
+    <div id="container">
         <h1>
-            <span id="titulo" class="badge bg-light text-dark">Inserir Itens Venda</span>
+            <span class="badge bg-light text-dark">INSERIR ITENS VENDA</span>
         </h1>
 
         <?php
@@ -102,9 +96,9 @@ $produtos = new ProdutosController();
         }
         ?>
 
-        <form id="dados" method="POST" action="">
+        <form method="POST" action="">
             <div class="mb-3">
-                <label>Produto:</label>
+                <label>PRODUTO</label>
                 <?php
                 $inputProduto = "";
                 if (isset($_GET['idproduto'])) {
@@ -113,44 +107,45 @@ $produtos = new ProdutosController();
                 }
                 ?>
                 <a class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
-                    Pesquisar
+                    PESQUISAR
                 </a>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" class="form-control" placeholder="Produto" value="<?= $inputProduto ?>" disabled>
+                <input type="text" class="form-control" placeholder="PRODUTO" value="<?= $inputProduto ?>" disabled>
                 <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" />
-
-                <label for="quantidade" class="form-label">Quantidade:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="quantidade" name="quantidade" class="form-control" placeholder="Quantidade">
-
-                <label for="valorvenda" class="form-label">Valor:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="valorvenda" name="valorvenda" class="form-control" placeholder="Valor">
-
-                <label for="desconto" class="form-label">Desconto:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="desconto" name="desconto" class="form-control" placeholder="Desconto">
-
-                <label for="lucro" class="form-label">Lucro:</label>
-                <input style="border-radius: 30px 30px 30px 30px" id="lucro" name="lucro" class="form-control" placeholder="Lucro">
-
-                <br><br><br>
-                <label for="desconto" class="form-label">Valor total:</label>
-                <input style="border-radius: 30px 30px 30px 30px" class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" aria-label="Disabled input example" disabled>
-
             </div>
-            <div id="localizaçãoBotões">
-                <input id="botão" type="submit" class="btn btn-light" value="Confirma">
+            <div class="mb-3">
+                <label class="form-label">QUANTIDADE</label>
+                <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">VALOR</label>
+                <input name="valorvenda" class="form-control" placeholder="VALOR">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">DESCONTO</label>
+                <input name="desconto" class="form-control" placeholder="DESCONTO">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">LUCRO</label>
+                <input name="lucro" class="form-control" placeholder="LUCRO">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">VALOR TOTAL</label>
+                <input class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
             </div>
 
+            <input type="submit" class="btn btn-light" value="INSERIR">
         </form>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">IDProduto</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Valor de venda</th>
-                    <th scope="col">Desconto</th>
-                    <th scope="col">Lucro</th>
-                    <th scope="col" width="18%">Ações</th>
+                    <th>ID ITENS VENDA</th>
+                    <th>ID DO PRODUTO</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR DE VENDA</th>
+                    <th>DESCONTO</th>
+                    <th>LUCRO</th>
+                    <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
@@ -164,9 +159,9 @@ $produtos = new ProdutosController();
                         <td><?= $obj->getDesconto(); ?></td>
                         <td><?= $obj->getLucro(); ?></td>
                         <td>
-                            <button class="btn btn-sm btn-light">Visualizar</button>
-                            <button class="btn btn-sm btn-primary">Editar</button>
-                            <button class="btn btn-sm btn-danger">pagar</button>
+                            <button class="btn btn-sm btn-light">VISUALIZAR</button>
+                            <button class="btn btn-sm btn-primary">EDITAR</button>
+                            <button class="btn btn-sm btn-danger">APAGAR</button>
                         </td>
                     </tr>
                 <?php } ?>

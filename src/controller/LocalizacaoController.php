@@ -23,7 +23,7 @@ class LocalizacaoController extends Localizacao
             $localizacao->setIdlocalizacao($obj->idlocalizacao);
             $localizacao->setDepartamento($obj->departamento);
         }
-        return $localizacao;  
+        return $localizacao;
     }
 
     public function findAll()
@@ -46,7 +46,7 @@ class LocalizacaoController extends Localizacao
         $query = "INSERT INTO $this->tabela (departamento)
         VALUES (:departamento)";
         $stm = Database::prepare($query);
-        $stm->bindParam(':departamento', $departamento);        
+        $stm->bindParam(':departamento', $departamento);
 
         return $stm->execute();
     }
@@ -57,7 +57,7 @@ class LocalizacaoController extends Localizacao
         $stm = Database::prepare($query);
         $stm->bindParam(':idlocalizacao', $idlocalizacao, PDO::PARAM_INT);
         $stm->bindValue(':departamento', $this->getDepartamento());
-        
+
         return $stm->execute();
     }
 

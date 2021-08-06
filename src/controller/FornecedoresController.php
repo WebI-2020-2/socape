@@ -3,17 +3,21 @@
 require_once __DIR__ . '/../model/Fornecedor.php';
 require_once __DIR__ . '/../model/Database.php';
 
-class FornecedoresController extends Fornecedor {
+class FornecedoresController extends Fornecedor
+{
     protected $tabela = 'fornecedor';
 
-    public function __construct() { }
+    public function __construct()
+    {
+    }
 
-    public function findOne($idfornecedor) {
+    public function findOne($idfornecedor)
+    {
         $query = "SELECT * FROM $this->tabela WHERE idfornecedor = :idfornecedor";
         $stm = Database::prepare($query);
         $stm->bindParam(':idfornecedor', $idfornecedor, PDO::PARAM_INT);
         $stm->execute();
-        
+
         foreach ($stm->fetchAll() as $obj) {
             $fornecedor = new Fornecedor(null, null, null, null, null);
             $fornecedor->setIdfornecedor($obj->idfornecedor);
@@ -25,7 +29,8 @@ class FornecedoresController extends Fornecedor {
         return $fornecedor;
     }
 
-    public function findAll() {
+    public function findAll()
+    {
         $query = "SELECT * FROM $this->tabela ORDER BY idfornecedor DESC";
         $stm = Database::prepare($query);
         $stm->execute();
@@ -40,7 +45,8 @@ class FornecedoresController extends Fornecedor {
         return $fornecedores;
     }
 
-    public function insert($nome, $endereco, $telefone, $cnpj) {
+    public function insert($nome, $endereco, $telefone, $cnpj)
+    {
         $query = "INSERT INTO $this->tabela (nome, endereco, telefone, cnpj) VALUES (:nome, :endereco, :telefone, :cnpj)";
         $stm = Database::prepare($query);
         $stm->bindParam(':nome', $nome);
@@ -50,7 +56,8 @@ class FornecedoresController extends Fornecedor {
         return $stm->execute();
     }
 
-    public function update($idfornecedor, $nome, $endereco, $telefone, $cnpj) {
+    public function update($idfornecedor, $nome, $endereco, $telefone, $cnpj)
+    {
         $query = "UPDATE $this->tabela SET nome = :nome, endereco = :endereco, telefone = :telefone, cnpj = :cnpj WHERE idfornecedor = :idfornecedor";
         $stm = Database::prepare($query);
         $stm->bindParam(':idfornecedor', $idfornecedor, PDO::PARAM_INT);
@@ -61,7 +68,8 @@ class FornecedoresController extends Fornecedor {
         return $stm->execute();
     }
 
-    public function delete($idfornecedor) {
+    public function delete($idfornecedor)
+    {
         $query = "DELETE FROM $this->tabela WHERE idfornecedor = :idfornecedor";
         $stm = Database::prepare($query);
         $stm->bindParam(':idfornecedor', $idfornecedor, PDO::PARAM_INT);

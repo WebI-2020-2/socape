@@ -3,19 +3,21 @@
 require_once __DIR__ . '/../model/ItensEntrada.php';
 require_once __DIR__ . '/../model/Database.php';
 
-class ItensEntradaController extends ItensEntrada {
+class ItensEntradaController extends ItensEntrada
+{
     protected $tabela = 'itensEntrada';
 
-    public function __construct() { 
-
+    public function __construct()
+    {
     }
 
-    public function findOne($iditensentrada) {
+    public function findOne($iditensentrada)
+    {
         $query = "SELECT * FROM $this->tabela WHERE iditensentrada = :iditensentrada";
         $stm = Database::prepare($query);
         $stm->bindParam(':iditensentrada', $iditensentrada, PDO::PARAM_INT);
         $stm->execute();
-     
+
         foreach ($stm->fetchAll() as $obj) {
             $itensEntrada = new ItensEntrada(null, null, null, null, null, null, null, null, null);
             $itensEntrada->setIditensentrada($obj->iditensentrada);
@@ -31,7 +33,8 @@ class ItensEntradaController extends ItensEntrada {
         return $itensEntrada;
     }
 
-    public function findAll() {
+    public function findAll()
+    {
         $query = "SELECT * FROM $this->tabela";
         $stm = Database::prepare($query);
         $stm->execute();
@@ -46,7 +49,8 @@ class ItensEntradaController extends ItensEntrada {
         return $itensEntradas;
     }
 
-    public function findAllByIdEntrada($identrada) {
+    public function findAllByIdEntrada($identrada)
+    {
         $query = "SELECT * FROM $this->tabela WHERE identrada = :identrada";
         $stm = Database::prepare($query);
         $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
@@ -92,7 +96,7 @@ class ItensEntradaController extends ItensEntrada {
         $stm->bindValue(':ipi', $this->getIpi());
         $stm->bindValue(':frete', $this->getFrete());
         $stm->bindValue(':icms', $this->getIcms());
-        
+
         return $stm->execute();
     }
 

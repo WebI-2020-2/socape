@@ -30,7 +30,7 @@ class ItensVendaController extends ItensVenda
         }
         return $itemvenda;
     }
-    
+
     public function findAll()
     {
         $query = "SELECT * FROM $this->tabela";
@@ -46,7 +46,7 @@ class ItensVendaController extends ItensVenda
         }
         return $itensvenda;
     }
-    
+
     public function findAllByIdVenda($idvenda)
     {
         $query = "SELECT * FROM $this->tabela WHERE idvenda = :idvenda";
@@ -69,8 +69,8 @@ class ItensVendaController extends ItensVenda
         $query = "INSERT INTO $this->tabela (idproduto, idvenda, quantidade, valorvenda, desconto, lucro) VALUES (:idproduto, :idvenda, :quantidade, :valorvenda, :desconto, :lucro)";
         $stm = Database::prepare($query);
         $stm->bindParam(':idproduto', $idproduto);
-        $stm->bindParam(':idvenda', $idvenda);        
-        $stm->bindParam(':quantidade', $quantidade);        
+        $stm->bindParam(':idvenda', $idvenda);
+        $stm->bindParam(':quantidade', $quantidade);
         $stm->bindParam(':valorvenda', $valorvenda);
         $stm->bindParam(':desconto', $desconto);
         $stm->bindParam(':lucro', $lucro);
@@ -87,7 +87,7 @@ class ItensVendaController extends ItensVenda
     //     $stm->bindValue(':idformapagamento', $this->getIdformapagamento());
     //     $stm->bindValue(':data', $this->getData());
     //     $stm->bindValue(':valortotal', $this->getValortotal());
-        
+
     //     return $stm->execute();
     // }
 
@@ -98,5 +98,4 @@ class ItensVendaController extends ItensVenda
         $stm->bindParam(':iditensvenda', $iditensvenda, PDO::PARAM_INT);
         return $stm->execute();
     }
-    
 }

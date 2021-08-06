@@ -23,7 +23,7 @@ class MarcasController extends Marca
             $marca->setIdmarca($obj->idmarca);
             $marca->setMarca($obj->marca);
         }
-        return $marca;  
+        return $marca;
     }
 
     public function findAll()
@@ -47,7 +47,7 @@ class MarcasController extends Marca
         $query = "INSERT INTO $this->tabela (marca)
         VALUES (:marca)";
         $stm = Database::prepare($query);
-        $stm->bindParam(':marca', $marca);        
+        $stm->bindParam(':marca', $marca);
 
         return $stm->execute();
     }
@@ -58,7 +58,7 @@ class MarcasController extends Marca
         $stm = Database::prepare($query);
         $stm->bindParam(':idmarca', $idmarca, PDO::PARAM_INT);
         $stm->bindValue(':marca', $this->getMarca());
-        
+
         return $stm->execute();
     }
 
@@ -69,5 +69,4 @@ class MarcasController extends Marca
         $stm->bindParam(':idmarca', $idmarca, PDO::PARAM_INT);
         return $stm->execute();
     }
-    
 }

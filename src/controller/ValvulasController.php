@@ -23,7 +23,7 @@ class ValvulasController extends Valvulas
             $valvula->setIdvalvulas($obj->idvalvulas);
             $valvula->setQuantidade($obj->quantidade);
         }
-        return $valvula;  
+        return $valvula;
     }
 
     public function findAll()
@@ -47,7 +47,7 @@ class ValvulasController extends Valvulas
         $query = "INSERT INTO $this->tabela (quantidade)
         VALUES (:quantidade)";
         $stm = Database::prepare($query);
-        $stm->bindParam(':quantidade', $quantidade);        
+        $stm->bindParam(':quantidade', $quantidade);
 
         return $stm->execute();
     }
@@ -58,7 +58,7 @@ class ValvulasController extends Valvulas
         $stm = Database::prepare($query);
         $stm->bindParam(':idvalvulas', $idvalvulas, PDO::PARAM_INT);
         $stm->bindValue(':quantidade', $this->getQuantidade());
-        
+
         return $stm->execute();
     }
 
@@ -69,5 +69,4 @@ class ValvulasController extends Valvulas
         $stm->bindParam(':idvalvulas', $idvalvulas, PDO::PARAM_INT);
         return $stm->execute();
     }
-    
 }

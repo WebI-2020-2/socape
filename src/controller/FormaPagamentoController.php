@@ -24,7 +24,7 @@ class FormaPagamentoController extends FormaPagamento
             $formaPagamento->setCondicao($obj->condicao);
             $formaPagamento->setForma($obj->forma);
         }
-        return $formaPagamento;  
+        return $formaPagamento;
     }
 
     public function findAll()
@@ -59,7 +59,7 @@ class FormaPagamentoController extends FormaPagamento
         $stm->bindParam(':idformapagamento', $idformapagamento, PDO::PARAM_INT);
         $stm->bindValue(':condicao', $this->getCondicao());
         $stm->bindValue(':forma', $this->getForma());
-        
+
         return $stm->execute();
     }
 
@@ -70,5 +70,4 @@ class FormaPagamentoController extends FormaPagamento
         $stm->bindParam(':idformapagamento', $idformapagamento, PDO::PARAM_INT);
         return $stm->execute();
     }
-
 }

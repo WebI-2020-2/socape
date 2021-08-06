@@ -228,28 +228,30 @@ class ProdutosController extends Produto
         $produtos = array();
 
         foreach ($stm->fetchAll() as $obj) {
+            $produto = $this->findOne($obj->idproduto);
+
             array_push(
                 $produtos,
                 new Produto(
-                    $obj->idproduto,
-                    $obj->idmotor,
-                    $obj->idcarro,
-                    $obj->idvalvulas,
-                    $obj->idfabricacao,
-                    $obj->idcategoria,
-                    $obj->idmarca,
-                    $obj->icms,
-                    $obj->ipi,
-                    $obj->frete,
-                    $obj->valornafabrica,
-                    $obj->valordecompra,
-                    $obj->lucro,
-                    $obj->valorvenda,
-                    $obj->desconto,
-                    $obj->quantidade,
-                    $obj->unidade,
-                    $obj->idlocalizacao,
-                    $obj->referencia
+                    $produto->getIdproduto(),
+                    $produto->getIdmotor(),
+                    $produto->getIdcarro(),
+                    $produto->getIdvalvulas(),
+                    $produto->getIdfabricacao(),
+                    $produto->getIdcategoria(),
+                    $produto->getIdmarca(),
+                    $produto->getIcms(),
+                    $produto->getIpi(),
+                    $produto->getFrete(),
+                    $produto->getValornafabrica(),
+                    $produto->getValordecompra(),
+                    $produto->getLucro(),
+                    $produto->getValorvenda(),
+                    $produto->getDesconto(),
+                    $produto->getQuantidade(),
+                    $produto->getUnidade(),
+                    $produto->getIdlocalizacao(),
+                    $produto->getReferencia(),
                 )
             );
         }

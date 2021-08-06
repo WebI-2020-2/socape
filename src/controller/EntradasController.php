@@ -3,17 +3,21 @@
 require_once __DIR__ . '/../model/Entrada.php';
 require_once __DIR__ . '/../model/Database.php';
 
-class EntradasController extends Entrada {
+class EntradasController extends Entrada
+{
     protected $tabela = 'entrada';
 
-    public function __construct() { }
+    public function __construct()
+    {
+    }
 
-    public function findOne($identrada) {
+    public function findOne($identrada)
+    {
         $query = "SELECT * FROM $this->tabela WHERE identrada = :identrada";
         $stm = Database::prepare($query);
         $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
         $stm->execute();
-        
+
         foreach ($stm->fetchAll() as $obj) {
             $entrada = new Entrada(null, null, null, null);
             $entrada->setIdentrada($obj->identrada);
@@ -24,7 +28,8 @@ class EntradasController extends Entrada {
         return $entrada;
     }
 
-    public function findAll() {
+    public function findAll()
+    {
         $query = "SELECT * FROM $this->tabela ORDER BY identrada DESC";
         $stm = Database::prepare($query);
         $stm->execute();

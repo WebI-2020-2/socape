@@ -23,7 +23,7 @@ class CategoriaController extends Categoria
             $categoria->setIdcategoria($obj->idcategoria);
             $categoria->setCategoria($obj->categoria);
         }
-        return $categoria;  
+        return $categoria;
     }
 
     public function findAll()

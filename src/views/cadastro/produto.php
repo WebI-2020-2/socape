@@ -1,26 +1,26 @@
 <?php
-    require_once __DIR__ . '/../../controller/ProdutosController.php';
+require_once __DIR__ . '/../../controller/ProdutosController.php';
 
-    require_once __DIR__ . '/../../controller/MotorController.php';
-    $motores = new MotorController();
+require_once __DIR__ . '/../../controller/MotorController.php';
+$motores = new MotorController();
 
-    require_once __DIR__ . '/../../controller/CarrosController.php';
-    $carros = new CarroController();
+require_once __DIR__ . '/../../controller/CarrosController.php';
+$carros = new CarroController();
 
-    require_once __DIR__ . '/../../controller/ValvulasController.php';
-    $valvulas = new ValvulasController();
+require_once __DIR__ . '/../../controller/ValvulasController.php';
+$valvulas = new ValvulasController();
 
-    require_once __DIR__ . '/../../controller/FabricacaoController.php';
-    $fabricacoes = new FabricacaoController();
+require_once __DIR__ . '/../../controller/FabricacaoController.php';
+$fabricacoes = new FabricacaoController();
 
-    require_once __DIR__ . '/../../controller/LocalizacaoController.php';
-    $localizacoes = new LocalizacaoController();
+require_once __DIR__ . '/../../controller/LocalizacaoController.php';
+$localizacoes = new LocalizacaoController();
 
-    require_once __DIR__ . '/../../controller/CategoriaController.php';
-    $categorias = new CategoriaController();
+require_once __DIR__ . '/../../controller/CategoriaController.php';
+$categorias = new CategoriaController();
 
-    require_once __DIR__ . '/../../controller/MarcasController.php';
-    $marcas = new MarcasController();
+require_once __DIR__ . '/../../controller/MarcasController.php';
+$marcas = new MarcasController();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,61 +32,58 @@
     <title>SOCAPE | Cadastrar Produto</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/cadastrar-peca.css" rel="stylesheet">
+    <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
 <body>
     <img src="./../../../public/imagens/titulo.png" width="100%">
-    <nav id="navegador" class="navbar navbar-expand-lg navbar-black bg-black">
+    <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">Início</a>
+                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">INÍCIO</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastrar</a>
+                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
                         <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">Cliente</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">Fornecedor</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">Produto</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">Carro</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">Localização</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">Valvula</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">Categoria</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">Motor</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">Fabricação</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">Marca</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">Vender</a>
+                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">VENDER</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">Entrada</a>
+                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultar</a>
+                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                         <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">Cliente</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">Fornecedor</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">Produto</a></li>
-
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
                         </ul>
-                    </li>
-                    <li id="conta" class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="#">Minha conta</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div id="Container">
+    <div id="container">
         <h1>
-            <span id="titulo" class="badge bg-light text-dark">Cadastrar Produto</span>
+            <span class="badge bg-light text-dark">CADASTRAR PRODUTO</span>
         </h1>
+
         <?php
         if ($_POST) {
             $produto = new ProdutosController();
@@ -139,108 +136,80 @@
             }
         }
         ?>
-        <form id="formulario" action="" method="post">
-        <label for="motor" class="form-label">Motor:</label>
-        <label for="carro" class="form-label" style="margin-left:305px">Carro:</label>
-            <div class="input-group ui-widget">
-                
-                <select id="motor" name="idmotor" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                    <option selected disabled>Selecione</option>
-                    <?php
-                        foreach ($motores->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia(); ?></option>
-                    <?php } ?>
-                </select>
-             
-                <select id="carro" name="idcarro" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                    <option selected disabled>Selecione</option>
-                    <?php
-                        foreach ($carros->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo(); ?></option>
-                    <?php } ?>
-                </select>
-            </div>
 
-            <label for="valvula" class="form-label">Válvula:</label>
-            <label for="fabricacao" class="form-label" style="margin-left:300px">Fabricação:</label>
-            <div class="input-group ui-widget" >
-                
-                <select id="valvula" name="idvalvulas" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                    <option selected disabled>Selecione</option>
-                    <?php
-                        foreach ($valvulas->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade(); ?></option>
-                    <?php } ?>
-                </select>
-                <select id="fabricacao" name="idfabricacao" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                    <option selected disabled>Selecione</option>
-                    <?php
-                        foreach ($fabricacoes->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno(); ?></option>
-                    <?php } ?>
-                </select>
-            </div>
+        <form action="" method="post">
+            <label class="form-label">MOTOR</label>
+            <select name="idmotor" class="form-control">
+                <option selected disabled>SELECIONE</option>
+                <?php
+                foreach ($motores->findAll() as $obj) { ?>
+                    <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia(); ?></option>
+                <?php } ?>
+            </select>
+            <label class="form-label">CARRO</label>
+            <select name="idcarro" class="form-control">
+                <option selected disabled>SELECIONE</option>
+                <?php
+                foreach ($carros->findAll() as $obj) { ?>
+                    <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo(); ?></option>
+                <?php } ?>
+            </select>
+            <label for="valvula" class="form-label">VÁLVULA</label>
+            <select name="idvalvulas" class="form-control">
+                <option selected disabled>SELECIONE</option>
+                <?php
+                foreach ($valvulas->findAll() as $obj) { ?>
+                    <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade(); ?></option>
+                <?php } ?>
+            </select>
+            <label class="form-label">FABRICAÇÃO</label>
+            <select name="idfabricacao" class="form-control">
+                <option selected disabled>SELECIONE</option>
+                <?php
+                foreach ($fabricacoes->findAll() as $obj) { ?>
+                    <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno(); ?></option>
+                <?php } ?>
+            </select>
+            <label class="form-label">LOCALIZAÇÃO</label>
+            <select name="idlocalizacao" class="form-control">
+                <option selected disabled>SELECIONE</option>
+                <?php
+                foreach ($localizacoes->findAll() as $obj) { ?>
+                    <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento(); ?></option>
+                <?php } ?>
+            </select>
+            <label class="form-label">CATEGORIA</label>
+            <select name="idcategoria" class="form-control">
+                <option selected disabled>SELECIONE</option>
+                <?php
+                foreach ($categorias->findAll() as $obj) { ?>
+                    <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria(); ?></option>
+                <?php } ?>
+            </select>
+            <label class="form-label">MARCA</label>
+            <select name="idmarca" class="form-control">
+                <option selected disabled>SELECIONE</option>
+                <?php
+                foreach ($marcas->findAll() as $obj) { ?>
+                    <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
+                <?php } ?>
+            </select>
+            <label class="form-label">REFERÊNCIA</label>
+            <input type="text" name="referencia" class="form-control" placeholder="REFERÊNCIA">
 
-          
-            <label for="localizacao" class="form-label">Localização:</label>
-            <label for="categorias" class="form-label" style="margin-left: 270px">Categoria:</label>
-             <div class="input-group ui-widget" >
-                
-                <select id="localizacao" name="idlocalizacao" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                    <option selected disabled>Selecione</option>
-                    <?php
-                        foreach ($localizacoes->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento(); ?></option>
-                    <?php } ?>
-                </select>
-                <select id="categorias" name="idcategoria" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                    <option selected disabled>Selecione</option>
-                    <?php
-                        foreach ($categorias->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria(); ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-
-            <label for="marca" class="form-label">Marca:</label>
-            <label for="referencia" class="form-label" style="margin-left:305px">Referência:</label>
-            <div class="input-group ui-widget" >
-                
-                <select id="marca" name="idmarca" style="border-radius: 30px 30px 30px 30px" class="form-control">
-                    <option selected disabled>Selecione</option>
-                    <?php
-                        foreach ($marcas->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
-                    <?php } ?>
-                </select>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="referencia" id="referencia" class="form-control" placeholder="Referência">
-            </div>
-
-        
-            <div id="localizaçãoBotões">
-                <input id="botão" type="submit" class="btn btn-light" value="Salvar">
-            </div>
+            <input type="submit" class="btn btn-light" value="CADASTRAR">
         </form>
 
-        <?php if (isset($_GET["id"])) {
-            if ($produtos->findOne($_GET["id"])) {
-                $produto = $produtos->findOne($_GET["id"]);
-        ?>
-
-        <?php
-            }
-        } ?>   
-
-        <table class="table" style="color: #FFFFFF">
+        <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Categoria/Marca</th>
-                    <th scope="col">Referência</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Valor de venda</th>
-                    <th scope="col">Localização</th>
-                    <th scope="col" width="18%">Ações</th>
+                    <th>ID</th>
+                    <th>CATEGORIA/MARCA</th>
+                    <th>REFERÊNCIA</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR DE VENDA</th>
+                    <th>LOCALIZAÇÃO</th>
+                    <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
@@ -256,8 +225,8 @@
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
                             <div>
-                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
-                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca()?>')">Apagar</button>
+                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">EDITAR</button></a>
+                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -270,9 +239,11 @@
         function deletar(id, referencia) {
             if (confirm("Deseja realmente excluir o produto de referencia " + referencia + "?")) {
                 $.ajax({
-                    url: './apagarProduto.php',
+                    url: '../apagar/produto.php',
                     type: "POST",
-                    data: {"idproduto": id},
+                    data: {
+                        id
+                    },
                     success: () => {
                         alert("Produto excluído com sucesso!");
                         window.location.reload(true);
@@ -282,7 +253,6 @@
             }
         }
     </script>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

@@ -1,59 +1,86 @@
-#navegador{
-	background-image: linear-gradient(to bottom, #272020, #8C1818);
-	height: 30px;
-
+body {
+  color: #ffffff;
+  background-color: #140c0c;
 }
 
-
-#produtos{
-	width: 100%;
-	height: 100px;
-	display: inline-block;
-	margin-right: 6px;
-	margin-left: 6px;
-	margin-top: 30px;
-
+/* INÍCIO NAVEGAÇÃO */
+nav {
+  background-image: linear-gradient(to bottom, #272020, #8c1818);
+  height: 30px;
 }
 
-#conta{
-	margin-left: 838px;
-	margin-right: -10px;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  background-image: none;
 }
 
-#barraPesquisa{
-	width: 50%;
-	height: 30px;
-	margin-left: 670px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+/* CARROSSEL */
+.carousel-control-next-icon:after {
+  content: ">";
+  font-size: 55px;
+  color: #8c1818;
 }
 
-#paginação{
-	margin-top: 50px;
+.carousel-control-prev-icon:after {
+  content: "<";
+  font-size: 55px;
+  color: #8c1818;
+}
+/* FIM NAVEGAÇÃO */
 
+#container {
+  margin-top: 5px;
+  height: 100%;
+  background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
 
-#textoDestaque{
-	color: FFFFFF;
-	text-align: center;
-}
-#codigo{
-	color: FFFFFF;
-	text-align: left;
+input,
+select {
+  border-radius: 30px 30px 30px 30px !important;
 }
 
-body{
-	color: #ffffff;
-	background-color: #140C0C
+h1 {
+  text-align: center;
+  margin-top: 5px;
 }
 
-#imagemDestaque{
-	margin-top: 10px;
-	width: 100%; 
+h1 > span {
+  padding: 4px 15px 3px 15px !important;
+  border-radius: 50px !important;
 }
 
-#Container{
-	margin-top: 5px;  	
-	height: 100%; 	
-	background-image: linear-gradient(to bottom, #272020, #8C1818);  
+form {
+  margin-left: 30px;
+  margin-right: 100px;
+  margin-top: 70px;
+  display: inline-block;
+}
+
+.table {
+  color: #ffffff;
+}
+
+#produtos {
+  width: 100%;
+  height: 100px;
+  display: inline-block;
+  margin-right: 6px;
+  margin-left: 6px;
+  margin-top: 30px;
+}
+
+#imagemDestaque {
+  margin-top: 10px;
+  width: 100%;
+}
+
+#selecionar {
+  width: 10%;
+  margin-left: 70%;
+  padding: 4px 15px 3px 15px;
+  border-radius: 50px;
 }

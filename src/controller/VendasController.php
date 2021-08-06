@@ -26,9 +26,9 @@ class VendasController extends Venda
             $venda->setData($obj->data);
             $venda->setValortotal($obj->valortotal);
         }
-        return $venda;  
+        return $venda;
     }
-    
+
     public function findAll()
     {
         $query = "SELECT * FROM $this->tabela ORDER BY data DESC";
@@ -50,8 +50,8 @@ class VendasController extends Venda
         $query = "INSERT INTO $this->tabela (idcliente, idformapagamento, data, valortotal) VALUES (:idcliente, :idformapagamento, :data, :valortotal)";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente);
-        $stm->bindParam(':idformapagamento', $idformapagamento);        
-        $stm->bindParam(':data', $data);        
+        $stm->bindParam(':idformapagamento', $idformapagamento);
+        $stm->bindParam(':data', $data);
         $stm->bindParam(':valortotal', $valortotal);
         $stm->execute();
 
@@ -67,7 +67,7 @@ class VendasController extends Venda
         $stm->bindValue(':idformapagamento', $this->getIdformapagamento());
         $stm->bindValue(':data', $this->getData());
         $stm->bindValue(':valortotal', $this->getValortotal());
-        
+
         return $stm->execute();
     }
 
@@ -78,5 +78,4 @@ class VendasController extends Venda
         $stm->bindParam(':idvenda', $idvenda, PDO::PARAM_INT);
         return $stm->execute();
     }
-    
 }

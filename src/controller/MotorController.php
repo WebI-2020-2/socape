@@ -23,7 +23,7 @@ class MotorController extends Motor
             $motor->setIdmotor($obj->idmotor);
             $motor->setPotencia($obj->potencia);
         }
-        return $motor;  
+        return $motor;
     }
 
     public function findAll()
@@ -47,7 +47,7 @@ class MotorController extends Motor
         $query = "INSERT INTO $this->tabela (potencia)
         VALUES (:potencia)";
         $stm = Database::prepare($query);
-        $stm->bindParam(':potencia', $potencia);        
+        $stm->bindParam(':potencia', $potencia);
 
         return $stm->execute();
     }
@@ -58,7 +58,7 @@ class MotorController extends Motor
         $stm = Database::prepare($query);
         $stm->bindParam(':idmotor', $idmotor, PDO::PARAM_INT);
         $stm->bindValue(':potencia', $this->getPotencia());
-        
+
         return $stm->execute();
     }
 
@@ -69,5 +69,4 @@ class MotorController extends Motor
         $stm->bindParam(':idmotor', $idmotor, PDO::PARAM_INT);
         return $stm->execute();
     }
-    
 }

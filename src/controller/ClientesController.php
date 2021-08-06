@@ -3,17 +3,21 @@
 require_once __DIR__ . '/../model/Cliente.php';
 require_once __DIR__ . '/../model/Database.php';
 
-class ClientesController extends Cliente {
+class ClientesController extends Cliente
+{
     protected $tabela = 'cliente';
 
-    public function __construct() { }
+    public function __construct()
+    {
+    }
 
-    public function findOne($idcliente) {
+    public function findOne($idcliente)
+    {
         $query = "SELECT * FROM $this->tabela WHERE idcliente = :idcliente";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
         $stm->execute();
-        
+
         foreach ($stm->fetchAll() as $obj) {
             $cliente = new Cliente(null, null, null, null, null, null);
             $cliente->setIdcliente($obj->idcliente);
@@ -26,7 +30,8 @@ class ClientesController extends Cliente {
         return $cliente;
     }
 
-    public function findAll() {
+    public function findAll()
+    {
         $query = "SELECT * FROM $this->tabela ORDER BY idcliente DESC";
         $stm = Database::prepare($query);
         $stm->execute();
@@ -41,7 +46,8 @@ class ClientesController extends Cliente {
         return $clientes;
     }
 
-    public function insertPF($nome, $telefone, $cpf, $debito) {
+    public function insertPF($nome, $telefone, $cpf, $debito)
+    {
         $query = "INSERT INTO $this->tabela (nome, telefone, cpf, debito) VALUES (:nome, :telefone, :cpf, :debito)";
         $stm = Database::prepare($query);
         $stm->bindParam(':nome', $nome);
@@ -51,7 +57,8 @@ class ClientesController extends Cliente {
         return $stm->execute();
     }
 
-    public function updatePF($idcliente, $nome, $telefone, $cpf) {
+    public function updatePF($idcliente, $nome, $telefone, $cpf)
+    {
         $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cpf = :cpf WHERE idcliente = :idcliente";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
@@ -61,7 +68,8 @@ class ClientesController extends Cliente {
         return $stm->execute();
     }
 
-    public function insertPJ($nome, $telefone, $cnpj, $debito) {
+    public function insertPJ($nome, $telefone, $cnpj, $debito)
+    {
         $query = "INSERT INTO $this->tabela (nome, telefone, cnpj, debito) VALUES (:nome, :telefone, :cnpj, :debito)";
         $stm = Database::prepare($query);
         $stm->bindParam(':nome', $nome);
@@ -71,7 +79,8 @@ class ClientesController extends Cliente {
         return $stm->execute();
     }
 
-    public function updatePJ($idcliente) {
+    public function updatePJ($idcliente)
+    {
         $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cnpj = :cnpj WHERE idcliente = :idcliente";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
@@ -81,7 +90,8 @@ class ClientesController extends Cliente {
         return $stm->execute();
     }
 
-    public function delete($idcliente) {
+    public function delete($idcliente)
+    {
         $query = "DELETE FROM $this->tabela WHERE idcliente = :idcliente";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
