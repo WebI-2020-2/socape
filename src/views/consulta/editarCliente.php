@@ -16,7 +16,7 @@ $cliente = $clientes->findOne($idcliente);
     <title>SOCAPE | Editar cliente</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/consultar-cliente.css" rel="stylesheet">
+    <link href="./../../../public/css/cadastrar-cliente.css" rel="stylesheet">
 </head>
 
 <body>
@@ -85,37 +85,41 @@ $cliente = $clientes->findOne($idcliente);
             }
         }
         ?>
-        <img id="imagem" src="./../../../public/imagens/usuario.png">
-        <form id="dados" method="POST" action="">
-            <div class="input-group">
-                <div>
-                    <label for="Nome" class="form-label">Nome:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" placeholder="Nome" value="<?= $cliente->getNome(); ?>">
-                </div>
-                <div>
-                    <label for="Telefone" class="form-label">Telefone:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" placeholder="Telefone" value="<?= $cliente->getTelefone(); ?>">
-                </div>
+        <img id="imagem" src="./../../../public/imagens/usuario.png" align="left">
+        <form id="dados" action="" method="post">
+            <div class="mb-3">
+                <label for="Nome" class="form-label">Nome:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" id= "nome" class="form-control" placeholder="Nome"  value="<?= $cliente->getNome(); ?>">
             </div>
-            <div style="margin-top: 5px" class="mb-3">
+            <div class="mb-3">
+                <label for="Telefone" class="form-label">Telefone:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" id= "telefone" class="form-control" placeholder="Telefone" value="<?= $cliente->getTelefone(); ?>">
+            </div>
+            <div class="mb-3">
                 <?php
                 if (empty($cliente->getCpf())) {
                 ?>
                     <label for="CNPJ" class="form-label">Cnpj:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" placeholder="CNPJ" value="<?= $cliente->getCnpj(); ?>">
+                    <div>
+                        <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" placeholder="CNPJ" class="form-control"  value="<?= $cliente->getCnpj(); ?>">   
+                    </div>    
+                    
                 <?php
                 } else {
                 ?>
                     <label for="CPF" class="form-label">Cpf:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="cpf" placeholder="CPF" value="<?= $cliente->getCpf(); ?>">
+                    <div>
+                        <input style="border-radius: 30px 30px 30px 30px" type="text" name="cpf" placeholder="CPF" class="form-control"  value="<?= $cliente->getCpf(); ?>">
+                    </div>
+                    
                 <?php
                 }
                 ?>
-                <div id="localizaçãoBotões">
-                    <button class="btn btn-sm btn-primary" name="btn-editarcliente" type="submit">Salvar</button>
-                </div>
+                <input id="botão" type="submit" class="btn btn-light" value="Salvar">
+            </div>
         </form>
-    </div>
+
+        
     </div>
     <?php
     if(isset($_POST['btn-editarcliente'])){
