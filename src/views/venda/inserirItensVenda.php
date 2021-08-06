@@ -1,4 +1,5 @@
 <?php
+if (!$_GET['idvenda']) header('Location: ./index.php');
 require_once __DIR__ . '/../../controller/ItensVendaController.php';
 $itensVenda = new ItensVendaController();
 
@@ -26,45 +27,43 @@ $produtos = new ProdutosController();
 </head>
 
 <body>
-    <img src="./../../../public/imagens/titulo.png" width="100%">
+    <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../index.php">INÍCIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -75,23 +74,50 @@ $produtos = new ProdutosController();
 
         <?php
         if ($_POST) {
+            $data = $_POST;
             $itemVenda = new ItensVendaController();
-            $itemVenda->setIdproduto($_POST['idproduto']);
+
+            $err = FALSE;
+
+            if (!$data['idproduto']) {
+                echo "<h1>INFORME O PRODUTO!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['quantidade']) {
+                echo "<h1>INFORME A QUANTIDADE!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['valorvenda']) {
+                echo "<h1>INFORME O VALOR DE VENDA!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['desconto']) {
+                echo "<h1>INFORME O DESCONTO!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['lucro']) {
+                echo "<h1>INFORME O LUCRO!</h1>";
+                $err = TRUE;
+            }
+
+            $itemVenda->setIdproduto($data['idproduto']);
             $itemVenda->setIdvenda($venda->getIdvenda());
-            $itemVenda->setQuantidade($_POST['quantidade']);
-            $itemVenda->setValorvenda($_POST['valorvenda']);
-            $itemVenda->setDesconto($_POST['desconto']);
-            $itemVenda->setLucro($_POST['lucro']);
+            $itemVenda->setQuantidade($data['quantidade']);
+            $itemVenda->setValorvenda($data['valorvenda']);
+            $itemVenda->setDesconto($data['desconto']);
+            $itemVenda->setLucro($data['lucro']);
 
-            try {
-                $itemVenda->insert($itemVenda->getIdproduto(), $itemVenda->getIdvenda(), $itemVenda->getQuantidade(), $itemVenda->getValorvenda(), $itemVenda->getDesconto(), $itemVenda->getLucro());
+            if (!$err) {
+                try {
+                    $itemVenda->insert($itemVenda->getIdproduto(), $itemVenda->getIdvenda(), $itemVenda->getQuantidade(), $itemVenda->getValorvenda(), $itemVenda->getDesconto(), $itemVenda->getLucro());
 
-                echo
-                '<div class="success callout">
-                    <h5>Item cadastrado</h5>
-                </div>';
-            } catch (PDOException $err) {
-                echo $err->getMessage();
+                    echo
+                    '<script>
+                        alert("Item cadastrado com sucesso!");
+                    </script>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
             }
         }
         ?>
@@ -110,30 +136,30 @@ $produtos = new ProdutosController();
                     PESQUISAR
                 </a>
                 <input type="text" class="form-control" placeholder="PRODUTO" value="<?= $inputProduto ?>" disabled>
-                <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" />
+                <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">QUANTIDADE</label>
-                <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE">
+                <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">VALOR</label>
-                <input name="valorvenda" class="form-control" placeholder="VALOR">
+                <input name="valorvenda" class="form-control" placeholder="VALOR" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">DESCONTO</label>
-                <input name="desconto" class="form-control" placeholder="DESCONTO">
+                <input name="desconto" class="form-control" placeholder="DESCONTO" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">LUCRO</label>
-                <input name="lucro" class="form-control" placeholder="LUCRO">
+                <input name="lucro" class="form-control" placeholder="LUCRO" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">VALOR TOTAL</label>
                 <input class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
             </div>
 
-            <input type="submit" class="btn btn-light" value="INSERIR">
+            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='INSERINDO…';" value="INSERIR">
         </form>
 
         <table class="table">
@@ -159,9 +185,9 @@ $produtos = new ProdutosController();
                         <td><?= $obj->getDesconto(); ?></td>
                         <td><?= $obj->getLucro(); ?></td>
                         <td>
-                            <button class="btn btn-sm btn-light">VISUALIZAR</button>
+                            <!-- <button class="btn btn-sm btn-light">VISUALIZAR</button>
                             <button class="btn btn-sm btn-primary">EDITAR</button>
-                            <button class="btn btn-sm btn-danger">APAGAR</button>
+                            <button class="btn btn-sm btn-danger">APAGAR</button> -->
                         </td>
                     </tr>
                 <?php } ?>

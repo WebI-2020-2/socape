@@ -63,9 +63,18 @@ class LocalizacaoController extends Localizacao
 
     public function delete($idlocalizacao)
     {
-        $query = "DELETE FROM $this->tabela WHERE idlocalizacao = :idlocalizacao";
-        $stm = Database::prepare($query);
-        $stm->bindParam(':idlocalizacao', $idlocalizacao, PDO::PARAM_INT);
-        return $stm->execute();
+        try {
+            $query = "DELETE FROM $this->tabela WHERE idlocalizacao = :idlocalizacao";
+            $stm = Database::prepare($query);
+            $stm->bindParam(':idlocalizacao', $idlocalizacao, PDO::PARAM_INT);
+            $stm->execute();
+
+            return array('status' => TRUE);
+        } catch (PDOException $e) {
+            $arr['status'] = FALSE;
+            $arr['code'] = $e->getCode();
+
+            return $arr;
+        }
     }
 }

@@ -17,45 +17,43 @@ $clientes = new ClientesController();
 </head>
 
 <body>
-    <img src="./../../../public/imagens/titulo.png" width="100%">
+    <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../index.php">INÍCIO</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -66,21 +64,39 @@ $clientes = new ClientesController();
 
         <?php
         if ($_POST) {
+            $data = $_POST;
             $cliente = new ClientesController();
-            $cliente->setNome($_POST['nome']);
-            $cliente->setTelefone($_POST['telefone']);
-            $cliente->setCpf($_POST['cpf']);
+
+            $err = FALSE;
+
+            if (!$data['nome']) {
+                echo "<h1>INFORME O NOME DO CLIENTE!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['telefone']) {
+                echo "<h1>INFORME O TELEFONE DO CLIENTE!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['cpf']) {
+                echo "<h1>INFORME O CPF DO CLIENTE!</h1>";
+                $err = TRUE;
+            }
+
+            $cliente->setNome($data['nome']);
+            $cliente->setTelefone($data['telefone']);
+            $cliente->setCpf($data['cpf']);
             $cliente->setDebito(0);
 
-            try {
-                $cliente->insertPF($cliente->getNome(), $cliente->getTelefone(), $cliente->getCpf(), $cliente->getDebito());
-                echo
-                '<div class="success callout">
-                    <h5>Cliente cadastrado</h5>
-                    <p>Cliente cadastrado com sucesso!.</p>
-                </div>';
-            } catch (PDOException $err) {
-                echo $err->getMessage();
+            if (!$err) {
+                try {
+                    $cliente->insertPF($cliente->getNome(), $cliente->getTelefone(), $cliente->getCpf(), $cliente->getDebito());
+                    echo
+                    '<script>
+                        alert("Cliente Pessoa Física cadastrado com sucesso!");
+                    </script>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
             }
         }
         ?>
@@ -90,22 +106,22 @@ $clientes = new ClientesController();
             <option value="1">JURÍDICA</option>
         </select>
 
-        <img id="imagem" src="./../../../public/imagens/usuario.png" align="left" />
+        <img src="./../../../public/imagens/usuario.png" align="left" />
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME">
+                <input type="text" name="nome" class="form-control" placeholder="NOME" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE">
+                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CPF</label>
-                <input type="text" name="cpf" class="form-control" placeholder="CPF">
+                <input type="text" name="cpf" class="form-control" placeholder="CPF" required>
             </div>
 
-            <input type="submit" class="btn btn-light" value="CADASTRAR">
+            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
         <table class="table">
@@ -128,9 +144,8 @@ $clientes = new ClientesController();
                         <td><?= $obj->getCpf() ?></td>
                         <td><?= $obj->getDebito() ?></td>
                         <td>
-                            <div>
-                                <button class="btn btn-sm btn-primary">EDITAR</button>
-                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
+                            <div class="button-group clear">
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -148,9 +163,13 @@ $clientes = new ClientesController();
                     data: {
                         id
                     },
-                    success: () => {
-                        alert("Cliente Fisico excluído com sucesso!");
-                        window.location.reload(true);
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Cliente Pessoa Física excluído com sucesso!");
+                            window.location.href = './cliente-fisico.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
                     }
                 });
                 return false;

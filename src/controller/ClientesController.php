@@ -92,9 +92,18 @@ class ClientesController extends Cliente
 
     public function delete($idcliente)
     {
-        $query = "DELETE FROM $this->tabela WHERE idcliente = :idcliente";
-        $stm = Database::prepare($query);
-        $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
-        return $stm->execute();
+        try {
+            $query = "DELETE FROM $this->tabela WHERE idcliente = :idcliente";
+            $stm = Database::prepare($query);
+            $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
+            $stm->execute();
+
+            return array('status' => TRUE);
+        } catch (PDOException $e) {
+            $arr['status'] = FALSE;
+            $arr['code'] = $e->getCode();
+
+            return $arr;
+        }
     }
 }

@@ -70,9 +70,18 @@ class EntradasController extends Entrada
 
     public function delete($identrada)
     {
-        $query = "DELETE FROM $this->tabela WHERE identrada = :identrada";
-        $stm = Database::prepare($query);
-        $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
-        return $stm->execute();
+        try {
+            $query = "DELETE FROM $this->tabela WHERE identrada = :identrada";
+            $stm = Database::prepare($query);
+            $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
+            $stm->execute();
+
+            return array('status' => TRUE);
+        } catch (PDOException $e) {
+            $arr['status'] = FALSE;
+            $arr['code'] = $e->getCode();
+
+            return $arr;
+        }
     }
 }
