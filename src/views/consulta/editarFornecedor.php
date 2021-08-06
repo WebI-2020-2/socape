@@ -16,7 +16,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
     <title>SOCAPE | Editar fornecedor</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/consultar-cliente.css" rel="stylesheet">
+    <link href="./../../../public/css/cadastrar-fornecedor.css" rel="stylesheet">
 </head>
 
 <body>
@@ -67,6 +67,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
             </div>
         </div>
     </nav>
+    
     <div id="Container">
         <h1>
             <span id="titulo" class="badge bg-light text-dark">Editar Fornecedor</span>
@@ -85,28 +86,28 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
             }
         }
         ?>
-        <img id="imagem" src="./../../../public/imagens/usuario.png">
+        <img id="imagem" src="./../../../public/imagens/caminhão.png" align ="right"> 
         <form id="dados" method="POST" action="">
-            <div class="input-group">
-                <div>
-                    <label for="Nome" class="form-label">Nome:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" placeholder="Nome" value="<?= $fornecedor->getNome(); ?>">
-                </div>
-                <div>
-                    <label for="Endereco" class="form-label">Endereço:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="endereco" placeholder="Endereco" value="<?= $fornecedor->getEndereco(); ?>">
-                </div>
-                <div>
-                    <label for="Telefone" class="form-label">Telefone:</label>
-                    <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>">
-                </div>
+            
+            <div class="mb-3">
+                <label for="Nome" class="form-label">Nome:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="nome" id= "nome" class="form-control" placeholder="Nome" value="<?= $fornecedor->getNome(); ?>">
             </div>
-            <div>
-                <label for="CNPJ" class="form-label">Cnpj:</label>
-                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>">
+            <div class="mb-3">
+                <label for="Endereço" class="form-label">Endereço:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="endereco" id= "endereco" class="form-control" placeholder="Endereco" value="<?= $fornecedor->getEndereco(); ?>">
             </div>
-            <div id="localizaçãoBotões">
-                <button class="btn btn-sm btn-primary" type="submit">Salvar</button>
+            <div class="mb-3">
+                <label for="Telefone" class="form-label">Telefone:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="telefone" id= "telefone" class="form-control" placeholder="Telefone" value="<?= $fornecedor->getTelefone(); ?>">
+            </div>
+            <div class="mb-3">
+                <label for="CNPJ" class="form-label">CNPJ:</label>
+                <input style="border-radius: 30px 30px 30px 30px" type="text" name="cnpj" id= "cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>">
+            </div>
+            
+             <div id="localizaçãoBotões">
+                <input id="botão" type="submit" class="btn btn-light" value="Salvar">
             </div>
         </form>
     </div>

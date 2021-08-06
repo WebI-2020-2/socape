@@ -83,11 +83,10 @@
                 <span id="titulo" class="badge bg-light text-dark">Realizar venda</span>
             </h2>
             <label for="formaPagamento" class="form-label" style="margin-left:20px">Forma de Pagamento:</label>
-            <label for="barraPesquisa" class="form-label" style="margin-left:380px">Cliente:</label>
+
+            <label for="barraPesquisa" class="form-label" style="margin-left:360px">Cliente:</label>
            
             <form class="d-flex" action="./realizarVenda.php" method="POST">
-            
-               
             
                 <div class="input-group" id="formas">
                     
@@ -98,15 +97,13 @@
                                 <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
                             <?php } ?>
                         </select>
-
                         <input id="barraPesquisa" class="form-control me-2" type="search" placeholder="Cliente" aria-label="Search">
                         <input id="idcliente" type="hidden" name="idcliente">
+                        
                         <div id="localizaçãoBotões">
                             <input id="botão" type="submit" class="btn btn-light" value="Confirma">
                         </div>
                 </div>
-
-                
             </form>
         </div>
 

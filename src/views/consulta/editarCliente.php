@@ -8,7 +8,6 @@ $cliente = $clientes->findOne($idcliente);
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
