@@ -188,7 +188,7 @@ $motores = new MotorController();
                             <div>
                                 <a href="./produto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-light">Visualizar</button></a>
                                 <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
-                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getIdproduto() ?>')">Apagar</button>
+                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca()?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
@@ -198,8 +198,8 @@ $motores = new MotorController();
     </div>
 
     <script>
-        function deletar(id, referencia, categoria, marca) {
-            if (confirm("Deseja realmente excluir o produto referência " + referencia + " " + categoria + " da marca " + marca + "?")) {
+        function deletar(id, referencia, categoria) {
+            if (confirm("Deseja realmente excluir o produto de referência " + referencia + " " + categoria + "?")) {
                 $.ajax({
                     url: './apagarProduto.php',
                     type: "POST",

@@ -144,7 +144,7 @@ $clientes = new ClientesController();
 
     <script>
         function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir o cliente " + nome + "?")) {
+            if (confirm("Deseja realmente excluir " + nome + "?")) {
                 $.ajax({
                     url: './apagarCliente.php',
                     type: "POST",

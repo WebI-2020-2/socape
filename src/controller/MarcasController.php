@@ -28,7 +28,7 @@ class MarcasController extends Marca
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela ORDER BY marca";
+        $query = "SELECT * FROM $this->tabela ORDER BY idmarca DESC";
         $stm = Database::prepare($query);
         $stm->execute();
         $marcas = array();

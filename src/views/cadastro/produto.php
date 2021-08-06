@@ -229,28 +229,35 @@
 
         <?php
             }
-        } ?>
+        } ?>   
 
         <table class="table" style="color: #FFFFFF">
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Categoria/Marca</th>
                     <th scope="col">Referência</th>
-                    <th scope="col" width="20%">Ações</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Valor de venda</th>
+                    <th scope="col">Localização</th>
+                    <th scope="col" width="18%">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php    
+                <?php
                 $produtos = new ProdutosController();
                 foreach ($produtos->findAll() as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIdproduto() ?></td>
+                        <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
                         <td><?= $obj->getReferencia() ?></td>
+                        <td><?= $obj->getQuantidade() ?></td>
+                        <td><?= $obj->getValorvenda() ?></td>
+                        <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
-                            <div class="button-group clear">
-                            <a href="./produto.php?id=<?= $obj->getIdproduto() ?>"><button  class="btn btn-light" >Visualizar</button></a>
-                            <a href="./editar.php?id=<?= $obj->getIdproduto() ?>"><button  class="btn btn-primary">Editar</button></a>
-                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>')">Apagar</button>
+                            <div>
+                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">Editar</button></a>
+                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca()?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
@@ -261,7 +268,7 @@
 
     <script>
         function deletar(id, referencia) {
-            if (confirm("Deseja realmente excluir o produto referencia  " + referencia + "?")) {
+            if (confirm("Deseja realmente excluir o produto de referencia " + referencia + "?")) {
                 $.ajax({
                     url: './apagarProduto.php',
                     type: "POST",

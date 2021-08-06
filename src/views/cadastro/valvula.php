@@ -116,9 +116,8 @@
                         <td><?= $obj->getQuantidade() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <a href="./valvula.php?id=<?= $obj->getIdvalvulas() ?>"><button  class="btn btn-light">Visualizar</button></a>
-                            <a href="./editar.php?id=<?= $obj->getIdvalvulas() ?>"><button  class="btn btn-primary" >Editar</button></a>
-                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">Apagar</button>
+                            <a href="./editar.php?id=<?= $obj->getIdvalvulas() ?>"><button  class="btn btn-sm btn-primary" >Editar</button></a>
+                            <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
@@ -129,7 +128,7 @@
 
     <script>
         function deletar(id, quantidade) {
-            if (confirm("Deseja realmente excluir a válvula  " + quantidade + "?")) {
+            if (confirm("Deseja realmente excluir a quantidade de " + quantidade + " valvúlas ?")) {
                 $.ajax({
                     url: './apagarValvula.php',
                     type: "POST",
