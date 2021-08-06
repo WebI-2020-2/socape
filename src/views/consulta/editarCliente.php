@@ -112,12 +112,32 @@ $cliente = $clientes->findOne($idcliente);
                 }
                 ?>
                 <div id="localizaçãoBotões">
-                    <button class="btn btn-sm btn-primary" type="submit">Salvar</button>
+                    <button class="btn btn-sm btn-primary" name="btn-editarcliente" type="submit">Salvar</button>
                 </div>
         </form>
     </div>
     </div>
-    
+    <?php
+    if(isset($_POST['btn-editarcliente'])){
+   
+    } 
+    ?>
+        <script>
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir o fornecedor " + nome + "?")) {
+                $.ajax({
+                    url: './apagarFornecedor.php',
+                    type: "POST",
+                    data: {"idfornecedor": id},
+                    success: () => {
+                        alert("Fornecedor excluído com sucesso!");
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 </body>

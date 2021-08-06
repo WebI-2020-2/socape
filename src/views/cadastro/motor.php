@@ -116,9 +116,8 @@
                         <td><?= $obj->getPotencia() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <a href="./anocliente.php?id=<?= $obj->getIdmotor() ?>"><button  class="btn btn-light">Visualizar</button></a>
-                            <a href="./editar.php?id=<?= $obj->getIdmotor() ?>"><button  class="btn btn-primary">Editar</button></a>
-                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">Apagar</button>
+                            <a href="./editar.php?id=<?= $obj->getIdmotor() ?>"><button  class="btn btn-sm btn-primary">Editar</button></a>
+                            <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">Apagar</button>
                             </div>
                         </td>
                     </tr>
@@ -129,7 +128,7 @@
 
     <script>
         function deletar(id, motor) {
-            if (confirm("Deseja realmente excluir o motor  " + motor + "?")) {
+            if (confirm("Deseja realmente excluir o motor " + motor + "?")) {
                 $.ajax({
                     url: './apagarMotor.php',
                     type: "POST",

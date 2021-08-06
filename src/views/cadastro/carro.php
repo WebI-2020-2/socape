@@ -118,9 +118,8 @@
                         <td><?= $obj->getModelo() ?></td>
                         <td>
                             <div class="button-group clear">
-                            <a href="./carro.php?id=<?= $obj->getIdcarro() ?>"> <button  class="btn btn-light">Visualizar</button ></a>
-                            <a href="./editar.php?id=<?= $obj->getIdcarro() ?>"><button  class="btn btn-primary" >Editar</button ></a>
-                            <button  class="btn btn-danger" href="#" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">Apagar</button >
+                            <a href="./editar.php?id=<?= $obj->getIdcarro() ?>"><button  class="btn btn-sm btn-primary" >Editar</button ></a>
+                            <button  class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">Apagar</button >
                             </div>
                         </td>
                     </tr>

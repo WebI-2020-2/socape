@@ -28,7 +28,7 @@ class CarroController extends Carro
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela ORDER BY modelo";
+        $query = "SELECT * FROM $this->tabela ORDER BY idcarro DESC ";
         $stm = Database::prepare($query);
         $stm->execute();
         $carros = array();
