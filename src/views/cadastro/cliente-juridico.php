@@ -62,7 +62,7 @@
             <option value="1">JURÍDICA</option>
         </select>
 
-        <img id="imagem" src="./../../../public/imagens/usuario.png">
+        <img src="./../../../public/imagens/usuario.png">
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>

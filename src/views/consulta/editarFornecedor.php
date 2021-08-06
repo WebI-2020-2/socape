@@ -1,5 +1,5 @@
 <?php
-if (!$_GET) header('Location: ./index.php');
+if (!$_GET['id']) header('Location: ./fornecedor.php');
 require_once __DIR__ . '/../../controller/FornecedoresController.php';
 
 $idfornecedor = $_GET['id'];
@@ -68,41 +68,60 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
 
         <?php
         if ($_POST) {
-            try {
-                $fornecedores->update($idfornecedor, $_POST['nome'], $_POST['endereco'], $_POST['telefone'], $_POST['cnpj']);
-                echo
-                '<div class="success callout">
-                    <h5>Fornecedor atualizado</h5>
-                    <p>Fornecedor atualizado com sucesso!</p>
-                </div>';
-            } catch (PDOException $e) {
-                echo $e->getMessage();
+            $data = $_POST;
+            $err = FALSE;
+
+            if (!$data['nome']) {
+                echo "<h1>INFORME O NOME DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['endereco']) {
+                echo "<h1>INFORME O ENDEREÇO DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['telefone']) {
+                echo "<h1>INFORME O TELEFONE DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['cnpj']) {
+                echo "<h1>INFORME O CNPJ DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+
+            if (!$err) {
+                try {
+                    $fornecedores->update($idfornecedor, $data['nome'], $data['endereco'], $data['telefone'], $data['cnpj']);
+                    echo
+                    '<script>
+                        alert("Cliente atualizado com sucesso!");
+                    </script>';
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                }
             }
         }
         ?>
 
-        <img id="imagem" src="./../../../public/imagens/caminhão.png" align="right">
+        <img src="./../../../public/imagens/caminhão.png" align="right">
         <form method="POST" action="">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>">
+                <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">ENDEREÇO</label>
-                <input type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>">
+                <input type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>">
+                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CNPJ</label>
-                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>">
+                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
             </div>
 
-            <div id="buttons">
-                <input id="button" type="submit" class="btn btn-light" value="SALVAR">
-            </div>
+            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
         </form>
     </div>
 

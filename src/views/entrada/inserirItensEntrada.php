@@ -1,4 +1,5 @@
 <?php
+if (!$_GET['identrada']) header('Location: ./entrada.php');
 require_once __DIR__ . '/../../controller/ItensEntradaController.php';
 $itensEntrada = new ItensEntradaController();
 

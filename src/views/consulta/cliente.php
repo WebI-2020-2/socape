@@ -66,7 +66,7 @@ $clientes = new ClientesController();
             if ($clientes->findOne($_GET["id"])) {
                 $cliente = $clientes->findOne($_GET["id"]);
         ?>
-                <img id="imagem" src="./../../../public/imagens/usuario.png">
+                <img src="./../../../public/imagens/usuario.png">
                 <div class="mb-3">
                     <label class="form-label">NOME</label>
                     <input type="text" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
@@ -120,7 +120,7 @@ $clientes = new ClientesController();
                             <div>
                                 <a href="./cliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-light">VISUALIZAR</button></a>
                                 <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-primary">EDITAR</button></a>
-                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -138,9 +138,13 @@ $clientes = new ClientesController();
                     data: {
                         id
                     },
-                    success: () => {
-                        alert("Cliente excluído com sucesso!");
-                        window.location.reload(true);
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Cliente excluído com sucesso!");
+                            window.location.href = './cliente.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
                     }
                 });
                 return false;

@@ -1,5 +1,5 @@
 <?php
-if (!$_GET['idvenda']) header('Location: ./index.php');
+if (!$_GET['idvenda']) header('Location: ./venda.php');
 require_once __DIR__ . '/../../controller/ItensVendaController.php';
 $itensVenda = new ItensVendaController();
 

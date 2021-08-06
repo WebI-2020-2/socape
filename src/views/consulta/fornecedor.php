@@ -84,7 +84,7 @@ $fornecedores = new FornecedoresController();
                         <input type="text" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" disabled>
                     </div>
                 </form>
-                <img id="imagem" src="./../../../public/imagens/caminhão.png" align="right">
+                <img src="./../../../public/imagens/caminhão.png" align="right">
         <?php
             }
         } ?>
@@ -101,19 +101,18 @@ $fornecedores = new FornecedoresController();
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($fornecedores->findAll() as $obj) { ?>
+                <?php foreach ($fornecedores->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdfornecedor() ?></td>
-                        <td><?= $obj->getNome() ?></td>
-                        <td><?= $obj->getEndereco() ?></td>
-                        <td><?= $obj->getTelefone() ?></td>
-                        <td><?= $obj->getCnpj() ?></td>
+                        <td><?= $obj->getIdfornecedor(); ?></td>
+                        <td><?= $obj->getNome(); ?></td>
+                        <td><?= $obj->getEndereco(); ?></td>
+                        <td><?= $obj->getTelefone(); ?></td>
+                        <td><?= $obj->getCnpj(); ?></td>
                         <td>
                             <div>
-                                <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-light">VISUALIZAR</button></a>
-                                <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor() ?>"><button class="btn btn-sm btn-primary">EDITAR</button></a>
-                                <button class="btn btn-sm btn-danger" href="#" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
+                                <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-light">VISUALIZAR</button></a>
+                                <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-primary">EDITAR</button></a>
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -131,9 +130,13 @@ $fornecedores = new FornecedoresController();
                     data: {
                         id
                     },
-                    success: () => {
-                        alert("Fornecedor excluído com sucesso!");
-                        window.location.reload(true);
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Fornecedor excluído com sucesso!");
+                            window.location.href = './fornecedor.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
                     }
                 });
                 return false;

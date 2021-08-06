@@ -1,5 +1,5 @@
 <?php
-if (!$_GET) header('Location: ./index.php');
+if (!$_GET['id']) header('Location: ./cliente.php');
 require_once __DIR__ . '/../../controller/ClientesController.php';
 
 $idcliente = $_GET['id'];
@@ -67,28 +67,45 @@ $cliente = $clientes->findOne($idcliente);
 
         <?php
         if ($_POST) {
-            try {
-                $clientes->updatePF($idcliente, $_POST['nome'], $_POST['telefone'], $_POST['cpf']);
-                echo
-                '<div class="success callout">
-                    <h5>Cliente atualizado</h5>
-                    <p>Cliente atualizado com sucesso!</p>
-                </div>';
-            } catch (PDOException $e) {
-                echo $e->getMessage();
+            $data = $_POST;
+            $err = FALSE;
+
+            if (!$data['nome']) {
+                echo "<h1>INFORME O NOME DO CLIENTE!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['telefone']) {
+                echo "<h1>INFORME O TELEFONE DO CLIENTE!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['cpf']) {
+                echo "<h1>INFORME O CPF DO CLIENTE!</h1>";
+                $err = TRUE;
+            }
+
+            if (!$err) {
+                try {
+                    $clientes->updatePF($idcliente, $data['nome'], $data['telefone'], $data['cpf']);
+                    echo
+                    '<script>
+                        alert("Cliente atualizado com sucesso!");
+                    </script>';
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                }
             }
         }
         ?>
 
-        <img id="imagem" src="./../../../public/imagens/usuario.png" align="left">
+        <img src="./../../../public/imagens/usuario.png" align="left">
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>">
+                <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>">
+                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
             </div>
             <div class="mb-3">
                 <?php
@@ -96,21 +113,20 @@ $cliente = $clientes->findOne($idcliente);
                 ?>
                     <label class="form-label">CNPJ</label>
                     <div>
-                        <input type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>">
+                        <input type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
                     </div>
                 <?php
                 } else {
                 ?>
                     <label class="form-label">CPF</label>
                     <div>
-                        <input type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>">
+                        <input type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
                     </div>
-
                 <?php
                 }
                 ?>
 
-                <input type="submit" class="btn btn-light" value="SALVAR">
+                <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
             </div>
         </form>
     </div>

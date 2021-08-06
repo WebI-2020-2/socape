@@ -87,7 +87,7 @@ $motores = new MotorController();
             if ($produtos->findOne($_GET["id"])) {
                 $produto = $produtos->findOne($_GET["id"]);
         ?>
-                <img id="imagem" src="./../../../public/imagens/imagem.png" alt="..." class="img-thumbnail">
+                <img src="./../../../public/imagens/imagem.png" alt="..." class="img-thumbnail">
                 <div class="mb-3">
                     <label class="form-label">MOTOR</label>
                     <input class="form-control" type="text" placeholder="MOTOR" value="<?= $motores->findOne($produto->getIdmotor())->getPotencia(); ?>" disabled>
