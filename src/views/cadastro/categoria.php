@@ -16,7 +16,7 @@ $categorias = new CategoriaController();
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
-<body>
+<body >
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
@@ -57,7 +57,7 @@ $categorias = new CategoriaController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado" >
         <h1>
             <span class="badge bg-light text-dark">CADASTRAR CATEGORIA</span>
         </h1>
@@ -93,10 +93,10 @@ $categorias = new CategoriaController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">CATEGORIA</label>
-                <input type="text" name="categoria" class="form-control" placeholder="CATEGORIA" required>
+                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
         <table class="table">

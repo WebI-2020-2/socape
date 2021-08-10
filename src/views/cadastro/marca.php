@@ -57,7 +57,7 @@ $marcas = new MarcasController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CADASTRAR MARCA</span>
         </h1>
@@ -93,13 +93,13 @@ $marcas = new MarcasController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">MARCA</label>
-                <input type="text" name="marca" class="form-control" placeholder="MARCA" required>
+                <input style="width: 130%" type="text" name="marca" class="form-control" placeholder="MARCA" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>

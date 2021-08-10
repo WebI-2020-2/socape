@@ -105,29 +105,29 @@ $fornecedores = new FornecedoresController();
         }
         ?>
 
-        <img src="./../../../public/imagens/caminhão.png" align="right">
-        <form action="" method="post">
+        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
+        <form style="margin-left: 25%" action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME" required>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">ENDEREÇO</label>
-                <input type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" required>
+                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CNPJ</label>
-                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" required>
+                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>

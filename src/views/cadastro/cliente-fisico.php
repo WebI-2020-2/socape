@@ -106,25 +106,25 @@ $clientes = new ClientesController();
             <option value="1">JURÍDICA</option>
         </select>
 
-        <img src="./../../../public/imagens/usuario.png" align="left" />
+        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME" required>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CPF</label>
-                <input type="text" name="cpf" class="form-control" placeholder="CPF" required>
+                <input style="width: 130%" type="text" name="cpf" class="form-control" placeholder="CPF" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>

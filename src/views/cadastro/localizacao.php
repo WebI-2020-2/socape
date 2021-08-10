@@ -93,10 +93,10 @@ $localizacoes = new LocalizacaoController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">DEPARTAMENTO</label>
-                <input type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" required>
+                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
         <table class="table">

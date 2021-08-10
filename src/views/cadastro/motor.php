@@ -93,13 +93,13 @@ $motores = new MotorController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">POTÊNCIA DO MOTOR</label>
-                <input type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" required>
+                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
