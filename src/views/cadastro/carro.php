@@ -93,13 +93,13 @@ $carros = new CarroController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">MODELO</label>
-                <input type="text" name="modelo" class="form-control" placeholder="MODELO" required>
+                <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>

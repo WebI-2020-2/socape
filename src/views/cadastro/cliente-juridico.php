@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <img src="./../../../public/imagens/titulo.png">
+    <img id="imagemCadastro" src="./../../../public/imagens/titulo.png" align="left">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -66,18 +66,18 @@
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME" required>
+                <input style="width: 130%"  type="text" name="nome" class="form-control" placeholder="NOME" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
+                <input style="width: 130%"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CNPJ</label>
-                <input type="text" name="CNPJ" class="form-control" placeholder="CNPJ" required>
+                <input style="width: 130%"  type="text" name="CNPJ" class="form-control" placeholder="CNPJ" required>
             </div>
 
-            <input type="submit" class="btn btn-light" value="CADASTRAR">
+            <input style="margin-left: 75%" type="submit" class="btn btn-light" value="CADASTRAR">
         </form>
     </div>
 

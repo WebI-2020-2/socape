@@ -48,6 +48,11 @@ nav li a {
   background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
 
+#containerlimitado{
+  margin-top: 5px;
+  height: 78vh;
+  background-image: linear-gradient(to bottom, #272020, #8c1818);
+}
 input,
 select {
   border-radius: 30px 30px 30px 30px !important;
@@ -88,6 +93,22 @@ form {
   width: 100%;
 }
 
+#imagemCadastro{
+   width: 22%;
+   margin-top: 65px;
+   margin-left: 28%;
+}
+#formProduto{
+  width: 50%;
+  margin-left: 350px;
+  margin-right: 100px;
+}
+
+#imagemFornecedor{
+  width: 22%;
+  margin-right: 30%;
+  margin-top: 87px;
+}
 #selecionar {
   width: 10%;
   margin-left: 70%;

@@ -93,13 +93,13 @@ $fabricacoes = new FabricacaoController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">ANO DE FABRICAÇÃO</label>
-                <input type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
+                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
