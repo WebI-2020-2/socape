@@ -122,47 +122,57 @@ $produtos = new ProdutosController();
         }
         ?>
 
+        <style>
+            form{
+                width:40%;
+                margin-left: 30%;
+            }
+            #pesquisar{
+                margin-left: 28px;
+                padding: 4px 15px 3px 15px;
+                border-radius: 50px;
+            }
+
+        </style>
         <form method="POST" action="">
-            <div class="mb-3">
-                <label>PRODUTO</label>
+            <label>PRODUTO</label>
+            <div class="input-group">
                 <?php
                 $inputProduto = "";
                 if (isset($_GET['idproduto'])) {
                     $produto = $produtos->findOne($_GET['idproduto']);
                     $inputProduto = $produto->getReferencia();
                 }
-                ?>
-                <a class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
-                    PESQUISAR
-                </a>
+                ?> 
                 <input type="text" class="form-control" placeholder="PRODUTO" value="<?= $inputProduto ?>" disabled>
                 <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" required>
+                <a id="pesquisar"class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                    PESQUISAR
+                </a>
+                
             </div>
-            <div class="mb-3">
-                <label class="form-label">QUANTIDADE</label>
+            <label class="form-label">QUANTIDADE</label>
+            <label style="margin-left: 33.3%;" class="form-label">VALOR</label>
+            <div class="input-group">
                 <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
+                <input style="margin-left: 28px;" name="valorvenda" class="form-control" placeholder="VALOR" required>
             </div>
-            <div class="mb-3">
-                <label class="form-label">VALOR</label>
-                <input name="valorvenda" class="form-control" placeholder="VALOR" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">DESCONTO</label>
+                 
+            <label class="form-label">DESCONTO</label>  
+            <label style="margin-left: 36.6%;" class="form-label">LUCRO</label>
+            <div class="input-group">
                 <input name="desconto" class="form-control" placeholder="DESCONTO" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">LUCRO</label>
-                <input name="lucro" class="form-control" placeholder="LUCRO" required>
+                <input style="margin-left: 28px;" name="lucro" class="form-control" placeholder="LUCRO" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">VALOR TOTAL</label>
                 <input class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='INSERINDO…';" value="INSERIR">
+            <input style="margin-left: 85%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='INSERINDO…';" value="INSERIR">
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID ITENS VENDA</th>
