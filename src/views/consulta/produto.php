@@ -82,6 +82,11 @@ $motores = new MotorController();
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR PRODUTO</span>
         </h1>
+        <div class="mb-3" id="divBusca">
+                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..."/>
+                <input id="idcliente" type="hidden" name="idcliente" required>
+                <a href= ""><button id="btnBusca">Buscar</button></a>
+        </div>
 
         <?php if (isset($_GET["id"])) {
             if ($produtos->findOne($_GET["id"])) {
@@ -188,9 +193,9 @@ $motores = new MotorController();
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
                             <div>
-                                <a href="./produto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-light">VISUALIZAR</button></a>
-                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">EDITAR</button></a>
-                                <button class="btn btn-sm btn-danger" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
+                                <a href="./produto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
+                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>

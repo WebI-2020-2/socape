@@ -257,7 +257,7 @@ $marcas = new MarcasController();
                 <input type="text" name="unidade" class="form-control" placeholder="UNIDADE" required>
             </div>
 
-            <input type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 83%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
 
         <table style="margin-top: 1%" class="table">

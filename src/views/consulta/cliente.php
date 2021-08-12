@@ -61,40 +61,52 @@ $clientes = new ClientesController();
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR CLIENTE</span>
         </h1>
+        <div class="mb-3" id="divBusca">
+                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..."/>
+                <input id="idcliente" type="hidden" name="idcliente" required>
+                <a href= ""><button id="btnBusca">Buscar</button></a>
+        </div>
 
         <?php if (isset($_GET["id"])) {
             if ($clientes->findOne($_GET["id"])) {
                 $cliente = $clientes->findOne($_GET["id"]);
         ?>
-                <img src="./../../../public/imagens/usuario.png">
-                <div class="mb-3">
-                    <label class="form-label">NOME</label>
-                    <input type="text" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
-                </div>
-                <div class="mb-3">
+                <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />   
+        <form action="" method="post">
+            <div class="mb-3">
+            <label class="form-label">NOME</label>
+                    <input style="width: 130%" type="text" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
+            </div>
+            <div class="mb-3">
                     <label class="form-label">TELEFONE</label>
-                    <input type="text" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" disabled>
+                    <input style="width: 130%" type="text" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" disabled>
                 </div>
-                <div class="mb-3">
-                    <?php
-                    if (empty($cliente->getCpf())) {
-                    ?>
-                        <label class="form-label">CNPJ</label>
-                        <input type="text" class="form-control" placeholder="CNPJ" value="<?= $cliente->getCnpj(); ?>" disabled>
-                    <?php
-                    } else {
-                    ?>
-                        <label class="form-label">CPF</label>
-                        <input type="text" class="form-control" placeholder="CPF" value="<?= $cliente->getCpf(); ?>" disabled>
-                    <?php
-                    }
-                    ?>
-                </div>
+            <div class="mb-3">
+                <?php
+                if (empty($cliente->getCpf())) {
+                ?>
+                    <label class="form-label">CNPJ</label>
+                    <div>
+                        <input style="width: 130%" type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" disabled>
+                    </div>
+                <?php
+                } else {
+                ?>
+                    <label class="form-label">CPF</label>
+                    <div>
+                        <input style="width: 130%" type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" disabled>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+            
+        </form>
         <?php
             }
         } ?>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -118,9 +130,9 @@ $clientes = new ClientesController();
                         <td><?= $obj->getDebito() ?></td>
                         <td>
                             <div>
-                                <a href="./cliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-light">VISUALIZAR</button></a>
-                                <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-primary">EDITAR</button></a>
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
+                                <a href="./cliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
+                                <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>

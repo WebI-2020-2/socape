@@ -61,35 +61,40 @@ $fornecedores = new FornecedoresController();
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR FORNECEDOR</span>
         </h1>
-
+        <div class="mb-3" id="divBusca">
+                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..."/>
+                <input id="idcliente" type="hidden" name="idcliente" required>
+                <a href= ""><button id="btnBusca">Buscar</button></a>
+        </div>
         <?php if (isset($_GET["id"])) {
             if ($fornecedores->findOne($_GET["id"])) {
                 $fornecedor = $fornecedores->findOne($_GET["id"]);
         ?>
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">NOME</label>
-                        <input type="text" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">ENDEREÇO</label>
-                        <input type="text" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">CNPJ</label>
-                        <input type="text" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">TELEFONE</label>
-                        <input type="text" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" disabled>
-                    </div>
-                </form>
-                <img src="./../../../public/imagens/caminhão.png" align="right">
+        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
+        <form style="margin-left: 25%" action="" method="post">
+            <div class="mb-3">
+                <label class="form-label">NOME</label>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ENDEREÇO</label>
+                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">TELEFONE</label>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">CNPJ</label>
+                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
+            </div>
+
+        </form>
         <?php
             }
         } ?>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -110,9 +115,9 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getCnpj(); ?></td>
                         <td>
                             <div>
-                                <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-light">VISUALIZAR</button></a>
-                                <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-primary">EDITAR</button></a>
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
+                                <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
+                                <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>

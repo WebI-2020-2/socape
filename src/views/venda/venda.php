@@ -77,27 +77,26 @@ $formas = new FormaPagamentoController();
         }
         ?>
 
-        <form id="realizarVenda" method="POST" action="./realizarVenda.php">
-            <div class="mb-3">
-                <label class="form-label">FORMA DE PAGAMENTO</label>
-                <select id="idformapagamento" name="idformapagamento" class="form-control" required>
+        <form style="margin-left: 31%;" id="realizarVenda" method="POST" action="./realizarVenda.php">
+            <label class="form-label">FORMA DE PAGAMENTO</label>
+            <label style="margin-left: 24%;" class="form-label">CLIENTE</label>
+            <div style="width: 132%;" class="input-group">
+                <select  id="idformapagamento" name="idformapagamento" class="form-control" required>
                     <option selected disabled value>SELECIONE</option>
                     <?php
                     foreach ($formas->findAll() as $obj) { ?>
                         <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
                     <?php } ?>
                 </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">CLIENTE</label>
-                <input id="barraPesquisa" class="form-control" type="text" placeholder="CLIENTE">
+                <input style="margin-left: 35px;"  id="barraPesquisa" class="form-control" type="text" placeholder="CLIENTE">
                 <input id="idcliente" type="hidden" name="idcliente" required>
             </div>
-
-            <input type="button" class="btn btn-light" value="REALIZAR VENDA">
+            <div style="margin-top: 3%;" class="mb-3">
+                <input style="margin-left: 94%"  type="button" class="btn btn-primary" value="REALIZAR VENDA">             
+            </div>          
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
