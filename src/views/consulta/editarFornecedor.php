@@ -61,7 +61,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">EDITAR FORNECEDOR</span>
         </h1>
@@ -102,27 +102,28 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
         }
         ?>
 
-        <img src="./../../../public/imagens/caminhão.png" align="right">
-        <form method="POST" action="">
+        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
+        <form style="margin-left: 25%" action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">ENDEREÇO</label>
-                <input type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
+                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CNPJ</label>
-                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
+                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
             </div>
 
-            <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
+            <input style="margin-left: 90%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
         </form>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

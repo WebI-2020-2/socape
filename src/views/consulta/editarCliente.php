@@ -60,7 +60,7 @@ $cliente = $clientes->findOne($idcliente);
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">EDITAR CLIENTE</span>
         </h1>
@@ -97,15 +97,15 @@ $cliente = $clientes->findOne($idcliente);
         }
         ?>
 
-        <img src="./../../../public/imagens/usuario.png" align="left">
+        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />    
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
             </div>
             <div class="mb-3">
                 <?php
@@ -113,20 +113,22 @@ $cliente = $clientes->findOne($idcliente);
                 ?>
                     <label class="form-label">CNPJ</label>
                     <div>
-                        <input type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
+                        <input style="width: 130%" type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
                     </div>
                 <?php
                 } else {
                 ?>
                     <label class="form-label">CPF</label>
                     <div>
-                        <input type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
+                        <input style="width: 130%" type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
                     </div>
                 <?php
                 }
                 ?>
-
-                <input type="button" class="btn btn-light" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
+                <br>
+                
+                <input style="margin-left: 80% " type="button" class="btn btn-primary"  onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
+                
             </div>
         </form>
     </div>

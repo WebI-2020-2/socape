@@ -97,18 +97,66 @@ $produtos = new ProdutosController();
         ?>
         <style>
             form{
-                width:40%;
-                margin-left: 30%;
+                width:90%;
+                margin-left:6%;
+                margin-top: 0%;
             }
             #pesquisar{
                 margin-left: 28px;
                 padding: 4px 15px 3px 15px;
                 border-radius: 50px;
             }
+
+            @media (min-width:  768px) { 
+                
+            }
+            @media (min-width: 1200px) { 
+                #valorTotal{
+                width:60%;
+                }
+                #produto{
+                    width:21.4%;
+                }
+                #titulo2{
+                    margin-left:66%;
+                    margin-top:0%;
+                    margin-bottom:1%;
+                }
+                #dadosFor{
+                    margin-left: 140px;
+                }
+                #textNome{
+                    margin-left: 64.5%;
+                }
+                #textQuant{
+                    margin-left: 20.7%;
+                }
+                #textEnd{
+                    margin-left: 31.5%;
+                }
+                #textIpi{
+                    margin-left: 25.2%;
+                }
+                #textTelefone{
+                    margin-left: 37.9%;
+                }
+                #textIcms{
+                    margin-left: 27.6%;
+                }
+                #textCnpj{
+                    margin-left: 36.3%;
+                }
+            }
+
+
         </style>
-        <form method="POST" action="">
+        <h1 id="titulo2">
+            <span class="badge bg-light text-dark">Dados Fornecedor</span>
+        </h1>
+        <form method="POST" action="" >
 
             <label>PRODUTO</label>
+            <label id="textNome">NOME</label>
             <div class="input-group">
                 
                 <?php
@@ -118,36 +166,44 @@ $produtos = new ProdutosController();
                     $inputProduto = $produto->getReferencia();
                 }
                 ?>
-                <input type="text" class="form-control" placeholder="Produto" value="<?= $inputProduto ?>" disabled />
+                <input id="produto" type="text" class="form-control" placeholder="Produto" value="<?= $inputProduto ?>" disabled />
                 <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" />
                 <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $_GET['identrada'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                     PESQUISAR
                 </a>
+                <input id="dadosFor" type="text" name="nome" class="form-control" placeholder="NOME" disabled>
             </div>
             <label>PREÇO COMPRA</label>
-            <label style="margin-left: 29%;">QUANTIDADE</label>
+            <label id="textQuant">QUANTIDADE</label>
+            <label id="textEnd">ENDEREÇO</label>
             <div class="input-group">    
                 <input name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA">
                 <input style="margin-left: 28px;" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE">
+                <input id="dadosFor"  type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" disabled>
             </div>
             <label>UNIDADE</label>
-            <label style="margin-left: 38.2%;">IPI</label>
+            <label id="textIpi">IPI</label>
+            <label id="textTelefone">TELEFONE</label>
             <div class="input-group">
                 <input name="unidade" class="form-control" type="text" placeholder="UNIDADE">
                 <input style="margin-left: 28px;" name="ipi" class="form-control" type="text" placeholder="IPI">
+                <input id="dadosFor"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" disabled>
             </div>
             <label>FRETE</label>
-            <label style="margin-left: 43%;">ICMS</label>
+            <label id="textIcms">ICMS</label>
+            <label id="textCnpj" class="form-label">CNPJ</label>
             <div class="input-group">
                 <input name="frete" class="form-control" type="text" placeholder="FRETE">
                 <input style="margin-left: 28px;" name="icms" class="form-control" type="text" placeholder="ICMS">
+                <input id="dadosFor"  type="text" name="cnpj" class="form-control" placeholder="CNPJ" disabled>
             </div>
             <div class="mb-3">
                 <label>VALOR TOTAL</label>
-                <input class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
+                <input id="valorTotal" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
             </div>
 
-            <input style="margin-left: 85%" type="submit" class="btn btn-primary" value="INSERIR">
+            <input style="margin-left: 53%" type="submit" class="btn btn-primary" value="INSERIR">           
+
         </form>
 
         <table style="margin-top: 1%" class="table">
