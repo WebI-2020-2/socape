@@ -71,17 +71,23 @@ $fornecedores = new FornecedoresController();
         if (isset($_GET['msg'])) if ($_GET['msg'] == 1) echo "<h1>INFORME O FORNECEDOR!</h1>";
         ?>
 
+        <style>
+            #realizarEntrada{
+                margin-left: 40%;
+                margin-top: 20px;
+            }
+        </style>
         <form id="realizarEntrada" method="POST" action="./realizarEntrada.php">
             <div class="mb-3">
                 <label class="form-label">FORNECEDOR</label>
-                <input id="barraPesquisa" class="form-control" type="text" placeholder="FORNECEDOR">
+                <input style="width: 130%;" id="barraPesquisa" class="form-control" type="text" placeholder="FORNECEDOR">
                 <input id="idfornecedor" type="hidden" name="idfornecedor" required>
             </div>
 
-            <input type="button" class="btn btn-light" value="DAR ENTRADA">
+            <input style="margin-left: 67%"  type="button" class="btn btn-primary" value="DAR ENTRADA">
         </form>
 
-        <table class="table">
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>

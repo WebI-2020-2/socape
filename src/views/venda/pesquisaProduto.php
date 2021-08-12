@@ -56,15 +56,51 @@ $motores = new MotorController();
                 margin-left: 20%;
                 margin-top: 10px;
             }
-            #pesquisar{
+           
+            @media (min-width:  768px) { 
+                #pesquisar{
                 margin-top: 3%;
                 width:30%;
-                margin-left: 70%;
+                margin-left: 82%;
+                }   
+                #MODELO{
+                    margin-left: 42%;
+                }
+                #ANO{
+                    margin-left: 17%;
+                }
+                #MARCA{
+                    margin-left: 37%;
+                }
+                #REFERÊNCIA{
+                    margin-left: 34%;
+                }
+                
+            }
+            @media (min-width: 1200px) { 
+                #pesquisar{
+                margin-top: 3%;
+                width:30%;
+                margin-left: 87%;
+                }   
+                #MODELO{
+                    margin-left: 44%;
+                }
+                #ANO{
+                    margin-left: 26%;
+                }
+                #MARCA{
+                    margin-left: 40.4%;
+                }
+                #REFERÊNCIA{
+                    margin-left: 38%;
+                }
+                
             }
         </style>
         <form method="post" action="">
             <label>MOTOR</label>
-            <label style="margin-left: 42%;">MODELO DO CARRO</label>
+            <label id="MODELO">MODELO DO CARRO</label>
             <div class="input-group">
                 <select class="form-control" name="idmotor">
                     <option selected disabled>SELECIONE</option>
@@ -82,7 +118,7 @@ $motores = new MotorController();
                 </select>
             </div>
             <label>QUANTIDADE DE VÁLVULAS</label>
-            <label style="margin-left: 17%;">ANO DE FABRICAÇÃO</label>
+            <label id="ANO">ANO DE FABRICAÇÃO</label>
             <div class="input-group">
                 <select class="form-control" name="idvalvulas">
                     <option selected disabled>SELECIONE</option>
@@ -100,7 +136,7 @@ $motores = new MotorController();
                 </select>
             </div>
             <label>CATEGORIA</label>
-            <label style="margin-left: 37%;">MARCA</label>
+            <label id="MARCA">MARCA</label>
             <div class="input-group">
                 <select class="form-control" name="idcategoria">
                     <option selected disabled>SELECIONE</option>
@@ -118,7 +154,7 @@ $motores = new MotorController();
                 </select>
             </div>
             <label>LOCALIZAÇÃO</label>
-            <label style="margin-left: 34%;">REFERÊNCIA</label>
+            <label id="REFERÊNCIA">REFERÊNCIA</label>
             <div class="input-group">
                     <select class="form-control" name="idlocalizacao" class="form-control">
                         <option selected disabled>SELECIONE</option>
@@ -130,7 +166,7 @@ $motores = new MotorController();
                     <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" />
             </div>
             <div id="pesquisar" class="mb-3">
-                <input class="form-control" type="submit" value="PESQUISAR" />     
+                <input  class="btn btn-primary" type="submit" value="PESQUISAR" />     
             </div>
         </form>
 
@@ -166,7 +202,7 @@ $motores = new MotorController();
                         <td><?= $obj->getValorvenda() ?></td>
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
-                            <button class="btn btn-sm btn-light" onclick="refreshParent(<?= $obj->getIdproduto() ?>);">SELECIONAR</button>
+                            <button class="btn btn-sm btn-primary" onclick="refreshParent(<?= $obj->getIdproduto() ?>);">SELECIONAR</button>
                         </td>
                     </tr>
                 <?php } ?>

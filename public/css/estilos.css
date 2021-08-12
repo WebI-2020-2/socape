@@ -66,6 +66,7 @@ h1 {
 h1 > span {
   padding: 4px 15px 3px 15px !important;
   border-radius: 50px !important;
+  
 }
 
 
@@ -77,7 +78,8 @@ form {
 }
 
 .table {
-  color: #ffffff;
+  color: #000000;
+  background-color: #ffffff;
 }
 
 #produtos {
