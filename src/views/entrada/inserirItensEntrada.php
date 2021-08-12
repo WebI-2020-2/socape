@@ -162,7 +162,7 @@ $produtos = new ProdutosController();
                     <th>IPI</th>
                     <th>FRETE</th>
                     <th>ICMS</th>
-                    <th width="20%">AÇÕES</th>
+                    <!--<th width="20%">AÇÕES</th>-->
                 </tr>
             </thead>
             <tbody>

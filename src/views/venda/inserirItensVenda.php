@@ -181,7 +181,7 @@ $produtos = new ProdutosController();
                     <th>VALOR DE VENDA</th>
                     <th>DESCONTO</th>
                     <th>LUCRO</th>
-                    <th width="20%">AÇÕES</th>
+                    <!--<th width="20%">AÇÕES</th>-->
                 </tr>
             </thead>
             <tbody>
