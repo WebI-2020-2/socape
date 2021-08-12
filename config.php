@@ -1,10 +1,10 @@
 <?php
 
-$SERVER = 'tuffi.db.elephantsql.com';
-$USER = 'jdmqtnly';
-$PASS = 'FJWWHGwq2OcF6mL3SX9ljlOQQpcRiFa4';
+$SERVER = '177.38.183.28';
+$USER = 'socape';
+$PASS = 'socape20181108';
 $PORT = '5432';
-$DATABASE = 'jdmqtnly';
+$DATABASE = 'socape';
 define('URLCONNECTION', 'pgsql:host='.$SERVER.';port='.$PORT.';dbname='.$DATABASE);
 define('USER', $USER);
 define('PASS', $PASS);
