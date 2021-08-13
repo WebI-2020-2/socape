@@ -78,6 +78,7 @@ $fornecedores = new FornecedoresController();
             }
         </style>
         <form id="realizarEntrada" method="POST" action="./realizarEntrada.php">
+        
             <div class="mb-3">
                 <label class="form-label">FORNECEDOR</label>
                 <input style="width: 130%;" id="barraPesquisa" class="form-control" type="text" placeholder="FORNECEDOR">
