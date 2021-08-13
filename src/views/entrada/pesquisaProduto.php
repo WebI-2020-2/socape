@@ -53,7 +53,7 @@ $motores = new MotorController();
             
             form{
                 width: 60%;
-                margin-left: 20%;
+                margin-left: 5%;
                 margin-top: 10px;
             }
            
@@ -61,19 +61,37 @@ $motores = new MotorController();
                 #pesquisar{
                 margin-top: 3%;
                 width:30%;
-                margin-left: 82%;
+                margin-left: 78%;
                 }   
                 #MODELO{
                     margin-left: 42%;
                 }
                 #ANO{
-                    margin-left: 17%;
+                    margin-left: 15.4%;
                 }
                 #MARCA{
-                    margin-left: 37%;
+                    margin-left: 36.8%;
                 }
                 #REFERÊNCIA{
-                    margin-left: 34%;
+                    margin-left: 33.4%;
+                }
+                #preferencias{
+                    background-image: linear-gradient(to bottom, #272020, #8c1818);
+                    width: 100%;
+                    
+                    border: double;
+                }
+                #titulo2{
+                    text-align: left;
+                    margin-top:3%;
+                    margin-bottom:1%;
+                    margin-left:10px;
+                }
+                #dados{
+                    margin-top: 10px;
+                    margin-left: 20px;
+                    margin-right:20px;
+                    margin-bottom: 20px;
                 }
                 
             }
@@ -81,13 +99,13 @@ $motores = new MotorController();
                 #pesquisar{
                 margin-top: 3%;
                 width:30%;
-                margin-left: 87%;
+                margin-left: 84%;
                 }   
                 #MODELO{
                     margin-left: 44%;
                 }
                 #ANO{
-                    margin-left: 26%;
+                    margin-left: 25%;
                 }
                 #MARCA{
                     margin-left: 40.4%;
@@ -99,75 +117,85 @@ $motores = new MotorController();
             }
         </style>
         <form method="post" action="">
-            <label>MOTOR</label>
-            <label id="MODELO">MODELO DO CARRO</label>
-            <div class="input-group">
-                <select class="form-control" name="idmotor">
-                    <option selected disabled>SELECIONE</option>
-                    <?php
-                    foreach ($motores->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia() ?></option>
-                    <?php } ?>
-                </select>
-                <select style="margin-left: 28px;"  class="form-control" name="idcarro">
-                    <option selected disabled>SELECIONE</option>
-                    <?php
-                    foreach ($carros->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo() ?></option>
-                    <?php } ?>
-                </select>
+            <div id="preferencias">
+                <h1 id="titulo2">
+                    <span class="badge bg-light text-dark">PREFERÊNCIAS DA PESQUISA</span>
+                </h1>
+                <div id="dados">
+                    <label>MOTOR</label>
+                    <label id="MODELO">MODELO DO CARRO</label>
+                    <div class="input-group">
+                        <select class="form-control" name="idmotor">
+                            <option selected disabled>SELECIONE</option>
+                            <?php
+                            foreach ($motores->findAll() as $obj) { ?>
+                                <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia() ?></option>
+                            <?php } ?>
+                        </select>
+                        <select style="margin-left: 28px;"  class="form-control" name="idcarro">
+                            <option selected disabled>SELECIONE</option>
+                            <?php
+                            foreach ($carros->findAll() as $obj) { ?>
+                                <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo() ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <label>QUANTIDADE DE VÁLVULAS</label>
+                    <label id="ANO">ANO DE FABRICAÇÃO</label>
+                    <div class="input-group">
+                        <select class="form-control" name="idvalvulas">
+                            <option selected disabled>SELECIONE</option>
+                            <?php
+                            foreach ($valvulas->findAll() as $obj) { ?>
+                                <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade() ?></option>
+                            <?php } ?>
+                        </select>
+                        <select style="margin-left: 28px;" class="form-control" name="idfabricacao">
+                            <option selected disabled>SELECIONE</option>
+                            <?php
+                            foreach ($fabricacoes->findAll() as $obj) { ?>
+                                <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno() ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <label>CATEGORIA</label>
+                    <label id="MARCA">MARCA</label>
+                    <div class="input-group">        
+                        <select class="form-control" name="idcategoria">
+                            <option selected disabled>SELECIONE</option>
+                            <?php
+                            foreach ($categorias->findAll() as $obj) { ?>
+                                <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria() ?></option>
+                            <?php } ?>
+                        </select>
+                        <select style="margin-left: 28px;" class="form-control" name="idmarca">
+                            <option selected disabled>SELECIONE</option>
+                            <?php
+                            foreach ($marcas->findAll() as $obj) { ?>
+                                <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <label>LOCALIZAÇÃO</label>
+                    <label id="REFERÊNCIA">REFERÊNCIA</label>
+                    <div class="input-group">
+                        <select class="form-control" name="idlocalizacao" class="form-control">
+                                <option selected disabled>SELECIONE</option>
+                                <?php
+                                foreach ($localizacoes->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
+                                <?php } ?>
+                            </select>
+                            <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" />   
+                    </div>
+                    
+                </div>
+                <div id="pesquisar" class="mb-3">
+                    <input class="btn btn-primary" type="submit" value="PESQUISAR" />
+                </div>
             </div>
-            <label>QUANTIDADE DE VÁLVULAS</label>
-            <label id="ANO">ANO DE FABRICAÇÃO</label>
-            <div class="input-group">
-                <select class="form-control" name="idvalvulas">
-                    <option selected disabled>SELECIONE</option>
-                    <?php
-                    foreach ($valvulas->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade() ?></option>
-                    <?php } ?>
-                </select>
-                <select style="margin-left: 28px;" class="form-control" name="idfabricacao">
-                    <option selected disabled>SELECIONE</option>
-                    <?php
-                    foreach ($fabricacoes->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno() ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-            <label>CATEGORIA</label>
-            <label id="MARCA">MARCA</label>
-            <div class="input-group">        
-                <select class="form-control" name="idcategoria">
-                    <option selected disabled>SELECIONE</option>
-                    <?php
-                    foreach ($categorias->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria() ?></option>
-                    <?php } ?>
-                </select>
-                <select style="margin-left: 28px;" class="form-control" name="idmarca">
-                    <option selected disabled>SELECIONE</option>
-                    <?php
-                    foreach ($marcas->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-            <label>LOCALIZAÇÃO</label>
-            <label id="REFERÊNCIA">REFERÊNCIA</label>
-            <div class="input-group">
-                <select class="form-control" name="idlocalizacao" class="form-control">
-                        <option selected disabled>SELECIONE</option>
-                        <?php
-                        foreach ($localizacoes->findAll() as $obj) { ?>
-                            <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
-                        <?php } ?>
-                    </select>
-                    <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" />   
-            </div>
-            <div id="pesquisar" class="mb-3">
-                <input class="btn btn-primary" type="submit" value="PESQUISAR" />
-            </div>
+           
+            
     
         </form>
 
