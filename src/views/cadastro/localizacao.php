@@ -57,7 +57,7 @@ $localizacoes = new LocalizacaoController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CADASTRAR LOCALIZAÇÃO</span>
         </h1>

@@ -57,7 +57,7 @@ $valvulas = new ValvulasController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CADASTRAR VÁLVULA</span>
         </h1>

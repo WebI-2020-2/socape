@@ -57,7 +57,7 @@ $carros = new CarroController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CADASTRAR MODELO DE CARRO</span>
         </h1>
