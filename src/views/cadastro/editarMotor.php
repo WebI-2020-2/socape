@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/../../controller/MotorController.php';
+$idmotor = $_GET['id'];
 $motores = new MotorController();
-?>
+$motor = $motores->findOne($idmotor);?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -59,7 +61,7 @@ $motores = new MotorController();
 
     <div id="container">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR POTÊNCIA DO MOTOR</span>
+            <span class="badge bg-light text-dark">EDITAR POTÊNCIA DO MOTOR</span>
         </h1>
 
         <?php
@@ -78,7 +80,7 @@ $motores = new MotorController();
 
             if (!$err) {
                 try {
-                    $motor->insert($motor->getPotencia());
+                    $motor->update($idmotor, $data['potencia']);
                     echo
                     '<script>
                         alert("Potência de motor cadastrada com sucesso!");
@@ -93,10 +95,13 @@ $motores = new MotorController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">POTÊNCIA DO MOTOR</label>
-                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" required>
+                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" value="<?= $motor->getPotencia()?>" disabled>
             </div>
-
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <div class="mb-3">
+                <label class="form-label">ATUALIZAR</label>
+                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" value="<?= $motor->getPotencia()?>" required>
+            </div>
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
         <table style="margin-top: 1%"  class="table">
@@ -114,7 +119,7 @@ $motores = new MotorController();
                         <td><?= $obj->getPotencia() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarMotor.php?id=<?= $obj->getIdmotor() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <a href="./editarMotor.php?id=<?= $obj->getPotencia() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
                                 <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
                             </div>
                         </td>

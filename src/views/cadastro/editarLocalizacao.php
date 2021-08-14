@@ -1,7 +1,10 @@
 <?php
-require_once __DIR__ . '/../../controller/MotorController.php';
-$motores = new MotorController();
-?>
+require_once __DIR__ . '/../../controller/LocalizacaoController.php';
+
+$idlocalizacao = $_GET['id'];
+$localizacoes = new LocalizacaoController();
+$localizacao = $localizacoes->findOne($idlocalizacao);?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,7 +12,7 @@ $motores = new MotorController();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar motor</title>
+    <title>SOCAPE | Cadastrar localização</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
@@ -59,29 +62,29 @@ $motores = new MotorController();
 
     <div id="container">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR POTÊNCIA DO MOTOR</span>
+            <span class="badge bg-light text-dark">EDITAR LOCALIZAÇÃO</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
-            $motor = new MotorController();
+            $localizacao = new LocalizacaoController();
 
             $err = FALSE;
 
-            if (!$data['potencia']) {
-                echo "<h1>INFORME A POTÊNCIA DO MOTOR!</h1>";
+            if (!$data['departamento']) {
+                echo "<h1>INFORME O DEPARTAMENTO!</h1>";
                 $err = TRUE;
             }
 
-            $motor->setPotencia($data['potencia']);
+            $localizacao->setDepartamento($data['departamento']);
 
             if (!$err) {
                 try {
-                    $motor->insert($motor->getPotencia());
+                    $localizacao->update($idlocalizacao, $data['departamento']);
                     echo
                     '<script>
-                        alert("Potência de motor cadastrada com sucesso!");
+                        alert("Departamento atualizado com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -92,30 +95,34 @@ $motores = new MotorController();
 
         <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">POTÊNCIA DO MOTOR</label>
-                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" required>
+                <label class="form-label">DEPARTAMENTO</label>
+                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" disabled>
             </div>
+            <div class="mb-3">
+                <label class="form-label">ATUALIZAR</label>
+                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" required>
+            </div>
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
 
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
-
-        <table style="margin-top: 1%"  class="table">
+            
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>POTÊNCIA</th>
+                    <th>LOCALIZAÇÃO</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($motores->findAll() as $obj) { ?>
+                <?php foreach ($localizacoes->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdmotor() ?></td>
-                        <td><?= $obj->getPotencia() ?></td>
+                        <td><?= $obj->getIdlocalizacao() ?></td>
+                        <td><?= $obj->getDepartamento() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarMotor.php?id=<?= $obj->getIdmotor() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
+                                <a href="./editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -125,18 +132,18 @@ $motores = new MotorController();
     </div>
 
     <script>
-        function deletar(id, motor) {
-            if (confirm("Deseja realmente excluir o motor " + motor + "?")) {
+        function deletar(id, localizacao) {
+            if (confirm("Deseja realmente excluir a localização " + localizacao + "?")) {
                 $.ajax({
-                    url: '../apagar/motor.php',
+                    url: '../apagar/localizacao.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Potência de motor excluída com sucesso!");
-                            window.location.href = './motor.php';
+                            alert("Localização excluída com sucesso!");
+                            window.location.href = './localizacao.php';
                         } else {
                             alert(res["msg"]);
                         }

@@ -81,7 +81,7 @@ $fabricacoes = new FabricacaoController();
                     $fabricacao->insert($fabricacao->getAno());
                     echo
                     '<script>
-                        alert("Modelo de carro cadastrado com sucesso!");
+                        alert("Ano de Fabricação cadastrado com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -114,7 +114,8 @@ $fabricacoes = new FabricacaoController();
                         <td><?= $obj->getAno() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
+                                <a href="./editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
