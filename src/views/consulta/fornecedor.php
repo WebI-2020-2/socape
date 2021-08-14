@@ -57,7 +57,7 @@ $fornecedores = new FornecedoresController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR FORNECEDOR</span>
         </h1>

@@ -57,7 +57,7 @@ $clientes = new ClientesController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR CLIENTE</span>
         </h1>
@@ -106,7 +106,7 @@ $clientes = new ClientesController();
             }
         } ?>
 
-        <table style="margin-top: 1%"  class="table">
+        <table style="margin-top: 2%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>

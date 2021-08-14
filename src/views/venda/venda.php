@@ -65,7 +65,7 @@ $formas = new FormaPagamentoController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">VENDAS</span>
         </h1>
