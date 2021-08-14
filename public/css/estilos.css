@@ -119,6 +119,13 @@ form {
   padding: 4px 15px 3px 15px;
   border-radius: 50px;
 }
+#consultproduct{
+  width: 350px;
+  height:42px;
+  border-radius: 30px 30px 30px 30px !important;
+  margin-left: 40px;
+}
+
 
 #divBusca{
   background-color:#ffffff;

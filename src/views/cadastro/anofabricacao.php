@@ -57,7 +57,7 @@ $fabricacoes = new FabricacaoController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CADASTRAR ANO DE FABRICAÇÃO</span>
         </h1>
