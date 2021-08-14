@@ -3,18 +3,10 @@ if (!$_GET['identrada']) header('Location: ./entrada.php');
 require_once __DIR__ . '/../../controller/ItensEntradaController.php';
 $itensEntrada = new ItensEntradaController();
 
-require_once __DIR__ . '/../../controller/EntradasController.php';
-$entrada = new EntradasController();
-$entrada = $entrada->findOne($_GET['identrada']);
-echo $entrada->getIdfornecedor();
+$identrada = $_GET['identrada'];
 
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
-
-require_once __DIR__ . '/../../controller/FornecedoresController.php';
-$fornecedores = new FornecedoresController();
-$fornecedor = $fornecedores->findOne($entrada->getIdfornecedor());
-echo $fornecedores->getNome();
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
@@ -81,7 +73,7 @@ echo $fornecedores->getNome();
         <?php
         if ($_POST) {
             $itemEntrada = new ItensEntradaController();
-            $itemEntrada->setIdentrada($entrada->getIdentrada());
+            $itemEntrada->setIdentrada($identrada);
             $itemEntrada->setIdproduto($_POST['idproduto']);
             $itemEntrada->setPrecocompra($_POST['precoCompra']);
             $itemEntrada->setQuantidade($_POST['quantidade']);
@@ -228,7 +220,7 @@ echo $fornecedores->getNome();
                         ?>
                         <input style="background-color:#fffed9" id="produto" type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled />
                         <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" />
-                        <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $_GET['identrada'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                        <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $identrada ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                             PESQUISAR
                         </a>
                     </div>
@@ -277,7 +269,7 @@ echo $fornecedores->getNome();
             </thead>
             <tbody>
                 <?php
-                foreach ($itensEntrada->findAllByIdEntrada($entrada->getIdentrada()) as $obj) { ?>
+                foreach ($itensEntrada->findAllByIdEntrada($identrada) as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIditensentrada(); ?></td>
                         <td><?= $obj->getIdentrada(); ?></td>
