@@ -6,9 +6,15 @@ $itensEntrada = new ItensEntradaController();
 require_once __DIR__ . '/../../controller/EntradasController.php';
 $entrada = new EntradasController();
 $entrada = $entrada->findOne($_GET['identrada']);
+echo $entrada->getIdfornecedor();
 
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
+
+require_once __DIR__ . '/../../controller/FornecedoresController.php';
+$fornecedores = new FornecedoresController();
+$fornecedor = $fornecedores->findOne($entrada->getIdfornecedor());
+echo $fornecedores->getNome();
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
@@ -171,15 +177,16 @@ $produtos = new ProdutosController();
                 <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $_GET['identrada'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                     PESQUISAR
                 </a>
-                <input id="dadosFor" type="text" name="nome" class="form-control" placeholder="NOME" disabled>
+                <input id="dadosFor" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" disabled>
+                
             </div>
             <label>PREÇO COMPRA</label>
             <label id="textQuant">QUANTIDADE</label>
             <label id="textEnd">ENDEREÇO</label>
             <div class="input-group">    
                 <input name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA">
-                <input style="margin-left: 28px;" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE">
-                <input id="dadosFor"  type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" disabled>
+                <input style="margin-left: 28px;" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE"> 
+                <input id="dadosFor"  type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco();?>" disabled>
             </div>
             <label>UNIDADE</label>
             <label id="textIpi">IPI</label>
@@ -187,15 +194,15 @@ $produtos = new ProdutosController();
             <div class="input-group">
                 <input name="unidade" class="form-control" type="text" placeholder="UNIDADE">
                 <input style="margin-left: 28px;" name="ipi" class="form-control" type="text" placeholder="IPI">
-                <input id="dadosFor"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" disabled>
+                <input id="dadosFor"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone();?>" disabled>
             </div>
             <label>FRETE</label>
             <label id="textIcms">ICMS</label>
             <label id="textCnpj" class="form-label">CNPJ</label>
             <div class="input-group">
                 <input name="frete" class="form-control" type="text" placeholder="FRETE">
-                <input style="margin-left: 28px;" name="icms" class="form-control" type="text" placeholder="ICMS">
-                <input id="dadosFor"  type="text" name="cnpj" class="form-control" placeholder="CNPJ" disabled>
+                <input style="margin-left: 28px;" name="ipi" class="form-control" type="text" placeholder="IPI">
+                <input id="dadosFor"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getCnpj(); ?>" disabled>
             </div>
             <div class="mb-3">
                 <label>VALOR TOTAL</label>
@@ -249,3 +256,4 @@ $produtos = new ProdutosController();
 </body>
 
 </html>
+
