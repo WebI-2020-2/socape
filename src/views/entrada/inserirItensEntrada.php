@@ -3,7 +3,13 @@ if (!$_GET['identrada']) header('Location: ./entrada.php');
 require_once __DIR__ . '/../../controller/ItensEntradaController.php';
 $itensEntrada = new ItensEntradaController();
 
-$identrada = $_GET['identrada'];
+require_once __DIR__ . '/../../controller/EntradasController.php';
+$entradas = new EntradasController();
+$entrada = $entradas->findOne($_GET['identrada']);
+
+require_once __DIR__ . '/../../controller/FornecedoresController.php';
+$fornecedores = new FornecedoresController();
+$fornecedor = $fornecedores->findOne($entrada->getIdfornecedor());
 
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
@@ -73,7 +79,7 @@ $produtos = new ProdutosController();
         <?php
         if ($_POST) {
             $itemEntrada = new ItensEntradaController();
-            $itemEntrada->setIdentrada($identrada);
+            $itemEntrada->setIdentrada($entrada->getIdentrada());
             $itemEntrada->setIdproduto($_POST['idproduto']);
             $itemEntrada->setPrecocompra($_POST['precoCompra']);
             $itemEntrada->setQuantidade($_POST['quantidade']);
@@ -105,7 +111,6 @@ $produtos = new ProdutosController();
                 border-radius: 50px;
             }
 
-         
             @media (min-width: 1200px) { 
                 #valorTotal{
                     margin-top: 0%;
@@ -187,17 +192,16 @@ $produtos = new ProdutosController();
                     <span class="badge bg-light text-dark">INFORMAÇÕES DO FORNECEDOR</span>
                 </h1>
                 <div style="margin-top:3%;">
-                    <label id="textNome" >NOME</label>
-                    <label id="texteEnd" >ENDEREÇO</label>
-                    <label id="textTelefone" >TELEFONE</label>
-                    <label id="textCnpj" >CNPJ</label>
+                    <label id="textNome">NOME</label>
+                    <label id="texteEnd">ENDEREÇO</label>
+                    <label id="textTelefone">TELEFONE</label>
+                    <label id="textCnpj">CNPJ</label>
                     
                     <div id="dadosFor" class="input-group">
-                        <input  type="text" name="nome" class="form-control" value="<?= $fornecedor->getNome(); ?>" placeholder="NOME" disabled>
-                        <input style="margin-left:28px;" type="text" name="endereço" class="form-control" value="<?= $fornecedor->getEndereco();?>" disabled>
-                        <input style="margin-left:28px;" type="text" name="telefone" class="form-control" value="<?= $fornecedor->getTelefone();?>" placeholder="TELEFONE" disabled>
+                        <input type="text" name="nome" class="form-control" value="<?= $fornecedor->getNome(); ?>" placeholder="NOME" disabled>
+                        <input style="margin-left:28px;" type="text" name="endereço" class="form-control" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+                        <input style="margin-left:28px;" type="text" name="telefone" class="form-control" value="<?= $fornecedor->getTelefone(); ?>" placeholder="TELEFONE" disabled>
                         <input style="margin-left:28px;" type="text" name="cnpj" class="form-control" value="<?= $fornecedor->getCnpj(); ?>" placeholder="CNPJ" disabled>
-                        
                     </div>
                 </div>
                     
@@ -220,7 +224,7 @@ $produtos = new ProdutosController();
                         ?>
                         <input style="background-color:#fffed9" id="produto" type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled />
                         <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" />
-                        <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $identrada ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                        <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                             PESQUISAR
                         </a>
                     </div>
@@ -229,7 +233,7 @@ $produtos = new ProdutosController();
                     <label style="margin-left: 323px;">QUANTIDADE</label>
                     <label style="margin-left: 348px;">UNIDADE</label>
                     <div class="input-group">    
-                        <input  name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
+                        <input name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
                         <input name="quantidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="QUANTIDADE" required>
                         <input name="unidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="UNIDADE" required>
                     </div>
@@ -269,7 +273,7 @@ $produtos = new ProdutosController();
             </thead>
             <tbody>
                 <?php
-                foreach ($itensEntrada->findAllByIdEntrada($identrada) as $obj) { ?>
+                foreach ($itensEntrada->findAllByIdEntrada($entrada->getIdentrada()) as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIditensentrada(); ?></td>
                         <td><?= $obj->getIdentrada(); ?></td>
