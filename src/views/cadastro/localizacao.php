@@ -114,7 +114,8 @@ $localizacoes = new LocalizacaoController();
                         <td><?= $obj->getDepartamento() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
+                                <a href="./editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>

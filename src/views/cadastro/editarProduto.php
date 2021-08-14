@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/../../controller/ProdutosController.php';
+$idproduto = $_GET['id'];
 $produtos = new ProdutosController();
+$produto = $produtos->findOne($idproduto);
+
 
 require_once __DIR__ . '/../../controller/MotorController.php';
 $motores = new MotorController();
@@ -22,6 +25,7 @@ $categorias = new CategoriaController();
 
 require_once __DIR__ . '/../../controller/MarcasController.php';
 $marcas = new MarcasController();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -151,17 +155,16 @@ $marcas = new MarcasController();
 
             if (!$err) {
                 try {
-                    $produto->insert(
-                        $produto->getIdmotor(),
-                        $produto->getIdcarro(),
-                        $produto->getIdvalvulas(),
-                        $produto->getIdfabricacao(),
-                        $produto->getIdcategoria(),
-                        $produto->getIdmarca(),
-                        $produto->getIcms(),
-                        $produto->getIpi(),
-                        $produto->getFrete(),
-                        $produto->getValornafabrica(),
+                    $produto->update(
+                        $idmotor, $data['idmotor'],
+                        $idcarro, $data['idcarro'],
+                        $idvalvula, $data['idvalvula'],
+                        $idfabricacao, $data['idfabricacao'],
+                        $idcategoria, $data['idcategoria'],
+                        $idmarca, $data['idmarca'],
+                        $idlocalizacao, $data['idlocalizacao'],
+                        $idunidade, $data['idunidade'],
+                        $idreferencia, $data['referencia'],
                         $produto->getValordecompra(),
                         $produto->getLucro(),
                         $produto->getValorvenda(),

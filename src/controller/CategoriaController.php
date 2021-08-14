@@ -52,7 +52,7 @@ class CategoriaController extends Categoria
 
     public function update($idcategoria)
     {
-        $query = "UPDATE $this->tabela SET modelo = :modelo WHERE idcategoria = :idcategoria";
+        $query = "UPDATE $this->tabela SET categoria = :categoria WHERE idcategoria = :idcategoria";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcategoria', $idcategoria, PDO::PARAM_INT);
         $stm->bindValue(':categoria', $this->getCategoria());

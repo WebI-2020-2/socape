@@ -145,7 +145,8 @@ $clientes = new ClientesController();
                         <td><?= $obj->getDebito() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
+                                <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>

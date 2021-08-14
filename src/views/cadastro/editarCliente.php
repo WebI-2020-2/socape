@@ -1,19 +1,24 @@
 <?php
-require_once __DIR__ . '/../../controller/FabricacaoController.php';
-$fabricacoes = new FabricacaoController();
+if (!$_GET['id']) header('Location: ./cliente.php');
+require_once __DIR__ . '/../../controller/ClientesController.php';
+
+$idcliente = $_GET['id'];
+$clientes = new ClientesController();
+$cliente = $clientes->findOne($idcliente);
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html class="no-js" lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar ano de fabricação</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOCAPE | Editar cliente</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 </head>
 
 <body>
@@ -59,63 +64,105 @@ $fabricacoes = new FabricacaoController();
 
     <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR ANO DE FABRICAÇÃO</span>
+            <span class="badge bg-light text-dark">EDITAR CLIENTE</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
-            $fabricacao = new FabricacaoController();
+            $cliente = new ClientesController();
 
             $err = FALSE;
 
-            if (!$data['ano']) {
-                echo "<h1>INFORME O ANO DE FABRICAÇÃO!</h1>";
+            if (!$data['nome']) {
+                echo "<h1>INFORME O NOME DO CLIENTE!</h1>";
                 $err = TRUE;
             }
+            if (!$data['telefone']) {
+                echo "<h1>INFORME O TELEFONE DO CLIENTE!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['cpf']) {
+                echo "<h1>INFORME O CPF DO CLIENTE!</h1>";
+                $err = TRUE;
+            }
+            $cliente->setNome($data['nome']);
+            $cliente->setTelefone($data['telefone']);
+            $cliente->setCpf($data['cpf']);
 
-            $fabricacao->setAno($data['ano']);
 
             if (!$err) {
                 try {
-                    $fabricacao->insert($fabricacao->getAno());
+                    $clientes->updatePF($idcliente, $data['nome'], $data['telefone'], $data['cpf']);
                     echo
                     '<script>
-                        alert("Ano de Fabricação cadastrado com sucesso!");
+                        alert("Cliente atualizado com sucesso!");
                     </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                    
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
                 }
             }
         }
         ?>
 
-        <form action="" method="POST">
+        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />    
+        <form action="" method="post">
             <div class="mb-3">
-                <label class="form-label">ANO DE FABRICAÇÃO</label>
-                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
+                <label class="form-label">NOME</label>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
             </div>
-
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <div class="mb-3">
+                <label class="form-label">TELEFONE</label>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
+            </div>
+            <div class="mb-3">
+                <?php
+                if (empty($cliente->getCpf())) {
+                ?>
+                    <label class="form-label">CNPJ</label>
+                    <div>
+                        <input style="width: 130%" type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
+                    </div>
+                <?php
+                } else {
+                ?>
+                    <label class="form-label">CPF</label>
+                    <div>
+                        <input style="width: 130%" type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
+                    </div>
+                <?php
+                }
+                ?>
+                <br>
+                
+                
+            </div>
+            <input style="margin-left: 80% " type="button" class="btn btn-primary"  onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
         </form>
-
         <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ANO DE FABRICAÇÃO</th>
+                    <th>NOME</th>
+                    <th>TELEFONE</th>
+                    <th>CPF</th>
+                    <th>DÉBITO</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($fabricacoes->findAll() as $obj) { ?>
+                <?php foreach ($clientes->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdfabricacao() ?></td>
-                        <td><?= $obj->getAno() ?></td>
+                        <td><?= $obj->getIdcliente() ?></td>
+                        <td><?= $obj->getNome() ?></td>
+                        <td><?= $obj->getTelefone() ?></td>
+                        <td><?= $obj->getCpf() ?></td>
+                        <td><?= $obj->getDebito() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
+                                <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -124,28 +171,6 @@ $fabricacoes = new FabricacaoController();
         </table>
     </div>
 
-    <script>
-        function deletar(id, ano) {
-            if (confirm("Deseja realmente excluir o ano de fabricação " + ano + "?")) {
-                $.ajax({
-                    url: '../apagar/anoFabricacao.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Ano de fabricação excluído com sucesso!");
-                            window.location.href = './anofabricacao.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

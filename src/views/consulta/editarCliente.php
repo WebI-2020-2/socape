@@ -82,6 +82,10 @@ $cliente = $clientes->findOne($idcliente);
                 echo "<h1>INFORME O CPF DO CLIENTE!</h1>";
                 $err = TRUE;
             }
+            $cliente->setNome($data['nome']);
+            $cliente->setTelefone($data['telefone']);
+            $cliente->setCpf($data['cpf']);
+
 
             if (!$err) {
                 try {

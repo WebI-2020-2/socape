@@ -6,9 +6,13 @@ $itensVenda = new ItensVendaController();
 require_once __DIR__ . '/../../controller/VendasController.php';
 $venda = new VendasController();
 $venda = $venda->findOne($_GET['idvenda']);
-
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
+
+require_once __DIR__ . '/../../controller/ClientesController.php';
+$clientes = new ClientesController(); 
+
+$cliente = $clientes->findOne($venda->getIdcliente());
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
@@ -203,6 +207,46 @@ $produtos = new ProdutosController();
         
        
         <form method="POST" action="">
+            <h1 id="titulo2">
+                <span class="badge bg-light text-dark">Dados Cliente</span>
+            </h1>
+            <label>PRODUTO</label>
+            <label id="textNome">NOME</label>
+            <div class="input-group">
+                <?php
+                $inputProduto = "";
+                if (isset($_GET['idproduto'])) {
+                    $produto = $produtos->findOne($_GET['idproduto']);
+                    $inputProduto = $produto->getReferencia();
+                }
+                ?> 
+                <input id="produto"  type="text" class="form-control" placeholder="PRODUTO" value="<?= $inputProduto ?>" disabled>
+                <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" required>
+                <a id="pesquisar"class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                    PESQUISAR
+                </a>
+                <input id="dadosFor" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
+            </div>
+            <label class="form-label">QUANTIDADE</label>
+            <label id="textValor">VALOR</label>
+            <label id="textTelefone">TELEFONE</label>
+            <div class="input-group">
+                <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
+                <input style="margin-left: 28px;" name="valorvenda" class="form-control" placeholder="VALOR" required>
+                <input id="dadosFor"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" disabled>
+            </div>
+                 
+            <label class="form-label">DESCONTO</label>  
+            <label id="textLucro">LUCRO</label>
+            <label id="textCpf">CPF</label>
+            <div class="input-group">
+                <input name="desconto" class="form-control" placeholder="DESCONTO" required>
+                <input style="margin-left: 28px;" name="lucro" class="form-control" placeholder="LUCRO" required>
+                <input id="dadosFor"  type="text" name="cpf" class="form-control" placeholder="CPF" value="<?= $cliente->getCpf(); ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label>VALOR TOTAL</label>
+                <input id="valorTotal" class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
             <div id="cliente">
                 <h1 id="titulo2">
                     <span class="badge bg-light text-dark">INFORMAÇÕES DO CLIENTE</span>

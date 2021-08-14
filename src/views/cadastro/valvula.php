@@ -114,7 +114,8 @@ $valvulas = new ValvulasController();
                         <td><?= $obj->getQuantidade() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">APAGAR</button>
+                                <a href="./editarValvula.php?id=<?= $obj->getValvula() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>

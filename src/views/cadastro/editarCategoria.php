@@ -1,7 +1,10 @@
 <?php
-require_once __DIR__ . '/../../controller/FabricacaoController.php';
-$fabricacoes = new FabricacaoController();
+require_once __DIR__ . '/../../controller/CategoriaController.php';
+$idcategoria = $_GET['id'];
+$categorias = new CategoriaController();
+$categoria = $categorias->findOne($idcategoria);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,14 +12,14 @@ $fabricacoes = new FabricacaoController();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar ano de fabricação</title>
+    <title>SOCAPE | Cadastrar categoria</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
-<body>
+<body >
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
@@ -57,31 +60,31 @@ $fabricacoes = new FabricacaoController();
         </div>
     </nav>
 
-    <div id="containerlimitado">
+    <div id="containerlimitado" >
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR ANO DE FABRICAÇÃO</span>
+            <span class="badge bg-light text-dark">EDITAR CATEGORIA</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
-            $fabricacao = new FabricacaoController();
+            $categoria = new CategoriaController();
 
             $err = FALSE;
 
-            if (!$data['ano']) {
-                echo "<h1>INFORME O ANO DE FABRICAÇÃO!</h1>";
+            if (!$data['categoria']) {
+                echo "<h1>INFORME A CATEGORIA!</h1>";
                 $err = TRUE;
             }
 
-            $fabricacao->setAno($data['ano']);
+            $categoria->setCategoria($data['categoria']);
 
             if (!$err) {
                 try {
-                    $fabricacao->insert($fabricacao->getAno());
+                    $categoria->update($idcategoria, $data['categoria']);
                     echo
                     '<script>
-                        alert("Ano de Fabricação cadastrado com sucesso!");
+                        alert("Categoria atualizada com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -92,30 +95,33 @@ $fabricacoes = new FabricacaoController();
 
         <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">ANO DE FABRICAÇÃO</label>
-                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
+                <label class="form-label">CATEGORIA</label>
+                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria()?>" disabled>
             </div>
-
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <div class="mb-3">
+                <label class="form-label">ATUALIZAR</label>
+                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria()?>" required>
+            </div>
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
-        <table style="margin-top: 1%"  class="table">
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ANO DE FABRICAÇÃO</th>
+                    <th>CATEGORIA</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($fabricacoes->findAll() as $obj) { ?>
+                <?php foreach ($categorias->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdfabricacao() ?></td>
-                        <td><?= $obj->getAno() ?></td>
+                        <td><?= $obj->getIdcategoria() ?></td>
+                        <td><?= $obj->getCategoria() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
+                                <a href="./editarCategoria.php?id=<?= $obj->getIdcategoria() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -125,18 +131,18 @@ $fabricacoes = new FabricacaoController();
     </div>
 
     <script>
-        function deletar(id, ano) {
-            if (confirm("Deseja realmente excluir o ano de fabricação " + ano + "?")) {
+        function deletar(id, categoria) {
+            if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
                 $.ajax({
-                    url: '../apagar/anoFabricacao.php',
+                    url: '../apagar/categoria.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Ano de fabricação excluído com sucesso!");
-                            window.location.href = './anofabricacao.php';
+                            alert("Categoria excluída com sucesso!");
+                            window.location.href = './categoria.php';
                         } else {
                             alert(res["msg"]);
                         }

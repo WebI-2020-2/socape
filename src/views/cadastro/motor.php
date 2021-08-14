@@ -114,7 +114,8 @@ $motores = new MotorController();
                         <td><?= $obj->getPotencia() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
+                                <a href="./editarMotor.php?id=<?= $obj->getIdmotor() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>

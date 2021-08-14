@@ -1,19 +1,25 @@
 <?php
-require_once __DIR__ . '/../../controller/FabricacaoController.php';
-$fabricacoes = new FabricacaoController();
+if (!$_GET['id']) header('Location: ./fornecedor.php');
+require_once __DIR__ . '/../../controller/FornecedoresController.php';
+
+$idfornecedor = $_GET['id'];
+$fornecedores = new FornecedoresController();
+$fornecedor = $fornecedores->findOne($idfornecedor);
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html class="no-js" lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar ano de fabricação</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOCAPE | Editar fornecedor</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
+    <link href="./../../../public/css/cadastrar.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 </head>
 
 <body>
@@ -59,63 +65,90 @@ $fabricacoes = new FabricacaoController();
 
     <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR ANO DE FABRICAÇÃO</span>
+            <span class="badge bg-light text-dark">EDITAR FORNECEDOR</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
-            $fabricacao = new FabricacaoController();
-
             $err = FALSE;
 
-            if (!$data['ano']) {
-                echo "<h1>INFORME O ANO DE FABRICAÇÃO!</h1>";
+            if (!$data['nome']) {
+                echo "<h1>INFORME O NOME DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['endereco']) {
+                echo "<h1>INFORME O ENDEREÇO DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['telefone']) {
+                echo "<h1>INFORME O TELEFONE DO FORNECEDOR!</h1>";
+                $err = TRUE;
+            }
+            if (!$data['cnpj']) {
+                echo "<h1>INFORME O CNPJ DO FORNECEDOR!</h1>";
                 $err = TRUE;
             }
 
-            $fabricacao->setAno($data['ano']);
-
             if (!$err) {
                 try {
-                    $fabricacao->insert($fabricacao->getAno());
+                    $fornecedores->update($idfornecedor, $data['nome'], $data['endereco'], $data['telefone'], $data['cnpj']);
                     echo
                     '<script>
-                        alert("Ano de Fabricação cadastrado com sucesso!");
+                        alert("Cliente atualizado com sucesso!");
+                        window.location.href = "./fornecedor.php";
                     </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
                 }
             }
         }
         ?>
 
-        <form action="" method="POST">
+        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
+        <form style="margin-left: 25%" action="" method="post">
             <div class="mb-3">
-                <label class="form-label">ANO DE FABRICAÇÃO</label>
-                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
+                <label class="form-label">NOME</label>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">ENDEREÇO</label>
+                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">TELEFONE</label>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">CNPJ</label>
+                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
             </div>
 
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input style="margin-left: 90%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
         </form>
-
         <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ANO DE FABRICAÇÃO</th>
+                    <th>NOME</th>
+                    <th>ENDEREÇO</th>
+                    <th>TELEFONE</th>
+                    <th>CNPJ</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($fabricacoes->findAll() as $obj) { ?>
+                <?php foreach ($fornecedores->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdfabricacao() ?></td>
-                        <td><?= $obj->getAno() ?></td>
+                        <td><?= $obj->getIdfornecedor() ?></td>
+                        <td><?= $obj->getNome() ?></td>
+                        <td><?= $obj->getEndereco() ?></td>
+                        <td><?= $obj->getTelefone() ?></td>
+                        <td><?= $obj->getCnpj() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
+                                <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfornecedor() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -125,18 +158,18 @@ $fabricacoes = new FabricacaoController();
     </div>
 
     <script>
-        function deletar(id, ano) {
-            if (confirm("Deseja realmente excluir o ano de fabricação " + ano + "?")) {
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir o(a) fornecedor(a) " + nome + "?")) {
                 $.ajax({
-                    url: '../apagar/anoFabricacao.php',
+                    url: '../apagar/fornecedor.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Ano de fabricação excluído com sucesso!");
-                            window.location.href = './anofabricacao.php';
+                            alert("Fornecedor excluído com sucesso!");
+                            window.location.href = './fornecedor.php';
                         } else {
                             alert(res["msg"]);
                         }

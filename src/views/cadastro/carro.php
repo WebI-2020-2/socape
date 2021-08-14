@@ -75,6 +75,7 @@ $carros = new CarroController();
             }
 
             $carro->setModelo($data['modelo']);
+   
 
             if (!$err) {
                 try {
@@ -114,7 +115,8 @@ $carros = new CarroController();
                         <td><?= $obj->getModelo() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
+                                <a href="./editarCarro.php?id=<?= $obj->getIdcarro() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>

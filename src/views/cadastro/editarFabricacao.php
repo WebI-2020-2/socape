@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/../../controller/FabricacaoController.php';
+$idfabricacao = $_GET['id'];
 $fabricacoes = new FabricacaoController();
-?>
+$fabricacao = $fabricacoes->findOne($idfabricacao);?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -57,9 +59,9 @@ $fabricacoes = new FabricacaoController();
         </div>
     </nav>
 
-    <div id="containerlimitado">
+    <div id="container">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR ANO DE FABRICAÇÃO</span>
+            <span class="badge bg-light text-dark">ATUALIZAR ANO DE FABRICAÇÃO</span>
         </h1>
 
         <?php
@@ -78,10 +80,10 @@ $fabricacoes = new FabricacaoController();
 
             if (!$err) {
                 try {
-                    $fabricacao->insert($fabricacao->getAno());
+                    $fabricacao->update($fabricacao->getAno());
                     echo
                     '<script>
-                        alert("Ano de Fabricação cadastrado com sucesso!");
+                        alert("Ano de fabricação atualizado com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -93,10 +95,13 @@ $fabricacoes = new FabricacaoController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">ANO DE FABRICAÇÃO</label>
-                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
+                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" value="<?= $fabricacao->getAno(); ?>" disabled>
             </div>
-
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <div class="mb-3">
+                <label class="form-label">ATUALIZAR</label>
+                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" value="<?= $fabricacao->getAno(); ?>" required>
+            </div>
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
         <table style="margin-top: 1%"  class="table">

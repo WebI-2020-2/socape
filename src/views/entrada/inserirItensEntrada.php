@@ -6,9 +6,15 @@ $itensEntrada = new ItensEntradaController();
 require_once __DIR__ . '/../../controller/EntradasController.php';
 $entrada = new EntradasController();
 $entrada = $entrada->findOne($_GET['identrada']);
+echo $entrada->getIdfornecedor();
 
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
+
+require_once __DIR__ . '/../../controller/FornecedoresController.php';
+$fornecedores = new FornecedoresController();
+$fornecedor = $fornecedores->findOne($entrada->getIdfornecedor());
+echo $fornecedores->getNome();
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
@@ -185,7 +191,52 @@ $produtos = new ProdutosController();
 
             }
         </style>
-
+            <label>PRODUTO</label>
+            <label id="textNome">NOME</label>
+            <div class="input-group">
+                
+                <?php
+                $inputProduto = "";
+                if (isset($_GET['idproduto'])) {
+                    $produto = $produtos->findOne($_GET['idproduto']);
+                    $inputProduto = $produto->getReferencia();
+                }
+                ?>
+                <input id="produto" type="text" class="form-control" placeholder="Produto" value="<?= $inputProduto ?>" disabled />
+                <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" />
+                <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $_GET['identrada'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                    PESQUISAR
+                </a>
+                <input id="dadosFor" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" disabled>
+                
+            </div>
+            <label>PREÇO COMPRA</label>
+            <label id="textQuant">QUANTIDADE</label>
+            <label id="textEnd">ENDEREÇO</label>
+            <div class="input-group">    
+                <input name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA">
+                <input style="margin-left: 28px;" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE"> 
+                <input id="dadosFor"  type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco();?>" disabled>
+            </div>
+            <label>UNIDADE</label>
+            <label id="textIpi">IPI</label>
+            <label id="textTelefone">TELEFONE</label>
+            <div class="input-group">
+                <input name="unidade" class="form-control" type="text" placeholder="UNIDADE">
+                <input style="margin-left: 28px;" name="ipi" class="form-control" type="text" placeholder="IPI">
+                <input id="dadosFor"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone();?>" disabled>
+            </div>
+            <label>FRETE</label>
+            <label id="textIcms">ICMS</label>
+            <label id="textCnpj" class="form-label">CNPJ</label>
+            <div class="input-group">
+                <input name="frete" class="form-control" type="text" placeholder="FRETE">
+                <input style="margin-left: 28px;" name="ipi" class="form-control" type="text" placeholder="IPI">
+                <input id="dadosFor"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getCnpj(); ?>" disabled>
+            </div>
+            <div class="mb-3">
+                <label>VALOR TOTAL</label>
+                <input id="valorTotal" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
         <form method="POST" action="" >
             <div id="fornecedor">
                 <h1 id="titulo2">
@@ -303,3 +354,4 @@ $produtos = new ProdutosController();
 </body>
 
 </html>
+

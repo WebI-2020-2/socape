@@ -29,7 +29,7 @@ class FormaPagamentoController extends FormaPagamento
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela ORDER BY condicao";
+        $query = "SELECT * FROM $this->tabela ORDER BY forma";
         $stm = Database::prepare($query);
         $stm->execute();
         $formaPagamento = array();

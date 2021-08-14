@@ -1,7 +1,12 @@
 <?php
-require_once __DIR__ . '/../../controller/FabricacaoController.php';
-$fabricacoes = new FabricacaoController();
+require_once __DIR__ . '/../../controller/MarcasController.php';
+
+$idmarca = $_GET['id'];
+$marcas = new MarcasController();
+$marca = $marcas->findOne($idmarca);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,9 +14,9 @@ $fabricacoes = new FabricacaoController();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar ano de fabricação</title>
+    <title>SOCAPE | Cadastrar marca</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
@@ -59,29 +64,29 @@ $fabricacoes = new FabricacaoController();
 
     <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR ANO DE FABRICAÇÃO</span>
+            <span class="badge bg-light text-dark">EDITAR MARCA</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
-            $fabricacao = new FabricacaoController();
+            $marca = new MarcasController();
 
             $err = FALSE;
 
-            if (!$data['ano']) {
-                echo "<h1>INFORME O ANO DE FABRICAÇÃO!</h1>";
+            if (!$data['marca']) {
+                echo "<h1>INFORME A MARCA!</h1>";
                 $err = TRUE;
             }
 
-            $fabricacao->setAno($data['ano']);
+            $marca->setMarca($data['marca']);
 
             if (!$err) {
                 try {
-                    $fabricacao->insert($fabricacao->getAno());
+                    $marca->update($idmarca, $data['marca']);
                     echo
                     '<script>
-                        alert("Ano de Fabricação cadastrado com sucesso!");
+                        alert("Marca atualizada com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -92,30 +97,33 @@ $fabricacoes = new FabricacaoController();
 
         <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">ANO DE FABRICAÇÃO</label>
-                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
+                <label class="form-label">MARCA</label>
+                <input style="width: 130%" type="text" name="marca" class="form-control" placeholder="MARCA" value="<?= $marca->getMarca(); ?>" disabled>
             </div>
-
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <div class="mb-3">
+                <label class="form-label">ATUALIZAR</label>
+                <input style="width: 130%" type="text" name="marca" class="form-control" placeholder="MARCA" value="<?=$marca->getMarca(); ?>" required>
+            </div>
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
         <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>ANO DE FABRICAÇÃO</th>
+                    <th>MARCA</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($fabricacoes->findAll() as $obj) { ?>
+                <?php foreach ($marcas->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdfabricacao() ?></td>
-                        <td><?= $obj->getAno() ?></td>
+                        <td><?= $obj->getIdmarca() ?></td>
+                        <td><?= $obj->getMarca() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
+                                <a href="./editarMarca.php?id=<?= $obj->getIdmarca() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -125,18 +133,18 @@ $fabricacoes = new FabricacaoController();
     </div>
 
     <script>
-        function deletar(id, ano) {
-            if (confirm("Deseja realmente excluir o ano de fabricação " + ano + "?")) {
+        function deletar(id, marca) {
+            if (confirm("Deseja realmente excluir a marca " + marca + "?")) {
                 $.ajax({
-                    url: '../apagar/anoFabricacao.php',
+                    url: '../apagar/marca.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Ano de fabricação excluído com sucesso!");
-                            window.location.href = './anofabricacao.php';
+                            alert("Marca excluída com sucesso!");
+                            window.location.href = './marca.php';
                         } else {
                             alert(res["msg"]);
                         }
