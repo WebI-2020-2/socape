@@ -71,7 +71,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerentrada">
         <h1>
             <span class="badge bg-light text-dark">VENDA</span>
         </h1>
@@ -140,8 +140,9 @@ $cliente = $clientes->findOne($venda->getIdcliente());
             }
             @media (min-width: 1200px) { 
                 #valorTotal{
-                margin-top: 4%;
-                width: 30%; 
+                    margin-top: 0%;
+                    width: 49%; 
+                   
                
                 }
                 #produto{
@@ -155,8 +156,6 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 }
                 #titulo3{
                     text-align: left;
-                   
-                
                     margin-top:5%;
                     margin-bottom:0%;
                 }
@@ -170,6 +169,12 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 #textIcms{
                     margin-left: 27.6%;
                 }
+                #dadosFor{
+                    width: 52%;
+                    margin-top: 1px;
+                    margin-bottom:20px;
+                    margin-left: 70px;
+                }
                 #dadosClientes{
                     width: 95%;
                     margin-top: 1px;
@@ -178,27 +183,27 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 }
                 #cliente{
                     background-image: linear-gradient(to bottom, #272020, #8c1818);
-                    width: 120%;
-                    
+                    width: 173%;
                     border: double;
                 }
                 #textNome{
-                    margin-left:2%;
+                    margin-left:1%;
                 }
                 #textTelefone{
-                    margin-left:26.4%;
+                    margin-left:28.4%;
                 }
                 #textCpf{
-                    margin-left:24%;
+                    margin-left:27%;
                 }
                 #dadosItens{
+                    width: 95%;
                     margin-top:4%;
                     margin-left: 1%;
                     
                 }
                 #inserir{
-                    margin-left: 88%;
-                    margin-top: 3%;
+                    margin-left: 94%;
+                    margin-top: 1%;
                 }
             }
 
@@ -206,47 +211,9 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         </style>
         
        
-        <form method="POST" action="">
-            <h1 id="titulo2">
-                <span class="badge bg-light text-dark">Dados Cliente</span>
-            </h1>
-            <label>PRODUTO</label>
-            <label id="textNome">NOME</label>
-            <div class="input-group">
-                <?php
-                $inputProduto = "";
-                if (isset($_GET['idproduto'])) {
-                    $produto = $produtos->findOne($_GET['idproduto']);
-                    $inputProduto = $produto->getReferencia();
-                }
-                ?> 
-                <input id="produto"  type="text" class="form-control" placeholder="PRODUTO" value="<?= $inputProduto ?>" disabled>
-                <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" required>
-                <a id="pesquisar"class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
-                    PESQUISAR
-                </a>
-                <input id="dadosFor" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
-            </div>
-            <label class="form-label">QUANTIDADE</label>
-            <label id="textValor">VALOR</label>
-            <label id="textTelefone">TELEFONE</label>
-            <div class="input-group">
-                <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
-                <input style="margin-left: 28px;" name="valorvenda" class="form-control" placeholder="VALOR" required>
-                <input id="dadosFor"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" disabled>
-            </div>
-                 
-            <label class="form-label">DESCONTO</label>  
-            <label id="textLucro">LUCRO</label>
-            <label id="textCpf">CPF</label>
-            <div class="input-group">
-                <input name="desconto" class="form-control" placeholder="DESCONTO" required>
-                <input style="margin-left: 28px;" name="lucro" class="form-control" placeholder="LUCRO" required>
-                <input id="dadosFor"  type="text" name="cpf" class="form-control" placeholder="CPF" value="<?= $cliente->getCpf(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label>VALOR TOTAL</label>
-                <input id="valorTotal" class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
+        <form id="dadosFor" method="POST" action="">
+            
+           
             <div id="cliente">
                 <h1 id="titulo2">
                     <span class="badge bg-light text-dark">INFORMAÇÕES DO CLIENTE</span>
@@ -256,19 +223,20 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     <label id="textTelefone" >TELEFONE</label>
                     <label id="textCpf" >CPF</label>
                     <div id="dadosClientes" class="input-group">
-                        <input  type="text" name="nome" class="form-control" placeholder="NOME" disabled>
-                        <input style="margin-left:28px;" type="text" name="telefone" class="form-control" placeholder="TELEFONE" disabled>
-                        <input style="margin-left:28px;" type="text" name="cpf" class="form-control" placeholder="CPF" disabled>
+                        <input  type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
+                        <input style="margin-left:28px;" type="text" name="telefone" class="form-control" value="<?= $cliente->getTelefone(); ?>" placeholder="TELEFONE" disabled>
+                        <input style="margin-left:28px;" type="text" name="cpf" class="form-control" value="<?= $cliente->getCpf(); ?>" placeholder="CPF" disabled>
                     </div>
                 </div>
                 
             </div>
             
-            <div id="dadosItens">
+            <div style="margin-top:3%;" id="cliente">
                 <h1 id="titulo3">
-                <span class="badge bg-light text-dark">INSERIR ITEM</span>
+                 
+                <span style="margin-left:10px;"class="badge bg-light text-dark">INSERIR ITEM</span>
                 </h1>
-                <div style="margin-top:3%;" >
+                <div id="dadosItens"a style="margin-top:3%;">
                     <label>PRODUTO</label>
                     <div class="input-group">
                         <?php
@@ -278,7 +246,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                             $inputProduto = $produto->getReferencia();
                         }
                         ?> 
-                        <input id="produto"  type="text" class="form-control" placeholder="PRODUTO" value="<?= $inputProduto ?>" disabled>
+                        <input style="background-color:#fffed9" id="produto"  type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
                         <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" required>
                         <a id="pesquisar"class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                             PESQUISAR
@@ -286,27 +254,28 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     
                     </div>
                     <label class="form-label">QUANTIDADE</label>
-                    <label id="textValor">VALOR</label>
+                    <label style="margin-left: 580px;" id="textValor">VALOR</label>
                     <div class="input-group">
                         <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
                         <input style="margin-left: 28px;" name="valorvenda" class="form-control" placeholder="VALOR" required>
                     </div>
                         
                     <label class="form-label">DESCONTO</label>  
-                    <label id="textLucro">LUCRO</label>
+                    <label  style="margin-left: 600px;" id="textLucro">LUCRO</label>
                     <div class="input-group">
                         <input name="desconto" class="form-control" placeholder="DESCONTO" required>
                         <input style="margin-left: 28px;" name="lucro" class="form-control" placeholder="LUCRO" required>
                     </div>
                     <input id="inserir" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='INSERINDO…';" value="INSERIR">
-
+                    <label >VALOR TOTAL</label>
                     <div id="valorTotal" class="mb3">   
-                        <label >VALOR TOTAL</label>
-                        <input  class="form-control" type="text" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
+                        
+                    <input style="background-color:#6ed486; margin-bottom:3%" type="text" class="form-control" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
                         
                     </div>
                 </div>  
             </div>
+            
             
         </form>
 
