@@ -215,10 +215,10 @@ echo $fornecedores->getNome();
                 <h1 id="titulo2">
                     <span class="badge bg-light text-dark">INSERIR ITEM</span>
                 </h1>
+
                 <div id="dadosFor" style="margin-top:3%;">
                     <label>PRODUTO</label>
                     <div class="input-group">
-                        
                         <?php
                         $inputProduto = "";
                         if (isset($_GET['idproduto'])) {
@@ -231,36 +231,33 @@ echo $fornecedores->getNome();
                         <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $_GET['identrada'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                             PESQUISAR
                         </a>
-                        
                     </div>
+
                     <label>PREÇO COMPRA</label>
                     <label style="margin-left: 323px;">QUANTIDADE</label>
                     <label style="margin-left: 348px;">UNIDADE</label>
-                    <div  class="input-group">    
+                    <div class="input-group">    
                         <input  name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
                         <input name="quantidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="QUANTIDADE" required>
-                        <input name="unidade"  style="margin-left: 28px;" class="form-control" type="text" placeholder="UNIDADE" required>
+                        <input name="unidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="UNIDADE" required>
                     </div>
                     
-                    <label >IPI</label>
-                    <label  style="margin-left: 438px;">FRETE</label>
+                    <label>IPI</label>
+                    <label style="margin-left: 438px;">FRETE</label>
                     <label style="margin-left: 408px;">ICMS</label>
                     
                     <div class="input-group">
-                        
                         <input name="ipi" class="form-control" type="text" placeholder="IPI" required>
                         <input name="frete" style="margin-left: 28px;" class="form-control" type="text" placeholder="FRETE" required>
-                        <input name="icms" style="margin-left: 28px;"class="form-control" type="text" placeholder="ICMS" required>
+                        <input name="icms" style="margin-left: 28px;" class="form-control" type="text" placeholder="ICMS" required>
                     </div>
-                    
+
                     <input id="inserir" type="submit" class="btn btn-primary" value="INSERIR"> 
                     <div id="valorTotal" class="input-group">
-                    <label id="valorTotal">VALOR TOTAL</label>
-                    <input style="background-color:#6ed486" id="valorTotal" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
-                        
+                        <label id="valorTotal">VALOR TOTAL</label>
+                        <input style="background-color:#6ed486" id="valorTotal" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
                     </div>
-                  
-                </div> 
+                </div>
             </div>
         </form>
 
@@ -276,7 +273,6 @@ echo $fornecedores->getNome();
                     <th>IPI</th>
                     <th>FRETE</th>
                     <th>ICMS</th>
-                    <!--<th width="20%">AÇÕES</th>-->
                 </tr>
             </thead>
             <tbody>
