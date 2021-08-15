@@ -70,7 +70,10 @@ $localizacoes = new LocalizacaoController();
             $err = FALSE;
 
             if (!$data['departamento']) {
-                echo "<h1>INFORME O DEPARTAMENTO!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o departamento!");
+                    </script>';
                 $err = TRUE;
             }
 
@@ -92,7 +95,7 @@ $localizacoes = new LocalizacaoController();
 
         <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">DEPARTAMENTO</label>
+                <label class="form-label">LOCALIZAÇÃO</label>
                 <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" required>
             </div>
 

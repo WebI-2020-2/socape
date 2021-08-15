@@ -70,7 +70,10 @@ $valvulas = new ValvulasController();
             $err = FALSE;
 
             if (!$data['quantidade']) {
-                echo "<h1>INFORME A QUANTIDADE DE VÁLVULAS!</h1>";
+                echo
+                    '<script>
+                        alert("Informe a quantidade de válvulas!");
+                    </script>';
                 $err = TRUE;
             }
 

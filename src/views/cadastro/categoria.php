@@ -70,7 +70,10 @@ $categorias = new CategoriaController();
             $err = FALSE;
 
             if (!$data['categoria']) {
-                echo "<h1>INFORME A CATEGORIA!</h1>";
+                echo
+                '<script>
+                 alert("Informe a categoria!");
+                </script>';
                 $err = TRUE;
             }
 

@@ -142,8 +142,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 #valorTotal{
                     margin-top: 0%;
                     width: 49%; 
-                   
-               
+                
                 }
                 #produto{
                     width:23.4%;

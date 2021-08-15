@@ -70,15 +70,24 @@ $clientes = new ClientesController();
             $err = FALSE;
 
             if (!$data['nome']) {
-                echo "<h1>INFORME O NOME DO CLIENTE!</h1>";
+                echo
+                '<script>
+                 alert("Informe o nome do cliente!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['telefone']) {
-                echo "<h1>INFORME O TELEFONE DO CLIENTE!</h1>";
+                echo
+                '<script>
+                 alert("Informe o número de telefone!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['cpf']) {
-                echo "<h1>INFORME O CPF DO CLIENTE!</h1>";
+                echo
+                '<script>
+                 alert("Informe o CPF do cliente!");
+                </script>';
                 $err = TRUE;
             }
 
