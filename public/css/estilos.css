@@ -131,7 +131,9 @@ form {
   margin-left: 40px;
 }
 
-
+#minhaConta{
+  margin-left:80%;
+}
 #divBusca{
   background-color:#ffffff;
   border-radius: 30px 30px 30px 30px !important;

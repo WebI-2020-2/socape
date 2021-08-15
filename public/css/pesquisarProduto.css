@@ -1,0 +1,110 @@
+body {
+color: #ffffff;
+background-color: #140c0c;
+}
+
+img { width: 100%; }
+
+/* INÍCIO NAVEGAÇÃO */
+nav {
+background-image: linear-gradient(to bottom, #272020, #8c1818);
+height: 30px;
+}
+
+nav li a {
+color: #ffffff !important;
+}
+
+#container {
+    margin-top: 5px;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #272020, #8c1818);
+}
+
+input,
+select {
+border-radius: 30px 30px 30px 30px !important;
+}
+
+h1 {
+text-align: center;
+margin-top: 5px;
+}
+
+h1 > span {
+padding: 4px 15px 3px 15px !important;
+border-radius: 50px !important;
+
+}
+
+.table {
+color: #000000;
+background-color: #ffffff;
+}
+
+    /* FIM NAVEGAÇÃO */
+
+form{
+    width: 60%;
+    margin-left: 5%;
+    margin-top: 10px;
+}
+
+@media (min-width:  768px) { 
+    #pesquisar{
+    margin-top: 3%;
+    width:30%;
+    margin-left: 78%;
+    }   
+    #MODELO{
+        margin-left: 41.6%;
+    }
+    #ANO{
+        margin-left: 15%;
+    }
+    #MARCA{
+        margin-left: 36%;
+    }
+    #REFERÊNCIA{
+        margin-left: 33%;
+    }
+    #preferencias{
+        background-image: linear-gradient(to bottom, #272020, #8c1818);
+        width: 100%;
+        
+        border: double;
+    }
+    #titulo2{
+        text-align: left;
+        margin-top:3%;
+        margin-bottom:1%;
+        margin-left:10px;
+    }
+    #dados{
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-right:20px;
+        margin-bottom: 20px;
+    }
+    
+}
+@media (min-width: 1200px) { 
+    #pesquisar{
+    margin-top: 3%;
+    width:30%;
+    margin-left: 84%;
+    }   
+    #MODELO{
+        margin-left: 43.4%;
+    }
+    #ANO{
+        margin-left: 24.5%;
+    }
+    #MARCA{
+        margin-left: 40%;
+    }
+    #REFERÊNCIA{
+        margin-left: 37.3%;
+    }
+    
+}

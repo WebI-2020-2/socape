@@ -24,7 +24,7 @@ $produtos = new ProdutosController();
     <title>SOCAPE | Inserir Itens Entrada</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/estilos.css" rel="stylesheet">
+    <link href="./../../../public/css/inserirItensEntrada.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -34,7 +34,7 @@ $produtos = new ProdutosController();
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
@@ -65,6 +65,14 @@ $produtos = new ProdutosController();
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    </ul>
+                </li>
+                <li style="margin-left: 52%" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
+                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">PERFIL</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">SAIR</a></li>
+                        
                     </ul>
                 </li>
             </ul>
@@ -99,93 +107,7 @@ $produtos = new ProdutosController();
             }
         }
         ?>
-        <style>
-            form{
-                width:52%;
-                margin-left:5%;
-                margin-top: 2%;
-            }
-            #pesquisar{
-                margin-left: 28px;
-                padding: 4px 15px 3px 15px;
-                border-radius: 50px;
-            }
-
-            @media (min-width: 1200px) { 
-                #valorTotal{
-                    margin-top: 0%;
-                    width: 55%; 
-               
-                }
-                #produto{
-                    width:23.4%;
-                }
-                #titulo2{
-                    text-align: left;
-                    margin-top:3%;
-                    margin-bottom:1%;
-                    margin-left:10px;
-                }
-                #titulo3{
-                    text-align: left;
-                    margin-top:5%;
-                    margin-bottom:0%;
-                }
-                #textValor{
-                    margin-left: 37%;
-                }
-
-                #textLucro{
-                    margin-left: 39.5%;
-                }
-                #textIcms{
-                    margin-left: 27.6%;
-                }
-                #dadosFor{
-                    width: 95%;
-                    margin-top: 1px;
-                    margin-bottom:20px;
-                    margin-left: 20px;
-                }
-                #fornecedor{
-                    background-image: linear-gradient(to bottom, #272020, #8c1818);
-                    width: 173%;
-                    border: double;
-                }
-                #textNome{
-                    margin-left:1%;
-                }
-                #textTelefone{
-                    margin-left:18.2%;
-                }
-                #texteEnd{
-                    margin-left:20.4%;
-                }
-                #textCnpj{
-                    margin-left:18%;
-                }
-                #dadosItens{
-                    margin-top:4%;
-                    margin-left: 1%;
-                    
-                }
-                #inserir{
-                    margin-left: 93%;
-                    margin-top: 1%;
-                }
-                #textQuant{
-                    margin-left:33.4%;
-                }
-                #textIpi{
-                    margin-left:41.1%;
-                }
-                #textIcms{
-                    margin-left:44.8%;
-                }
-
-            }
-        </style>
-           
+         
         <form method="POST" action="" >
             <div id="fornecedor">
                 <h1 id="titulo2">
@@ -230,8 +152,8 @@ $produtos = new ProdutosController();
                     </div>
 
                     <label>PREÇO COMPRA</label>
-                    <label style="margin-left: 323px;">QUANTIDADE</label>
-                    <label style="margin-left: 348px;">UNIDADE</label>
+                    <label id="textQuant">QUANTIDADE</label>
+                    <label id="textUnidade">UNIDADE</label>
                     <div class="input-group">    
                         <input name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
                         <input name="quantidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="QUANTIDADE" required>
@@ -239,8 +161,8 @@ $produtos = new ProdutosController();
                     </div>
                     
                     <label>IPI</label>
-                    <label style="margin-left: 438px;">FRETE</label>
-                    <label style="margin-left: 408px;">ICMS</label>
+                    <label id="textFrete">FRETE</label>
+                    <label id="textIcms">ICMS</label>
                     
                     <div class="input-group">
                         <input name="ipi" class="form-control" type="text" placeholder="IPI" required>

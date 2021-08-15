@@ -33,7 +33,7 @@ $motores = new MotorController();
     <title>SOCAPE | Pesquisar por produto</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/estilos.css" rel="stylesheet">
+    <link href="./../../../public/css/pesquisarProduto.css" rel="stylesheet">
 </head>
 
 <script>
@@ -49,73 +49,7 @@ $motores = new MotorController();
         <span class="badge bg-light text-dark">PESQUISAR PRODUTO</span>
     </h1>
 
-    <style>
-            
-            form{
-                width: 60%;
-                margin-left: 5%;
-                margin-top: 10px;
-            }
-           
-            @media (min-width:  768px) { 
-                #pesquisar{
-                margin-top: 3%;
-                width:30%;
-                margin-left: 78%;
-                }   
-                #MODELO{
-                    margin-left: 42%;
-                }
-                #ANO{
-                    margin-left: 15.4%;
-                }
-                #MARCA{
-                    margin-left: 36.8%;
-                }
-                #REFERÊNCIA{
-                    margin-left: 33.4%;
-                }
-                #preferencias{
-                    background-image: linear-gradient(to bottom, #272020, #8c1818);
-                    width: 100%;
-                    
-                    border: double;
-                }
-                #titulo2{
-                    text-align: left;
-                    margin-top:3%;
-                    margin-bottom:1%;
-                    margin-left:10px;
-                }
-                #dados{
-                    margin-top: 10px;
-                    margin-left: 20px;
-                    margin-right:20px;
-                    margin-bottom: 20px;
-                }
-                
-            }
-            @media (min-width: 1200px) { 
-                #pesquisar{
-                margin-top: 3%;
-                width:30%;
-                margin-left: 84%;
-                }   
-                #MODELO{
-                    margin-left: 44%;
-                }
-                #ANO{
-                    margin-left: 25%;
-                }
-                #MARCA{
-                    margin-left: 40.4%;
-                }
-                #REFERÊNCIA{
-                    margin-left: 38%;
-                }
-                
-            }
-        </style>
+
         <form method="post" action="">
             <div id="preferencias">
                 <h1 id="titulo2">
@@ -126,14 +60,14 @@ $motores = new MotorController();
                     <label id="MODELO">MODELO DO CARRO</label>
                     <div class="input-group">
                         <select class="form-control" name="idmotor">
-                            <option selected disabled>SELECIONE</option>
+                            <option selected disabled>TODAS</option>
                             <?php
                             foreach ($motores->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia() ?></option>
                             <?php } ?>
                         </select>
                         <select style="margin-left: 28px;"  class="form-control" name="idcarro">
-                            <option selected disabled>SELECIONE</option>
+                            <option selected disabled>TODAS</option>
                             <?php
                             foreach ($carros->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo() ?></option>
@@ -144,14 +78,14 @@ $motores = new MotorController();
                     <label id="ANO">ANO DE FABRICAÇÃO</label>
                     <div class="input-group">
                         <select class="form-control" name="idvalvulas">
-                            <option selected disabled>SELECIONE</option>
+                            <option selected disabled>TODAS</option>
                             <?php
                             foreach ($valvulas->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade() ?></option>
                             <?php } ?>
                         </select>
                         <select style="margin-left: 28px;" class="form-control" name="idfabricacao">
-                            <option selected disabled>SELECIONE</option>
+                            <option selected disabled>TODAS</option>
                             <?php
                             foreach ($fabricacoes->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno() ?></option>
@@ -162,14 +96,14 @@ $motores = new MotorController();
                     <label id="MARCA">MARCA</label>
                     <div class="input-group">        
                         <select class="form-control" name="idcategoria">
-                            <option selected disabled>SELECIONE</option>
+                            <option selected disabled>TODAS</option>
                             <?php
                             foreach ($categorias->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria() ?></option>
                             <?php } ?>
                         </select>
                         <select style="margin-left: 28px;" class="form-control" name="idmarca">
-                            <option selected disabled>SELECIONE</option>
+                            <option selected disabled>TODAS</option>
                             <?php
                             foreach ($marcas->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
@@ -180,13 +114,13 @@ $motores = new MotorController();
                     <label id="REFERÊNCIA">REFERÊNCIA</label>
                     <div class="input-group">
                         <select class="form-control" name="idlocalizacao" class="form-control">
-                                <option selected disabled>SELECIONE</option>
+                                <option selected disabled>TODAS</option>
                                 <?php
                                 foreach ($localizacoes->findAll() as $obj) { ?>
                                     <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
                                 <?php } ?>
                             </select>
-                            <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" />   
+                            <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" placeholder="INSERIR REFERÊNCIA" />   
                     </div>
                     
                 </div>
