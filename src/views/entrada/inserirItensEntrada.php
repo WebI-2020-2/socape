@@ -64,7 +64,7 @@ $produtos = new ProdutosController();
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
-                        
+
                     </ul>
                 </li>
             </ul>
@@ -78,29 +78,78 @@ $produtos = new ProdutosController();
 
         <?php
         if ($_POST) {
-            $itemEntrada = new ItensEntradaController();
-            $itemEntrada->setIdentrada($entrada->getIdentrada());
-            $itemEntrada->setIdproduto($_POST['idproduto']);
-            $itemEntrada->setPrecocompra($_POST['precoCompra']);
-            $itemEntrada->setQuantidade($_POST['quantidade']);
-            $itemEntrada->setUnidade($_POST['unidade']);
-            $itemEntrada->setIpi($_POST['ipi']);
-            $itemEntrada->setFrete($_POST['frete']);
-            $itemEntrada->setIcms($_POST['icms']);
+            $data = $_POST;
 
-            try {
-                $itemEntrada->insert($itemEntrada->getIdentrada(), $itemEntrada->getIdproduto(), $itemEntrada->getPrecocompra(), $itemEntrada->getQuantidade(), $itemEntrada->getUnidade(), $itemEntrada->getIpi(), $itemEntrada->getFrete(), $itemEntrada->getIcms());
-                echo
-                '<div class="success callout">
-                    <h5>Item cadastrado</h5>
-                </div>';
-            } catch (PDOException $err) {
-                echo $err->getMessage();
+            $itemEntrada = new ItensEntradaController();
+
+            $err = FALSE;
+
+            $msg = "";
+
+            if (!$data['idproduto']) {
+                $msg .= 'Informe o produto!';
+                $err = TRUE;
+            }
+            if (!$data['precoCompra']) {
+                $msg .= '\nInforme o preço de compra!';
+                $err = TRUE;
+            }
+            if (!$data['quantidade']) {
+                $msg .= '\nInforme quantidade!';
+                $err = TRUE;
+            }
+            if (!$data['unidade']) {
+                $msg .= '\nInforme a unidade!';
+                $err = TRUE;
+            } else if (strlen($data['unidade']) > 2) {
+                $msg .= 'A unidade deve ter no máximo 2 caracteres!';
+                $err = TRUE;
+            }
+            if (!$data['ipi']) {
+                $msg .= '\nInforme o IPI!';
+                $err = TRUE;
+            }
+            if (!$data['frete']) {
+                $msg .= '\nInforme o frete!';
+                $err = TRUE;
+            }
+            if (!$data['icms']) {
+                $msg .= '\nInforme o ICMS!';
+                $err = TRUE;
+            }
+
+            if ($err) {
+                echo "
+                    <script>
+                    alert('" . $msg . "');
+                    </script>
+                ";
+            } else {
+                try {
+                    $itemEntrada->insert(
+                        $entrada->getIdentrada(),
+                        $data['idproduto'],
+                        $data['precoCompra'],
+                        $data['quantidade'],
+                        $data['unidade'],
+                        $data['ipi'],
+                        $data['frete'],
+                        $data['icms']
+                    );
+
+                    echo
+                    '<script>
+                        alert("Item inserido!");
+                        window.location.href = "./inserirItensEntrada.php?identrada='. $entrada->getIdentrada() .'";
+                    </script>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
             }
         }
         ?>
-         
-        <form method="POST" action="" >
+
+        <form method="POST" action="">
             <div id="fornecedor">
                 <h1 id="titulo2">
                     <span class="badge bg-light text-dark">INFORMAÇÕES DO FORNECEDOR</span>
@@ -110,7 +159,7 @@ $produtos = new ProdutosController();
                     <label id="texteEnd">ENDEREÇO</label>
                     <label id="textTelefone">TELEFONE</label>
                     <label id="textCnpj">CNPJ</label>
-                    
+
                     <div id="dadosFor" class="input-group">
                         <input type="text" name="nome" class="form-control" value="<?= $fornecedor->getNome(); ?>" placeholder="NOME" disabled>
                         <input style="margin-left:28px;" type="text" name="endereço" class="form-control" value="<?= $fornecedor->getEndereco(); ?>" disabled>
@@ -118,7 +167,7 @@ $produtos = new ProdutosController();
                         <input style="margin-left:28px;" type="text" name="cnpj" class="form-control" value="<?= $fornecedor->getCnpj(); ?>" placeholder="CNPJ" disabled>
                     </div>
                 </div>
-                    
+
             </div>
             <br>
             <div id="fornecedor">
@@ -137,7 +186,7 @@ $produtos = new ProdutosController();
                         }
                         ?>
                         <input style="background-color:#fffed9" id="produto" type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled />
-                        <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" />
+                        <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required />
                         <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                             PESQUISAR
                         </a>
@@ -146,23 +195,23 @@ $produtos = new ProdutosController();
                     <label>PREÇO COMPRA</label>
                     <label id="textQuant">QUANTIDADE</label>
                     <label id="textUnidade">UNIDADE</label>
-                    <div class="input-group">    
+                    <div class="input-group">
                         <input name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
                         <input name="quantidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="QUANTIDADE" required>
-                        <input name="unidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="UNIDADE" required>
+                        <input name="unidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">
                     </div>
-                    
+
                     <label>IPI</label>
                     <label id="textFrete">FRETE</label>
                     <label id="textIcms">ICMS</label>
-                    
+
                     <div class="input-group">
                         <input name="ipi" class="form-control" type="text" placeholder="IPI" required>
                         <input name="frete" style="margin-left: 28px;" class="form-control" type="text" placeholder="FRETE" required>
                         <input name="icms" style="margin-left: 28px;" class="form-control" type="text" placeholder="ICMS" required>
                     </div>
 
-                    <input id="inserir" type="submit" class="btn btn-primary" value="INSERIR"> 
+                    <input id="inserir" type="submit" class="btn btn-primary" value="INSERIR">
                     <div id="valorTotal" class="input-group">
                         <label id="valorTotal">VALOR TOTAL</label>
                         <input style="background-color:#6ed486" id="valorTotal" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
@@ -213,4 +262,3 @@ $produtos = new ProdutosController();
 </body>
 
 </html>
-

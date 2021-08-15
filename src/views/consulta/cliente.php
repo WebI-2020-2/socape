@@ -50,7 +50,7 @@ $clientes = new ClientesController();
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
-                        
+
                     </ul>
                 </li>
             </ul>
@@ -62,9 +62,7 @@ $clientes = new ClientesController();
             <span class="badge bg-light text-dark">CONSULTAR CLIENTE</span>
         </h1>
         <div class="mb-3" id="divBusca">
-                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..."/>
-                <input id="idcliente" type="hidden" name="idcliente" required>
-                <a href= ""><button id="btnBusca">Buscar</button></a>
+            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
         </div>
         <a href="../cadastro/cliente-fisico.php"><button class="icon-print icon-white">CADASTRAR CLIENTE</button></a>
 
@@ -72,42 +70,42 @@ $clientes = new ClientesController();
             if ($clientes->findOne($_GET["id"])) {
                 $cliente = $clientes->findOne($_GET["id"]);
         ?>
-                <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />   
-        <form action="" method="post">
-            <div class="mb-3">
-            <label class="form-label">NOME</label>
-                    <input style="width: 130%" type="text" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                    <label class="form-label">TELEFONE</label>
-                    <input style="width: 130%" type="text" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" disabled>
-                </div>
-            <div class="mb-3">
-                <?php
-                if (empty($cliente->getCpf())) {
-                ?>
-                    <label class="form-label">CNPJ</label>
-                    <div>
-                        <input style="width: 130%" type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" disabled>
+                <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">NOME</label>
+                        <input style="width: 130%" type="text" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
                     </div>
-                <?php
-                } else {
-                ?>
-                    <label class="form-label">CPF</label>
-                    <div>
-                        <input style="width: 130%" type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" disabled>
+                    <div class="mb-3">
+                        <label class="form-label">TELEFONE</label>
+                        <input style="width: 130%" type="text" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" disabled>
                     </div>
-                <?php
-                }
-                ?>
-            </div>
-            
-        </form>
+                    <div class="mb-3">
+                        <?php
+                        if (empty($cliente->getCpf())) {
+                        ?>
+                            <label class="form-label">CNPJ</label>
+                            <div>
+                                <input style="width: 130%" type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" disabled>
+                            </div>
+                        <?php
+                        } else {
+                        ?>
+                            <label class="form-label">CPF</label>
+                            <div>
+                                <input style="width: 130%" type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" disabled>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+
+                </form>
         <?php
             }
         } ?>
 
-        <table style="margin-top: 2%"  class="table">
+        <table style="margin-top: 2%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -163,8 +161,20 @@ $clientes = new ClientesController();
                 return false;
             }
         }
+
+
+        $(document).ready(function() {
+
+            $("#txtBusca").on("keyup", function() {
+
+                const value = $(this).val().toLowerCase();
+                $("table tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
     </script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

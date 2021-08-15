@@ -96,6 +96,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
                         alert("Fornecedor atualizado com sucesso!");
                         window.location.href = "../consulta/fornecedor.php";
                     </script>';
+                   
                 } catch (PDOException $e) {
                     echo $e->getMessage();
                 }

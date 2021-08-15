@@ -5,6 +5,7 @@ require_once __DIR__ . '/../../controller/ClientesController.php';
 $idcliente = $_GET['id'];
 $clientes = new ClientesController();
 $cliente = $clientes->findOne($idcliente);
+
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
@@ -95,9 +96,11 @@ $cliente = $clientes->findOne($idcliente);
                         alert("Cliente atualizado com sucesso!");
                         window.location.href = "../cliente-fisico.php";
                     </script>';
+                   
                 } catch (PDOException $e) {
                     echo $e->getMessage();
                 }
+             
             }
         }
         ?>
