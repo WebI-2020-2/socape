@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/../../controller/ClientesController.php';
+$clientes = new ClientesController();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,14 +9,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar cliente Pessoa Jurídica</title>
+    <title>SOCAPE | Cadastrar cliente Pessoa Física</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
 <body>
-    <img id="imagemCadastro" src="./../../../public/imagens/titulo.png" align="left">
+    <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
             <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -48,15 +53,15 @@
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
                     </ul>
                 </li>
+                <li style="margin-left: 52%" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
+                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
+                        
+                    </ul>
+                </li>
             </ul>
-            <li style="margin-left: 52%" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" style="color: #FFFFFF" href="">PERFIL</a></li>
-                    <li><a class="dropdown-item" style="color: #FFFFFF" href="">SAIR</a></li>
-                    
-                </ul>
-            </li>
         </div>
     </nav>
 
@@ -65,30 +70,137 @@
             <span class="badge bg-light text-dark">CADASTRAR CLIENTE PESSOA JURÍDICA</span>
         </h1>
 
+        <?php
+        if ($_POST) {
+            $data = $_POST;
+            $cliente = new ClientesController();
+
+            $err = FALSE;
+
+            if (!$data['nome']) {
+                echo
+                '<script>
+                 alert("Informe o nome do cliente!");
+                </script>';
+                $err = TRUE;
+            }
+            if (!$data['telefone']) {
+                echo
+                '<script>
+                 alert("Informe o número de telefone!");
+                </script>';
+                $err = TRUE;
+            }
+            if (!$data['cpf']) {
+                echo
+                '<script>
+                 alert("Informe o CNPJ do cliente!");
+                </script>';
+                $err = TRUE;
+            }
+
+            $cliente->setNome($data['nome']);
+            $cliente->setTelefone($data['telefone']);
+            $cliente->setCnpj($data['cnpj']);
+            $cliente->setDebito(0);
+
+            if (!$err) {
+                try {
+                    $cliente->insertPF($cliente->getNome(), $cliente->getTelefone(), $cliente->getCnpj(), $cliente->getDebito());
+                    echo
+                    '<script>
+                        alert("Cliente Pessoa Jurídica cadastrado com sucesso!");
+                    </script>';
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
+            }
+        }
+        ?>
+
         <select id="selecionar" class="form-select">
-            <option selected>FÍSICA</option>
-            <option value="1">JURÍDICA</option>
+            <option value="../../views/cadastro/cliente-juridico.php" >JURIDICO</option>
+            <option value="../../views/cadastro/cliente-fisico.php" >FÍSICA</option>
         </select>
 
-        <img src="./../../../public/imagens/usuario.png">
+        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
         <form action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input style="width: 130%"  type="text" name="nome" class="form-control" placeholder="NOME" required>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input style="width: 130%"  type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CNPJ</label>
-                <input style="width: 130%"  type="text" name="CNPJ" class="form-control" placeholder="CNPJ" required>
+                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" required>
             </div>
 
-            <input style="margin-left: 75%" type="submit" class="btn btn-light" value="CADASTRAR">
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="" value="CADASTRAR">
         </form>
+
+        <table style="margin-top: 1%"  class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>TELEFONE</th>
+                    <th>CNPJ</th>
+                    <th>DÉBITO</th>
+                    <th width="20%">AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($clientes->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdcliente() ?></td>
+                        <td><?= $obj->getNome() ?></td>
+                        <td><?= $obj->getTelefone() ?></td>
+                        <td><?= $obj->getCnpj() ?></td>
+                        <td><?= $obj->getDebito() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 
+    <script>
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir o(a) cliente " + nome + "?")) {
+                $.ajax({
+                    url: '../apagar/cliente.php',
+                    type: "POST",
+                    data: {
+                        id
+                    },
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Cliente Pessoa Jurídica excluído com sucesso!");
+                            window.location.href = './cliente-juridica.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
+                    }
+                });
+                return false;
+            }
+        }
+        
+    </script>
+    <script>
+        let selectEl = document.getElementsByTagName('select');
+        selectEl[0].addEventListener('change', function() {
+            location.href=this.value;
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
