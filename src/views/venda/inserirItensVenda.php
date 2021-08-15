@@ -24,7 +24,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
     <title>SOCAPE | Inserir Itens Venda</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="./../../../public/css/estilos.css" rel="stylesheet">
+    <link href="./../../../public/css/inserirItensVenda.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -34,7 +34,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
@@ -65,6 +65,14 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    </ul>
+                </li>
+                <li style="margin-left: 52%" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
+                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">PERFIL</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">SAIR</a></li>
+                        
                     </ul>
                 </li>
             </ul>
@@ -208,11 +216,8 @@ $cliente = $clientes->findOne($venda->getIdcliente());
 
 
         </style>
-        
        
         <form id="dadosFor" method="POST" action="">
-            
-           
             <div id="cliente">
                 <h1 id="titulo2">
                     <span class="badge bg-light text-dark">INFORMAÇÕES DO CLIENTE</span>
@@ -253,14 +258,14 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     
                     </div>
                     <label class="form-label">QUANTIDADE</label>
-                    <label style="margin-left: 580px;" id="textValor">VALOR</label>
+                    <label id="textValor">VALOR</label>
                     <div class="input-group">
                         <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
                         <input style="margin-left: 28px;" name="valorvenda" class="form-control" placeholder="VALOR" required>
                     </div>
                         
                     <label class="form-label">DESCONTO</label>  
-                    <label  style="margin-left: 600px;" id="textLucro">LUCRO</label>
+                    <label  id="textLucro">LUCRO</label>
                     <div class="input-group">
                         <input name="desconto" class="form-control" placeholder="DESCONTO" required>
                         <input style="margin-left: 28px;" name="lucro" class="form-control" placeholder="LUCRO" required>
