@@ -61,8 +61,8 @@ $fornecedores = new FornecedoresController();
                 <li style="margin-left: 52%" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">SAIR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li> 
                         
                     </ul>
                 </li>
