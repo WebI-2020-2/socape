@@ -105,52 +105,52 @@ $motores = new MotorController();
             <h1 style="text-align: left; margin-left: 10px;">
             <span class="badge bg-light text-dark">INFORMAÇÕES PRODUTO</span>
             </h1>
-            <label style="margin-left: 7px;" class="form-label">MOTOR</label>
-            <label style="margin-left: 28.6%" class="form-label">DESCONTO</label>
-            <label  style="margin-left: 26.6%" class="form-label">MODELO DE CARRO</label>
+            <label id="motor" class="form-label">MOTOR</label>
+            <label id="desconto" class="form-label">DESCONTO</label>
+            <label id="modeloCar" class="form-label">MODELO DE CARRO</label>
             <div class="input-group">
                 <input style="margin-left: 10px;" class="form-control" type="text" placeholder="MOTOR" value="<?= $motores->findOne($produto->getIdmotor())->getPotencia(); ?>" disabled>
                 <input style="margin-left: 35px;" class="form-control" type="text" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" disabled>
                 <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="MODELO DE CARRO" value="<?= $carros->findOne($produto->getIdcarro())->getModelo(); ?>" disabled>
             </div>
-            <label style="margin-left: 7px;" class="form-label">UNIDADE</label>
-            <label style="margin-left: 27.6%"  class="form-label">VÁLVULAS</label>
-            <label style="margin-left: 27.3%" class="form-label">VALOR DE FÁBRICA</label>
+            <label id="unidade" class="form-label">UNIDADE</label>
+            <label id="valvula"  class="form-label">VÁLVULAS</label>
+            <label id="valorFar" class="form-label">VALOR DE FÁBRICA</label>
             <div class="input-group">
                 <input style="margin-left: 10px;" class="form-control" type="text" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" disabled>
                 <input style="margin-left: 35px;" class="form-control" type="text" placeholder="VÁLVULAS" value="<?= $valvulas->findOne($produto->getIdvalvulas())->getQuantidade(); ?>" disabled>
                 <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="VALOR DE FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" disabled>
             </div>
 
-            <label style="margin-left: 7px;" class="form-label">FABRICAÇÃO</label>
-            <label style="margin-left: 25.6%"  class="form-label">VALOR DE COMPRA</label>
-            <label style="margin-left: 21.8%" class="form-label">CATEGORIA</label>
+            <label id="fabricação"class="form-label">FABRICAÇÃO</label>
+            <label id="valorCom" class="form-label">VALOR DE COMPRA</label>
+            <label id="categoria" class="form-label">CATEGORIA</label>
             <div class="input-group">
                 <input style="margin-left: 10px;"  class="form-control" type="text" placeholder="FABRICAÇÃO" value="<?= $fabricacoes->findOne($produto->getIdfabricacao())->getAno(); ?>" disabled>
                 <input style="margin-left: 35px;" class="form-control" type="text" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" disabled>
                 <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="CATEGORIA" value="<?= $categorias->findOne($produto->getIdcategoria())->getCategoria(); ?>" disabled>
             </div>
 
-            <label style="margin-left: 7px;" class="form-label">ICMS</label>
-            <label style="margin-left: 30.3%"  class="form-label">MARCA</label>
-            <label style="margin-left: 28.8%" class="form-label">IPI</label>
+            <label id="icms" class="form-label">ICMS</label>
+            <label id="marca" class="form-label">MARCA</label>
+            <label id="ipi" class="form-label">IPI</label>
             <div class="input-group">       
                 <input style="margin-left: 10px;"  class="form-control" type="text" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" disabled>
                 <input style="margin-left: 35px;"  class="form-control" type="text" placeholder="MARCA" value="<?= $marcas->findOne($produto->getIdmarca())->getMarca(); ?>" disabled>
                 <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="IPI" value="<?= $produto->getIpi(); ?>" disabled>
             </div>
 
-            <label style="margin-left: 7px;" class="form-label">LOCALIZAÇÃO</label>
-            <label style="margin-left: 24.7%"  class="form-label">FRETE</label>
-            <label style="margin-left: 30%" class="form-label">REFERÊNCIA</label>
+            <label id="localização" class="form-label">LOCALIZAÇÃO</label>
+            <label id="frete" class="form-label">FRETE</label>
+            <label id="referencia" class="form-label">REFERÊNCIA</label>
             <div class="input-group">
                 <input style="margin-left: 10px;"  class="form-control" type="text" placeholder="LOCALIZAÇÃO" value="<?= $localizacoes->findOne($produto->getIdlocalizacao())->getDepartamento(); ?>" disabled>
                 <input style="margin-left: 35px;" class="form-control" type="text" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" disabled>
                 <input style="margin-left: 35px; margin-right: 10px;"  class="form-control" type="text" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" disabled>
             </div>
-            <label style="margin-left: 7px;" class="form-label">QUANTIDADE</label>
-            <label style="margin-left: 25%"  class="form-label">VALOR DE VENDA</label>
-            <label style="margin-left: 23%" class="form-label">LUCRO</label>
+            <label id="quantidade" class="form-label">QUANTIDADE</label>
+            <label id="valorVenda"  class="form-label">VALOR DE VENDA</label>
+            <label id="lucro" class="form-label">LUCRO</label>
             <div style="margin-bottom: 10px;" class="input-group">      
                 <input style="margin-left: 10px;"  class="form-control" type="text" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" disabled>
                 <input style="margin-left: 35px;"  class="form-control" type="text" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" disabled>

@@ -164,3 +164,98 @@ form {
   width:109px;
  
 }
+
+/* tela consultar Produto*/
+@media (min-width: 1200px) { 
+  #motor{
+    margin-left: 7px; 
+  }
+  #desconto{
+    margin-left: 28.6%;
+  }
+  #modeloCar{
+    margin-left: 26.6%;
+  }
+  #unidade{
+    margin-left: 7px;
+  }
+  #valvula{
+    margin-left: 27.6%;
+  }
+  #valorFar{
+    margin-left: 27.3%;
+  }
+  #fabricação{
+    margin-left: 7px;
+  }
+  #valorCom{
+    margin-left: 25.6%;
+  }
+  #categoria{
+    margin-left: 21.8%;
+  }
+  #icms{
+    margin-left: 7px;
+  }
+  #marca{
+    margin-left: 30.3%;
+  }
+  #ipi{
+    margin-left: 28.8%;
+  }
+  #localização{
+    margin-left: 7px;
+  }
+  #frete{
+    margin-left: 24.7%;
+  }
+  #referencia{
+    margin-left: 30%;
+  }
+  #quantidade{
+    margin-left: 7px;
+  }
+  #valorVenda{
+    margin-left: 25%;
+  }
+  #lucro{
+    margin-left: 23%;
+  }
+}
+/* tela editarProduto*/
+@media (min-width: 1200px) { 
+  #ediIcms{
+    margin-left: 3.3%;
+  }
+  #ediIpi{
+    margin-left: 29%;
+  }
+  #ediFrete{
+    margin-left: 30.5%;
+  }
+  #ediValorFar{
+    margin-left: 3.3%;
+  }
+  #ediValorCom{
+    margin-left: 20.5%;
+  }
+  #ediLucro{
+    margin-left: 20.3%;
+  }
+  #ediValorVenda{
+    margin-left: 3.3%;
+  }
+  #ediDesconto{
+    margin-left: 21.3%;
+  }
+  #ediQuantidade{
+    margin-left: 25.6%;
+  }
+  #ediUnidade{
+    margin-left: 3.3%;
+  }
+  #ediReferencia{
+    margin-left: 26%;
+  }
+ 
+}
