@@ -24,21 +24,6 @@ $fornecedores = new FornecedoresController();
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
                 </li>
@@ -60,11 +45,11 @@ $fornecedores = new FornecedoresController();
                         <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
-                <li style="margin-left: 52%" class="nav-item dropdown">
+                <li style="margin-left: 59%" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li> 
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
                         
                     </ul>
                 </li>
@@ -72,15 +57,19 @@ $fornecedores = new FornecedoresController();
         </div>
     </nav>
 
+    
     <div id="container">
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR FORNECEDOR</span>
         </h1>
         <div class="mb-3" id="divBusca">
-            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
+            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..." />
             <input id="idcliente" type="hidden" name="idcliente" required>
             <a href=""><button id="btnBusca">Buscar</button></a>
         </div>
+        <a href="../cadastro/fornecedor.php"><button class="icon-print icon-white">CADASTRAR FORNECEDOR</button></a>
+
+
         <?php if (isset($_GET["id"])) {
             if ($fornecedores->findOne($_GET["id"])) {
                 $fornecedor = $fornecedores->findOne($_GET["id"]);
@@ -130,7 +119,7 @@ $fornecedores = new FornecedoresController();
                         <td><?= $obj->getCnpj(); ?></td>
                         <td>
                             <div>
-                                <a href="./fornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
+                                <a href="./visualizarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
                                 <a href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
                                 <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
                             </div>

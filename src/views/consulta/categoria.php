@@ -20,12 +20,18 @@ $categorias = new CategoriaController();
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
@@ -39,26 +45,12 @@ $categorias = new CategoriaController();
                         <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
+                <li style="margin-left: 59%" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
+                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
+                        
                     </ul>
                 </li>
             </ul>

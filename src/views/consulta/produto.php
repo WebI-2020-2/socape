@@ -45,21 +45,6 @@ $motores = new MotorController();
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
                 </li>
@@ -81,11 +66,11 @@ $motores = new MotorController();
                         <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
-                <li style="margin-left: 52%" class="nav-item dropdown">
+                <li style="margin-left: 59%" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li> 
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
                         
                     </ul>
                 </li>
@@ -98,10 +83,11 @@ $motores = new MotorController();
             <span class="badge bg-light text-dark">CONSULTAR PRODUTO</span>
         </h1>
         <div class="mb-3" id="divBusca">
-            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
+            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..." />
             <input id="idcliente" type="hidden" name="idcliente" required>
             <a href=""><button id="btnBusca">Buscar</button></a>
         </div>
+        <a href="../cadastro/produto.php"><button class="icon-print icon-white">CADASTRAR PRODUTO</button></a>
 
         <?php if (isset($_GET["id"])) {
             if ($produtos->findOne($_GET["id"])) {
@@ -193,7 +179,7 @@ $motores = new MotorController();
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
                         <td>
                             <div>
-                                <a href="./produto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
+                                <a href="./visualizarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
                                 <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
                                 <button class="btn btn-sm btn-dark" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
                             </div>
