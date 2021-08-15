@@ -56,8 +56,8 @@ $clientes = new ClientesController();
                 <li style="margin-left: 52%" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="src/views/usuario/perfil.php">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">SAIR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
                         
                     </ul>
                 </li>
@@ -118,9 +118,9 @@ $clientes = new ClientesController();
         }
         ?>
 
-        <select id="selecionar" class="form-select" disabled>
-            <option selected>FÍSICA</option>
-            <option value="1">JURÍDICA</option>
+        <select id="selecionar" class="form-select">
+            <option value="../../views/cadastro/cliente-fisico.php" >FÍSICA</option>
+            <option value="../../views/cadastro/cliente-juridico.php" >JURIDICO</option>
         </select>
 
         <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
@@ -193,6 +193,13 @@ $clientes = new ClientesController();
                 return false;
             }
         }
+        
+    </script>
+    <script>
+        let selectEl = document.getElementsByTagName('select');
+        selectEl[0].addEventListener('change', function() {
+            location.href=this.value;
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
