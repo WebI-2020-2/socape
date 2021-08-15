@@ -29,21 +29,6 @@ $marca = $marcas->findOne($idmarca);
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
                 </li>
@@ -65,7 +50,7 @@ $marca = $marcas->findOne($idmarca);
                         <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
-                <li style="margin-left: 52%" class="nav-item dropdown">
+                <li style="margin-left: 59%" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
@@ -105,6 +90,7 @@ $marca = $marcas->findOne($idmarca);
                     echo
                     '<script>
                         alert("Marca atualizada com sucesso!");
+                        window.location.href = "../consulta/marca.php";
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();

@@ -1,10 +1,7 @@
 <?php
-require_once __DIR__ . '/../../controller/CategoriaController.php';
-$idcategoria = $_GET['id'];
-$categorias = new CategoriaController();
-$categoria = $categorias->findOne($idcategoria);
+require_once __DIR__ . '/../../controller/FornecedoresController.php';
+$fornecedores = new FornecedoresController();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +9,7 @@ $categoria = $categorias->findOne($idcategoria);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar categoria</title>
+    <title>SOCAPE | Consultar fornecedor</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
@@ -60,93 +57,52 @@ $categoria = $categorias->findOne($idcategoria);
         </div>
     </nav>
 
+
     <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">EDITAR CATEGORIA</span>
-        </h1>
+        <?php if (isset($_GET["id"])) {
+            if ($fornecedores->findOne($_GET["id"])) {
+                $fornecedor = $fornecedores->findOne($_GET["id"]);
+        ?>
+                <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
+
+                <form style="margin-left: 25%" action="" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">NOME</label>
+                        <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ENDEREÇO</label>
+                        <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">TELEFONE</label>
+                        <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">CNPJ</label>
+                        <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
+                    </div>
+                </form>                
+                <a style="margin-left: 50%" href="../consulta/fornecedor.php"><button class="btn btn-sm btn-danger">VOLTAR</button></a>
 
         <?php
-        if ($_POST) {
-            $data = $_POST;
-            $categoria = new CategoriaController();
-
-            $err = FALSE;
-
-            if (!$data['categoria']) {
-                echo
-                    '<script>
-                        alert("Innforme a Categoria!");
-                    </script>';
-                $err = TRUE;
             }
+        } ?>
 
-            $categoria->setCategoria($data['categoria']);
-
-            if (!$err) {
-                try {
-                    $categoria->update($idcategoria, $data['categoria']);
-                    echo
-                    '<script>
-                        alert("Categoria atualizada com sucesso!");
-                        window.location.href = "../consulta/categoria.php";
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
-                }
-            }
-        }
-        ?>
-
-        <form action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">CATEGORIA</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria() ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria() ?>" required>
-            </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
-        </form>
-
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORIA</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($categorias->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdcategoria() ?></td>
-                        <td><?= $obj->getCategoria() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarCategoria.php?id=<?= $obj->getIdcategoria() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
 
     <script>
-        function deletar(id, categoria) {
-            if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir " + nome + "?")) {
                 $.ajax({
-                    url: '../apagar/categoria.php',
+                    url: '../apagar/fornecedor.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Categoria excluída com sucesso!");
-                            window.location.href = './categoria.php';
+                            alert("Fornecedor excluído com sucesso!");
+                            window.location.href = './fornecedor.php';
                         } else {
                             alert(res["msg"]);
                         }

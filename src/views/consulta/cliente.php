@@ -24,21 +24,6 @@ $clientes = new ClientesController();
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
                 </li>
@@ -60,7 +45,7 @@ $clientes = new ClientesController();
                         <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
-                <li style="margin-left: 52%" class="nav-item dropdown">
+                <li style="margin-left: 59%" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
@@ -79,6 +64,7 @@ $clientes = new ClientesController();
         <div class="mb-3" id="divBusca">
             <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
         </div>
+        <a href="../cadastro/cliente-fisico.php"><button class="icon-print icon-white">CADASTRAR CLIENTE</button></a>
 
         <?php if (isset($_GET["id"])) {
             if ($clientes->findOne($_GET["id"])) {
@@ -143,7 +129,7 @@ $clientes = new ClientesController();
                         <td><?= $obj->getDebito() ?></td>
                         <td>
                             <div>
-                                <a href="./cliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
+                                <a href="./visualizarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
                                 <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
                                 <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
