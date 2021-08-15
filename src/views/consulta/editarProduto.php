@@ -5,6 +5,12 @@ require_once __DIR__ . '/../../controller/ProdutosController.php';
 $idproduto = $_GET['id'];
 $produtos = new ProdutosController();
 $produto = $produtos->findOne($idproduto);
+
+require_once __DIR__ . '/../../controller/CategoriaController.php';
+$categorias = new CategoriaController();
+
+require_once __DIR__ . '/../../controller/MarcasController.php';
+$marcas = new MarcasController();
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
@@ -64,13 +70,13 @@ $produto = $produtos->findOne($idproduto);
                     </ul>
                 </li>
                 <li style="margin-left: 52%" class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li> 
-                            
-                        </ul>
-                    </li>
+                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
+                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
+
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -153,6 +159,7 @@ $produto = $produtos->findOne($idproduto);
                     '<script>
                         alert("Cliente atualizado com sucesso!");
                     </script>';
+                    header("Refresh:0");
                 } catch (PDOException $e) {
                     echo $e->getMessage();
                 }
@@ -160,45 +167,68 @@ $produto = $produtos->findOne($idproduto);
         }
         ?>
 
-        <form id="formProduto" method="POST" action="">
-            <h1 style="text-align: left; margin-left: 10px;">
-            <span class="badge bg-light text-dark">INFORMAÇÕES PRODUTO</span>
-            </h1>
-                <label id="ediIcms"class="form-label">ICMS</label>
-                <label id="ediIpi" class="form-label">IPI</label>
-                <label id="ediFrete" class="form-label">FRETE</label>
-            <div  class="input-group">
-                <input id="consultproduct" type="text"  name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" required>
-                <input id="consultproduct" type="text"  name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" required>
-                <input id="consultproduct" type="text"  name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" required>
+        <div class="mb-3">
+
+            <input style="margin-left: 40%" type="button" class="btn btn-danger btn-lg active" name="categoria" placeholder="CATEGORIA" value="<?= $categorias->findOne($produto->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($produto->getIdmarca())->getMarca() ?>" disabled>
+        </div>
+        <form style="margin-left: 10%; display:flex; justify-content:space-between" action="" method="post">
+            <div>
+                <div class="mb-3">
+                    <label class="form-label">ICMS:</label>
+                    <input type="text" class="form-control" name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">IPI:</label>
+                    <input type="text" class="form-control" name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">FRETE:</label>
+                    <input type="text" class="form-control" name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">VALOR NA FÁBRICA:</label>
+                    <input type="text" class="form-control" name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" required>
+                </div>
             </div>
-            
-            <label id="ediValorFar" class="form-label">VALOR NA FÁBRICA</label>
-            <label id="ediValorCom" class="form-label">VALOR DE COMPRA</label>
-            <label id="ediLucro" class="form-label">LUCRO</label>
-            <div class="input-group">   
-                <input id="consultproduct" type="text"  name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" required>
-                <input id="consultproduct" type="text"  name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" required>
-                <input id="consultproduct" type="text"  name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" required>
+            <div>
+                <div class="mb-3">
+                    <label class="form-label">VALOR DE COMPRA:</label>
+                    <input type="text" class="form-control" name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">LUCRO:</label>
+                    <input type="text" class="form-control" name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">VALOR DE VENDA:</label>
+                    <input type="text" class="form-control" name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">DESCONTO:</label>
+                    <input type="text" class="form-control" name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" required>
+                </div>
+
             </div>
-            
-            <label id="ediValorVenda"class="form-label">VALOR DE VENDA</label>
-            <label id="ediDesconto" class="form-label">DESCONTO</label>
-            <label id="ediQuantidade" class="form-label">QUANTIDADE</label>
-            <div class="input-group">  
-                <input id="consultproduct" type="text"  name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" required>
-                <input id="consultproduct" type="text"  name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" required>
-                <input id="consultproduct" type="text"  name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" required>
+
+            <div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">QUANTIDADE:</label>
+                    <input type="text" class="form-control" name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">UNIDADE:</label>
+                    <input type="text" class="form-control" name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">REFERÊNCIA:</label>
+                    <input type="text" class="form-control" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
+                </div>
+
+                <input type="button" class="btn mt-4 btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
             </div>
-            <label id="ediUnidade" class="form-label">UNIDADE</label>
-            <label id="ediReferencia" class="form-label">REFERÊNCIA</label>
-            <div class="input-group">
-                <input id="consultproduct" type="text"  name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
-                <input style="margin-left: 35px; margin-right:35px;" type="text" class="form-control" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
-            </div>
-         
-            <input style="margin-left: 90.6%; margin-top:1%;margin-bottom: 1%;" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
-        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

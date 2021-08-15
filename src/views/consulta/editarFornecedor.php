@@ -110,6 +110,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
                     '<script>
                         alert("Cliente atualizado com sucesso!");
                     </script>';
+                   
                 } catch (PDOException $e) {
                     echo $e->getMessage();
                 }
