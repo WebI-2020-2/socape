@@ -70,7 +70,10 @@ $marcas = new MarcasController();
             $err = FALSE;
 
             if (!$data['marca']) {
-                echo "<h1>INFORME A MARCA!</h1>";
+                echo
+                    '<script>
+                        alert("Informe a marca do produto!");
+                    </script>';
                 $err = TRUE;
             }
 

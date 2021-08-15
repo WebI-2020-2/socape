@@ -73,7 +73,10 @@ $categoria = $categorias->findOne($idcategoria);
             $err = FALSE;
 
             if (!$data['categoria']) {
-                echo "<h1>INFORME A CATEGORIA!</h1>";
+                echo
+                    '<script>
+                        alert("Innforme a Categoria!");
+                    </script>';
                 $err = TRUE;
             }
 

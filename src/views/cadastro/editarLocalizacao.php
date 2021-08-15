@@ -73,7 +73,10 @@ $localizacao = $localizacoes->findOne($idlocalizacao);?>
             $err = FALSE;
 
             if (!$data['departamento']) {
-                echo "<h1>INFORME O DEPARTAMENTO!</h1>";
+                echo
+                '<script>
+                 alert("Informe o departamento!");
+                </script>';
                 $err = TRUE;
             }
 

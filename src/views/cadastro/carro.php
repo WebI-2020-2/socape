@@ -70,7 +70,10 @@ $carros = new CarroController();
             $err = FALSE;
 
             if (!$data['modelo']) {
-                echo "<h1>INFORME O MODELO DO CARRO!</h1>";
+                echo
+                '<script>
+                 alert("Informe o modelo do carro!");
+                </script>';
                 $err = TRUE;
             }
 

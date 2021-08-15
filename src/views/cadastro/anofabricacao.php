@@ -78,7 +78,10 @@ $fabricacoes = new FabricacaoController();
             $err = FALSE;
 
             if (!$data['ano']) {
-                echo "<h1>INFORME O ANO DE FABRICAÇÃO!</h1>";
+                echo
+                '<script>
+                 alert("Informe o ano de Fabricação!");
+                </script>';
                 $err = TRUE;
             }
 

@@ -72,7 +72,10 @@ $carro = $carros->findOne($idcarro);?>
             $err = FALSE;
 
             if (!$data['modelo']) {
-                echo "<h1>INFORME O MODELO DO CARRO!</h1>";
+                echo
+                    '<script>
+                        alert("Insira o modelo!");
+                    </script>';
                 $err = TRUE;
             }
 

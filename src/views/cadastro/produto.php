@@ -91,42 +91,72 @@ $marcas = new MarcasController();
             $err = FALSE;
 
             if (!$data['idmotor']) {
-                echo "<h1>INFORME A POTÊNCIA DO MOTOR!</h1>";
+                echo
+                '<script>
+                 alert("Informe a potência do motor!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['idcarro']) {
-                echo "<h1>INFORME O MODELO DO FORNECEDOR!</h1>";
+                echo
+                '<script>
+                 alert("Informe o nome do carro!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['idvalvulas']) {
-                echo "<h1>INFORME A QUANTIDADE DE VÁLVULAS!</h1>";
+                echo
+                '<script>
+                 alert("Informe a quantidade de válvulas!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['idfabricacao']) {
-                echo "<h1>INFORME O ANO DE FABRICAÇÃO!</h1>";
+                echo
+                '<script>
+                 alert("Informe o ano de fabricação!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['idcategoria']) {
-                echo "<h1>INFORME A CATEGORIA!</h1>";
+                echo
+                '<script>
+                 alert("Informe a categoria do produto!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['idmarca']) {
-                echo "<h1>INFORME A MARCA!</h1>";
+                echo
+                '<script>
+                 alert("Informe a marca do produto!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['unidade']) {
-                echo "<h1>INFORME A UNIDADE!</h1>";
+                echo
+                '<script>
+                 alert("Informe a unidade!");
+                </script>';
                 $err = TRUE;
             } else if (strlen($data['unidade']) > 2) {
-                echo "<h1>A UNIDADE SÓ PODE CONTER 2 DÍGITOS!</h1>";
+                echo
+                '<script>
+                 alert("A unidade só pode conter 2 dígitos!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['idlocalizacao']) {
-                echo "<h1>INFORME A LOCALIZAÇÃO!</h1>";
+                echo
+                '<script>
+                 alert("Informe o departamento que o produto será armazenado!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['referencia']) {
-                echo "<h1>INFORME A REFERÊNCIA!</h1>";
+                echo
+                '<script>
+                 alert("Informe a referência do produto!");
+                </script>';
                 $err = TRUE;
             }
 

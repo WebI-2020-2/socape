@@ -133,6 +133,89 @@ $cliente = $clientes->findOne($venda->getIdcliente());
             }
         }
         ?>
+
+        <style>
+            form{
+                width:52%;
+                margin-left:5%;
+                margin-top: 2%;
+            }
+
+            #pesquisar{
+                margin-left: 28px;
+                padding: 4px 15px 3px 15px;
+                border-radius: 50px;
+            }
+            @media (min-width: 1200px) { 
+                #valorTotal{
+                    margin-top: 0%;
+                    width: 49%; 
+                
+                }
+                #produto{
+                    width:23.4%;
+                }
+                #titulo2{
+                    text-align: left;
+                    margin-top:3%;
+                    margin-bottom:1%;
+                    margin-left:10px;
+                }
+                #titulo3{
+                    text-align: left;
+                    margin-top:5%;
+                    margin-bottom:0%;
+                }
+                #textValor{
+                    margin-left: 37%;
+                }
+
+                #textLucro{
+                    margin-left: 39.5%;
+                }
+                #textIcms{
+                    margin-left: 27.6%;
+                }
+                #dadosFor{
+                    width: 52%;
+                    margin-top: 1px;
+                    margin-bottom:20px;
+                    margin-left: 70px;
+                }
+                #dadosClientes{
+                    width: 95%;
+                    margin-top: 1px;
+                    margin-bottom:20px;
+                    margin-left: 20px;
+                }
+                #cliente{
+                    background-image: linear-gradient(to bottom, #272020, #8c1818);
+                    width: 173%;
+                    border: double;
+                }
+                #textNome{
+                    margin-left:1%;
+                }
+                #textTelefone{
+                    margin-left:28.4%;
+                }
+                #textCpf{
+                    margin-left:27%;
+                }
+                #dadosItens{
+                    width: 95%;
+                    margin-top:4%;
+                    margin-left: 1%;
+                    
+                }
+                #inserir{
+                    margin-left: 94%;
+                    margin-top: 1%;
+                }
+            }
+
+
+        </style>
        
         <form id="dadosFor" method="POST" action="">
             <div id="cliente">

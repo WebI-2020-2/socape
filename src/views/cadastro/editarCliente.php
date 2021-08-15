@@ -68,24 +68,27 @@ $cliente = $clientes->findOne($idcliente);
         </h1>
 
         <?php
-        if ($_POST) {
-            $data = $_POST;
-            $cliente = new ClientesController();
-
-            $err = FALSE;
-
-            if (!$data['nome']) {
-                echo "<h1>INFORME O NOME DO CLIENTE!</h1>";
-                $err = TRUE;
-            }
-            if (!$data['telefone']) {
-                echo "<h1>INFORME O TELEFONE DO CLIENTE!</h1>";
-                $err = TRUE;
-            }
-            if (!$data['cpf']) {
-                echo "<h1>INFORME O CPF DO CLIENTE!</h1>";
-                $err = TRUE;
-            }
+         if (!$data['nome']) {
+            echo
+            '<script>
+             alert("Informe o nome do cliente!");
+            </script>';
+            $err = TRUE;
+        }
+        if (!$data['telefone']) {
+            echo
+            '<script>
+             alert("Informe o número de telefone!");
+            </script>';
+            $err = TRUE;
+        }
+        if (!$data['cpf']) {
+            echo
+            '<script>
+             alert("Informe o CPF do cliente!");
+            </script>';
+            $err = TRUE;
+        }
             $cliente->setNome($data['nome']);
             $cliente->setTelefone($data['telefone']);
             $cliente->setCpf($data['cpf']);

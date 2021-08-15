@@ -70,7 +70,10 @@ $motores = new MotorController();
             $err = FALSE;
 
             if (!$data['potencia']) {
-                echo "<h1>INFORME A POTÊNCIA DO MOTOR!</h1>";
+                echo
+                    '<script>
+                        alert("Informe a potência do motor!");
+                    </script>';
                 $err = TRUE;
             }
 
