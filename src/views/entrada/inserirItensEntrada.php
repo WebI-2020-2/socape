@@ -6,7 +6,6 @@ $itensEntrada = new ItensEntradaController();
 require_once __DIR__ . '/../../controller/EntradasController.php';
 $entrada = new EntradasController();
 $entrada = $entrada->findOne($_GET['identrada']);
-echo $entrada->getIdfornecedor();
 
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
@@ -14,7 +13,6 @@ $produtos = new ProdutosController();
 require_once __DIR__ . '/../../controller/FornecedoresController.php';
 $fornecedores = new FornecedoresController();
 $fornecedor = $fornecedores->findOne($entrada->getIdfornecedor());
-echo $fornecedores->getNome();
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
@@ -64,9 +62,15 @@ echo $fornecedores->getNome();
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
             </ul>

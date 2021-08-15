@@ -54,6 +54,13 @@ $produto = $produtos->findOne($idproduto);
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
             </ul>
@@ -146,48 +153,48 @@ $produto = $produtos->findOne($idproduto);
         ?>
 
 
-            
-            
+
+
         <form id="formProduto" method="POST" action="">
-                <label style="margin-left: 5%"class="form-label">ICMS</label>
-                <label style="margin-left: 44%"class="form-label">IPI</label>
-            <div  class="mb-3">
-                <input id="consultproduct" type="text"  name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" required>
-                <input id="consultproduct" type="text"  name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" required>
+            <label style="margin-left: 5%" class="form-label">ICMS</label>
+            <label style="margin-left: 44%" class="form-label">IPI</label>
+            <div class="mb-3">
+                <input id="consultproduct" type="text" name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" required>
+                <input id="consultproduct" type="text" name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" required>
             </div>
             <label style="margin-left: 5%" class="form-label">FRETE</label>
             <label style="margin-left: 44%" class="form-label">VALOR NA FÁBRICA</label>
             <div class="mb-3">
-                <input id="consultproduct" type="text"  name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" required>
-                <input id="consultproduct" type="text"  name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" required>
+                <input id="consultproduct" type="text" name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" required>
+                <input id="consultproduct" type="text" name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" required>
             </div>
             <label style="margin-left: 5%" class="form-label">VALOR DE COMPRA</label>
             <label style="margin-left: 30%" class="form-label">LUCRO</label>
             <div class="mb-3">
-                
-                <input id="consultproduct" type="text"  name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" required>
-                <input id="consultproduct" type="text"  name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" required>
+
+                <input id="consultproduct" type="text" name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" required>
+                <input id="consultproduct" type="text" name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" required>
             </div>
-            <label style="margin-left: 5%"class="form-label">VALOR DE VENDA</label>
-            <label style="margin-left: 32%"class="form-label">DESCONTO</label>
+            <label style="margin-left: 5%" class="form-label">VALOR DE VENDA</label>
+            <label style="margin-left: 32%" class="form-label">DESCONTO</label>
             <div class="mb-3">
-                
-                <input id="consultproduct" type="text"  name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" required>
-        
-                <input id="consultproduct" type="text"  name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" required>
+
+                <input id="consultproduct" type="text" name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" required>
+
+                <input id="consultproduct" type="text" name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" required>
             </div>
-            <label style="margin-left: 5%"class="form-label">QUANTIDADE</label>
-            <label style="margin-left: 36%"class="form-label">UNIDADE</label>
+            <label style="margin-left: 5%" class="form-label">QUANTIDADE</label>
+            <label style="margin-left: 36%" class="form-label">UNIDADE</label>
             <div class="mb-3">
-                
-                <input id="consultproduct" type="text"  name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" required>
-            
-                <input id="consultproduct" type="text"  name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
+
+                <input id="consultproduct" type="text" name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" required>
+
+                <input id="consultproduct" type="text" name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
             </div>
-            <label  style="margin-left: 5%"class="form-label">REFERÊNCIA</label>
+            <label style="margin-left: 5%" class="form-label">REFERÊNCIA</label>
             <div class="mb-3">
-                
-                <input  type="text" class="form-control" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
+
+                <input type="text" class="form-control" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
             </div>
 
             <input style="margin-left: 88%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">

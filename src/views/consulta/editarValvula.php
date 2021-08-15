@@ -1,7 +1,11 @@
 <?php
-require_once __DIR__ . '/../../controller/CategoriaController.php';
-$categorias = new CategoriaController();
-?>
+require_once __DIR__ . '/../../controller/ValvulasController.php';
+
+$idvalvula = $_GET['id'];
+$valvulas = new ValvulasController();
+$valvula = $valvulas->findOne($idvalvula); ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,14 +13,14 @@ $categorias = new CategoriaController();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar categoria</title>
+    <title>SOCAPE | Cadastrar válvula</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
-<body >
+<body>
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
@@ -63,31 +67,31 @@ $categorias = new CategoriaController();
         </div>
     </nav>
 
-    <div id="containerlimitado" >
+    <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR CATEGORIA</span>
+            <span class="badge bg-light text-dark">EDITAR VÁLVULA</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
-            $categoria = new CategoriaController();
+            $valvula = new ValvulasController();
 
             $err = FALSE;
 
-            if (!$data['categoria']) {
-                echo "<h1>INFORME A CATEGORIA!</h1>";
+            if (!$data['quantidade']) {
+                echo "<h1>INFORME A QUANTIDADE DE VÁLVULAS!</h1>";
                 $err = TRUE;
             }
 
-            $categoria->setCategoria($data['categoria']);
+            $valvula->setQuantidade($data['quantidade']);
 
             if (!$err) {
                 try {
-                    $categoria->insert($categoria->getCategoria());
+                    $valvula->update($idvalvula, $data['quantidade']);
                     echo
                     '<script>
-                        alert("Categoria cadastrada com sucesso!");
+                        alert("Quantidade de válvulas atualizada com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -98,29 +102,33 @@ $categorias = new CategoriaController();
 
         <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">CATEGORIA</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" required>
+                <label class="form-label">QUANTIDADE DE VÁLVULAS</label>
+                <input style="width: 130%" type="text" name="quantidade" class="form-control" placeholder="QUANTIDADE" value="<?= $valvula->getQuantidade() ?>" disabled>
             </div>
-
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <div class="mb-3">
+                <label class="form-label">ATUALIZAR</label>
+                <input style="width: 130%" type="text" name="quantidade" class="form-control" placeholder="QUANTIDADE" value="<?= $valvula->getQuantidade() ?>" required>
+            </div>
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
-        <table style="margin-top: 1%" class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>CATEGORIA</th>
+                    <th>VÁLVULAS</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($categorias->findAll() as $obj) { ?>
+                <?php foreach ($valvulas->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdcategoria() ?></td>
-                        <td><?= $obj->getCategoria() ?></td>
+                        <td><?= $obj->getIdvalvulas() ?></td>
+                        <td><?= $obj->getQuantidade() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
+                                <a href="./editarValvula.php?id=<?= $obj->getIdvalvulas() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -130,18 +138,18 @@ $categorias = new CategoriaController();
     </div>
 
     <script>
-        function deletar(id, categoria) {
-            if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
+        function deletar(id, quantidade) {
+            if (confirm("Deseja realmente excluir a quantidade de " + quantidade + " valvúlas ?")) {
                 $.ajax({
-                    url: '../apagar/categoria.php',
+                    url: '../apagar/valvula.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Categoria excluída com sucesso!");
-                            window.location.href = './categoria.php';
+                            alert("Quantidade de válvulas excluída com sucesso!");
+                            window.location.href = './valvula.php';
                         } else {
                             alert(res["msg"]);
                         }

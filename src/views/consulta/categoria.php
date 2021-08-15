@@ -16,7 +16,7 @@ $categorias = new CategoriaController();
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
-<body >
+<body>
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
@@ -27,16 +27,16 @@ $categorias = new CategoriaController();
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -48,6 +48,8 @@ $categorias = new CategoriaController();
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
@@ -63,47 +65,17 @@ $categorias = new CategoriaController();
         </div>
     </nav>
 
-    <div id="containerlimitado" >
+    <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR CATEGORIA</span>
+            <span class="badge bg-light text-dark">CONSULTAR CATEGORIA</span>
         </h1>
+        <div class="mb-3" id="divBusca">
+            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..." />
+            <input id="idcliente" type="hidden" name="idcliente" required>
+            <a href=""><button id="btnBusca">Buscar</button></a>
+        </div>
+        <a href="../cadastro/categoria.php"><button class="icon-print icon-white">CADASTRAR CATEGORIA</button></a>
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
-            $categoria = new CategoriaController();
-
-            $err = FALSE;
-
-            if (!$data['categoria']) {
-                echo "<h1>INFORME A CATEGORIA!</h1>";
-                $err = TRUE;
-            }
-
-            $categoria->setCategoria($data['categoria']);
-
-            if (!$err) {
-                try {
-                    $categoria->insert($categoria->getCategoria());
-                    echo
-                    '<script>
-                        alert("Categoria cadastrada com sucesso!");
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
-                }
-            }
-        }
-        ?>
-
-        <form action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">CATEGORIA</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" required>
-            </div>
-
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
-        </form>
 
         <table style="margin-top: 1%" class="table">
             <thead>
@@ -120,6 +92,7 @@ $categorias = new CategoriaController();
                         <td><?= $obj->getCategoria() ?></td>
                         <td>
                             <div class="button-group clear">
+                                <a href="./editarCategoria.php?id=<?= $obj->getIdcategoria() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
                                 <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
                             </div>
                         </td>
@@ -127,31 +100,30 @@ $categorias = new CategoriaController();
                 <?php } ?>
             </tbody>
         </table>
-    </div>
 
-    <script>
-        function deletar(id, categoria) {
-            if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
-                $.ajax({
-                    url: '../apagar/categoria.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Categoria excluída com sucesso!");
-                            window.location.href = './categoria.php';
-                        } else {
-                            alert(res["msg"]);
+        <script>
+            function deletar(id, categoria) {
+                if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
+                    $.ajax({
+                        url: '../apagar/categoria.php',
+                        type: "POST",
+                        data: {
+                            id
+                        },
+                        success: (res) => {
+                            if (res["status"]) {
+                                alert("Categoria excluída com sucesso!");
+                                window.location.href = './categoria.php';
+                            } else {
+                                alert(res["msg"]);
+                            }
                         }
-                    }
-                });
-                return false;
+                    });
+                    return false;
+                }
             }
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
 </html>

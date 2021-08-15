@@ -1,7 +1,10 @@
 <?php
 require_once __DIR__ . '/../../controller/CategoriaController.php';
+$idcategoria = $_GET['id'];
 $categorias = new CategoriaController();
+$categoria = $categorias->findOne($idcategoria);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -16,7 +19,7 @@ $categorias = new CategoriaController();
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
-<body >
+<body>
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
@@ -48,6 +51,7 @@ $categorias = new CategoriaController();
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
@@ -63,9 +67,9 @@ $categorias = new CategoriaController();
         </div>
     </nav>
 
-    <div id="containerlimitado" >
+    <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">CADASTRAR CATEGORIA</span>
+            <span class="badge bg-light text-dark">EDITAR CATEGORIA</span>
         </h1>
 
         <?php
@@ -84,10 +88,10 @@ $categorias = new CategoriaController();
 
             if (!$err) {
                 try {
-                    $categoria->insert($categoria->getCategoria());
+                    $categoria->update($idcategoria, $data['categoria']);
                     echo
                     '<script>
-                        alert("Categoria cadastrada com sucesso!");
+                        alert("Categoria atualizada com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -99,10 +103,13 @@ $categorias = new CategoriaController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">CATEGORIA</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" required>
+                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria() ?>" disabled>
             </div>
-
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <div class="mb-3">
+                <label class="form-label">ATUALIZAR</label>
+                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria() ?>" required>
+            </div>
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
         <table style="margin-top: 1%" class="table">
@@ -120,6 +127,7 @@ $categorias = new CategoriaController();
                         <td><?= $obj->getCategoria() ?></td>
                         <td>
                             <div class="button-group clear">
+                                <a href="./editarCategoria.php?id=<?= $obj->getIdcategoria() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
                                 <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
                             </div>
                         </td>
