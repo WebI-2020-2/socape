@@ -1,12 +1,7 @@
 <?php
-require_once __DIR__ . '/../../controller/MarcasController.php';
-
-$idmarca = $_GET['id'];
-$marcas = new MarcasController();
-$marca = $marcas->findOne($idmarca);
-
+require_once __DIR__ . '/../../controller/CarrosController.php';
+$carros = new CarroController();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -14,7 +9,7 @@ $marca = $marcas->findOne($idmarca);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar marca</title>
+    <title>SOCAPE | Cadastrar Modelo de Carro</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
@@ -25,7 +20,7 @@ $marca = $marcas->findOne($idmarca);
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
-            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
@@ -53,17 +48,17 @@ $marca = $marcas->findOne($idmarca);
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                     <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                    </ul>
-                </li>
-                <li style="margin-left: 52%" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="src/views/usuario/perfil.php">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">SAIR</a></li>
-                        
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
             </ul>
@@ -72,69 +67,33 @@ $marca = $marcas->findOne($idmarca);
 
     <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">EDITAR MARCA</span>
+            <span class="badge bg-light text-dark">CONSULTAR MODELO DE CARRO</span>
         </h1>
+        <div class="mb-3" id="divBusca">
+            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..." />
+            <input id="idcliente" type="hidden" name="idcliente" required>
+            <a href=""><button id="btnBusca">Buscar</button></a>
+        </div>
+        <a href="../cadastro/carro.php"><button class="icon-print icon-white">CADASTRAR CARRO</button></a>
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
-            $marca = new MarcasController();
-
-            $err = FALSE;
-
-            if (!$data['marca']) {
-                echo
-                '<script>
-                 alert("Informe a marca do produto!");
-                </script>';
-                $err = TRUE;
-            }
-
-            $marca->setMarca($data['marca']);
-
-            if (!$err) {
-                try {
-                    $marca->update($idmarca, $data['marca']);
-                    echo
-                    '<script>
-                        alert("Marca atualizada com sucesso!");
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
-                }
-            }
-        }
-        ?>
-
-        <form action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">MARCA</label>
-                <input style="width: 130%" type="text" name="marca" class="form-control" placeholder="MARCA" value="<?= $marca->getMarca(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="marca" class="form-control" placeholder="MARCA" value="<?=$marca->getMarca(); ?>" required>
-            </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
-        </form>
 
         <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>MARCA</th>
+                    <th>Modelo</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($marcas->findAll() as $obj) { ?>
+                <?php foreach ($carros->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdmarca() ?></td>
-                        <td><?= $obj->getMarca() ?></td>
+                        <td><?= $obj->getIdcarro() ?></td>
+                        <td><?= $obj->getModelo() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarMarca.php?id=<?= $obj->getIdmarca() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
+                                <a href="./editarCarro.php?id=<?= $obj->getIdcarro() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -144,18 +103,18 @@ $marca = $marcas->findOne($idmarca);
     </div>
 
     <script>
-        function deletar(id, marca) {
-            if (confirm("Deseja realmente excluir a marca " + marca + "?")) {
+        function deletar(id, modelo) {
+            if (confirm("Deseja realmente excluir o modelo de carro " + modelo + "?")) {
                 $.ajax({
-                    url: '../apagar/marca.php',
+                    url: '../apagar/carro.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Marca excluída com sucesso!");
-                            window.location.href = './marca.php';
+                            alert("Modelo de carro excluído com sucesso!");
+                            window.location.href = './carro.php';
                         } else {
                             alert(res["msg"]);
                         }

@@ -1,9 +1,10 @@
 <?php
-require_once __DIR__ . '/../../controller/CarrosController.php';
+require_once __DIR__ . '/../../controller/MotorController.php';
 
-$idcarro = $_GET['id'];
-$carros = new CarroController();
-$carro = $carros->findOne($idcarro);?>
+$idmotor = $_GET['id'];
+$motores = new MotorController();
+$motor = $motores->findOne($idmotor); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,7 +12,7 @@ $carro = $carros->findOne($idcarro);?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar Modelo de Carro</title>
+    <title>SOCAPE | Cadastrar motor</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
@@ -53,6 +54,13 @@ $carro = $carros->findOne($idcarro);?>
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
                 <li style="margin-left: 52%" class="nav-item dropdown">
@@ -69,32 +77,32 @@ $carro = $carros->findOne($idcarro);?>
 
     <div id="container">
         <h1>
-            <span class="badge bg-light text-dark">EDITAR MODELO DE CARRO</span>
+            <span class="badge bg-light text-dark">EDITAR POTÊNCIA DO MOTOR</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
-            $carro = new CarroController();
+            $motor = new MotorController();
 
             $err = FALSE;
 
-            if (!$data['modelo']) {
+            if (!$data['potencia']) {
                 echo
-                    '<script>
-                        alert("Insira o modelo!");
-                    </script>';
+                '<script>
+                 alert("Informe a potência!");
+                </script>';
                 $err = TRUE;
             }
 
-            $carro->setModelo($data['modelo']);
+            $motor->setPotencia($data['potencia']);
 
             if (!$err) {
                 try {
-                    $carro->update($idcarro, $data['modelo']);
+                    $motor->update($idmotor, $data['potencia']);
                     echo
                     '<script>
-                        alert("Modelo de carro atualizado com sucesso!");
+                        alert("Potência de motor cadastrada com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -105,35 +113,33 @@ $carro = $carros->findOne($idcarro);?>
 
         <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">MODELO</label>
-                <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" disabled>
+                <label class="form-label">POTÊNCIA DO MOTOR</label>
+                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" value="<?= $motor->getPotencia() ?>" disabled>
             </div>
-            <div>
-                <label class="form-label">ATUALIZAR:</label>
-                <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" required>
+            <div class="mb-3">
+                <label class="form-label">ATUALIZAR</label>
+                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" value="<?= $motor->getPotencia() ?>" required>
             </div>
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
+        </form>
 
-        </form>           
-
-
-        <table style="margin-top: 1%"  class="table">
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Modelo</th>
+                    <th>POTÊNCIA</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($carros->findAll() as $obj) { ?>
+                <?php foreach ($motores->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdcarro() ?></td>
-                        <td><?= $obj->getModelo() ?></td>
+                        <td><?= $obj->getIdmotor() ?></td>
+                        <td><?= $obj->getPotencia() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarCarro.php?id=<?= $obj->getIdcarro() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
+                                <a href="./editarMotor.php?id=<?= $obj->getIdmotor() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -143,18 +149,18 @@ $carro = $carros->findOne($idcarro);?>
     </div>
 
     <script>
-        function deletar(id, modelo) {
-            if (confirm("Deseja realmente excluir o modelo de carro " + modelo + "?")) {
+        function deletar(id, motor) {
+            if (confirm("Deseja realmente excluir o motor " + motor + "?")) {
                 $.ajax({
-                    url: '../apagar/carro.php',
+                    url: '../apagar/motor.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Modelo de carro excluído com sucesso!");
-                            window.location.href = './carro.php';
+                            alert("Potência de motor excluída com sucesso!");
+                            window.location.href = './motor.php';
                         } else {
                             alert(res["msg"]);
                         }

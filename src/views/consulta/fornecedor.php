@@ -51,6 +51,13 @@ $fornecedores = new FornecedoresController();
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
                 <li style="margin-left: 52%" class="nav-item dropdown">
@@ -70,39 +77,39 @@ $fornecedores = new FornecedoresController();
             <span class="badge bg-light text-dark">CONSULTAR FORNECEDOR</span>
         </h1>
         <div class="mb-3" id="divBusca">
-                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..."/>
-                <input id="idcliente" type="hidden" name="idcliente" required>
-                <a href= ""><button id="btnBusca">Buscar</button></a>
+            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
+            <input id="idcliente" type="hidden" name="idcliente" required>
+            <a href=""><button id="btnBusca">Buscar</button></a>
         </div>
         <?php if (isset($_GET["id"])) {
             if ($fornecedores->findOne($_GET["id"])) {
                 $fornecedor = $fornecedores->findOne($_GET["id"]);
         ?>
-        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
-        <form style="margin-left: 25%" action="" method="post">
-            <div class="mb-3">
-                <label class="form-label">NOME</label>
-                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">ENDEREÇO</label>
-                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">TELEFONE</label>
-                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">CNPJ</label>
-                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
-            </div>
+                <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
+                <form style="margin-left: 25%" action="" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">NOME</label>
+                        <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ENDEREÇO</label>
+                        <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">TELEFONE</label>
+                        <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">CNPJ</label>
+                        <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
+                    </div>
 
-        </form>
+                </form>
         <?php
             }
         } ?>
 
-        <table style="margin-top: 1%"  class="table">
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>

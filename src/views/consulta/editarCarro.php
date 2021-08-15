@@ -1,23 +1,21 @@
 <?php
-if (!$_GET['id']) header('Location: ./fornecedor.php');
-require_once __DIR__ . '/../../controller/FornecedoresController.php';
+require_once __DIR__ . '/../../controller/CarrosController.php';
 
-$idfornecedor = $_GET['id'];
-$fornecedores = new FornecedoresController();
-$fornecedor = $fornecedores->findOne($idfornecedor);
-?>
-<!doctype html>
-<html class="no-js" lang="pt-br">
+$idcarro = $_GET['id'];
+$carros = new CarroController();
+$carro = $carros->findOne($idcarro);?>
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SOCAPE | Editar fornecedor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOCAPE | Cadastrar Modelo de Carro</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
-    <link href="./../../../public/css/cadastrar.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
 <body>
@@ -76,71 +74,103 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
         </div>
     </nav>
 
-    <div id="containerlimitado">
+    <div id="container">
         <h1>
-            <span class="badge bg-light text-dark">EDITAR FORNECEDOR</span>
+            <span class="badge bg-light text-dark">EDITAR MODELO DE CARRO</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
+            $carro = new CarroController();
+
             $err = FALSE;
 
-            if (!$data['nome']) {
-                echo "<h1>INFORME O NOME DO FORNECEDOR!</h1>";
+            if (!$data['modelo']) {
+                echo
+                    '<script>
+                        alert("Insira o modelo!");
+                    </script>';
                 $err = TRUE;
             }
-            if (!$data['endereco']) {
-                echo "<h1>INFORME O ENDEREÇO DO FORNECEDOR!</h1>";
-                $err = TRUE;
-            }
-            if (!$data['telefone']) {
-                echo "<h1>INFORME O TELEFONE DO FORNECEDOR!</h1>";
-                $err = TRUE;
-            }
-            if (!$data['cnpj']) {
-                echo "<h1>INFORME O CNPJ DO FORNECEDOR!</h1>";
-                $err = TRUE;
-            }
+
+            $carro->setModelo($data['modelo']);
 
             if (!$err) {
                 try {
-                    $fornecedores->update($idfornecedor, $data['nome'], $data['endereco'], $data['telefone'], $data['cnpj']);
+                    $carro->update($idcarro, $data['modelo']);
                     echo
                     '<script>
-                        alert("Cliente atualizado com sucesso!");
+                        alert("Modelo de carro atualizado com sucesso!");
                     </script>';
-                } catch (PDOException $e) {
-                    echo $e->getMessage();
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
                 }
             }
         }
         ?>
 
-        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
-        <form style="margin-left: 25%" action="" method="post">
+        <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">NOME</label>
-                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
+                <label class="form-label">MODELO</label>
+                <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" disabled>
             </div>
-            <div class="mb-3">
-                <label class="form-label">ENDEREÇO</label>
-                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
+            <div>
+                <label class="form-label">ATUALIZAR:</label>
+                <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" required>
             </div>
-            <div class="mb-3">
-                <label class="form-label">TELEFONE</label>
-                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">CNPJ</label>
-                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
-            </div>
+            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
 
-            <input style="margin-left: 90%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
-        </form>
+        </form>           
 
+
+        <table style="margin-top: 1%"  class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Modelo</th>
+                    <th width="20%">AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($carros->findAll() as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIdcarro() ?></td>
+                        <td><?= $obj->getModelo() ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <a href="./editarCarro.php?id=<?= $obj->getIdcarro() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 
+    <script>
+        function deletar(id, modelo) {
+            if (confirm("Deseja realmente excluir o modelo de carro " + modelo + "?")) {
+                $.ajax({
+                    url: '../apagar/carro.php',
+                    type: "POST",
+                    data: {
+                        id
+                    },
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Modelo de carro excluído com sucesso!");
+                            window.location.href = './carro.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
