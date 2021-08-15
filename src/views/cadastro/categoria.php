@@ -79,6 +79,7 @@ $categorias = new CategoriaController();
         <?php
         if ($_POST) {
             $data = $_POST;
+
             $categoria = new CategoriaController();
 
             $err = FALSE;
@@ -91,11 +92,10 @@ $categorias = new CategoriaController();
                 $err = TRUE;
             }
 
-            $categoria->setCategoria($data['categoria']);
-
             if (!$err) {
                 try {
-                    $categoria->insert($categoria->getCategoria());
+                    $categoria->insert($data['categoria']);
+
                     echo
                     '<script>
                         alert("Categoria cadastrada com sucesso!");
