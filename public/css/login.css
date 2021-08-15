@@ -1,0 +1,89 @@
+body {
+    color: #ffffff;
+    background: linear-gradient(180deg, #140C0C  0%, rgba(255, 255, 255, 0) 100%), #0F0E0E;
+  }
+
+.card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+    margin-bottom:12.9%;
+    border-radius: 30px 30px 30px 30px !important;
+}
+
+.btn {
+    font-weight: 700;
+    height: 36px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+    border-radius: 30px 30px 30px 30px !important;
+}
+
+.card {
+    background: linear-gradient(180deg, #9F0000 0%, rgba(255, 255, 255, 0) 100%), #0F0E0E;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 150px;
+    /* shadows and rounded borders */
+    border-radius: 30px 30px 30px 30px !important;
+    transform: rotate(0.15deg);
+}
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    border-radius: 30px 30px 30px 30px !important;
+}
+
+.profile-name-card {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 0;
+    min-height: 1em;
+    border-radius: 30px 30px 30px 30px !important;
+}
+
+.form-signin #inputNome,
+.form-signin #inputUsuario,
+.form-signin #inputsenha {
+    direction: ltr;
+    width: 270px;
+    height: 40px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    border-radius: 30px 30px 30px 30px !important;
+}
+
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+    width: 100%;
+    display: block;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+.btn.btn-login {
+    
+    background-color: #ff0000; 
+    margin-left:25% ;
+    font-weight: 700;
+    font-size: 14px;
+    height: 40px;
+    width: 130px;
+    border-radius: 30px 30px 30px 30px !important;
+}
+
+.logar {
+
+    color: rgb(255, 255, 255);
+}
