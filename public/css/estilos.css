@@ -107,11 +107,6 @@ form {
    margin-top: 65px;
    margin-left: 28%;
 }
-#formProduto{
-  width: 50%;
-  margin-left: 350px;
-  margin-right: 100px;
-}
 
 #imagemFornecedor{
   width: 22%;
@@ -131,6 +126,12 @@ form {
   margin-left: 40px;
 }
 
+#formProduto{
+  width: 90%;
+  margin-bottom: 3%;
+  margin-left:3%;
+  border: double;
+}
 #minhaConta{
   margin-left:80%;
 }

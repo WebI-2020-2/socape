@@ -40,17 +40,17 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                    <ul style="background-color: #140C0C "  class="dropdown-menu">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -60,11 +60,11 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" style="color: #FFFFFF" id="navbarDropdown"  data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                    <ul style="background-color: #140C0C "  class="dropdown-menu">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
                     </ul>
                 </li>
                 <li style="margin-left: 52%" class="nav-item dropdown">
@@ -134,89 +134,6 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         }
         ?>
 
-        <style>
-            form{
-                width:52%;
-                margin-left:5%;
-                margin-top: 2%;
-            }
-
-            #pesquisar{
-                margin-left: 28px;
-                padding: 4px 15px 3px 15px;
-                border-radius: 50px;
-            }
-            @media (min-width: 1200px) { 
-                #valorTotal{
-                    margin-top: 0%;
-                    width: 49%; 
-                
-                }
-                #produto{
-                    width:23.4%;
-                }
-                #titulo2{
-                    text-align: left;
-                    margin-top:3%;
-                    margin-bottom:1%;
-                    margin-left:10px;
-                }
-                #titulo3{
-                    text-align: left;
-                    margin-top:5%;
-                    margin-bottom:0%;
-                }
-                #textValor{
-                    margin-left: 37%;
-                }
-
-                #textLucro{
-                    margin-left: 39.5%;
-                }
-                #textIcms{
-                    margin-left: 27.6%;
-                }
-                #dadosFor{
-                    width: 52%;
-                    margin-top: 1px;
-                    margin-bottom:20px;
-                    margin-left: 70px;
-                }
-                #dadosClientes{
-                    width: 95%;
-                    margin-top: 1px;
-                    margin-bottom:20px;
-                    margin-left: 20px;
-                }
-                #cliente{
-                    background-image: linear-gradient(to bottom, #272020, #8c1818);
-                    width: 173%;
-                    border: double;
-                }
-                #textNome{
-                    margin-left:1%;
-                }
-                #textTelefone{
-                    margin-left:28.4%;
-                }
-                #textCpf{
-                    margin-left:27%;
-                }
-                #dadosItens{
-                    width: 95%;
-                    margin-top:4%;
-                    margin-left: 1%;
-                    
-                }
-                #inserir{
-                    margin-left: 94%;
-                    margin-top: 1%;
-                }
-            }
-
-
-        </style>
-       
         <form id="dadosFor" method="POST" action="">
             <div id="cliente">
                 <h1 id="titulo2">

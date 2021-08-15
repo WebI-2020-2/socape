@@ -15,7 +15,7 @@
     <img id="imagemCadastro" src="./../../../public/imagens/titulo.png" align="left">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
@@ -49,6 +49,14 @@
                     </ul>
                 </li>
             </ul>
+            <li style="margin-left: 52%" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
+                <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" style="color: #FFFFFF" href="">PERFIL</a></li>
+                    <li><a class="dropdown-item" style="color: #FFFFFF" href="">SAIR</a></li>
+                    
+                </ul>
+            </li>
         </div>
     </nav>
 
