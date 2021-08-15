@@ -1,22 +1,24 @@
 <?php
-require_once __DIR__ . '/../../controller/LocalizacaoController.php';
+if (!$_GET['id']) header('Location: ./cliente.php');
+require_once __DIR__ . '/../../controller/ClientesController.php';
 
-$idlocalizacao = $_GET['id'];
-$localizacoes = new LocalizacaoController();
-$localizacao = $localizacoes->findOne($idlocalizacao); ?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
+$idcliente = $_GET['id'];
+$clientes = new ClientesController();
+$cliente = $clientes->findOne($idcliente);
+?>
+<!doctype html>
+<html class="no-js" lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar localização</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOCAPE | Editar cliente</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 </head>
 
 <body>
@@ -54,13 +56,6 @@ $localizacao = $localizacoes->findOne($idlocalizacao); ?>
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
                 <li style="margin-left: 52%" class="nav-item dropdown">
@@ -75,72 +70,110 @@ $localizacao = $localizacoes->findOne($idlocalizacao); ?>
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">EDITAR LOCALIZAÇÃO</span>
+            <span class="badge bg-light text-dark">EDITAR CLIENTE</span>
         </h1>
 
         <?php
-        if ($_POST) {
-            $data = $_POST;
-            $localizacao = new LocalizacaoController();
+         if (!$data['nome']) {
+            echo
+            '<script>
+             alert("Informe o nome do cliente!");
+            </script>';
+            $err = TRUE;
+        }
+        if (!$data['telefone']) {
+            echo
+            '<script>
+             alert("Informe o número de telefone!");
+            </script>';
+            $err = TRUE;
+        }
+        if (!$data['cpf']) {
+            echo
+            '<script>
+             alert("Informe o CPF do cliente!");
+            </script>';
+            $err = TRUE;
+        }
+            $cliente->setNome($data['nome']);
+            $cliente->setTelefone($data['telefone']);
+            $cliente->setCpf($data['cpf']);
 
-            $err = FALSE;
-
-            if (!$data['departamento']) {
-                echo
-                '<script>
-                 alert("Informe o departamento!");
-                </script>';
-                $err = TRUE;
-            }
-
-            $localizacao->setDepartamento($data['departamento']);
 
             if (!$err) {
                 try {
-                    $localizacao->update($idlocalizacao, $data['departamento']);
+                    $clientes->updatePF($idcliente, $data['nome'], $data['telefone'], $data['cpf']);
                     echo
                     '<script>
-                        alert("Departamento atualizado com sucesso!");
+                        alert("Cliente atualizado com sucesso!");
                     </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                    
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
                 }
             }
         }
         ?>
 
-        <form action="" method="POST">
+        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />    
+        <form action="" method="post">
             <div class="mb-3">
-                <label class="form-label">DEPARTAMENTO</label>
-                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" disabled>
+                <label class="form-label">NOME</label>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
             </div>
             <div class="mb-3">
-                <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" required>
+                <label class="form-label">TELEFONE</label>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
             </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
-
+            <div class="mb-3">
+                <?php
+                if (empty($cliente->getCpf())) {
+                ?>
+                    <label class="form-label">CNPJ</label>
+                    <div>
+                        <input style="width: 130%" type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
+                    </div>
+                <?php
+                } else {
+                ?>
+                    <label class="form-label">CPF</label>
+                    <div>
+                        <input style="width: 130%" type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
+                    </div>
+                <?php
+                }
+                ?>
+                <br>
+                
+                
+            </div>
+            <input style="margin-left: 80% " type="button" class="btn btn-primary"  onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
         </form>
-
-        <table style="margin-top: 1%" class="table">
+        <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>LOCALIZAÇÃO</th>
+                    <th>NOME</th>
+                    <th>TELEFONE</th>
+                    <th>CPF</th>
+                    <th>DÉBITO</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($localizacoes->findAll() as $obj) { ?>
+                <?php foreach ($clientes->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdlocalizacao() ?></td>
-                        <td><?= $obj->getDepartamento() ?></td>
+                        <td><?= $obj->getIdcliente() ?></td>
+                        <td><?= $obj->getNome() ?></td>
+                        <td><?= $obj->getTelefone() ?></td>
+                        <td><?= $obj->getCpf() ?></td>
+                        <td><?= $obj->getDebito() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
+                                <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -149,28 +182,6 @@ $localizacao = $localizacoes->findOne($idlocalizacao); ?>
         </table>
     </div>
 
-    <script>
-        function deletar(id, localizacao) {
-            if (confirm("Deseja realmente excluir a localização " + localizacao + "?")) {
-                $.ajax({
-                    url: '../apagar/localizacao.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Localização excluída com sucesso!");
-                            window.location.href = './localizacao.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
