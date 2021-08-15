@@ -1,6 +1,6 @@
 body {
     color: #ffffff;
-    background: linear-gradient(180deg, #140C0C  0%, rgba(255, 255, 255, 0) 100%), #0F0E0E;
+    background: linear-gradient(180deg, #000000  0%, rgba(255, 255, 255, 0) 100%), #9F0000;
   }
 
 .card-container.card {
@@ -8,6 +8,9 @@ body {
     padding: 40px 40px;
     margin-bottom:12.9%;
     border-radius: 30px 30px 30px 30px !important;
+}
+img { 
+    width: 100%;
 }
 
 .btn {
@@ -21,22 +24,12 @@ body {
 }
 
 .card {
-    background: linear-gradient(180deg, #9F0000 0%, rgba(255, 255, 255, 0) 100%), #0F0E0E;
-    /* just in case there no content*/
+    background: linear-gradient(180deg, #9F0000 0%, rgba(255, 255, 255, 0) 100%), #000000;
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
-    margin-top: 150px;
-    /* shadows and rounded borders */
+    margin-top: 110px;
     border-radius: 30px 30px 30px 30px !important;
     transform: rotate(0.15deg);
-}
-
-.profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    border-radius: 30px 30px 30px 30px !important;
 }
 
 .profile-name-card {
@@ -72,9 +65,9 @@ body {
 
 }
 
-.btn.btn-login {
-    
-    background-color: #ff0000; 
+.acesso {
+    color:#ffffff;
+    background-color: #b90101; 
     margin-left:25% ;
     font-weight: 700;
     font-size: 14px;
@@ -82,8 +75,15 @@ body {
     width: 130px;
     border-radius: 30px 30px 30px 30px !important;
 }
-
-.logar {
-
-    color: rgb(255, 255, 255);
+.acesso:hover {
+    background-color: #ffffff;
+  }
+  
+.link {
+    color:#ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    height: 40px;
+    width: 130px;
 }
+

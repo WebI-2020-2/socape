@@ -17,7 +17,7 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
 <body>
     <div class="container">
         <div class="card card-container">
-            <h1 style="text-align: center">CADASTRO</h1>
+        <img  src="./public/imagens/teste1.png" align="center">
             <p id="profile-name" class="profile-name-card">
                 <?php
                 if ($_POST) {
@@ -56,24 +56,22 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
                 }
                 ?>
             </p>
-
+            <font style="text-align: center" size=+3 face=Arial color="#ffffff">Cadastro</font>
             <form class="form-signin" method="post" action="">
                 <label>Nome</label>
-                <input type="text" id="inputUsuario" class="form-control" name="nome" placeholder="Nome" required autofocus />
+                <input type="text" id="inputNome" class="form-control" name="nome" placeholder="Nome completo" required />
 
                 <label>Usuário</label>
-                <input type="text" id="inputUsuario" class="form-control" name="usuario" placeholder="Usuário" required />
+                <input type="text" id="inputUsuario" class="form-control" name="usuario" placeholder="Usuário" required autofocus />
 
                 <label>Senha</label>
                 <input type="password" id="inputsenha" class="form-control" name="senha" placeholder="Senha" required />
-
-                <button class="btn btn-lg btn-login" type="submit">Cadastrar</button>
+                <input href="./index.php?" type="submit" class="btn btn-lg acesso" method="post" onClick="" value="Cadastrar" />
             </form>
-
-            <br>
-
             <div>
-                <a style="margin-left:30%" href="./login.php" class="logar">Realizar Login</a>
+                <br>
+                <br>
+                <a style="margin-left:35%" href="./login.php" class="link">fazer login ...</a>
             </div>
         </div>
     </div>

@@ -61,13 +61,16 @@ $fabricacoes = new FabricacaoController();
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR ANO DE FABRICAÇÃO</span>
         </h1>
-        <div class="mb-3" id="divBusca">
-                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..."/>
-                <input id="idcliente" type="hidden" name="idcliente" required>
-                <a href= ""><button id="btnBusca">Buscar</button></a>
+        <div class="input-group">
+            <div class="mb-3" id="divBusca" style="margin-left:2%;">
+                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
+            </div>
+            <div>
+            <a href="../cadastro/anofabricacao.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
+            </div>
+           
         </div>
-        <a href="../cadastro/anofabricacao.php"><button class="icon-print icon-white">CADASTRAR ANO</button></a>
-
+  
         <table style="margin-top: 1%"  class="table">
             <thead>
                 <tr>

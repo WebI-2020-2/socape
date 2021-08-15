@@ -65,7 +65,7 @@ $clientes = new ClientesController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CADASTRAR CLIENTE PESSOA JURÍDICA</span>
         </h1>
@@ -140,36 +140,6 @@ $clientes = new ClientesController();
 
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="" value="CADASTRAR">
         </form>
-
-        <table style="margin-top: 1%"  class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>NOME</th>
-                    <th>TELEFONE</th>
-                    <th>CNPJ</th>
-                    <th>DÉBITO</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($clientes->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdcliente() ?></td>
-                        <td><?= $obj->getNome() ?></td>
-                        <td><?= $obj->getTelefone() ?></td>
-                        <td><?= $obj->getCnpj() ?></td>
-                        <td><?= $obj->getDebito() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcliente() ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
     </div>
 
     <script>
