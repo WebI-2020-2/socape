@@ -159,7 +159,7 @@ $marcas = new MarcasController();
                     '<script>
                         alert("Cliente atualizado com sucesso!");
                     </script>';
-                    header("Refresh:0");
+                  
                 } catch (PDOException $e) {
                     echo $e->getMessage();
                 }
