@@ -61,10 +61,16 @@ $clientes = new ClientesController();
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR CLIENTE</span>
         </h1>
-        <div class="mb-3" id="divBusca">
-            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
+        <div class="input-group">
+            <div class="mb-3" id="divBusca" style="margin-left:2%;">
+                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
+            </div>
+            <div>
+            <a href="../cadastro/cliente-fisico.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
+            </div>
+          
         </div>
-        <a href="../cadastro/cliente-fisico.php"><button class="icon-print icon-white">CADASTRAR CLIENTE</button></a>
+       
 
         <?php if (isset($_GET["id"])) {
             if ($clientes->findOne($_GET["id"])) {

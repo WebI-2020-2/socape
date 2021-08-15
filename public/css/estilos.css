@@ -134,36 +134,22 @@ form {
 }
 #minhaConta{
   margin-left:80%;
+
 }
-#divBusca{
-  background-color:#ffffff;
-  border-radius: 30px 30px 30px 30px !important;
-  width:409px;
-  height:42px;
-  margin-left: 68%;
-}
+
 
 #txtBusca{
   float:left;
-  border-radius: 30px 0px 0px 30px !important;
+  border-radius: 30px 30px 30px 30px !important;
   background-color:#ffffff;
   padding-left:5px;
   font-size:18px;
   border:none;
   height:42px;
-  width:300px;
+  width:350px;
 }
 
-#btnBusca{
-  border-radius: 0px 30px 30px 0px !important;
-  border:none;
-  color:#ffffff;
-  background:#0462f0;
-  height:42px;
-  border-radius:0 7px 7px 0;
-  width:109px;
- 
-}
+
 
 /* tela consultar Produto*/
 @media (min-width: 1200px) { 

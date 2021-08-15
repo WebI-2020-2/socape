@@ -18,7 +18,8 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
 <body>
     <div class="container">
         <div class="card card-container">
-            <h1 style="text-align: center">LOGAR</h1>
+        <img  src="./public/imagens/teste1.png" align="center">
+            
             <p id="profile-name" class="profile-name-card">
                 <?php
                 if ($_POST) {
@@ -47,7 +48,7 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
                 }
                 ?>
             </p>
-
+            <font style="text-align: center" size=+3 face=Arial color="#ffffff">Login</font>
             <form class="form-signin" method="post" action="">
                 <label>Usuário</label>
                 <input type="text" id="inputUsuario" class="form-control" name="usuario" placeholder="Usuário" required autofocus />
@@ -55,13 +56,12 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
                 <label>Senha</label>
                 <input type="password" id="inputsenha" class="form-control" name="senha" placeholder="Senha" required />
 
-                <input href="./index.php?" type="submit" class="btn btn-lg btn-login" onClick="" value="LOGAR" />
+                <input href="./index.php?" type="submit" class="btn btn-lg acesso" method="post" onClick="" value="LOGAR" />
             </form>
-
-            <br>
-
             <div>
-                <a style="margin-left:27%" href="./cadastro.php" class="logar">Realizar Cadastro</a>
+                <br>
+                <br>
+                <a style="margin-left:27%" href="./cadastro.php" class="link">cadastrar conta...</a>
             </div>
         </div>
     </div>
