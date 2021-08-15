@@ -45,21 +45,6 @@ $marcas = new MarcasController();
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
                 </li>
@@ -81,7 +66,7 @@ $marcas = new MarcasController();
                         <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
-                <li style="margin-left: 52%" class="nav-item dropdown">
+                <li style="margin-left: 59%" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
@@ -93,7 +78,7 @@ $marcas = new MarcasController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CADASTRAR PRODUTO</span>
         </h1>
@@ -219,6 +204,7 @@ $marcas = new MarcasController();
                     echo
                     '<script>
                         alert("Produto cadastrado com sucesso!");
+                        window.location.href = "../consulta/produto.php";
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -301,41 +287,8 @@ $marcas = new MarcasController();
                     <input style="margin-left: 90%; margin-right:10px; margin-bottom:10px;" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
                 </div>
             </div>
-            
 
-          
         </form>
-
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORIA/MARCA</th>
-                    <th>REFERÊNCIA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR DE VENDA</th>
-                    <th>LOCALIZAÇÃO</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($produtos->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdproduto() ?></td>
-                        <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
-                        <td><?= $obj->getReferencia() ?></td>
-                        <td><?= $obj->getQuantidade() ?></td>
-                        <td><?= $obj->getValorvenda() ?></td>
-                        <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
     </div>
 
     <script>
