@@ -1,10 +1,7 @@
 <?php
-require_once __DIR__ . '/../../controller/CategoriaController.php';
-$idcategoria = $_GET['id'];
-$categorias = new CategoriaController();
-$categoria = $categorias->findOne($idcategoria);
+require_once __DIR__ . '/../../controller/ClientesController.php';
+$clientes = new ClientesController();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,14 +9,14 @@ $categoria = $categorias->findOne($idcategoria);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar categoria</title>
+    <title>SOCAPE | Cadastrar cliente Pessoa Física</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
-<body >
+<body>
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
@@ -59,8 +56,8 @@ $categoria = $categorias->findOne($idcategoria);
                 <li style="margin-left: 52%" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="src/views/usuario/perfil.php">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">SAIR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="">PERFIL</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="./login.php">SAIR</a></li>
                         
                     </ul>
                 </li>
@@ -68,101 +65,26 @@ $categoria = $categorias->findOne($idcategoria);
         </div>
     </nav>
 
-    <div id="containerlimitado" >
+    <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">EDITAR CATEGORIA</span>
+            <span class="badge bg-light text-dark">MEU PERFIL</span>
         </h1>
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
-            $categoria = new CategoriaController();
-
-            $err = FALSE;
-
-            if (!$data['categoria']) {
-                echo
-                    '<script>
-                        alert("Innforme a Categoria!");
-                    </script>';
-                $err = TRUE;
-            }
-
-            $categoria->setCategoria($data['categoria']);
-
-            if (!$err) {
-                try {
-                    $categoria->update($idcategoria, $data['categoria']);
-                    echo
-                    '<script>
-                        alert("Categoria atualizada com sucesso!");
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
-                }
-            }
-        }
-        ?>
-
-        <form action="" method="POST">
+        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
+        <form action="" method="post">
             <div class="mb-3">
-                <label class="form-label">CATEGORIA</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria()?>" disabled>
+                <label class="form-label">NOME</label>
+                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="Nome completo" disabled>
             </div>
             <div class="mb-3">
-                <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria()?>" required>
+                <label class="form-label">USUÁRIO</label>
+                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="Usuário" disabled>
             </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
+            <div class="mb-3">
+                <label class="form-label">SENHA</label>
+                <input style="width: 130%" type="text" name="cpf" class="form-control" placeholder="CPF"disabled>
+            </div>
         </form>
-
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORIA</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($categorias->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdcategoria() ?></td>
-                        <td><?= $obj->getCategoria() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarCategoria.php?id=<?= $obj->getIdcategoria() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
-
-    <script>
-        function deletar(id, categoria) {
-            if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
-                $.ajax({
-                    url: '../apagar/categoria.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Categoria excluída com sucesso!");
-                            window.location.href = './categoria.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
