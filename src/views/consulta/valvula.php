@@ -1,10 +1,7 @@
 <?php
-require_once __DIR__ . '/../../controller/LocalizacaoController.php';
-
-$idlocalizacao = $_GET['id'];
-$localizacoes = new LocalizacaoController();
-$localizacao = $localizacoes->findOne($idlocalizacao);?>
-
+require_once __DIR__ . '/../../controller/ValvulasController.php';
+$valvulas = new ValvulasController();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +9,7 @@ $localizacao = $localizacoes->findOne($idlocalizacao);?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar localização</title>
+    <title>SOCAPE | Cadastrar válvula</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
@@ -23,7 +20,7 @@ $localizacao = $localizacoes->findOne($idlocalizacao);?>
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
-            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
@@ -54,86 +51,47 @@ $localizacao = $localizacoes->findOne($idlocalizacao);?>
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                    </ul>
-                </li>
-                <li style="margin-left: 52%" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
-                        
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">EDITAR LOCALIZAÇÃO</span>
+            <span class="badge bg-light text-dark">CONSULTAR VÁLVULA</span>
         </h1>
+        <div class="mb-3" id="divBusca">
+            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..." />
+            <input id="idcliente" type="hidden" name="idcliente" required>
+            <a href=""><button id="btnBusca">Buscar</button></a>
+        </div>
+        <a href="../cadastro/valvula.php"><button class="icon-print icon-white">CADASTRAR VÁLVULA</button></a>
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
-            $localizacao = new LocalizacaoController();
-
-            $err = FALSE;
-
-            if (!$data['departamento']) {
-                echo
-                '<script>
-                 alert("Informe o departamento!");
-                </script>';
-                $err = TRUE;
-            }
-
-            $localizacao->setDepartamento($data['departamento']);
-
-            if (!$err) {
-                try {
-                    $localizacao->update($idlocalizacao, $data['departamento']);
-                    echo
-                    '<script>
-                        alert("Departamento atualizado com sucesso!");
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
-                }
-            }
-        }
-        ?>
-
-        <form action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">DEPARTAMENTO</label>
-                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" required>
-            </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
-
-        </form>
-            
         <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>LOCALIZAÇÃO</th>
+                    <th>VÁLVULAS</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($localizacoes->findAll() as $obj) { ?>
+                <?php foreach ($valvulas->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdlocalizacao() ?></td>
-                        <td><?= $obj->getDepartamento() ?></td>
+                        <td><?= $obj->getIdvalvulas() ?></td>
+                        <td><?= $obj->getQuantidade() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
+                                <a href="./editarValvula.php?id=<?= $obj->getIdValvulas() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -143,18 +101,18 @@ $localizacao = $localizacoes->findOne($idlocalizacao);?>
     </div>
 
     <script>
-        function deletar(id, localizacao) {
-            if (confirm("Deseja realmente excluir a localização " + localizacao + "?")) {
+        function deletar(id, quantidade) {
+            if (confirm("Deseja realmente excluir a quantidade de " + quantidade + " valvúlas ?")) {
                 $.ajax({
-                    url: '../apagar/localizacao.php',
+                    url: '../apagar/valvula.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Localização excluída com sucesso!");
-                            window.location.href = './localizacao.php';
+                            alert("Quantidade de válvulas excluída com sucesso!");
+                            window.location.href = './valvula.php';
                         } else {
                             alert(res["msg"]);
                         }

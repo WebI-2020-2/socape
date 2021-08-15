@@ -1,9 +1,9 @@
 <?php
-require_once __DIR__ . '/../../controller/CategoriaController.php';
-$idcategoria = $_GET['id'];
-$categorias = new CategoriaController();
-$categoria = $categorias->findOne($idcategoria);
-?>
+require_once __DIR__ . '/../../controller/LocalizacaoController.php';
+
+$idlocalizacao = $_GET['id'];
+$localizacoes = new LocalizacaoController();
+$localizacao = $localizacoes->findOne($idlocalizacao); ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -12,14 +12,14 @@ $categoria = $categorias->findOne($idcategoria);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar categoria</title>
+    <title>SOCAPE | Cadastrar localização</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 
-<body >
+<body>
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
@@ -54,6 +54,13 @@ $categoria = $categorias->findOne($idcategoria);
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
                 <li style="margin-left: 52%" class="nav-item dropdown">
@@ -68,34 +75,34 @@ $categoria = $categorias->findOne($idcategoria);
         </div>
     </nav>
 
-    <div id="containerlimitado" >
+    <div id="container">
         <h1>
-            <span class="badge bg-light text-dark">EDITAR CATEGORIA</span>
+            <span class="badge bg-light text-dark">EDITAR LOCALIZAÇÃO</span>
         </h1>
 
         <?php
         if ($_POST) {
             $data = $_POST;
-            $categoria = new CategoriaController();
+            $localizacao = new LocalizacaoController();
 
             $err = FALSE;
 
-            if (!$data['categoria']) {
+            if (!$data['departamento']) {
                 echo
-                    '<script>
-                        alert("Innforme a Categoria!");
-                    </script>';
+                '<script>
+                 alert("Informe o departamento!");
+                </script>';
                 $err = TRUE;
             }
 
-            $categoria->setCategoria($data['categoria']);
+            $localizacao->setDepartamento($data['departamento']);
 
             if (!$err) {
                 try {
-                    $categoria->update($idcategoria, $data['categoria']);
+                    $localizacao->update($idlocalizacao, $data['departamento']);
                     echo
                     '<script>
-                        alert("Categoria atualizada com sucesso!");
+                        alert("Departamento atualizado com sucesso!");
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -106,33 +113,34 @@ $categoria = $categorias->findOne($idcategoria);
 
         <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">CATEGORIA</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria()?>" disabled>
+                <label class="form-label">DEPARTAMENTO</label>
+                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" disabled>
             </div>
             <div class="mb-3">
                 <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria()?>" required>
+                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" required>
             </div>
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
+
         </form>
 
         <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>CATEGORIA</th>
+                    <th>LOCALIZAÇÃO</th>
                     <th width="20%">AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($categorias->findAll() as $obj) { ?>
+                <?php foreach ($localizacoes->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdcategoria() ?></td>
-                        <td><?= $obj->getCategoria() ?></td>
+                        <td><?= $obj->getIdlocalizacao() ?></td>
+                        <td><?= $obj->getDepartamento() ?></td>
                         <td>
                             <div class="button-group clear">
-                                <a href="./editarCategoria.php?id=<?= $obj->getIdcategoria() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
+                                <a href="./editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
+                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
                             </div>
                         </td>
                     </tr>
@@ -142,18 +150,18 @@ $categoria = $categorias->findOne($idcategoria);
     </div>
 
     <script>
-        function deletar(id, categoria) {
-            if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
+        function deletar(id, localizacao) {
+            if (confirm("Deseja realmente excluir a localização " + localizacao + "?")) {
                 $.ajax({
-                    url: '../apagar/categoria.php',
+                    url: '../apagar/localizacao.php',
                     type: "POST",
                     data: {
                         id
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Categoria excluída com sucesso!");
-                            window.location.href = './categoria.php';
+                            alert("Localização excluída com sucesso!");
+                            window.location.href = './localizacao.php';
                         } else {
                             alert(res["msg"]);
                         }

@@ -1,12 +1,7 @@
 <?php
 require_once __DIR__ . '/../../controller/MarcasController.php';
-
-$idmarca = $_GET['id'];
 $marcas = new MarcasController();
-$marca = $marcas->findOne($idmarca);
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,7 +20,7 @@ $marca = $marcas->findOne($idmarca);
     <img src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-black bg-black">
         <div class="collapse navbar-collapse">
-            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
@@ -56,14 +51,13 @@ $marca = $marcas->findOne($idmarca);
                         <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                    </ul>
-                </li>
-                <li style="margin-left: 52%" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
-                        
+                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
             </ul>
@@ -72,53 +66,16 @@ $marca = $marcas->findOne($idmarca);
 
     <div id="containerlimitado">
         <h1>
-            <span class="badge bg-light text-dark">EDITAR MARCA</span>
+            <span class="badge bg-light text-dark">CONSULTAR MARCA</span>
         </h1>
+        <div class="mb-3" id="divBusca">
+            <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..." />
+            <input id="idcliente" type="hidden" name="idcliente" required>
+            <a href=""><button id="btnBusca">Buscar</button></a>
+        </div>
+        <a href="../cadastro/marca.php"><button class="icon-print icon-white">CADASTRAR MARCA</button></a>
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
-            $marca = new MarcasController();
-
-            $err = FALSE;
-
-            if (!$data['marca']) {
-                echo
-                '<script>
-                 alert("Informe a marca do produto!");
-                </script>';
-                $err = TRUE;
-            }
-
-            $marca->setMarca($data['marca']);
-
-            if (!$err) {
-                try {
-                    $marca->update($idmarca, $data['marca']);
-                    echo
-                    '<script>
-                        alert("Marca atualizada com sucesso!");
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
-                }
-            }
-        }
-        ?>
-
-        <form action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">MARCA</label>
-                <input style="width: 130%" type="text" name="marca" class="form-control" placeholder="MARCA" value="<?= $marca->getMarca(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="marca" class="form-control" placeholder="MARCA" value="<?=$marca->getMarca(); ?>" required>
-            </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
-        </form>
-
-        <table style="margin-top: 1%"  class="table">
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
