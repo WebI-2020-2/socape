@@ -22,7 +22,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                    <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
                         <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
