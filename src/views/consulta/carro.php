@@ -48,8 +48,7 @@ $carros = new CarroController();
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                     <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                    <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
                         <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
@@ -75,7 +74,6 @@ $carros = new CarroController();
             <a href=""><button id="btnBusca">Buscar</button></a>
         </div>
         <a href="../cadastro/carro.php"><button class="icon-print icon-white">CADASTRAR CARRO</button></a>
-
 
         <table style="margin-top: 1%"  class="table">
             <thead>

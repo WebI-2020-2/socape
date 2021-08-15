@@ -52,15 +52,16 @@ $produtos = new ProdutosController();
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
                         <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/produto.php">PRODUTO</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/carro.php">CARRO</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/valvula.php">VÁLVULA</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/categoria.php">CATEGORIA</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/motor.php">MOTOR</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                            <li><a class="dropdown-item" href="src/views/cadastro/marca.php">MARCA</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

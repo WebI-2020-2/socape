@@ -30,18 +30,18 @@ $fornecedores = new FornecedoresController();
                     <a class="nav-link" href="../../../index.php">INÍCIO</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/cadastro/marca.php">MARCA</a></li>
+                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CADASTRAR</a>
+                    <ul style="background-color: #140C0C " class="dropdown-menu">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/cliente-fisico.php">CLIENTE</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/cadastro/marca.php">MARCA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -51,17 +51,17 @@ $fornecedores = new FornecedoresController();
                     <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
+                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                    <ul style="background-color: #140C0C " class="dropdown-menu">
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/carro.php">CARRO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/motor.php">MOTOR</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/consulta/marca.php">MARCA</a></li>
                     </ul>
                 </li>
                 <li style="margin-left: 52%" class="nav-item dropdown">
