@@ -42,6 +42,7 @@ class FormaPagamentoController extends FormaPagamento
         }
         return $formaPagamento;
     }
+    
     public function insert($condicao, $forma)
     {
         $query = "INSERT INTO $this->tabela (condicao, forma)

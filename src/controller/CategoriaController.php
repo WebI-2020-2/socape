@@ -41,6 +41,7 @@ class CategoriaController extends Categoria
         }
         return $categorias;
     }
+    
     public function insert($categoria)
     {
         $query = "INSERT INTO $this->tabela (categoria)

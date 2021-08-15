@@ -43,6 +43,7 @@ class EntradasController extends Entrada
         }
         return $entradas;
     }
+    
     public function insert($idfornecedor, $valortotalnota, $datacompra)
     {
         $query = "INSERT INTO $this->tabela (idfornecedor, valortotalnota, datacompra)

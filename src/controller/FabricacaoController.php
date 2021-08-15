@@ -41,6 +41,7 @@ class FabricacaoController extends Fabricacao
         }
         return $fabricacoes;
     }
+    
     public function insert($ano)
     {
         $query = "INSERT INTO $this->tabela (ano)

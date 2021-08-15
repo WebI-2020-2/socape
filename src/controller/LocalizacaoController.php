@@ -41,6 +41,7 @@ class LocalizacaoController extends Localizacao
         }
         return $localizacoes;
     }
+    
     public function insert($departamento)
     {
         $query = "INSERT INTO $this->tabela (departamento)
