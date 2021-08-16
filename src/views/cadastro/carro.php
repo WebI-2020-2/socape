@@ -75,6 +75,7 @@ $carros = new CarroController();
         <?php
         if ($_POST) {
             $data = $_POST;
+
             $carro = new CarroController();
 
             $err = FALSE;
@@ -87,12 +88,12 @@ $carros = new CarroController();
                 $err = TRUE;
             }
 
-            $carro->setModelo($data['modelo']);
-   
-
             if (!$err) {
                 try {
-                    $carro->insert($carro->getModelo());
+                    $carro->insert(
+                        $data['modelo']
+                    );
+
                     echo
                     '<script>
                         alert("Modelo de carro cadastrado com sucesso!");
@@ -113,31 +114,8 @@ $carros = new CarroController();
 
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
-
     </div>
 
-    <script>
-        function deletar(id, modelo) {
-            if (confirm("Deseja realmente excluir o modelo de carro " + modelo + "?")) {
-                $.ajax({
-                    url: '../apagar/carro.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Modelo de carro excluído com sucesso!");
-                            window.location.href = './carro.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

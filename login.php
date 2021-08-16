@@ -1,6 +1,8 @@
 <?php
 session_start();
+
 require_once __DIR__ . '/src/controller/UsuarioController.php';
+$usuario = new UsuarioController();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,8 +27,6 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
                 if ($_POST) {
                     $data = $_POST;
 
-                    $usuario = new UsuarioController();
-
                     $err = FALSE;
 
                     if (!$data['usuario']) {
@@ -40,7 +40,10 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
 
                     if (!$err) {
                         try {
-                            $usuario->login($data['usuario'], $data['senha']);
+                            $usuario->login(
+                                $data['usuario'],
+                                $data['senha']
+                            );
                         } catch (PDOException $err) {
                             echo $err->getMessage();
                         }
@@ -61,7 +64,7 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
             <div>
                 <br>
                 <br>
-                <a style="margin-left:27%" href="./cadastro.php" class="link">cadastrar conta...</a>
+                <a style="margin-left:30%" href="./cadastro.php" class="link">Cadastre-se</a>
             </div>
         </div>
     </div>

@@ -75,6 +75,7 @@ $clientes = new ClientesController();
         <?php
         if ($_POST) {
             $data = $_POST;
+
             $cliente = new ClientesController();
 
             $err = FALSE;
@@ -101,14 +102,15 @@ $clientes = new ClientesController();
                 $err = TRUE;
             }
 
-            $cliente->setNome($data['nome']);
-            $cliente->setTelefone($data['telefone']);
-            $cliente->setCpf($data['cpf']);
-            $cliente->setDebito(0);
-
             if (!$err) {
                 try {
-                    $cliente->insertPF($cliente->getNome(), $cliente->getTelefone(), $cliente->getCpf(), $cliente->getDebito());
+                    $cliente->insertPF(
+                        $data['nome'],
+                        $data['telefone'],
+                        $data['cpf'],
+                        0
+                    );
+
                     echo
                     '<script>
                         alert("Cliente Pessoa Física cadastrado com sucesso!");
@@ -122,54 +124,37 @@ $clientes = new ClientesController();
         ?>
 
         <select id="selecionar" class="form-select">
-            <option value="../../views/cadastro/cliente-fisico.php" >FÍSICA</option>
-            <option value="../../views/cadastro/cliente-juridico.php" >JURIDICO</option>
+            <option value="../../views/cadastro/cliente-fisico.php">FÍSICA</option>
+            <option value="../../views/cadastro/cliente-juridico.php">JURIDICO</option>
         </select>
 
         <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
-        <form action="" method="post">
+        <form id="form" action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
                 <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
+                <input style="width: 130%" type="number" name="telefone" class="form-control" placeholder="TELEFONE" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CPF</label>
-                <input style="width: 130%" type="text" name="cpf" class="form-control" placeholder="CPF" required>
+                <input style="width: 130%" type="number" name="cpf" class="form-control" placeholder="CPF" required>
             </div>
 
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <button style="margin-left: 75%" type="submit" class="btn btn-primary">CADASTRAR</button>
         </form>
-
     </div>
 
     <script>
-        function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir o(a) cliente " + nome + "?")) {
-                $.ajax({
-                    url: '../apagar/cliente.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Cliente Pessoa Física excluído com sucesso!");
-                            window.location.href = './cliente-fisico.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
-        
-    </script>
-    <script>
+        $(document).ready(function() {
+            $("#form").on("submit", function(){
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("CADASTRANDO...");
+            });
+        });
+
         let selectEl = document.getElementsByTagName('select');
         selectEl[0].addEventListener('change', function() {
             location.href=this.value;

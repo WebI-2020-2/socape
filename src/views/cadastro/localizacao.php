@@ -75,6 +75,7 @@ $localizacoes = new LocalizacaoController();
         <?php
         if ($_POST) {
             $data = $_POST;
+
             $localizacao = new LocalizacaoController();
 
             $err = FALSE;
@@ -87,11 +88,12 @@ $localizacoes = new LocalizacaoController();
                 $err = TRUE;
             }
 
-            $localizacao->setDepartamento($data['departamento']);
-
             if (!$err) {
                 try {
-                    $localizacao->insert($localizacao->getDepartamento());
+                    $localizacao->insert(
+                        $data['departamento']
+                    );
+
                     echo
                     '<script>
                         alert("Departamento cadastrado com sucesso!");
@@ -105,36 +107,23 @@ $localizacoes = new LocalizacaoController();
         }
         ?>
 
-        <form action="" method="POST">
+        <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">LOCALIZAÇÃO</label>
                 <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" required>
             </div>
 
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <button style="margin-left: 75%" type="submit" class="btn btn-primary">CADASTRAR</button>
         </form>
+    </div>
 
     <script>
-        function deletar(id, localizacao) {
-            if (confirm("Deseja realmente excluir a localização " + localizacao + "?")) {
-                $.ajax({
-                    url: '../apagar/localizacao.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Localização excluída com sucesso!");
-                            window.location.href = './localizacao.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
+        $(document).ready(function() {
+            $("#form").on("submit", function() {
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("CADASTRANDO...");
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

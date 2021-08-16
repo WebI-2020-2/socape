@@ -48,15 +48,16 @@ class FabricacaoController extends Fabricacao
         VALUES (:ano)";
         $stm = Database::prepare($query);
         $stm->bindParam(':ano', $ano);
+
         return $stm->execute();
     }
 
-    public function update($idfabricacao)
+    public function update($idfabricacao, $ano)
     {
         $query = "UPDATE $this->tabela SET ano = :ano WHERE idfabricacao = :idfabricacao";
         $stm = Database::prepare($query);
         $stm->bindParam(':idfabricacao', $idfabricacao, PDO::PARAM_INT);
-        $stm->bindValue(':ano', $this->getAno());
+        $stm->bindValue(':ano', $ano);
 
         return $stm->execute();
     }

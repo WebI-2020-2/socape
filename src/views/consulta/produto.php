@@ -211,9 +211,13 @@ $motores = new MotorController();
                     data: {
                         id
                     },
-                    success: () => {
-                        alert("Produto excluído com sucesso!");
-                        window.location.reload(true);
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Produto excluído com sucesso!");
+                            window.location.href = './produto.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
                     }
                 });
                 return false;

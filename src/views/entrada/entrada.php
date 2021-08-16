@@ -78,7 +78,7 @@ $fornecedores = new FornecedoresController();
         </h1>
 
         <?php
-        if (isset($_GET['msg'])) if ($_GET['msg'] == 1) echo "<h1>INFORME O FORNECEDOR!</h1>";
+        if (isset($_GET['msg'])) if ($_GET['msg'] == 1) echo "<script>alert('Informe o fornecedor!');</script>";
         ?>
 
         <style>
@@ -88,7 +88,6 @@ $fornecedores = new FornecedoresController();
             }
         </style>
         <form id="realizarEntrada" method="POST" action="./realizarEntrada.php">
-        
             <div class="mb-3">
                 <label class="form-label">FORNECEDOR</label>
                 <input style="width: 130%;" id="barraPesquisa" class="form-control" type="text" placeholder="FORNECEDOR">
@@ -161,7 +160,7 @@ $fornecedores = new FornecedoresController();
                 } else {
                     $("#realizarEntrada").submit();
                     $("#realizarEntrada input[type=button]").prop("disabled", true);
-                    $("#realizarEntrada input[type=button]").val("VENDENDO...");
+                    $("#realizarEntrada input[type=button]").val("DANDO ENTRADA...");
                 }
             });
         });

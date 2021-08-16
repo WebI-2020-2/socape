@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+if (!$_SESSION['logado']) header('Location: ./../../../login.php');
 
 require_once __DIR__ . '/../../controller/ClientesController.php';
 $clientes = new ClientesController();
@@ -76,11 +76,11 @@ $clientes = new ClientesController();
                 <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
             </div>
             <div>
-            <a href="../cadastro/cliente-fisico.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
+                <a href="../cadastro/cliente-fisico.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
             </div>
-          
+
         </div>
-       
+
 
         <?php if (isset($_GET["id"])) {
             if ($clientes->findOne($_GET["id"])) {
@@ -137,12 +137,12 @@ $clientes = new ClientesController();
                 <?php
                 foreach ($clientes->findAll() as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdcliente() ?></td>
-                        <td><?= $obj->getNome() ?></td>
-                        <td><?= $obj->getTelefone() ?></td>
-                        <td><?= $obj->getCnpj() ?></td>
-                        <td><?= $obj->getCpf() ?></td>
-                        <td><?= $obj->getDebito() ?></td>
+                        <td><?= $obj->getIdcliente(); ?></td>
+                        <td><?= $obj->getNome(); ?></td>
+                        <td><?= $obj->getTelefone(); ?></td>
+                        <td><?= $obj->getCnpj() != "" ? $obj->getCnpj() : 'Cliente PF'; ?></td>
+                        <td><?= $obj->getCpf() != "" ? $obj->getCpf() : 'Cliente PJ'; ?></td>
+                        <td><?= $obj->getDebito(); ?></td>
                         <td>
                             <div>
                                 <a href="./visualizarCliente.php?id=<?= $obj->getIdcliente() ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
@@ -178,11 +178,8 @@ $clientes = new ClientesController();
             }
         }
 
-
         $(document).ready(function() {
-
             $("#txtBusca").on("keyup", function() {
-
                 const value = $(this).val().toLowerCase();
                 $("table tbody tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
@@ -190,7 +187,6 @@ $clientes = new ClientesController();
             });
         });
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

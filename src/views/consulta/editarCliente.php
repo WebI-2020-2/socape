@@ -9,7 +9,6 @@ require_once __DIR__ . '/../../controller/ClientesController.php';
 $idcliente = $_GET['id'];
 $clientes = new ClientesController();
 $cliente = $clientes->findOne($idcliente);
-
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">
@@ -79,6 +78,7 @@ $cliente = $clientes->findOne($idcliente);
         <?php
         if ($_POST) {
             $data = $_POST;
+
             $err = FALSE;
 
             if (!$data['nome']) {
@@ -95,25 +95,46 @@ $cliente = $clientes->findOne($idcliente);
                     </script>';
                 $err = TRUE;
             }
-            if (!$data['cpf']) {
-                echo
-                    '<script>
-                        alert("Informe o CPF!");
-                    </script>';
-                $err = TRUE;
+            if($cliente->getCpf() != "") {
+                if (!$data['cpf']) {
+                    echo
+                        '<script>
+                            alert("Informe o CPF!");
+                        </script>';
+                    $err = TRUE;
+                }
+            } else {
+                if (!$data['cnpj']) {
+                    echo
+                        '<script>
+                            alert("Informe o CNPJ!");
+                        </script>';
+                    $err = TRUE;
+                }
             }
-            $cliente->setNome($data['nome']);
-            $cliente->setTelefone($data['telefone']);
-            $cliente->setCpf($data['cpf']);
-
 
             if (!$err) {
                 try {
-                    $clientes->updatePF($idcliente, $data['nome'], $data['telefone'], $data['cpf']);
+                    if($cliente->getCpf() != ""){
+                        $clientes->updatePF(
+                            $idcliente,
+                            $data['nome'],
+                            $data['telefone'],
+                            $data['cpf']
+                        );
+                    } else {
+                        $clientes->updatePJ(
+                            $idcliente,
+                            $data['nome'],
+                            $data['telefone'],
+                            $data['cnpj']
+                        );
+                    }
+
                     echo
                     '<script>
                         alert("Cliente atualizado com sucesso!");
-                        window.location.href = "../cliente-fisico.php";
+                        window.location.href = "./cliente.php";
                     </script>';
                    
                 } catch (PDOException $e) {
@@ -125,7 +146,7 @@ $cliente = $clientes->findOne($idcliente);
         ?>
 
         <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
-        <form action="" method="post">
+        <form id="form" action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
                 <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
@@ -154,12 +175,20 @@ $cliente = $clientes->findOne($idcliente);
                 ?>
                 <br>
 
-                <input style="margin-left: 80% " type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
-
+                <button style="margin-left: 80%" class="btn btn-primary" id="salvar">SALVAR</button>
             </div>
         </form>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            $("#form").on("click", "#salvar", function(e) {
+                $("#form").submit();
+                $("#form #salvar").prop("disabled", true);
+                $("#form #salvar").val("SALVANDO...");
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

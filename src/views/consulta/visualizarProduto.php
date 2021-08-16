@@ -87,8 +87,8 @@ $motores = new MotorController();
             </div>
         </div>
     </nav>
-    <div id="container">
 
+    <div id="containerlimitado">
         <?php if (isset($_GET["id"])) {
             if ($produtos->findOne($_GET["id"])) {
                 $produto = $produtos->findOne($_GET["id"]);
@@ -149,7 +149,7 @@ $motores = new MotorController();
                 <input style="margin-left: 35px;"  class="form-control" type="text" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" disabled>
                 <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" disabled>
             </div>    
-            <a style="margin-left: 50%" href="../consulta/fornecedor.php"><button class="btn btn-sm btn-danger">VOLTAR</button></a>
+            <a style="margin-left: 50%" href="../consulta/produto.php"><button class="btn btn-sm btn-danger">VOLTAR</button></a>
         </div>
 
         <?php
@@ -157,24 +157,6 @@ $motores = new MotorController();
         } ?>
     </div>
 
-    <script>
-        function deletar(id, referencia, categoria) {
-            if (confirm("Deseja realmente excluir o produto de referência " + referencia + " " + categoria + "?")) {
-                $.ajax({
-                    url: '../apagar/produto.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: () => {
-                        alert("Produto excluído com sucesso!");
-                        window.location.reload(true);
-                    }
-                });
-                return false;
-            }
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

@@ -81,8 +81,8 @@ $formas = new FormaPagamentoController();
 
         <?php
         if (isset($_GET['msg'])) {
-            if ($_GET['msg'] == 1) echo "<h1>INFORME A FORMA DE PAGAMENTO!</h1>";
-            if ($_GET['msg'] == 2) echo "<h1>INFORME O CLIENTE!</h1>";
+            if ($_GET['msg'] == 1) echo '<script>alert("Informe a forma de pagamento!");</script>';
+            if ($_GET['msg'] == 2) echo '<script>alert("Informe o cliente!");</script>';
         }
         ?>
 
@@ -90,14 +90,14 @@ $formas = new FormaPagamentoController();
             <label class="form-label">FORMA DE PAGAMENTO</label>
             <label style="margin-left: 24%;" class="form-label">CLIENTE</label>
             <div style="width: 132%;" class="input-group">
-                <select  id="idformapagamento" name="idformapagamento" class="form-control" required>
-                    <option selected disabled value>SELECIONE</option>
+                <select id="idformapagamento" name="idformapagamento" class="form-control" required>
+                    <option selected disabled value="">SELECIONE</option>
                     <?php
                     foreach ($formas->findAll() as $obj) { ?>
                         <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
                     <?php } ?>
                 </select>
-                <input style="margin-left: 35px;"  id="barraPesquisa" class="form-control" type="text" placeholder="CLIENTE">
+                <input style="margin-left: 35px;" id="barraPesquisa" class="form-control" type="text" placeholder="CLIENTE">
                 <input id="idcliente" type="hidden" name="idcliente" required>
             </div>
             <div style="margin-top: 3%;" class="mb-3">
@@ -163,12 +163,12 @@ $formas = new FormaPagamentoController();
             $("#realizarVenda").on("click", "input[type=button]", function(e) {
                 e.preventDefault();
 
-                if ($("#idcliente").val() == "") {
-                    alert("Informe o cliente!");
+                if ($("#idformapagamento").val() == null) {
+                    alert("Informe a forma de pagamento!");
 
                     return false;
-                } else if ($("#idformapagamento").val() == "") {
-                    alert("Informe a forma de pagamento!");
+                } else if ($("#idcliente").val() == "") {
+                    alert("Informe o cliente!");
 
                     return false;
                 } else {

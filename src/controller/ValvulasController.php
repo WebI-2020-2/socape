@@ -52,12 +52,12 @@ class ValvulasController extends Valvulas
         return $stm->execute();
     }
 
-    public function update($idvalvulas)
+    public function update($idvalvulas, $quantidade)
     {
         $query = "UPDATE $this->tabela SET quantidade = :quantidade WHERE idvalvulas = :idvalvulas";
         $stm = Database::prepare($query);
         $stm->bindParam(':idvalvulas', $idvalvulas, PDO::PARAM_INT);
-        $stm->bindValue(':quantidade', $this->getQuantidade());
+        $stm->bindValue(':quantidade', $quantidade);
 
         return $stm->execute();
     }

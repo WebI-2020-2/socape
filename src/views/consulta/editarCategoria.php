@@ -3,12 +3,13 @@ session_start();
 
 if(!$_SESSION['logado']) header('Location: ./../../../login.php');
 
+if (!$_GET['id']) header('Location: ./categoria.php');
 require_once __DIR__ . '/../../controller/CategoriaController.php';
+
 $idcategoria = $_GET['id'];
 $categorias = new CategoriaController();
 $categoria = $categorias->findOne($idcategoria);
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -78,7 +79,6 @@ $categoria = $categorias->findOne($idcategoria);
         <?php
         if ($_POST) {
             $data = $_POST;
-            $categoria = new CategoriaController();
 
             $err = FALSE;
 
@@ -90,11 +90,13 @@ $categoria = $categorias->findOne($idcategoria);
                 $err = TRUE;
             }
 
-            $categoria->setCategoria($data['categoria']);
-
             if (!$err) {
                 try {
-                    $categoria->update($idcategoria, $data['categoria']);
+                    $categorias->update(
+                        $idcategoria,
+                        $data['categoria']
+                    );
+
                     echo
                     '<script>
                         alert("Categoria atualizada com sucesso!");
@@ -107,42 +109,27 @@ $categoria = $categorias->findOne($idcategoria);
         }
         ?>
 
-        <form action="" method="POST">
+        <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">CATEGORIA</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria() ?>" disabled>
+                <input style="width: 130%" type="text" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria() ?>" disabled>
             </div>
             <div class="mb-3">
                 <label class="form-label">ATUALIZAR</label>
                 <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" value="<?= $categoria->getCategoria() ?>" required>
             </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
+
+            <button style="margin-left: 80%" class="btn btn-primary" type="submit">SALVAR</button>
         </form>
-
-
     </div>
 
     <script>
-        function deletar(id, categoria) {
-            if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
-                $.ajax({
-                    url: '../apagar/categoria.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Categoria excluída com sucesso!");
-                            window.location.href = './categoria.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
+        $(document).ready(function() {
+            $("#form").on("submit", function(){
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("SALVANDO...");
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

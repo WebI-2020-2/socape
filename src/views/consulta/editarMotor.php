@@ -3,12 +3,13 @@ session_start();
 
 if(!$_SESSION['logado']) header('Location: ./../../../login.php');
 
+if (!$_GET['id']) header('Location: ./motor.php');
 require_once __DIR__ . '/../../controller/MotorController.php';
 
 $idmotor = $_GET['id'];
 $motores = new MotorController();
-$motor = $motores->findOne($idmotor); ?>
-
+$motor = $motores->findOne($idmotor);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -70,7 +71,7 @@ $motor = $motores->findOne($idmotor); ?>
         </div>
     </nav>
   
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">EDITAR POTÊNCIA DO MOTOR</span>
         </h1>
@@ -78,7 +79,6 @@ $motor = $motores->findOne($idmotor); ?>
         <?php
         if ($_POST) {
             $data = $_POST;
-            $motor = new MotorController();
 
             $err = FALSE;
 
@@ -90,11 +90,13 @@ $motor = $motores->findOne($idmotor); ?>
                 $err = TRUE;
             }
 
-            $motor->setPotencia($data['potencia']);
-
             if (!$err) {
                 try {
-                    $motor->update($idmotor, $data['potencia']);
+                    $motores->update(
+                        $idmotor,
+                        $data['potencia']
+                    );
+
                     echo
                     '<script>
                         alert("Potência de motor cadastrada com sucesso!");
@@ -110,39 +112,24 @@ $motor = $motores->findOne($idmotor); ?>
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">POTÊNCIA DO MOTOR</label>
-                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" value="<?= $motor->getPotencia() ?>" disabled>
+                <input style="width: 130%" type="number" class="form-control" placeholder="POTÊNCIA" value="<?= $motor->getPotencia() ?>" disabled>
             </div>
             <div class="mb-3">
                 <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="potencia" class="form-control" placeholder="POTÊNCIA" value="<?= $motor->getPotencia() ?>" required>
+                <input style="width: 130%" type="number" name="potencia" class="form-control" max="999" placeholder="POTÊNCIA" value="<?= $motor->getPotencia() ?>" required>
             </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
+            
+            <button style="margin-left: 80%" class="btn btn-primary" type="submit">SALVAR</button>
         </form>
-
-
     </div>
 
     <script>
-        function deletar(id, motor) {
-            if (confirm("Deseja realmente excluir o motor " + motor + "?")) {
-                $.ajax({
-                    url: '../apagar/motor.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Potência de motor excluída com sucesso!");
-                            window.location.href = './motor.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
+        $(document).ready(function() {
+            $("#form").on("submit", function(){
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("SALVANDO...");
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

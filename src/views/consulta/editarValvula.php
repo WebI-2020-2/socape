@@ -3,6 +3,7 @@ session_start();
 
 if(!$_SESSION['logado']) header('Location: ./../../../login.php');
 
+if (!$_GET['id']) header('Location: ./valvula.php');
 require_once __DIR__ . '/../../controller/ValvulasController.php';
 
 $idvalvula = $_GET['id'];
@@ -77,7 +78,6 @@ $valvula = $valvulas->findOne($idvalvula);
         <?php
         if ($_POST) {
             $data = $_POST;
-            $valvula = new ValvulasController();
 
             $err = FALSE;
 
@@ -86,11 +86,13 @@ $valvula = $valvulas->findOne($idvalvula);
                 $err = TRUE;
             }
 
-            $valvula->setQuantidade($data['quantidade']);
-
             if (!$err) {
                 try {
-                    $valvula->update($idvalvula, $data['quantidade']);
+                    $valvulas->update(
+                        $idvalvula,
+                        $data['quantidade']
+                    );
+
                     echo
                     '<script>
                         alert("Quantidade de válvulas atualizada com sucesso!");
@@ -103,42 +105,27 @@ $valvula = $valvulas->findOne($idvalvula);
         }
         ?>
 
-        <form action="" method="POST">
+        <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">QUANTIDADE DE VÁLVULAS</label>
-                <input style="width: 130%" type="text" name="quantidade" class="form-control" placeholder="QUANTIDADE" value="<?= $valvula->getQuantidade() ?>" disabled>
+                <input style="width: 130%" type="number" class="form-control" placeholder="QUANTIDADE" value="<?= $valvula->getQuantidade() ?>" disabled>
             </div>
             <div class="mb-3">
                 <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="quantidade" class="form-control" placeholder="QUANTIDADE" value="<?= $valvula->getQuantidade() ?>" required>
+                <input style="width: 130%" type="number" name="quantidade" class="form-control" placeholder="QUANTIDADE" value="<?= $valvula->getQuantidade() ?>" required>
             </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
+           
+            <button style="margin-left: 80%" class="btn btn-primary" type="submit">SALVAR</button>
         </form>
-
-
     </div>
 
     <script>
-        function deletar(id, quantidade) {
-            if (confirm("Deseja realmente excluir a quantidade de " + quantidade + " valvúlas ?")) {
-                $.ajax({
-                    url: '../apagar/valvula.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Quantidade de válvulas excluída com sucesso!");
-                            window.location.href = './valvula.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
+        $(document).ready(function() {
+            $("#form").on("submit", function(){
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("SALVANDO...");
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

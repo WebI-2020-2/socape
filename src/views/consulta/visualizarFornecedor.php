@@ -93,34 +93,10 @@ $fornecedores = new FornecedoresController();
                     </div>
                 </form>                
                 <a style="margin-left: 50%" href="../consulta/fornecedor.php"><button class="btn btn-sm btn-danger">VOLTAR</button></a>
-
         <?php
             }
         } ?>
 
-
-    <script>
-        function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir " + nome + "?")) {
-                $.ajax({
-                    url: '../apagar/fornecedor.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Fornecedor excluído com sucesso!");
-                            window.location.href = './fornecedor.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
