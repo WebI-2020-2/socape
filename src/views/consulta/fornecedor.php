@@ -164,7 +164,6 @@ $fornecedores = new FornecedoresController();
             }
         }
 
-
         $(document).ready(function() {
 
             $("#txtBusca").on("keyup", function() {

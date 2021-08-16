@@ -66,6 +66,7 @@ $carros = new CarroController();
             </div>
         </div>
     </nav>
+  
     <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR MODELO DE CARRO</span>
@@ -75,12 +76,12 @@ $carros = new CarroController();
                 <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
             </div>
             <div>
-            <a href="../cadastro/carro.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
+                <a href="../cadastro/carro.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
             </div>
         </div>
 
 
-        <table style="margin-top: 1%"  class="table">
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -126,6 +127,15 @@ $carros = new CarroController();
                 return false;
             }
         }
+
+        $(document).ready(function() {
+            $("#txtBusca").on("keyup", function() {
+                const value = $(this).val().toLowerCase();
+                $("table tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
