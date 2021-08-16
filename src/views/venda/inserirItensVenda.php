@@ -270,10 +270,10 @@ $cliente = $clientes->findOne($venda->getIdcliente());
             });
         });
       
-          function deletar(id, nome) {
+        function deletar(id, nome) {
             if (confirm("Deseja realmente excluir o itens venda "+ id + " do cliente " + nome + "?")) {
                 $.ajax({
-                    url: '../apagar/Itensvenda.php',  
+                    url: '../apagar/ItensVenda.php',  
                     type: "POST",
                     data: {
                         id
