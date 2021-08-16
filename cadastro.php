@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+if($_SESSION['logado']) header('Location: ./index.php');
 require_once __DIR__ . '/src/controller/UsuarioController.php';
 ?>
 <!DOCTYPE html>

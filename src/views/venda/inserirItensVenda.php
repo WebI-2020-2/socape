@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+
 if (!$_GET['idvenda']) header('Location: ./venda.php');
 require_once __DIR__ . '/../../controller/ItensVendaController.php';
 $itensVenda = new ItensVendaController();
@@ -32,42 +36,48 @@ $cliente = $clientes->findOne($venda->getIdcliente());
 
 <body>
     <img src="./../../../public/imagens/titulo.png">
-    <nav class="navbar navbar-expand-lg navbar-black bg-black">
-        <div class="collapse navbar-collapse">
-            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="../../../index.php">INÍCIO</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
-                    </ul>
-                </li>
-                <li style="margin-left: 59%" class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                    <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                        <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
-                        
-                    </ul>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand navbar-black bg-black">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../../../index.php">INÍCIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                            <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= $_SESSION['nome']; ?></a>
+                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
+                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -85,23 +95,38 @@ $cliente = $clientes->findOne($venda->getIdcliente());
             $err = FALSE;
 
             if (!$data['idproduto']) {
-                echo "<h1>INFORME O PRODUTO!</h1>";
+                echo
+                '<script>
+                alert("Pesquise o produto!");
+               </script>';
                 $err = TRUE;
             }
             if (!$data['quantidade']) {
-                echo "<h1>INFORME A QUANTIDADE!</h1>";
+                echo
+                '<script>
+                alert("Informe a quantidade!");
+               </script>';
                 $err = TRUE;
             }
             if (!$data['valorvenda']) {
-                echo "<h1>INFORME O VALOR DE VENDA!</h1>";
+                echo
+                '<script>
+                alert("O valor da venda deve ser informado!");
+               </script>';
                 $err = TRUE;
             }
             if (!$data['desconto']) {
-                echo "<h1>INFORME O DESCONTO!</h1>";
+                echo
+                '<script>
+                alert("Informe o desconto!");
+               </script>';
                 $err = TRUE;
             }
             if (!$data['lucro']) {
-                echo "<h1>INFORME O LUCRO!</h1>";
+                echo
+                '<script>
+                 alert("O valor do lucro deve ser informado !");
+                </script>';
                 $err = TRUE;
             }
 

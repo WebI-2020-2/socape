@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
 
