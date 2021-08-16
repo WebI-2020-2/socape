@@ -144,7 +144,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     echo
                     '<script>
                         alert("Item cadastrado com sucesso!");
-                        window.location.href = "inserirItensVenda.php?idvenda=' . $venda->getIdvenda() . '";
+                        window.location.href = "./inserirItensVenda.php?idvenda=' . $venda->getIdvenda() . '";
                     </script>';
                 } catch (PDOException $err) {
                     if($err->getCode() == "P0001") echo '<script>alert("Quantidade insuficiente em estoque!");</script>';
@@ -228,6 +228,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     <th>VALOR DE VENDA</th>
                     <th>DESCONTO</th>
                     <th>LUCRO</th>
+                    <th>AÇÕES</th>
                     <!--<th width="20%">AÇÕES</th>-->
                 </tr>
             </thead>
@@ -242,10 +243,10 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                         <td><?= $obj->getDesconto(); ?></td>
                         <td><?= $obj->getLucro(); ?></td>
                         <td>
-                            <!-- <button class="btn btn-sm btn-light">VISUALIZAR</button>
-                            <button class="btn btn-sm btn-primary">EDITAR</button>
-                            <button class="btn btn-sm btn-danger">APAGAR</button> -->
-                        </td>
+                        <div class="button-group clear"> 
+                            <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIditensvenda() ?>', '<?= $cliente->getNome(); ?>')">APAGAR</button>
+                        </div>                        
+                    </td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -268,6 +269,27 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 }
             });
         });
+      
+          function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir o itens venda "+ id + " do cliente " + nome + "?")) {
+                $.ajax({
+                    url: '../apagar/Itensvenda.php',  
+                    type: "POST",
+                    data: {
+                        id
+                    },
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Itens Venda excluída com sucesso!");
+                            window.location.href = '';
+                        } else {
+                            alert(res["msg"]);
+                        }
+                    }
+                });
+                return false;
+            }
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

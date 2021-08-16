@@ -93,9 +93,18 @@ class ItensVendaController extends ItensVenda
 
     public function delete($iditensvenda)
     {
-        $query = "DELETE FROM $this->tabela WHERE iditensvenda = :iditensvenda";
-        $stm = Database::prepare($query);
-        $stm->bindParam(':iditensvenda', $iditensvenda, PDO::PARAM_INT);
-        return $stm->execute();
+        try {
+            $query = "DELETE FROM $this->tabela WHERE iditensvenda = :iditensvenda";
+            $stm = Database::prepare($query);
+            $stm->bindParam(':iditensvenda', $iditensvenda, PDO::PARAM_INT);
+            $stm->execute();
+
+            return array('status' => TRUE);
+        } catch (PDOException $e) {
+            $arr['status'] = FALSE;
+            $arr['code'] = $e->getCode();
+
+            return $arr;
+        }
     }
 }
