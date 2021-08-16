@@ -57,7 +57,7 @@ Lista de funcionalidades disponiveis:
 
  <img src="https://user-images.githubusercontent.com/81172873/129506467-9dd3f4dc-414a-4d96-bf3a-27cd67f1d29e.jpeg" width="200">|  <img src="https://user-images.githubusercontent.com/81172873/129506246-95796b49-b3ce-4e45-b23c-c234ea821a6c.jpeg" width="200"> | <img src="https://user-images.githubusercontent.com/81172873/129507076-379dc0df-81ab-4000-822b-02119c352929.jpeg" width="200">  |  <img src="https://user-images.githubusercontent.com/81172873/129505636-17545741-3e18-4f23-87ce-1aee5b6d7731.JPG" width="200"> | <img src="https://user-images.githubusercontent.com/81172873/129506657-e08ccefc-4244-431d-b27f-1630fbee446c.jpeg" width="200">
 :----------------------:|:-------------------------:|:--------:|:-----:|:-----:
-[Daniel Rocha Frontend](https://github.com/DanielRocha300)  | [Gabriel Rodrigues Lobo Backend](https://github.com/gabrielrbl) | [Jefferson Batista Backend](https://github.com/jeffersonxavi) | [Larissa Rodrigues Prado Backend](https://github.com/larisprado) | [Marcos Coelho Frontend](https://github.com/CoelhoMestre) 
+[Daniel Rocha Frontend](https://github.com/DanielRocha300)  | [Gabriel  Lobo Backend](https://github.com/gabrielrbl) | [Jefferson Batista Backend](https://github.com/jeffersonxavi) | [Larissa  Prado Backend](https://github.com/larisprado) | [Marcos Coelho Frontend](https://github.com/CoelhoMestre) 
 
  
  
