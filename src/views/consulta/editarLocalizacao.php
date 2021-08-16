@@ -3,12 +3,13 @@ session_start();
 
 if(!$_SESSION['logado']) header('Location: ./../../../login.php');
 
+if (!$_GET['id']) header('Location: ./localizacao.php');
 require_once __DIR__ . '/../../controller/LocalizacaoController.php';
 
 $idlocalizacao = $_GET['id'];
 $localizacoes = new LocalizacaoController();
-$localizacao = $localizacoes->findOne($idlocalizacao); ?>
-
+$localizacao = $localizacoes->findOne($idlocalizacao);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -70,7 +71,7 @@ $localizacao = $localizacoes->findOne($idlocalizacao); ?>
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">EDITAR LOCALIZAÇÃO</span>
         </h1>
@@ -78,7 +79,6 @@ $localizacao = $localizacoes->findOne($idlocalizacao); ?>
         <?php
         if ($_POST) {
             $data = $_POST;
-            $localizacao = new LocalizacaoController();
 
             $err = FALSE;
 
@@ -90,11 +90,13 @@ $localizacao = $localizacoes->findOne($idlocalizacao); ?>
                 $err = TRUE;
             }
 
-            $localizacao->setDepartamento($data['departamento']);
-
             if (!$err) {
                 try {
-                    $localizacao->update($idlocalizacao, $data['departamento']);
+                    $localizacoes->update(
+                        $idlocalizacao,
+                        $data['departamento']
+                    );
+
                     echo
                     '<script>
                         alert("Departamento atualizado com sucesso!");
@@ -107,65 +109,27 @@ $localizacao = $localizacoes->findOne($idlocalizacao); ?>
         }
         ?>
 
-        <form action="" method="POST">
+        <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">DEPARTAMENTO</label>
-                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" disabled>
+                <input style="width: 130%" type="text" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" disabled>
             </div>
             <div class="mb-3">
                 <label class="form-label">ATUALIZAR</label>
                 <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" value="<?= $localizacao->getDepartamento(); ?>" required>
             </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
 
+            <button style="margin-left: 80%" class="btn btn-primary" type="submit">SALVAR</button>
         </form>
-
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>LOCALIZAÇÃO</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($localizacoes->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdlocalizacao() ?></td>
-                        <td><?= $obj->getDepartamento() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
     </div>
 
     <script>
-        function deletar(id, localizacao) {
-            if (confirm("Deseja realmente excluir a localização " + localizacao + "?")) {
-                $.ajax({
-                    url: '../apagar/localizacao.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Localização excluída com sucesso!");
-                            window.location.href = './localizacao.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
+        $(document).ready(function() {
+            $("#form").on("submit", function(){
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("SALVANDO...");
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

@@ -192,10 +192,12 @@ class ProdutosController extends Produto
         return $stm->execute();
     }
 
-    public function update($idproduto, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $referencia)
+    public function update($idproduto, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $referencia, $idlocalizacao, $idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca)
     {
         $query = "UPDATE $this->tabela SET  icms = :icms, ipi = :ipi, frete = :frete, valornafabrica = :valornafabrica, valordecompra = :valordecompra, 
-        lucro = :lucro, valorvenda = :valorvenda, desconto = :desconto, quantidade = :quantidade, unidade = :unidade, referencia = :referencia WHERE idproduto = :idproduto";
+        lucro = :lucro, valorvenda = :valorvenda, desconto = :desconto, quantidade = :quantidade, unidade = :unidade, referencia = :referencia,
+        idlocalizacao = :idlocalizacao, idmotor = :idmotor, idcarro = :idcarro, idvalvulas = :idvalvulas, idfabricacao = :idfabricacao,
+        idcategoria = :idcategoria, idmarca = :idmarca WHERE idproduto = :idproduto";
         $stm = Database::prepare($query);
         $stm->bindParam(':idproduto', $idproduto, PDO::PARAM_INT);
         $stm->bindValue(':icms', $icms);
@@ -209,6 +211,13 @@ class ProdutosController extends Produto
         $stm->bindValue(':quantidade', $quantidade);
         $stm->bindValue(':unidade', $unidade);
         $stm->bindValue(':referencia', $referencia);
+        $stm->bindValue(':idlocalizacao', $idlocalizacao);
+        $stm->bindValue(':idmotor', $idmotor);
+        $stm->bindValue(':idcarro', $idcarro);
+        $stm->bindValue(':idvalvulas', $idvalvulas);
+        $stm->bindValue(':idfabricacao', $idfabricacao);
+        $stm->bindValue(':idcategoria', $idcategoria);
+        $stm->bindValue(':idmarca', $idmarca);
         return $stm->execute();
     }
 

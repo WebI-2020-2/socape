@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+if (!$_SESSION['logado']) header('Location: ./../../../login.php');
 
 require_once __DIR__ . '/../../controller/FabricacaoController.php';
 $fabricacoes = new FabricacaoController();
@@ -75,6 +75,7 @@ $fabricacoes = new FabricacaoController();
         <?php
         if ($_POST) {
             $data = $_POST;
+            
             $fabricacao = new FabricacaoController();
 
             $err = FALSE;
@@ -87,11 +88,12 @@ $fabricacoes = new FabricacaoController();
                 $err = TRUE;
             }
 
-            $fabricacao->setAno($data['ano']);
-
             if (!$err) {
                 try {
-                    $fabricacao->insert($fabricacao->getAno());
+                    $fabricacao->insert(
+                        $data['ano']
+                    );
+
                     echo
                     '<script>
                         alert("Ano de Fabricação cadastrado com sucesso!");
@@ -104,59 +106,23 @@ $fabricacoes = new FabricacaoController();
         }
         ?>
 
-        <form action="" method="POST">
+        <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">ANO DE FABRICAÇÃO</label>
-                <input style="width: 130%" type="text" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
-            </div>            
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
-        </form>
+                <input style="width: 130%" type="number" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" required>
+            </div>
 
-        <table style="margin-top: 1%"  class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ANO DE FABRICAÇÃO</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($fabricacoes->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdfabricacao() ?></td>
-                        <td><?= $obj->getAno() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+            <button style="margin-left: 75%" type="submit" class="btn btn-primary">CADASTRAR</button>
+        </form>
     </div>
 
     <script>
-        function deletar(id, ano) {
-            if (confirm("Deseja realmente excluir o ano de fabricação " + ano + "?")) {
-                $.ajax({
-                    url: '../apagar/anoFabricacao.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Ano de fabricação excluído com sucesso!");
-                            window.location.href = './anofabricacao.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
+        $(document).ready(function() {
+            $("#form").on("submit", function() {
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("CADASTRANDO...");
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

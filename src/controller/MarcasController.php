@@ -52,12 +52,12 @@ class MarcasController extends Marca
         return $stm->execute();
     }
 
-    public function update($idmarca)
+    public function update($idmarca, $marca)
     {
         $query = "UPDATE $this->tabela SET marca = :marca WHERE idmarca = :idmarca";
         $stm = Database::prepare($query);
         $stm->bindParam(':idmarca', $idmarca, PDO::PARAM_INT);
-        $stm->bindValue(':marca', $this->getMarca());
+        $stm->bindValue(':marca', $marca);
 
         return $stm->execute();
     }

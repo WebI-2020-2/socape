@@ -52,12 +52,12 @@ class MotorController extends Motor
         return $stm->execute();
     }
 
-    public function update($idmotor)
+    public function update($idmotor, $potencia)
     {
         $query = "UPDATE $this->tabela SET potencia = :potencia WHERE idmotor = :idmotor";
         $stm = Database::prepare($query);
         $stm->bindParam(':idmotor', $idmotor, PDO::PARAM_INT);
-        $stm->bindValue(':potencia', $this->getPotencia());
+        $stm->bindValue(':potencia', $potencia);
 
         return $stm->execute();
     }

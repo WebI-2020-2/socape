@@ -3,11 +3,13 @@ session_start();
 
 if(!$_SESSION['logado']) header('Location: ./../../../login.php');
 
+if (!$_GET['id']) header('Location: ./carro.php');
 require_once __DIR__ . '/../../controller/CarrosController.php';
 
 $idcarro = $_GET['id'];
 $carros = new CarroController();
-$carro = $carros->findOne($idcarro); ?>
+$carro = $carros->findOne($idcarro);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -77,7 +79,6 @@ $carro = $carros->findOne($idcarro); ?>
         <?php
         if ($_POST) {
             $data = $_POST;
-            $carro = new CarroController();
 
             $err = FALSE;
 
@@ -89,11 +90,13 @@ $carro = $carros->findOne($idcarro); ?>
                 $err = TRUE;
             }
 
-            $carro->setModelo($data['modelo']);
-
             if (!$err) {
                 try {
-                    $carro->update($idcarro, $data['modelo']);
+                    $carros->update(
+                        $idcarro,
+                        $data['modelo']
+                    );
+
                     echo
                     '<script>
                         alert("Modelo de carro atualizado com sucesso!");
@@ -106,44 +109,27 @@ $carro = $carros->findOne($idcarro); ?>
         }
         ?>
 
-        <form action="" method="POST">
+        <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">MODELO</label>
-                <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" disabled>
+                <input style="width: 130%" type="text" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" disabled>
             </div>
             <div class="mb-3">
-                <label class="form-label">ATUALIZAR:</label>
+                <label class="form-label">ATUALIZAR</label>
                 <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" required>
             </div>
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
-
+            
+            <button style="margin-left: 80%" class="btn btn-primary" type="submit">SALVAR</button>
         </form>
-
-
-
     </div>
 
     <script>
-        function deletar(id, modelo) {
-            if (confirm("Deseja realmente excluir o modelo de carro " + modelo + "?")) {
-                $.ajax({
-                    url: '../apagar/carro.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Modelo de carro excluído com sucesso!");
-                            window.location.href = './carro.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
+        $(document).ready(function() {
+            $("#form").on("submit", function(){
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("SALVANDO...");
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

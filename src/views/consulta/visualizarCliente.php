@@ -110,29 +110,6 @@ $clientes = new ClientesController();
         } ?>
     </div>
 
-    <script>
-        function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir " + nome + "?")) {
-                $.ajax({
-                    url: '../apagar/cliente.php',
-                    type: "POST",
-                    data: {
-                        id
-                    },
-                    success: (res) => {
-                        if (res["status"]) {
-                            alert("Cliente excluído com sucesso!");
-                            window.location.href = './cliente.php';
-                        } else {
-                            alert(res["msg"]);
-                        }
-                    }
-                });
-                return false;
-            }
-        }
-    </script>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 

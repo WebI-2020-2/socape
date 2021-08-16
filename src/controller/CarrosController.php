@@ -50,12 +50,12 @@ class CarroController extends Carro
         return $stm->execute();
     }
 
-    public function update($idcarro)
+    public function update($idcarro, $modelo)
     {
         $query = "UPDATE $this->tabela SET modelo = :modelo WHERE idcarro = :idcarro";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcarro', $idcarro, PDO::PARAM_INT);
-        $stm->bindValue(':modelo', $this->getModelo());
+        $stm->bindValue(':modelo', $modelo);
         return $stm->execute();
     }
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+if (!$_SESSION['logado']) header('Location: ./../../../login.php');
 
 if (!$_GET['identrada']) header('Location: ./entrada.php');
 require_once __DIR__ . '/../../controller/ItensEntradaController.php';
@@ -150,7 +150,7 @@ $produtos = new ProdutosController();
                     echo
                     '<script>
                         alert("Item inserido!");
-                        window.location.href = "./inserirItensEntrada.php?identrada='. $entrada->getIdentrada() .'";
+                        window.location.href = "./inserirItensEntrada.php?identrada=' . $entrada->getIdentrada() . '";
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
@@ -159,7 +159,7 @@ $produtos = new ProdutosController();
         }
         ?>
 
-        <form method="POST" action="">
+        <form id="inserirItensEntrada" method="POST" action="">
             <div id="fornecedor">
                 <h1 id="titulo2">
                     <span class="badge bg-light text-dark">INFORMAÇÕES DO FORNECEDOR</span>
@@ -192,11 +192,11 @@ $produtos = new ProdutosController();
                         $inputProduto = "";
                         if (isset($_GET['idproduto'])) {
                             $produto = $produtos->findOne($_GET['idproduto']);
-                            $inputProduto = $produto->getReferencia();
+                            $inputProduto = "Produto selecionado: " . $produto->getReferencia();
                         }
                         ?>
                         <input style="background-color:#fffed9" id="produto" type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled />
-                        <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required />
+                        <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required />
                         <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                             PESQUISAR
                         </a>
@@ -204,10 +204,26 @@ $produtos = new ProdutosController();
 
                     <label>PREÇO COMPRA</label>
                     <label id="textQuant">QUANTIDADE</label>
+                    <?php if (isset($_GET['idproduto'])) {
+                        echo "
+                            <small class='form-text text-muted'>Estoque: <span id='qtdEstoque'>" . $produto->getQuantidade() . "</span></small>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#quantidade').change(function(){
+                                        var qtdEstoque = parseInt(" . $produto->getQuantidade() . ");
+                                        var qtdNova = parseInt($('#quantidade').val() != '' ? $('#quantidade').val() : 0);
+
+                                        $('#qtdEstoque').text(qtdNova + qtdEstoque);
+                                    });
+                                });
+                            </script>
+                        ";
+                    }
+                    ?>
                     <label id="textUnidade">UNIDADE</label>
                     <div class="input-group">
-                        <input name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
-                        <input name="quantidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="QUANTIDADE" required>
+                        <input type="number" min="0" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
+                        <input type="number" min="0" id="quantidade" name="quantidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="QUANTIDADE" required>
                         <input name="unidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">
                     </div>
 
@@ -216,12 +232,12 @@ $produtos = new ProdutosController();
                     <label id="textIcms">ICMS</label>
 
                     <div class="input-group">
-                        <input name="ipi" class="form-control" type="text" placeholder="IPI" required>
-                        <input name="frete" style="margin-left: 28px;" class="form-control" type="text" placeholder="FRETE" required>
-                        <input name="icms" style="margin-left: 28px;" class="form-control" type="text" placeholder="ICMS" required>
+                        <input type="number" min="0" name="ipi" class="form-control" type="text" placeholder="IPI" required>
+                        <input type="number" min="0" name="frete" style="margin-left: 28px;" class="form-control" type="text" placeholder="FRETE" required>
+                        <input type="number" min="0" name="icms" style="margin-left: 28px;" class="form-control" type="text" placeholder="ICMS" required>
                     </div>
 
-                    <input id="inserir" type="submit" class="btn btn-primary" value="INSERIR">
+                    <button id="inserir" class="btn btn-primary">INSERIR</button>
                     <div id="valorTotal" class="input-group">
                         <label id="valorTotal">VALOR TOTAL</label>
                         <input style="background-color:#6ed486" id="valorTotal" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
@@ -269,8 +285,23 @@ $produtos = new ProdutosController();
         </table>
     </div>
 
+    <script>      
+        $(document).ready(function() {
+            $("#inserirItensEntrada").on("click", "#inserir", function(e) {
+                e.preventDefault();
 
-    <script type="text/javascript">
+                if ($("#idproduto").val() == "") {
+                    alert("Informe o produto!");
+
+                    return false;
+                } else {
+                    $("#inserirItensEntrada").submit();
+                    $("#inserirItensEntrada #inserir").prop("disabled", true);
+                    $("#inserirItensEntrada #inserir").val("INSERINDO ITEM...");
+                }
+            });
+        });
+      
         function deletar(id, nome) {
             if (confirm("Deseja realmente excluir o itens entrada "+ id + " do fornecedor " + nome + "?")) {
                 $.ajax({
@@ -292,8 +323,6 @@ $produtos = new ProdutosController();
             }
         }
     </script>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+if (!$_SESSION['logado']) header('Location: ./../../../login.php');
 
 if (!$_GET['idvenda']) header('Location: ./venda.php');
 require_once __DIR__ . '/../../controller/ItensVendaController.php';
@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
 
 require_once __DIR__ . '/../../controller/ClientesController.php';
-$clientes = new ClientesController(); 
+$clientes = new ClientesController();
 
 $cliente = $clientes->findOne($venda->getIdcliente());
 ?>
@@ -81,7 +81,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         </div>
     </nav>
 
-    
+
     <div id="containerentrada">
         <h1>
             <span class="badge bg-light text-dark">VENDA</span>
@@ -130,24 +130,24 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 $err = TRUE;
             }
 
-            $itemVenda->setIdproduto($data['idproduto']);
-            $itemVenda->setIdvenda($venda->getIdvenda());
-            $itemVenda->setQuantidade($data['quantidade']);
-            $itemVenda->setValorvenda($data['valorvenda']);
-            $itemVenda->setDesconto($data['desconto']);
-            $itemVenda->setLucro($data['lucro']);
-
             if (!$err) {
                 try {
-                    $itemVenda->insert($itemVenda->getIdproduto(), $itemVenda->getIdvenda(), $itemVenda->getQuantidade(), $itemVenda->getValorvenda(), $itemVenda->getDesconto(), $itemVenda->getLucro());
+                    $res = $itemVenda->insert(
+                        $data['idproduto'],
+                        $venda->getIdvenda(),
+                        $data['quantidade'],
+                        $data['valorvenda'],
+                        $data['desconto'],
+                        $data['lucro']
+                    );
 
                     echo
                     '<script>
                         alert("Item cadastrado com sucesso!");
-                        window.location.href = "./inserirItensVenda.php?idvenda='. $venda->getIdvenda() .'";
+                        window.location.href = "./inserirItensVenda.php?idvenda=' . $venda->getIdvenda() . '";
                     </script>';
                 } catch (PDOException $err) {
-                    echo $err->getMessage();
+                    if($err->getCode() == "P0001") echo '<script>alert("Quantidade insuficiente em estoque!");</script>';
                 }
             }
         }
@@ -159,64 +159,64 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     <span class="badge bg-light text-dark">INFORMAÇÕES DO CLIENTE</span>
                 </h1>
                 <div style="margin-top:3%;">
-                    <label  id="textNome" >NOME</label>
-                    <label id="textTelefone" >TELEFONE</label>
-                    <label id="textCpf" >CPF</label>
+                    <label id="textNome">NOME</label>
+                    <label id="textTelefone">TELEFONE</label>
+                    <label id="textCpf">CPF</label>
                     <div id="dadosClientes" class="input-group">
-                        <input  type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
+                        <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
                         <input style="margin-left:28px;" type="text" name="telefone" class="form-control" value="<?= $cliente->getTelefone(); ?>" placeholder="TELEFONE" disabled>
                         <input style="margin-left:28px;" type="text" name="cpf" class="form-control" value="<?= $cliente->getCpf(); ?>" placeholder="CPF" disabled>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <div style="margin-top:3%;" id="cliente">
                 <h1 id="titulo3">
-                 
-                <span style="margin-left:10px;"class="badge bg-light text-dark">INSERIR ITEM</span>
+                    <span style="margin-left:10px;" class="badge bg-light text-dark">INSERIR ITEM</span>
                 </h1>
-                <div id="dadosItens"a style="margin-top:3%;">
+
+                <div id="dadosItens" a style="margin-top:3%;">
                     <label>PRODUTO</label>
                     <div class="input-group">
                         <?php
                         $inputProduto = "";
                         if (isset($_GET['idproduto'])) {
                             $produto = $produtos->findOne($_GET['idproduto']);
-                            $inputProduto = $produto->getReferencia();
+                            $inputProduto = "Produto selecionado: " . $produto->getReferencia();
                         }
-                        ?> 
-                        <input style="background-color:#fffed9" id="produto"  type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
-                        <input type="hidden" name="idproduto" value="<?= isset($_GET['idproduto']) ?>" required>
-                        <a id="pesquisar"class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                        ?>
+                        <input style="background-color:#fffed9" id="produto" type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
+                        <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required>
+                        <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                             PESQUISAR
                         </a>
-                    
                     </div>
                     <label class="form-label">QUANTIDADE</label>
+                        <?php if (isset($_GET['idproduto'])) {
+                            echo "<small class='form-text text-muted'>Estoque: " . $produto->getQuantidade() . "</small>";
+                        }
+                        ?>
                     <label id="textValor">VALOR</label>
                     <div class="input-group">
-                        <input id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
-                        <input style="margin-left: 28px;" name="valorvenda" class="form-control" placeholder="VALOR" required>
+                        <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
+                        <input type="number" min="0" style="margin-left: 28px;" name="valorvenda" value="<?= isset($_GET['idproduto']) ? $produto->getValorvenda() : null; ?>" class="form-control" placeholder="VALOR" required>
                     </div>
-                        
-                    <label class="form-label">DESCONTO</label>  
-                    <label  id="textLucro">LUCRO</label>
+
+                    <label class="form-label">DESCONTO</label>
+                    <label id="textLucro">LUCRO</label>
                     <div class="input-group">
-                        <input name="desconto" class="form-control" placeholder="DESCONTO" required>
-                        <input style="margin-left: 28px;" name="lucro" class="form-control" placeholder="LUCRO" required>
+                        <input type="number" min="0" name="desconto" value="<?= isset($_GET['idproduto']) ? $produto->getDesconto() : null; ?>" class="form-control" placeholder="DESCONTO" required>
+                        <input type="number" min="0" style="margin-left: 28px;" name="lucro" value="<?= isset($_GET['idproduto']) ? $produto->getLucro() : null; ?>" class="form-control" placeholder="LUCRO" required>
                     </div>
-                    <input id="inserir" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='INSERINDO…';" value="INSERIR">
-                    <label >VALOR TOTAL</label>
-                    <div id="valorTotal" class="mb3">   
-                        
-                    <input style="background-color:#6ed486; margin-bottom:3%" type="text" class="form-control" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
-                        
+                    
+                    <button id="inserir" class="btn btn-primary">INSERIR</button>
+                    <label>VALOR TOTAL</label>
+                    <div id="valorTotal" class="mb3">
+                        <input style="background-color:#6ed486; margin-bottom:3%" type="text" class="form-control" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
                     </div>
-                </div>  
+                </div>
             </div>
-            
-            
         </form>
 
         <table style="margin-top: 1%" class="table">
@@ -253,8 +253,24 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         </table>
     </div>
 
-    <script type="text/javascript">
-        function deletar(id, nome) {
+    <script>
+        $(document).ready(function() {
+            $("#dadosFor").on("click", "#inserir", function(e) {
+                e.preventDefault();
+
+                if ($("#idproduto").val() == "") {
+                    alert("Informe o produto!");
+
+                    return false;
+                } else {
+                    $("#dadosFor").submit();
+                    $("#dadosFor #inserir").prop("disabled", true);
+                    $("#dadosFor #inserir").val("INSERINDO ITEM...");
+                }
+            });
+        });
+      
+          function deletar(id, nome) {
             if (confirm("Deseja realmente excluir o itens venda "+ id + " do cliente " + nome + "?")) {
                 $.ajax({
                     url: '../apagar/Itensvenda.php',  

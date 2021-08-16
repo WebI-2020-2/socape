@@ -52,12 +52,12 @@ class LocalizacaoController extends Localizacao
         return $stm->execute();
     }
 
-    public function update($idlocalizacao)
+    public function update($idlocalizacao, $departamento)
     {
         $query = "UPDATE $this->tabela SET departamento = :departamento WHERE idlocalizacao = :idlocalizacao";
         $stm = Database::prepare($query);
         $stm->bindParam(':idlocalizacao', $idlocalizacao, PDO::PARAM_INT);
-        $stm->bindValue(':departamento', $this->getDepartamento());
+        $stm->bindValue(':departamento', $departamento);
 
         return $stm->execute();
     }

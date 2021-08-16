@@ -75,7 +75,7 @@ class ItensVendaController extends ItensVenda
         $stm->bindParam(':desconto', $desconto);
         $stm->bindParam(':lucro', $lucro);
 
-        return $stm->execute();;
+        return $stm->execute();
     }
 
     // public function update($iditensvenda)

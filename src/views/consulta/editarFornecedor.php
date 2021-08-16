@@ -71,7 +71,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">EDITAR FORNECEDOR</span>
         </h1>
@@ -79,6 +79,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
         <?php
         if ($_POST) {
             $data = $_POST;
+
             $err = FALSE;
 
             if (!$data['nome']) {
@@ -112,7 +113,14 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
 
             if (!$err) {
                 try {
-                    $fornecedores->update($idfornecedor, $data['nome'], $data['endereco'], $data['telefone'], $data['cnpj']);
+                    $fornecedores->update(
+                        $idfornecedor,
+                        $data['nome'],
+                        $data['endereco'],
+                        $data['telefone'],
+                        $data['cnpj']
+                    );
+                    
                     echo
                     '<script>
                         alert("Fornecedor atualizado com sucesso!");
@@ -127,7 +135,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
         ?>
 
         <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
-        <form style="margin-left: 25%" action="" method="post">
+        <form id="form" style="margin-left: 25%" action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
                 <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
@@ -138,18 +146,26 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
+                <input style="width: 130%" type="number" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CNPJ</label>
-                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
+                <input style="width: 130%" type="number" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
             </div>
 
-            <input style="margin-left: 90%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO...';" value="SALVAR">
+            <button style="margin-left: 80%" class="btn btn-primary" id="salvar">SALVAR</button>
         </form>
-
     </div>
 
+    <script>
+        $(document).ready(function() {
+            $("#form").on("click", "#salvar", function(e) {
+                $("#form").submit();
+                $("#form #salvar").prop("disabled", true);
+                $("#form #salvar").val("SALVANDO...");
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
