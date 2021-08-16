@@ -21,14 +21,15 @@ $fabricacoes = new FabricacaoController();
 </head>
 
 <body>
-    <img src="./../../../public/imagens/titulo.png">
-    <nav class="navbar navbar-expand navbar-black bg-black">
+    <img class="img-fluid w-100" src="./public/imagens/titulo.png">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacao" aria-controls="navegacao" aria-expanded="false" aria-label="Alterar navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-lg-0">
+
+            <div class="collapse navbar-collapse" id="navegacao">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="../../../index.php">INÍCIO</a>
                     </li>
@@ -39,8 +40,8 @@ $fabricacoes = new FabricacaoController();
                         <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="consultar" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="consultar">
                             <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
                             <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
                             <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
@@ -54,12 +55,19 @@ $fabricacoes = new FabricacaoController();
                         </ul>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto mb-lg-0">
+
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= $_SESSION['nome']; ?></a>
-                        <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                            <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
+                        <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="perfil">
+                            <li>
+                                <h6 class="dropdown-header">Olá <?= $_SESSION['nome']; ?></h6>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../../views/usuario/perfil.php">PERFIL</a></li>
+                            <li><a class="dropdown-item" href="../../../logout.php">SAIR</a></li>
                         </ul>
                     </li>
                 </ul>
