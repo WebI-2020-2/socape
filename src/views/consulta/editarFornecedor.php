@@ -153,7 +153,7 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
                 <input style="width: 130%" type="number" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
             </div>
 
-            <button style="margin-left: 80%" class="btn btn-primary" id="salvar">SALVAR</button>
+            <button style="margin-left: 90%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="salvar">SALVAR</button>
         </form>
     </div>
 

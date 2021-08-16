@@ -149,7 +149,7 @@ $motores = new MotorController();
                 <input style="margin-left: 35px;"  class="form-control" type="text" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" disabled>
                 <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" disabled>
             </div>    
-            <a style="margin-left: 50%" href="../consulta/produto.php"><button class="btn btn-sm btn-danger">VOLTAR</button></a>
+            <a  style="margin-left: 10px ;" href="../consulta/produto.php"><button style=" margin-bottom:10px ; padding: 4px 15px 3px 15px; border-radius: 50px;" class="btn btn-sm btn-danger">VOLTAR</button></a>
         </div>
 
         <?php

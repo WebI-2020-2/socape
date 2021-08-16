@@ -92,7 +92,10 @@ $fornecedores = new FornecedoresController();
                         <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
                     </div>
                 </form>                
-                <a style="margin-left: 50%" href="../consulta/fornecedor.php"><button class="btn btn-sm btn-danger">VOLTAR</button></a>
+                    <div>
+                        <a href="../consulta/fornecedor.php" style="margin-left: 38%;"><input type="button" class="btn btn-primary" value="VOLTAR"></a>
+                    <div>
+                
         <?php
             }
         } ?>

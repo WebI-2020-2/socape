@@ -64,7 +64,7 @@ $usuario = new UsuarioController();
             <div>
                 <br>
                 <br>
-                <a style="margin-left:30%" href="./cadastro.php" class="link">Cadastre-se</a>
+                <a style="margin-left:35%" href="./cadastro.php" class="link">Cadastre-se</a>
             </div>
         </div>
     </div>

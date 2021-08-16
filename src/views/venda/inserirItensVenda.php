@@ -209,8 +209,9 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                         <input type="number" min="0" name="desconto" value="<?= isset($_GET['idproduto']) ? $produto->getDesconto() : null; ?>" class="form-control" placeholder="DESCONTO" required>
                         <input type="number" min="0" style="margin-left: 28px;" name="lucro" value="<?= isset($_GET['idproduto']) ? $produto->getLucro() : null; ?>" class="form-control" placeholder="LUCRO" required>
                     </div>
+                    <button style="margin-left: 93%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="inserir">INSERIR</button>
                     
-                    <button id="inserir" class="btn btn-primary">INSERIR</button>
+
                     <label>VALOR TOTAL</label>
                     <div id="valorTotal" class="mb3">
                         <input style="background-color:#6ed486; margin-bottom:3%" type="text" class="form-control" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>

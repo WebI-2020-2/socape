@@ -110,7 +110,7 @@ $marca = new MarcasController();
                 <input style="width: 130%" type="text" name="marca" class="form-control" placeholder="MARCA" required>
             </div>
 
-            <button style="margin-left: 75%" type="submit" class="btn btn-primary">CADASTRAR</button>
+            <button  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
         </form>
     </div>
 

@@ -237,7 +237,7 @@ $produtos = new ProdutosController();
                         <input type="number" min="0" name="icms" style="margin-left: 28px;" class="form-control" type="text" placeholder="ICMS" required>
                     </div>
 
-                    <button id="inserir" class="btn btn-primary">INSERIR</button>
+                    <button style="margin-left: 93%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" id="inserir" class="btn btn-primary">INSERIR</button>
                     <div id="valorTotal" class="input-group">
                         <label id="valorTotal">VALOR TOTAL</label>
                         <input style="background-color:#6ed486" id="valorTotal" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>

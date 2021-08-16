@@ -103,8 +103,9 @@ $clientes = new ClientesController();
                 ?>
             </div>
         </form>
-        <a style="margin-left: 50%" href="../consulta/cliente.php"><button class="btn btn-sm btn-danger">VOLTAR</button></a>
-
+            <div>
+                <a href="../consulta/cliente.php" style="margin-left: 65%;"><input type="button" class="btn btn-primary" value="VOLTAR"></a>
+            <div>
         <?php
             }
         } ?>

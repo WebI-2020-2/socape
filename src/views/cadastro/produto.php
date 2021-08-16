@@ -226,7 +226,7 @@ $marcas = new MarcasController();
         <form id="formProduto" action="" method="post">
             <div>
                 <label style="margin-left:7px;" class="form-label">MOTOR</label>
-                <label style="margin-left: 28.8%;" class="form-label">CARRO</label>
+                <label style="margin-left: 29.6%;" class="form-label">CARRO</label>
                 <label style="margin-left:29%;" for="valvula" class="form-label">VÁLVULA</label>
                 <div class="input-group">
                     <select style="margin-left: 10px;" name="idmotor" class="form-control" required>
@@ -249,8 +249,8 @@ $marcas = new MarcasController();
                     </select>
                 </div>
                 <label style="margin-left: 7px;" class="form-label">FABRICAÇÃO</label>
-                <label style="margin-left: 25.7%;" class="form-label">LOCALIZAÇÃO</label>
-                <label style="margin-left: 25%;" class="form-label">CATEGORIA</label>
+                <label style="margin-left: 26.4%;" class="form-label">LOCALIZAÇÃO</label>
+                <label style="margin-left: 25.6%;" class="form-label">CATEGORIA</label>
                 <div class="input-group">
                     <select style="margin-left: 10px;" name="idfabricacao" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
@@ -273,7 +273,7 @@ $marcas = new MarcasController();
                 </div>
 
                 <label style="margin-left:7px;" class="form-label">MARCA</label>
-                <label style="margin-left: 28.8%;" class="form-label">REFERÊNCIA</label>
+                <label style="margin-left: 29.5%;" class="form-label">REFERÊNCIA</label>
                 <label style="margin-left:26.4%;" class="form-label">UNIDADE</label>
                 <div class="input-group">
                     <select style="margin-left: 10px; " name="idmarca" class="form-control" required>
@@ -287,7 +287,7 @@ $marcas = new MarcasController();
                 </div>
 
                 <div class="mb-3" style="margin-top:2%;">
-                    <button style="margin-left: 75%" type="submit" class="btn btn-primary">CADASTRAR</button>
+                    <button  style="margin-left: 90% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
                 </div>
             </div>
 
