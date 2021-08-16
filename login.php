@@ -26,7 +26,7 @@ $usuario = new UsuarioController();
 
                     <form method="post" action="">
                         <div class="card-body text-center">
-                            <h5 class="card-title">LOGIN</h5>
+                            <h5 class="card-title">Login</h5>
                         </div>
 
                         <?php
@@ -59,19 +59,19 @@ $usuario = new UsuarioController();
 
                         <div class="card-body">
                             <div class="mb-3">
-                                <label for="usuario" class="form-label">USUÁRIO</label>
-                                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="USUÁRIO" required autofocus>
+                                <label for="usuario" class="form-label">Usuário</label>
+                                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuário" required autofocus>
                             </div>
 
                             <div class="mb-3">
-                                <label for="senha" class="form-label">SENHA</label>
-                                <input type="password" class="form-control" name="senha" id="senha" placeholder="SENHA" required>
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required>
                             </div>
                         </div>
 
                         <div class="card-body text-center">
                             <div class="mb-4">
-                                <button type="submit" class="btn">ENTRAR</button>
+                                <button type="submit" class="btn">Entrar</button>
                             </div>
 
                             <div class="mb-0">
