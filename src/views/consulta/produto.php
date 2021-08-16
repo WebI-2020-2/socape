@@ -221,9 +221,7 @@ $motores = new MotorController();
         }
 
         $(document).ready(function() {
-
             $("#txtBusca").on("keyup", function() {
-
                 const value = $(this).val().toLowerCase();
                 $("table tbody tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);

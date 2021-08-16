@@ -87,50 +87,86 @@ $marcas = new MarcasController();
             $err = FALSE;
 
             if (!$data['icms']) {
-                echo "<h1>INFORME O ICMS!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o valor do ICMS!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['ipi']) {
-                echo "<h1>INFORME O IPI!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o valor do IPI!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['frete']) {
-                echo "<h1>INFORME O FRETE!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o valor do frete!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['valornafabrica']) {
-                echo "<h1>INFORME O VALOR DE FÁBRICA!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o valor na fábrica!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['valordecompra']) {
-                echo "<h1>INFORME O VALOR DE COMPRA!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o valor de compra!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['lucro']) {
-                echo "<h1>INFORME O LUCRO!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o lucro!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['valorvenda']) {
-                echo "<h1>INFORME O VALOR DE VENDA!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o valor de venda!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['desconto']) {
-                echo "<h1>INFORME O DESCONTO!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o valor de desconto!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['quantidade']) {
-                echo "<h1>INFORME A QUANTIDADE!</h1>";
+                echo
+                    '<script>
+                        alert("Informe a quantidade!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['unidade']) {
-                echo "<h1>INFORME A UNIDADE!</h1>";
+                echo
+                    '<script>
+                        alert("Informe a Unidade!");
+                    </script>';
                 $err = TRUE;
             } else if (strlen($data['unidade']) > 2) {
-                echo "<h1>A UNIDADE SÓ PODE CONTER 2 DÍGITOS!</h1>";
+                echo
+                    '<script>
+                        alert("A unidade não pode ser maior que 2 campos!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['referencia']) {
-                echo "<h1>INFORME A REFERÊNCIA!</h1>";
+                echo
+                    '<script>
+                        alert("Informe a Referência!");
+                    </script>';
                 $err = TRUE;
             }
 

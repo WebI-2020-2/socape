@@ -85,7 +85,7 @@ $categoria = $categorias->findOne($idcategoria);
             if (!$data['categoria']) {
                 echo
                     '<script>
-                        alert("Innforme a Categoria!");
+                        alert("Informe a Categoria!");
                     </script>';
                 $err = TRUE;
             }
