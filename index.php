@@ -21,38 +21,41 @@ $produtos = new ProdutosController();
 
 <body>
     <img src="./public/imagens/titulo.png">
-    <nav class="navbar navbar-expand-lg navbar-black bg-black">
-        <div class="collapse navbar-collapse">
-            <ul style="width:100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
+    <nav class="navbar navbar-expand navbar-black bg-black">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="./index.php">INÍCIO</a>
+                        <a class="nav-link active" aria-current="page" href="./index.php">INÍCIO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="src/views/venda/venda.php">VENDER</a>
+                        <a class="nav-link" href="src/views/venda/venda.php">VENDER</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="src/views/entrada/entrada.php">DAR ENTRADA</a>
+                        <a class="nav-link" href="src/views/entrada/entrada.php">DAR ENTRADA</a>
                     </li>
                     <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="src/views/consulta/cliente.php">CLIENTE</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/produto.php">PRODUTO</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/carro.php">CARRO</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/valvula.php">VÁLVULA</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/categoria.php">CATEGORIA</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/motor.php">MOTOR</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                        <li><a class="dropdown-item" href="src/views/consulta/marca.php">MARCA</a></li>
-                    </ul>
-                </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color: #FFFFFF" href="#">OLÁ <?= $_SESSION['nome']; ?></a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="src/views/consulta/cliente.php">CLIENTE</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/fornecedor.php">FORNECEDOR</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/produto.php">PRODUTO</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/carro.php">CARRO</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/valvula.php">VÁLVULA</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/categoria.php">CATEGORIA</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/motor.php">MOTOR</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
+                            <li><a class="dropdown-item" href="src/views/consulta/marca.php">MARCA</a></li>
+                        </ul>
                     </li>
-                    <li style="margin-left: 53%" class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
+                </ul>
+                <ul class="navbar-nav ml-auto mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: #FFFFFF" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= $_SESSION['nome']; ?></a>
                         <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" style="color: #FFFFFF" href="src/views/usuario/perfil.php">PERFIL</a></li>
                             <li><a class="dropdown-item" style="color: #FFFFFF" href="logout.php">SAIR</a></li>
@@ -63,49 +66,49 @@ $produtos = new ProdutosController();
         </div>
     </nav>
 
-    <div id="carrosel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carrosel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carrosel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carrosel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <div class="container-fluid">
+        <div id="carrosel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carrosel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carrosel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carrosel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./public/imagens/produto grande-teste.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./public/imagens/produto grande-teste.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./public/imagens/produto grande-teste.png" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carrosel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carrosel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="./public/imagens/produto grande-teste.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="./public/imagens/produto grande-teste.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="./public/imagens/produto grande-teste.png" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carrosel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carrosel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
-        </button>
-    </div>
 
-    <?php if ($produtos->findBestSellers()) { ?>
-        <div id="bestSellers">
-            <img id="imagemDestaque" src="./public/imagens/titulo 2.png">
-            <div style="margin-left: 60px">
+        <?php if ($produtos->findBestSellers()) { ?>
+            <div id="bestSellers">
+                <img id="imagemDestaque" src="./public/imagens/titulo 2.png">
                 <?php foreach ($produtos->findBestSellers() as $obj) { ?>
                     <div id="produtos" class="card" style="width: 18rem;">
                         <img src="./public/imagens/escapamento 1.png" class="card-img-top" alt="...">
                         <div style="background-color: #8C1818" class="card-body">
-                            <h3 class="card-title" id="textoDestaque">R$ <?= $obj->getValorvenda() ?></h3>
-                            <p class="card-text"><?= $obj->getReferencia() ?></p>
+                            <h3 class="card-title" id="textoDestaque">R$ <?= $obj->getValorvenda(); ?></h3>
+                            <p class="card-text"><?= $obj->getReferencia(); ?></p>
                         </div>
                     </div>
                 <?php } ?>
             </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
