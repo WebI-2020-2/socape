@@ -157,7 +157,7 @@ form {
     margin-left: 7px; 
   }
   #desconto{
-    margin-left: 28.6%;
+    margin-left: 29.6%;
   }
   #modeloCar{
     margin-left: 26.6%;
@@ -166,7 +166,7 @@ form {
     margin-left: 7px;
   }
   #valvula{
-    margin-left: 27.6%;
+    margin-left: 28.6%;
   }
   #valorFar{
     margin-left: 27.3%;
@@ -175,73 +175,41 @@ form {
     margin-left: 7px;
   }
   #valorCom{
-    margin-left: 25.6%;
+    margin-left: 26.6%;
   }
   #categoria{
-    margin-left: 21.8%;
+    margin-left: 22.8%;
   }
   #icms{
     margin-left: 7px;
   }
   #marca{
-    margin-left: 30.3%;
+    margin-left: 30.8%;
   }
   #ipi{
-    margin-left: 28.8%;
+    margin-left: 29.5%;
   }
   #localização{
     margin-left: 7px;
   }
   #frete{
-    margin-left: 24.7%;
+    margin-left: 25.7%;
   }
   #referencia{
-    margin-left: 30%;
+    margin-left: 30.3%;
   }
   #quantidade{
     margin-left: 7px;
   }
   #valorVenda{
-    margin-left: 25%;
-  }
-  #lucro{
-    margin-left: 23%;
-  }
-}
-/* tela editarProduto*/
-@media (min-width: 1200px) { 
-  #ediIcms{
-    margin-left: 3.3%;
-  }
-  #ediIpi{
-    margin-left: 29%;
-  }
-  #ediFrete{
-    margin-left: 30.5%;
-  }
-  #ediValorFar{
-    margin-left: 3.3%;
-  }
-  #ediValorCom{
-    margin-left: 20.5%;
-  }
-  #ediLucro{
-    margin-left: 20.3%;
-  }
-  #ediValorVenda{
-    margin-left: 3.3%;
-  }
-  #ediDesconto{
-    margin-left: 21.3%;
-  }
-  #ediQuantidade{
-    margin-left: 25.6%;
-  }
-  #ediUnidade{
-    margin-left: 3.3%;
-  }
-  #ediReferencia{
     margin-left: 26%;
   }
- 
+  #lucro{
+    margin-left: 24%;
+  }
+}
+
+#acionar{
+  padding: 4px 15px 3px 15px !important;
+  border-radius: 50px !important;
 }

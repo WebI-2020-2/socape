@@ -112,7 +112,7 @@ $carros = new CarroController();
                 <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" required>
             </div>
 
-            <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+            <input  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
         </form>
     </div>
 
