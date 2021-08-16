@@ -79,7 +79,7 @@ $clientes = new ClientesController();
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR CLIENTE</span>
         </h1>
-        <div class="input-group">
+        <div class="input-group mb-3  " >
             <div class="mb-3" id="divBusca" style="margin-left:2%;">
                 <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
             </div>

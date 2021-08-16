@@ -80,7 +80,7 @@ $fornecedores = new FornecedoresController();
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">ENTRADAS</span>
         </h1>

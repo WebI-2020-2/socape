@@ -115,16 +115,12 @@ form {
 }
 
 #formProduto{
-  width: 90%;
-  margin-bottom: 3%;
-  margin-left:3%;
   border: double;
 }
 #minhaConta{
   margin-left:80%;
 
 }
-
 
 #txtBusca{
   float:left;
