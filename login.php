@@ -13,61 +13,78 @@ $usuario = new UsuarioController();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SOCAPE | Login</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./public/css/login.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <div class="card card-container">
-        <img  src="./public/imagens/teste1.png" align="center">
-            
-            <p id="profile-name" class="profile-name-card">
-                <?php
-                if ($_POST) {
-                    $data = $_POST;
+    <div class="login">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <img src="./public/imagens/teste1.png">
 
-                    $err = FALSE;
+                    <form method="post" action="">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">LOGIN</h5>
+                        </div>
 
-                    if (!$data['usuario']) {
-                        echo "<h1>INFORME O USUÁRIO!</h1>";
-                        $err = TRUE;
-                    }
-                    if (!$data['senha']) {
-                        echo "<h1>INFORME A SENHA!</h1>";
-                        $err = TRUE;
-                    }
+                        <?php
+                        if ($_POST) {
+                            $data = $_POST;
 
-                    if (!$err) {
-                        try {
-                            $usuario->login(
-                                $data['usuario'],
-                                $data['senha']
-                            );
-                        } catch (PDOException $err) {
-                            echo $err->getMessage();
+                            $err = FALSE;
+
+                            if (!$data['usuario']) {
+                                echo '<script>alert("Informe o usuário!");</script>';
+                                $err = TRUE;
+                            }
+                            if (!$data['senha']) {
+                                echo '<script>alert("Informe a senha!");</script>';
+                                $err = TRUE;
+                            }
+
+                            if (!$err) {
+                                try {
+                                    $usuario->login(
+                                        $data['usuario'],
+                                        $data['senha']
+                                    );
+                                } catch (PDOException $err) {
+                                    echo $err->getMessage();
+                                }
+                            }
                         }
-                    }
-                }
-                ?>
-            </p>
-            <font style="text-align: center" size=+3 face=Arial color="#ffffff">Login</font>
-            <form class="form-signin" method="post" action="">
-                <label>Usuário</label>
-                <input type="text" id="inputUsuario" class="form-control" name="usuario" placeholder="Usuário" required autofocus />
+                        ?>
 
-                <label>Senha</label>
-                <input type="password" id="inputsenha" class="form-control" name="senha" placeholder="Senha" required />
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="usuario" class="form-label">USUÁRIO</label>
+                                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="USUÁRIO" required autofocus>
+                            </div>
 
-                <input href="./index.php?" type="submit" class="btn btn-lg acesso" method="post" onClick="" value="LOGAR" />
-            </form>
-            <div>
-                <br>
-                <br>
-                <a style="margin-left:35%" href="./cadastro.php" class="link">Cadastre-se</a>
+                            <div class="mb-3">
+                                <label for="senha" class="form-label">SENHA</label>
+                                <input type="password" class="form-control" name="senha" id="senha" placeholder="SENHA" required>
+                            </div>
+                        </div>
+
+                        <div class="card-body text-center">
+                            <div class="mb-4">
+                                <button type="submit" class="btn">ENTRAR</button>
+                            </div>
+
+                            <div class="mb-0">
+                                <a href="./cadastro.php">Cadastre-se</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
 </html>
