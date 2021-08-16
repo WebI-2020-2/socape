@@ -232,6 +232,7 @@ $produtos = new ProdutosController();
                     <th>IPI</th>
                     <th>FRETE</th>
                     <th>ICMS</th>
+                    <th>AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
@@ -248,15 +249,40 @@ $produtos = new ProdutosController();
                         <td><?= $obj->getFrete(); ?></td>
                         <td><?= $obj->getIcms(); ?></td>
                         <td>
-                            <button class="btn btn-sm btn-light">VISUALIZAR</button>
-                            <button class="btn btn-sm btn-primary">EDITAR</button>
-                            <button class="btn btn-sm btn-danger">APAGAR</button>
+                        <div class="button-group clear"> 
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIditensentrada() ?>', '<?= $fornecedor->getNome(); ?>')">APAGAR</button>
+                        </div>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
+
+
+    <script type="text/javascript">
+        function deletar(id, nome) {
+            if (confirm("Deseja realmente excluir o itens entrada "+ id + " do fornecedor " + nome + "?")) {
+                $.ajax({
+                    url: '../apagar/ItensEntrada.php',  
+                    type: "POST",
+                    data: {
+                        id
+                    },
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Itens entrada excluída com sucesso!");
+                            window.location.href = '';
+                        } else {
+                            alert(res["msg"]);
+                        }
+                    }
+                });
+                return false;
+            }
+        }
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
