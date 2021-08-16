@@ -15,7 +15,8 @@ As tecnologias abaixo foram utilizadas para o desenvolvimento do projeto:
 
 * Tela Inicial
 
-![inicial](https://user-images.githubusercontent.com/81172873/129504177-f0f8ac6a-5990-41ce-a511-d6e81c60e3b3.JPG)
+
+ ![inicial](https://user-images.githubusercontent.com/81172873/129553942-46dcc89b-35bd-4874-b3fa-409c30a5ef8b.JPG)
 
 * O Layout completo pode ser acessado aqui: [Figma](https://www.figma.com/file/KNa0hEGNNUTZJPz5gBMWAZ/Untitled?node-id=690%3A9)
 
@@ -59,12 +60,4 @@ Lista de funcionalidades disponiveis:
 :----------------------:|:-------------------------:|:--------:|:-----:|:-----:
 [Daniel Rocha Frontend](https://github.com/DanielRocha300)  | [Gabriel  Lobo Backend](https://github.com/gabrielrbl) | [Jefferson Batista Backend](https://github.com/jeffersonxavi) | [Larissa  Prado Backend](https://github.com/larisprado) | [Marcos Coelho Frontend](https://github.com/CoelhoMestre) 
 
- 
- 
 
-
- 
-
-
- 
- 
