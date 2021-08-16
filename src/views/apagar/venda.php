@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+
 header('Content-type: application/json');
 require_once __DIR__ . '/../../controller/VendasController.php';
 $venda = new VendasController();
