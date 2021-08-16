@@ -102,7 +102,7 @@ $clientes = new ClientesController();
                     echo
                     '<script>
                         alert("Cliente Pessoa Física cadastrado com sucesso!");
-                        window.location.href = "../cliente-fisico.php";
+                        window.location.href = "../consulta/cliente.php";
                     </script>';
                 } catch (PDOException $err) {
                     echo $err->getMessage();
