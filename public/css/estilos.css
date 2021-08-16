@@ -35,18 +35,15 @@ nav li a {
 }
 
 #container {
-  margin-top: 5px;
   height: 100%;
   background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
 
 #containerlimitado{
-  margin-top: 5px;
   height: 78vh;
   background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
 #containerentrada{
-  margin-top: 5px;
   height: 130vh;
   background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
@@ -57,7 +54,6 @@ select {
 
 h1 {
   text-align: center;
-  margin-top: 5px;
 }
 
 h1 > span {

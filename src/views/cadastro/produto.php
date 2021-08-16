@@ -42,7 +42,7 @@ $marcas = new MarcasController();
 </head>
 
 <body>
-    <img class="img-fluid w-100" src="./public/imagens/titulo.png">
+    <img class="img-fluid w-100" src="./../../../public/imagens/titulo.png">
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacao" aria-controls="navegacao" aria-expanded="false" aria-label="Alterar navegação">
