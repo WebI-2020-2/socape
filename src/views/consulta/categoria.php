@@ -80,8 +80,6 @@ $categorias = new CategoriaController();
             </div>
         </div>
 
-
-
         <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
@@ -127,7 +125,7 @@ $categorias = new CategoriaController();
                     return false;
                 }
             }
-
+          
             $(document).ready(function() {
                 $("#txtBusca").on("keyup", function() {
                     const value = $(this).val().toLowerCase();

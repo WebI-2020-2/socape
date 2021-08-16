@@ -121,29 +121,7 @@ $marca = $marcas->findOne($idmarca);
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>MARCA</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($marcas->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdmarca() ?></td>
-                        <td><?= $obj->getMarca() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarMarca.php?id=<?= $obj->getIdmarca() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+
     </div>
 
     <script>

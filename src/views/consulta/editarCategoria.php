@@ -119,29 +119,7 @@ $categoria = $categorias->findOne($idcategoria);
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORIA</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($categorias->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdcategoria() ?></td>
-                        <td><?= $obj->getCategoria() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarCategoria.php?id=<?= $obj->getIdcategoria() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+
     </div>
 
     <script>

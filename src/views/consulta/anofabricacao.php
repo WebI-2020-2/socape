@@ -66,6 +66,7 @@ $fabricacoes = new FabricacaoController();
             </div>
         </div>
     </nav>
+  
     <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">CONSULTAR ANO DE FABRICAÇÃO</span>
@@ -126,7 +127,7 @@ $fabricacoes = new FabricacaoController();
                 return false;
             }
         }
-
+      
         $(document).ready(function() {
             $("#txtBusca").on("keyup", function() {
                 const value = $(this).val().toLowerCase();
