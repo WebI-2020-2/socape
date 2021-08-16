@@ -41,7 +41,7 @@ Lista de funcionalidades disponiveis:
 
 ✔️ Cadastro, consulta, visualização, edição e remoção de Marca;
 
-✔️ Cadastro, consulta, visualização, edição e remoção de Venda;
+✔️ Cadastro, visualização e remoção de Venda;
 
 ✔️ Cadastro, consulta, visualização, edição e remoção de Funcionário;
 
@@ -53,6 +53,23 @@ Lista de funcionalidades disponiveis:
 
 * Sistema hospedado:
  [Socape](https://socape.herokuapp.com/)
+ 
+Para acessar é necessário:
+* Clonar este repositório em sua máquina:
+  
+  git clone git@github.com:WebI-2020-2/socape.git
+
+* Ter instalado e estar rodando em sua máquina o Xampp
+  
+  Executar o servidor local do PHP:
+
+  localhost/socape
+  
+ * Utilizar as seguintes credenciais:
+ 
+     Usuário: teste
+
+     Senha: teste
  
  # Equipe
 
