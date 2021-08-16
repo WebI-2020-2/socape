@@ -97,7 +97,10 @@ $motores = new MotorController();
         <div style="width: 90%; margin-left:3%; border: double;">
             <h1 style="text-align: left; margin-left: 10px;">
             <span class="badge bg-light text-dark">INFORMAÇÕES PRODUTO</span>
+            <input style="margin-left: 10px; margin-top: 13px;margin-bottom:15px;height: 40px; font-size: 15px;" type="button" class="btn btn-danger btn-lg active" name="descricao" placeholder="DESCRIÇÃO" value="<?= $produto->getDescricao()?>" disabled>
             </h1>
+            <label id="motor" class="form-label">DESCRIÇÃO</label>
+            <input style="margin-left: 10px;" class="form-control" type="text" placeholder="MOTOR" value="<?= $produto->getDescricao() ?>" disabled>
             <label id="motor" class="form-label">MOTOR</label>
             <label id="desconto" class="form-label">DESCONTO</label>
             <label id="modeloCar" class="form-label">MODELO DE CARRO</label>
@@ -148,7 +151,7 @@ $motores = new MotorController();
                 <input style="margin-left: 10px;"  class="form-control" type="text" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" disabled>
                 <input style="margin-left: 35px;"  class="form-control" type="text" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" disabled>
                 <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" disabled>
-            </div>    
+            </div>
             <a  style="margin-left: 10px ;" href="../consulta/produto.php"><button style=" margin-bottom:10px ; padding: 4px 15px 3px 15px; border-radius: 50px;" class="btn btn-sm btn-danger">VOLTAR</button></a>
         </div>
 

@@ -186,7 +186,13 @@ $localizacoes = new LocalizacaoController();
                     </script>';
                 $err = TRUE;
             }
-
+            if (!$data['descricao']) {
+                echo
+                '<script>
+                        alert("Informe a Descrição!");
+                    </script>';
+                $err = TRUE;
+            }
             if (!$err) {
                 try {
                     $produtos->update(
@@ -208,7 +214,8 @@ $localizacoes = new LocalizacaoController();
                         $data['idvalvulas'],
                         $data['idfabricacao'],
                         $data['idcategoria'],
-                        $data['idmarca']
+                        $data['idmarca'],
+                        $data['descricao'],
                     );
 
                     echo
@@ -228,8 +235,10 @@ $localizacoes = new LocalizacaoController();
                 <h1 style="text-align: left; margin-left: 10px;">
                     <span class="badge bg-light text-dark">NOME PRODUTO</span>
                 </h1>
-                <input style="margin-left: 10px; margin-top: 13px;margin-bottom:15px;height: 40px; font-size: 15px;" type="button" class="btn btn-danger btn-lg active" name="categoria" placeholder="CATEGORIA" value="<?= $categorias->findOne($produto->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($produto->getIdmarca())->getMarca() ?>" disabled>
+                <input style="margin-left: 10px; margin-top: 13px;margin-bottom:15px;height: 40px; font-size: 15px;" type="button" class="btn btn-danger btn-lg active" name="descricao" placeholder="DESCRICAO" value="<?= $produto->getDescricao()?>" disabled>
             </div>
+            <label style="margin-left: 27%;" class="form-label">DESCRIÇÃO</label>
+            <input style="margin-right:10px; margin-left:35px;" type="text" class="form-control" name="descricao" placeholder="DESCRIÇÃO" value="<?= $produto->getDescricao(); ?>" required>
             <div>
                 <label style="margin-left: 7px;" class="form-label">ICMS</label>
                 <label style="margin-left: 31%;" class="form-label">IPI</label>

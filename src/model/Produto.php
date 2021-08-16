@@ -21,8 +21,9 @@ class Produto
     private $unidade;
     private $idlocalizacao;
     private $referencia;
+    private $descricao;
 
-    public function __construct($idproduto, $idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia)
+    public function __construct($idproduto, $idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia, $descricao)
     {
         $this->idproduto = $idproduto;
         $this->idmotor = $idmotor;
@@ -43,6 +44,7 @@ class Produto
         $this->unidade = $unidade;
         $this->idlocalizacao = $idlocalizacao;
         $this->referencia = $referencia;
+        $this->descricao = $descricao;
     }
 
     public function getIdproduto()
@@ -234,4 +236,15 @@ class Produto
     {
         $this->referencia = $referencia;
     }
+
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
+    }
+    
 }

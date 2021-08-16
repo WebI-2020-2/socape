@@ -168,6 +168,13 @@ $marcas = new MarcasController();
                  alert("Informe a referência do produto!");
                 </script>';
                 $err = TRUE;
+            if(!$data['descricao']) {
+                echo
+                '<script>
+                 alert("Informe a descrição do produto!");
+                </script>';
+                $err = TRUE;
+            }
             }
 
             $produto->setIdmotor($data['idmotor']);
@@ -188,6 +195,7 @@ $marcas = new MarcasController();
             $produto->setLucro(0);
             $produto->setValorvenda(0);
             $produto->setQuantidade(0);
+            $produto->setDescricao($data['descricao']);
 
             if (!$err) {
                 try {
@@ -209,7 +217,8 @@ $marcas = new MarcasController();
                         $produto->getQuantidade(),
                         $produto->getUnidade(),
                         $produto->getIdlocalizacao(),
-                        $produto->getReferencia()
+                        $produto->getReferencia(),
+                        $produto->getDescricao(),
                     );
                     echo
                     '<script>
@@ -280,6 +289,7 @@ $marcas = new MarcasController();
                 <label style="margin-left:7px;" class="form-label">MARCA</label>
                 <label style="margin-left: 29.5%;" class="form-label">REFERÊNCIA</label>
                 <label style="margin-left:26.4%;" class="form-label">UNIDADE</label>
+                <label style="margin-left:26.4%;" class="form-label">DESCRIÇÃO</label>
                 <div class="input-group">
                     <select style="margin-left: 10px; " name="idmarca" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
@@ -290,6 +300,7 @@ $marcas = new MarcasController();
                     </select>
                     <input style="margin-left: 35px;" type="text" name="referencia" class="form-control" placeholder="REFERÊNCIA" required>
                     <input style="margin-left: 35px; margin-right:10px;" type="text" name="unidade" class="form-control" placeholder="UNIDADE" required>
+                    <input style="margin-left: 35px; margin-right:10px;" type="text" name="descricao" class="form-control" placeholder="DESCRIÇÃO" required>
                 </div>      
                
                 <div class="mb-3" style="margin-top:2%;">

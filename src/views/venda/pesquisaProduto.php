@@ -123,9 +123,12 @@ $motores = new MotorController();
                                     <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
                                 <?php } ?>
                             </select>
-                            <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" placeholder="INSERIR REFERÊNCIA"  />
+                            <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" placeholder="PROCURAR POR REFERÊNCIA"  />
                     </div>                   
                 </div>
+                <label id="REFERÊNCIA">DESCRIÇÃO</label>
+                    <input style="margin-left: 28px;" class="form-control" type="text" name="descricao" placeholder="PROCURAR POR DESCRIÇÃO" />   
+
                 <div id="pesquisar" class="mb-3">
                     <input  class="btn btn-primary" type="submit" value="PESQUISAR"/>     
                 </div>
@@ -139,6 +142,7 @@ $motores = new MotorController();
                     <th>ID</th>
                     <th>CATEGORIA/MARCA</th>
                     <th>REFERÊNCIA</th>
+                    <th>DESCRIÇÃO</th>
                     <th>QUANTIDADE</th>
                     <th>VALOR DE VENDA</th>
                     <th>LOCALIZAÇÃO</th>
@@ -155,12 +159,14 @@ $motores = new MotorController();
                 $idmarca = isset($_POST["idmarca"]) ? $_POST["idmarca"] : null;
                 $idlocalizacao = isset($_POST["idlocalizacao"]) ? $_POST["idlocalizacao"] : null;
                 $referencia = isset($_POST["referencia"]) ? $_POST["referencia"] : null;
+                $descricao = isset($_POST["descricao"]) ? $_POST["descricao"] : null;
 
-                foreach ($produtos->findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia) as $obj) { ?>
+                foreach ($produtos->findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia, $descricao) as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIdproduto() ?></td>
                         <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
                         <td><?= $obj->getReferencia() ?></td>
+                        <td><?= $obj->getDescricao() ?></td>
                         <td><?= $obj->getQuantidade() ?></td>
                         <td><?= $obj->getValorvenda() ?></td>
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
