@@ -72,19 +72,31 @@ $fornecedor = $fornecedores->findOne($idfornecedor);
             $err = FALSE;
 
             if (!$data['nome']) {
-                echo "<h1>INFORME O NOME DO FORNECEDOR!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o nome do Fornecedor!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['endereco']) {
-                echo "<h1>INFORME O ENDEREÇO DO FORNECEDOR!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o endereço!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['telefone']) {
-                echo "<h1>INFORME O TELEFONE DO FORNECEDOR!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o telefone!");
+                    </script>';
                 $err = TRUE;
             }
             if (!$data['cnpj']) {
-                echo "<h1>INFORME O CNPJ DO FORNECEDOR!</h1>";
+                echo
+                    '<script>
+                        alert("Informe o CNPJ");
+                    </script>';
                 $err = TRUE;
             }
 

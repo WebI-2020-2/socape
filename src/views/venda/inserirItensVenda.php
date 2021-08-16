@@ -85,23 +85,38 @@ $cliente = $clientes->findOne($venda->getIdcliente());
             $err = FALSE;
 
             if (!$data['idproduto']) {
-                echo "<h1>INFORME O PRODUTO!</h1>";
+                echo
+                '<script>
+                alert("Pesquise o produto!");
+               </script>';
                 $err = TRUE;
             }
             if (!$data['quantidade']) {
-                echo "<h1>INFORME A QUANTIDADE!</h1>";
+                echo
+                '<script>
+                alert("Informe a quantidade!");
+               </script>';
                 $err = TRUE;
             }
             if (!$data['valorvenda']) {
-                echo "<h1>INFORME O VALOR DE VENDA!</h1>";
+                echo
+                '<script>
+                alert("O valor da venda deve ser informado!");
+               </script>';
                 $err = TRUE;
             }
             if (!$data['desconto']) {
-                echo "<h1>INFORME O DESCONTO!</h1>";
+                echo
+                '<script>
+                alert("Informe o desconto!");
+               </script>';
                 $err = TRUE;
             }
             if (!$data['lucro']) {
-                echo "<h1>INFORME O LUCRO!</h1>";
+                echo
+                '<script>
+                 alert("O valor do lucro deve ser informado !");
+                </script>';
                 $err = TRUE;
             }
 
