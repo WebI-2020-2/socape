@@ -175,7 +175,7 @@ $cliente = $clientes->findOne($idcliente);
                 ?>
                 <br>
 
-                <button style="margin-left: 80%" class="btn btn-primary" id="salvar">SALVAR</button>
+                <button style="margin-left: 90%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="salvar">SALVAR</button>
             </div>
         </form>
     </div>
