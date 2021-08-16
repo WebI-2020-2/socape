@@ -50,7 +50,7 @@ $fabricacoes = new FabricacaoController();
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
-                        
+
                     </ul>
                 </li>
             </ul>
@@ -66,12 +66,12 @@ $fabricacoes = new FabricacaoController();
                 <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
             </div>
             <div>
-            <a href="../cadastro/anofabricacao.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
+                <a href="../cadastro/anofabricacao.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
             </div>
-           
+
         </div>
-  
-        <table style="margin-top: 1%"  class="table">
+
+        <table style="margin-top: 1%" class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -95,7 +95,7 @@ $fabricacoes = new FabricacaoController();
             </tbody>
         </table>
     </div>
-    
+
     <script>
         function deletar(id, ano) {
             if (confirm("Deseja realmente excluir o ano de fabricação " + ano + "?")) {
@@ -117,6 +117,16 @@ $fabricacoes = new FabricacaoController();
                 return false;
             }
         }
+        $(document).ready(function() {
+
+            $("#txtBusca").on("keyup", function() {
+
+                const value = $(this).val().toLowerCase();
+                $("table tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

@@ -59,7 +59,7 @@ $fabricacao = $fabricacoes->findOne($idfabricacao); ?>
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">ATUALIZAR ANO DE FABRICAÇÃO</span>
         </h1>
@@ -108,29 +108,7 @@ $fabricacao = $fabricacoes->findOne($idfabricacao); ?>
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ANO DE FABRICAÇÃO</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($fabricacoes->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdfabricacao() ?></td>
-                        <td><?= $obj->getAno() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+
     </div>
 
     <script>

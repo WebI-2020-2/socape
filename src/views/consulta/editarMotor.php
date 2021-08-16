@@ -60,7 +60,7 @@ $motor = $motores->findOne($idmotor); ?>
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">EDITAR POTÊNCIA DO MOTOR</span>
         </h1>
@@ -109,29 +109,7 @@ $motor = $motores->findOne($idmotor); ?>
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
         </form>
 
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>POTÊNCIA</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($motores->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdmotor() ?></td>
-                        <td><?= $obj->getPotencia() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarMotor.php?id=<?= $obj->getIdmotor() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+
     </div>
 
     <script>

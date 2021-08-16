@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../controller/CarrosController.php';
 
 $idcarro = $_GET['id'];
 $carros = new CarroController();
-$carro = $carros->findOne($idcarro);?>
+$carro = $carros->findOne($idcarro); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -52,14 +52,14 @@ $carro = $carros->findOne($idcarro);?>
                     <ul style="background-color: #140C0C " class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../views/usuario/perfil.php">PERFIL</a></li>
                         <li><a class="dropdown-item" style="color: #FFFFFF" href="../../../logout.php">SAIR</a></li>
-                        
+
                     </ul>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div id="container">
+    <div id="containerlimitado">
         <h1>
             <span class="badge bg-light text-dark">EDITAR MODELO DE CARRO</span>
         </h1>
@@ -73,7 +73,7 @@ $carro = $carros->findOne($idcarro);?>
 
             if (!$data['modelo']) {
                 echo
-                    '<script>
+                '<script>
                         alert("Insira o modelo!");
                     </script>';
                 $err = TRUE;
@@ -107,32 +107,10 @@ $carro = $carros->findOne($idcarro);?>
             </div>
             <input style="margin-left: 75%" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='SALVANDO…';" value="SALVAR">
 
-        </form>           
+        </form>
 
 
-        <table style="margin-top: 1%"  class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Modelo</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($carros->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdcarro() ?></td>
-                        <td><?= $obj->getModelo() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarCarro.php?id=<?= $obj->getIdcarro() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+
     </div>
 
     <script>
