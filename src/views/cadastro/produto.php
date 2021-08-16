@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!$_SESSION['logado']) header('Location: ./../../../login.php');
+if(!$_SESSION['logado']) header('Location: ./../../../login.php');
 
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
@@ -224,70 +224,77 @@ $marcas = new MarcasController();
         ?>
 
         <form id="formProduto" action="" method="post">
-            <div>
+            <div >
                 <label style="margin-left:7px;" class="form-label">MOTOR</label>
                 <label style="margin-left: 28.8%;" class="form-label">CARRO</label>
-                <label style="margin-left:29%;" for="valvula" class="form-label">VÁLVULA</label>
+                <label style="margin-left:29%;"  for="valvula" class="form-label">VÁLVULA</label>
                 <div class="input-group">
                     <select style="margin-left: 10px;" name="idmotor" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
-                        <?php foreach ($motores->findAll() as $obj) { ?>
+                        <?php
+                        foreach ($motores->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia(); ?></option>
                         <?php } ?>
                     </select>
-                    <select style="margin-left: 35px;" name="idcarro" class="form-control" required>
+                    <select style="margin-left: 35px; "  name="idcarro" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
-                        <?php foreach ($carros->findAll() as $obj) { ?>
+                        <?php
+                        foreach ($carros->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo(); ?></option>
                         <?php } ?>
                     </select>
                     <select style="margin-left: 35px; margin-right:10px;" name="idvalvulas" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
-                        <?php foreach ($valvulas->findAll() as $obj) { ?>
+                        <?php
+                        foreach ($valvulas->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade(); ?></option>
                         <?php } ?>
                     </select>
                 </div>
                 <label style="margin-left: 7px;" class="form-label">FABRICAÇÃO</label>
-                <label style="margin-left: 25.7%;" class="form-label">LOCALIZAÇÃO</label>
+                <label style="margin-left: 25.7%;"  class="form-label">LOCALIZAÇÃO</label>
                 <label style="margin-left: 25%;" class="form-label">CATEGORIA</label>
-                <div class="input-group">
-                    <select style="margin-left: 10px;" name="idfabricacao" class="form-control" required>
+                <div class="input-group">      
+                    <select style="margin-left: 10px;"  name="idfabricacao" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
-                        <?php foreach ($fabricacoes->findAll() as $obj) { ?>
+                        <?php
+                        foreach ($fabricacoes->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno(); ?></option>
                         <?php } ?>
                     </select>
                     <select style="margin-left: 35px;" name="idlocalizacao" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
-                        <?php foreach ($localizacoes->findAll() as $obj) { ?>
+                        <?php
+                        foreach ($localizacoes->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento(); ?></option>
                         <?php } ?>
-                    </select>
+                    </select>           
                     <select style="margin-left: 35px; margin-right:10px;" name="idcategoria" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
-                        <?php foreach ($categorias->findAll() as $obj) { ?>
+                        <?php
+                        foreach ($categorias->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria(); ?></option>
                         <?php } ?>
                     </select>
                 </div>
 
-                <label style="margin-left:7px;" class="form-label">MARCA</label>
+                <label style="margin-left:7px;"  class="form-label">MARCA</label>
                 <label style="margin-left: 28.8%;" class="form-label">REFERÊNCIA</label>
-                <label style="margin-left:26.4%;" class="form-label">UNIDADE</label>
+                <label style="margin-left:26.4%;"  class="form-label">UNIDADE</label>
                 <div class="input-group">
                     <select style="margin-left: 10px; " name="idmarca" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
-                        <?php foreach ($marcas->findAll() as $obj) { ?>
+                        <?php
+                        foreach ($marcas->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
                         <?php } ?>
                     </select>
                     <input style="margin-left: 35px;" type="text" name="referencia" class="form-control" placeholder="REFERÊNCIA" required>
-                    <input style="margin-left: 35px; margin-right:10px;" type="text" name="unidade" class="form-control" placeholder="UNIDADE" maxlength="2" required>
-                </div>
-
+                    <input style="margin-left: 35px; margin-right:10px;" type="text" name="unidade" class="form-control" placeholder="UNIDADE" required>
+                </div>      
+               
                 <div class="mb-3" style="margin-top:2%;">
-                    <button style="margin-left: 75%" type="submit" class="btn btn-primary">CADASTRAR</button>
+                    <input style="margin-left: 90%; margin-right:10px; margin-bottom:10px;" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
                 </div>
             </div>
 
@@ -295,12 +302,26 @@ $marcas = new MarcasController();
     </div>
 
     <script>
-        $(document).ready(function() {
-            $("#formProduto").on("submit", function() {
-                $("button[type=submit]").prop("disabled", true);
-                $("button[type=submit]").text("CADASTRANDO...");
-            });
-        });
+        function deletar(id, referencia) {
+            if (confirm("Deseja realmente excluir o produto de referencia " + referencia + "?")) {
+                $.ajax({
+                    url: '../apagar/produto.php',
+                    type: "POST",
+                    data: {
+                        id
+                    },
+                    success: (res) => {
+                        if (res["status"]) {
+                            alert("Produto excluído com sucesso!");
+                            window.location.href = './produto.php';
+                        } else {
+                            alert(res["msg"]);
+                        }
+                    }
+                });
+                return false;
+            }
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>

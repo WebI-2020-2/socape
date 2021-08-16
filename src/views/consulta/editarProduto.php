@@ -92,7 +92,7 @@ $localizacoes = new LocalizacaoController();
         </div>
     </nav>
 
-    <div id="containerlimitado">
+    <div id="container">
         <h1>
             <span class="badge bg-light text-dark">EDITAR PRODUTO</span>
         </h1>
