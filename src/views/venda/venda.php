@@ -24,7 +24,7 @@ $formas = new FormaPagamentoController();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SOCAPE | Venda</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -98,26 +98,14 @@ $formas = new FormaPagamentoController();
         <div class="py-5 bg-light">
             <?php
             if (isset($_GET['msg'])) {
-                if ($_GET['msg'] == 1) echo '<script>alert("Informe a forma de pagamento!");</script>';
-                if ($_GET['msg'] == 2) echo '<script>alert("Informe o cliente!");</script>';
+                if ($_GET['msg'] == 1) echo '<script>alert("Informe o cliente!");</script>';
             }
             ?>
 
             <section class="d-flex justify-content-center align-items-center text-dark">
                 <form id="realizarVenda" method="POST" action="./realizarVenda.php">
                     <div class="row">
-                        <div class="col-6 col-md-6 col-sm-12">
-                            <label for="idformapagamento" class="form-label">FORMA DE PAGAMENTO</label>
-                            <select id="idformapagamento" name="idformapagamento" class="form-select" required>
-                                <option selected disabled value="">SELECIONE</option>
-                                <?php foreach ($formas->findAll() as $obj) { ?>
-                                    <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
-                                <?php } ?>
-                            </select>
-                            <div id="formapagamentoHelp" class="form-text">Informe a forma de pagamento.</div>
-                        </div>
-
-                        <div class="col-6 col-md-6 col-sm-12 mb-3">
+                        <div class="col-6 col-md-12 col-sm-12 mb-3">
                             <label for="barraPesquisa" class="form-label black-text">CLIENTE</label>
                             <input type="text" placeholder="CLIENTE" class="form-control" id="barraPesquisa" aria-describedby="clienteHelp">
                             <input id="idcliente" type="hidden" name="idcliente" required>
@@ -132,7 +120,7 @@ $formas = new FormaPagamentoController();
                 </form>
             </section>
 
-            <div class="table-responsive-sm">
+            <div class="table-responsive-lg">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -228,7 +216,7 @@ $formas = new FormaPagamentoController();
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
 </html>

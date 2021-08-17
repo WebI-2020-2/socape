@@ -89,7 +89,16 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         </div>
     </nav>
 
-
+    <div class="col-6 col-md-6 col-sm-12">
+        <label for="idformapagamento" class="form-label">FORMA DE PAGAMENTO</label>
+        <select id="idformapagamento" name="idformapagamento" class="form-select" required>
+            <option selected disabled value="">SELECIONE</option>
+            <?php foreach ($formas->findAll() as $obj) { ?>
+                <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
+            <?php } ?>
+        </select>
+        <div id="formapagamentoHelp" class="form-text">Informe a forma de pagamento.</div>
+    </div>
     <div id="containerentrada">
         <h1>
             <span class="badge bg-light text-dark">VENDA</span>

@@ -37,87 +37,8 @@ nav li a {
   background-image: none;
 }
 
-#containerlimitado {
-  height: 78vh;
-  background-image: linear-gradient(to bottom, #272020, #8c1818);
-}
-
-#containerentrada {
-  height: 130vh;
-  background-image: linear-gradient(to bottom, #272020, #8c1818);
-}
-
-input,
-select {
+input, select {
   border-radius: 30px 30px 30px 30px !important;
-}
-
-h1 {
-  text-align: center;
-}
-
-h1 > span {
-  padding: 4px 15px 3px 15px !important;
-  border-radius: 50px !important;
-}
-
-#produtos {
-  width: 100%;
-  height: 100px;
-  display: inline-block;
-  margin-right: 6px;
-  margin-left: 6px;
-  margin-top: 30px;
-}
-
-#imagemDestaque {
-  margin-top: 10px;
-  width: 100%;
-}
-
-#imagemCadastro {
-  width: 22%;
-  margin-top: 65px;
-  margin-left: 28%;
-}
-
-#imagemFornecedor {
-  width: 22%;
-  margin-right: 30%;
-  margin-top: 87px;
-}
-#selecionar {
-  width: 10%;
-  margin-left: 70%;
-  padding: 4px 15px 3px 15px;
-  border-radius: 50px;
-}
-#consultproduct {
-  width: 350px;
-  height: 42px;
-  border-radius: 30px 30px 30px 30px !important;
-  margin-left: 40px;
-}
-
-#formProduto {
-  width: 90%;
-  margin-bottom: 3%;
-  margin-left: 3%;
-  border: double;
-}
-#minhaConta {
-  margin-left: 80%;
-}
-
-#txtBusca {
-  float: left;
-  border-radius: 30px 30px 30px 30px !important;
-  background-color: #ffffff;
-  padding-left: 5px;
-  font-size: 18px;
-  border: none;
-  height: 42px;
-  width: 350px;
 }
 
 /* tela consultar Produto*/
