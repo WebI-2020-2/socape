@@ -2,8 +2,6 @@
 require_once __DIR__ . '/../../controller/SessaoController.php';
 Sessao::verificaLogado();
 
-if (!$_SESSION['logado']) header('Location: ./../../../login.php');
-
 require_once __DIR__ . '/../../controller/VendasController.php';
 $vendas = new VendasController();
 
@@ -180,11 +178,7 @@ date_default_timezone_set('America/Sao_Paulo');
             $("#realizarVenda").on("click", "button[type=submit]", function(e) {
                 e.preventDefault();
 
-                if ($("#idformapagamento").val() == null) {
-                    alert("Informe a forma de pagamento!");
-
-                    return false;
-                } else if ($("#idcliente").val() == "") {
+                if ($("#idcliente").val() == "") {
                     alert("Informe o cliente!");
 
                     return false;
@@ -217,7 +211,6 @@ date_default_timezone_set('America/Sao_Paulo');
             }
         }
     </script>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 

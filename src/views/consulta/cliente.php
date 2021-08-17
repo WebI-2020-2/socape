@@ -150,7 +150,7 @@ $clientes = new ClientesController();
                 <section class="container-fluid text-dark">
                     <div class="row">
                         <div class="col mb-3">
-                            <input type="text" class="form-control" placeholder="Pesquisar nome..." id="txtBusca" aria-describedby="clienteHelp">
+                            <input type="text" class="form-control border border-5 border-dark" placeholder="Pesquisar nome..." id="txtBusca" aria-describedby="clienteHelp">
                             <div id="clienteHelp" class="form-text">Digite o nome do cliente...</div>
                         </div>
                         <div class="col mb-3">
@@ -170,12 +170,11 @@ $clientes = new ClientesController();
                                 <th scope="col">TELEFONE</th>
                                 <th scope="col">TIPO/IDENTIFICAÇÃO</th>
                                 <th scope="col">DÉBITO</th>
-                                <th scope="col">VISUALIZAR</th>
+                                <th scope="col">AÇÕES</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            foreach ($clientes->findAll() as $obj) { ?>
+                            <?php foreach ($clientes->findAll() as $obj) { ?>
                                 <tr>
                                     <td><?= $obj->getIdcliente(); ?></td>
                                     <td><?= $obj->getNome(); ?></td>
@@ -183,7 +182,11 @@ $clientes = new ClientesController();
                                     <td><?= $obj->getCpf() != "" ? "Cliente PF / CPF: " . $obj->getCpf() : "Cliente PJ / CNPJ " . $obj->getCnpj(); ?></td>
                                     <td>R$<?= $obj->getDebito(); ?></td>
                                     <td>
-                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdcliente(); ?>">VISUALIZAR</a>
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-primary" href="?id=<?= $obj->getIdcliente(); ?>">VISUALIZAR</a>
+                                            <a class="btn btn-danger" href="?id=<?= $obj->getIdcliente(); ?>">EDITAR</a>
+                                            <button class="btn btn-dark" onclick="deletar('<?= $obj->getIdcliente(); ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php } ?>

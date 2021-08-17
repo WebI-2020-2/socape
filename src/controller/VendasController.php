@@ -45,12 +45,11 @@ class VendasController extends Venda
         return $vendas;
     }
 
-    public function insert($idcliente, $idformapagamento, $data, $valortotal)
+    public function insert($idcliente, $data, $valortotal)
     {
-        $query = "INSERT INTO $this->tabela (idcliente, idformapagamento, data, valortotal) VALUES (:idcliente, :idformapagamento, :data, :valortotal)";
+        $query = "INSERT INTO $this->tabela (idcliente, data, valortotal) VALUES (:idcliente, :data, :valortotal)";
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente);
-        $stm->bindParam(':idformapagamento', $idformapagamento);
         $stm->bindParam(':data', $data);
         $stm->bindParam(':valortotal', $valortotal);
         $stm->execute();
