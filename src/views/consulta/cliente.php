@@ -122,7 +122,7 @@ $clientes = new ClientesController();
                                     <td>
                                         <div class="btn-group" role="group">
                                             <a class="btn btn-primary" href="?id=<?= $obj->getIdcliente(); ?>">VISUALIZAR</a>
-                                            <a class="btn btn-danger" href="./editarCliente.php?id=<?= $obj->getIdcliente(); ?>">EDITAR</a>
+                                            <a class="btn btn-danger" href="../../views/editar/editarCliente.php?id=<?= $obj->getIdcliente(); ?>">EDITAR</a>
                                             <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcliente(); ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                                         </div>
                                     </td>
