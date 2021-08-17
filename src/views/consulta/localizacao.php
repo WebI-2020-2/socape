@@ -31,7 +31,7 @@ $localizacoes = new LocalizacaoController();
             </div>
         </section>
 
-        <div class="py-5 bg-light">
+        <div class="py-5 bg-light vh-100">
             <?php
             if (isset($_GET['msg'])) {
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o departamento!");</script>';

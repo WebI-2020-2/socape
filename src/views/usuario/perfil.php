@@ -30,7 +30,7 @@ Sessao::verificaLogado();
             </div>
         </section>
 
-        <div class="py-5 bg-light">
+        <div class="py-5 bg-light vh-100">
             <section class="d-flex justify-content-center align-items-center text-dark">
                 <form>
                     <div class="row mb-3">
