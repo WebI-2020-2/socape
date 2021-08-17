@@ -169,7 +169,7 @@ $produtos = new ProdutosController();
             }
         }
         ?>
-            <section class=" container text-dark" >
+            <section class=" container text-dark mb-5" >
                 <div class="row mb-3 d-flex">
                     <p class="display-6 ms-auto">INFORMAÇÕES DO FORNECEDOR</p>
                 </div>
@@ -192,12 +192,12 @@ $produtos = new ProdutosController();
                     </div>
                 </div>
             </section>
-            <section class="content text-dark mb-3">
-                    <div class="row mb-3 d-flex">
+            <section class="container text-start text-dark ">
+                    <div class="row mb-3">
                         <p class="display-6 ms-auto">INSERIR ITENS</p>
                     </div>
                     <div class="row align-items-end">
-                        <div class="col-6 col-md-6 col-sm-12 mb-3">
+                        <div class="col-6 col-md-10 col-sm-12 mb-3">
                             <label for="idproduto" class="form-label black-text">PRODUTO</label>
                             <?php
                                 $inputProduto = "";
@@ -210,18 +210,18 @@ $produtos = new ProdutosController();
                             <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required >
                             
                         </div>
-                        <div class="col-6 col-md-6 col-sm-12 mb-3">
-                            <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                        <div class="col-6 col-md-2 col-sm-12 mb-3">
+                            <a  class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                                 PESQUISAR
                             </a>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="precoCompra" class="form-label black-text">PREÇO COMPRA</label>
                             <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>                          
                         </div>
-                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
                             <?php if (isset($_GET['idproduto'])) {
                                 echo "
@@ -241,33 +241,35 @@ $produtos = new ProdutosController();
                             ?>
                             <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE" required>                          
                         </div>
-                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="unidade" class="form-label black-text">UNIDADE</label>
                             <input name="unidade" id="unidade" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">                         
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="ipi" class="form-label black-text">IPI</label>
                             <input type="number" min="0" id="ipi" name="ipi" class="form-control" type="text" placeholder="IPI" required>          
                         </div>
-                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="frete" class="form-label black-text">FRETE</label>
                             <input type="number" min="0" id="frete" name="frete" class="form-control" type="text" placeholder="FRETE" required>         
                         </div>
-                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="icms" class="form-label black-text">ICMS</label>
                             <input type="number" min="0" id="icms" name="icms" class="form-control" type="text" placeholder="ICMS" required>         
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-6 col-md-12 col-sm-12 mb-3">
+                            <button id="inserir" class="btn btn-primary">INSERIR</button>    
+                        </div>
+                    </div> 
+                    <div class="row">
                         <div class="col-6 col-md-6 col-sm-12 mb-3">
                             <label for="valorTotal" class="form-label black-text">VALOR TOTAL</label>
                             <input class="form-control" id="valorTotal" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
                             
-                        </div>
-                        <div class="col-6 col-md-6 col-sm-12 mb-3">
-                            <button id="inserir" class="btn btn-primary">INSERIR</button>    
                         </div>
                     </div> 
                 </div>
