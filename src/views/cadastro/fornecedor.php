@@ -22,11 +22,13 @@ $fornecedores = new FornecedoresController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <div id="container">
-        <h1>
-            <span class="badge bg-light text-dark">CADASTRAR FORNECEDOR</span>
-        </h1>
-
+    <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CADASTRAR FORNECEDOR</h1>
+                </div>
+            </div>
+        </section>
         <?php
         if ($_POST) {
             $data = $_POST;
@@ -82,31 +84,39 @@ $fornecedores = new FornecedoresController();
             }
         }
         ?>
-
-        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
-        <form style="margin-left: 25%" action="" method="post">
-            <div class="mb-3">
-                <label class="form-label">NOME</label>
-                <input style="width: 130%" type="text" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" autocomplete="off" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">ENDEREÇO</label>
-                <input style="width: 130%" type="text" name="endereco" oninput="validaInput(this, true)" class="form-control" placeholder="ENDEREÇO" autocomplete="off" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">TELEFONE</label>
-                <input style="width: 130%" type="text" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">CNPJ</label>
-                <input style="width: 130%" type="text" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off" required>
-            </div>
-
-            <input  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
-        </form>
-
     </div>
-
+    <div class="py-5 bg-light">
+            <section class="d-flex justify-content-center align-items-center text-dark">
+            
+                <form method="post" id="form">
+                    
+                    <div class="row mb-3">
+                        
+                        <label for="nome" class="form-label">NOME</label>
+                        <input type="text" name="nome" id="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" autocomplete="off" required>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="endereco" class="form-label">ENDEREÇO</label>
+                        <input type="text" name="endereco" id="endereco" oninput="validaInput(this, true)" class="form-control" placeholder="ENDEREÇO" autocomplete="off" required>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="telefone" class="form-label">TELEFONE</label>
+                        <input type="text" name="telefone" id="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="cnpj" class="form-label">CNPJ</label>
+                        <input type="text"  name="cnpj" id="cnpj"  oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off" required>
+                    </div>
+                    <div class="text-end">
+                        <input  type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+                    </div>
+                </form>
+                    <div class="row-mb-3">
+                        <img class="img-fluid w-100" src="./../../../public/imagens/caminhão.png">
+                    </div>
+               
+            </section>
+        </div>
     <script>
         function deletar(id, nome) {
             if (confirm("Deseja realmente excluir o(a) fornecedor(a) " + nome + "?")) {

@@ -22,11 +22,13 @@ $localizacoes = new LocalizacaoController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">CADASTRAR LOCALIZAÇÃO</span>
-        </h1>
-
+    <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CADASTRAR FORNECEDOR</h1>
+                </div>
+            </div>
+        </section>
         <?php
         if ($_POST) {
             $data = $_POST;
@@ -62,15 +64,23 @@ $localizacoes = new LocalizacaoController();
         }
         ?>
 
-        <form id="form" action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">LOCALIZAÇÃO</label>
-                <input style="width: 130%" type="text" name="departamento" oninput="validaInput(this, true)" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
-            </div>
-
-            <button  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
-        </form>
-    </div>
+        <div class="py-5 bg-light">
+            <section class="d-flex justify-content-center align-items-center text-dark">
+            
+                <form method="post" id="form">
+                    
+                    <div class="row mb-3">
+                        
+                        <label for="localizacao" class="form-label">LOCALIZAÇÃO</label>
+                        <input type="text" name="nome" id="localizacao" oninput="validaInput(this, true)" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
+                    </div>
+                    
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary" >CADASTRAR</button>
+                    </div>
+                </form>
+            </section>
+        </div>
 
     <script>
         $(document).ready(function() {
