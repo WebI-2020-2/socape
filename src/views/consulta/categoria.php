@@ -68,7 +68,7 @@ $categorias = new CategoriaController();
                                 <td><?= $obj->getCategoria() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-danger" href="./editarCategoria.php?id=<?= $obj->getIdcategoria() ?>">EDITAR</a>
+                                        <a class="btn btn-danger" href="../../views/editar/editarCategoria.php?id=<?= $obj->getIdcategoria() ?>">EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
                                     </div>
                                 </td>

@@ -68,7 +68,7 @@ $fabricacoes = new FabricacaoController();
                                 <td><?= $obj->getAno() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-danger" href="./editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>">EDITAR</a>
+                                        <a class="btn btn-danger" href="../../views/editar/editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>">EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
                                     </div>
                                 </td>

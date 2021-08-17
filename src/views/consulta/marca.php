@@ -68,7 +68,7 @@ $marcas = new MarcasController();
                                 <td><?= $obj->getMarca() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-danger" href="./editarMarca.php?id=<?= $obj->getIdmarca() ?>">EDITAR</a>
+                                        <a class="btn btn-danger" href="../../views/editar/editarMarca.php?id=<?= $obj->getIdmarca() ?>">EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
                                     </div>
                                 </td>
