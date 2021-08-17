@@ -18,7 +18,7 @@ $fornecedores = new FornecedoresController();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SOCAPE | Entrada</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -79,61 +79,69 @@ $fornecedores = new FornecedoresController();
             </div>
         </div>
     </nav>
-
-    <div id="container">
-        <h1>
-            <span class="badge bg-light text-dark">ENTRADAS</span>
-        </h1>
-
-        <?php
-        if (isset($_GET['msg'])) if ($_GET['msg'] == 1) echo "<script>alert('Informe o fornecedor!');</script>";
-        ?>
-
-        <style>
-            #realizarEntrada{
-                margin-left: 40%;
-                margin-top: 20px;
-            }
-        </style>
-        <form id="realizarEntrada" method="POST" action="./realizarEntrada.php">
-            <div class="mb-3">
-                <label class="form-label">FORNECEDOR</label>
-                <input style="width: 130%;" id="barraPesquisa" class="form-control" type="text" placeholder="FORNECEDOR">
-                <input id="idfornecedor" type="hidden" name="idfornecedor" required>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">ENTRADAS</h1>
+                </div>
             </div>
+        </section>
 
-            <input style="margin-left: 67%"  type="button" class="btn btn-primary" value="DAR ENTRADA">
-        </form>
+        <div class="py-5 bg-light">
+            <?php
+            if (isset($_GET['msg'])) {
+                if ($_GET['msg'] == 1) echo "<script>alert('Informe o fornecedor!');</script>";
+            }
+            ?>
 
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>FORNECEDOR</th>
-                    <th>VALOR TOTAL</th>
-                    <th>DATA</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($entradas->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdentrada() ?></td>
-                        <td><?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?></td>
-                        <td><?= $obj->getValortotalnota() ?></td>
-                        <td><?= $obj->getDatacompra() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+            <section class="d-flex justify-content-center align-items-center text-dark">
+                <form id="realizarEntrada" method="POST" action="./realizarEntrada.php">
+                    <div class="row">    
+                        <div class="col mb-3">
+                            <label for="barraPesquisa" class="form-label black-text">FORNECEDOR</label>
+                            <input type="text" placeholder="FORNECEDOR" class="form-control" id="barraPesquisa" aria-describedby="fornecedorHelp">
+                            <input id="idfornecedor" name="idfornecedor" type="hidden" required>
+                            <div id="fornecedorHelp" class="form-text">Digite o nome do fornecedor e selecione-o na lista.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end mb-3">
+                            <button type="submit" class="btn btn-primary">DAR ENTRADA</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
 
+            <div class="table-responsive-lg">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">FORNECEDOR</th>
+                            <th scope="col">VALOR TOTAL</th>
+                            <th scope="col">DATA</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($entradas->findAll() as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIdentrada(); ?></td>
+                                <td><?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?></td>
+                                <td>R$<?= $obj->getValortotalnota(); ?></td>
+                                <td><?= strftime('%d de %b de %Y', strtotime($obj->getDataCompra())); ?></td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?>')">APAGAR</button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+   
     <script type="text/javascript">
         $(document).ready(function() {
             $.getJSON('./retornaFornecedor.php', function(data) {
@@ -158,7 +166,7 @@ $fornecedores = new FornecedoresController();
                 });
             });
 
-            $("#realizarEntrada").on("click", "input[type=button]", function(e) {
+            $("#realizarEntrada").on("click", "button[type=submit]", function(e) {
                 e.preventDefault();
 
                 if ($("#idfornecedor").val() == "") {
@@ -167,8 +175,8 @@ $fornecedores = new FornecedoresController();
                     return false;
                 } else {
                     $("#realizarEntrada").submit();
-                    $("#realizarEntrada input[type=button]").prop("disabled", true);
-                    $("#realizarEntrada input[type=button]").val("DANDO ENTRADA...");
+                    $("#realizarEntrada button[type=submit]").prop("disabled", true);
+                    $("#realizarEntrada button[type=submit]").val("DANDO ENTRADA...");
                 }
             });
         });
@@ -194,7 +202,7 @@ $fornecedores = new FornecedoresController();
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
 </html>

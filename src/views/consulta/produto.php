@@ -36,7 +36,7 @@ $motores = new MotorController();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOCAPE | Consultar produto</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
@@ -95,122 +95,75 @@ $motores = new MotorController();
             </div>
         </div>
     </nav>
-
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">CONSULTAR PRODUTO</span>
-        </h1>
-        <div class="input-group">
-            <div class="mb-3" id="divBusca" style="margin-left:2%;">
-                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CONSULTAR PRODUTO</h1>
+                </div>
             </div>
-            <div>
-                <a href="../cadastro/produto.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
-            </div>
-        </div>
+        </section>
 
-        <?php if (isset($_GET["id"])) {
-            if ($produtos->findOne($_GET["id"])) {
-                $produto = $produtos->findOne($_GET["id"]);
-        ?>
+        <div class="py-5 bg-light">
+            <?php
+            if (isset($_GET['msg'])) {
+                if ($_GET['msg'] == 1) echo '<script>alert("Informe o produto!");</script>';
+            }
+            ?>
 
-                <div style="width: 90%; margin-left:3%; border: double;">
-                    <h1 style="text-align: left; margin-left: 10px;">
-                        <span class="badge bg-light text-dark">INFORMAÇÕES PRODUTO</span>
-                    </h1>
-                    <label id="motor" class="form-label">MOTOR</label>
-                    <label id="desconto" class="form-label">DESCONTO</label>
-                    <label id="modeloCar" class="form-label">MODELO DE CARRO</label>
-                    <div class="input-group">
-                        <input style="margin-left: 10px;" class="form-control" type="text" placeholder="MOTOR" value="<?= $motores->findOne($produto->getIdmotor())->getPotencia(); ?>" disabled>
-                        <input style="margin-left: 35px;" class="form-control" type="text" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" disabled>
-                        <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="MODELO DE CARRO" value="<?= $carros->findOne($produto->getIdcarro())->getModelo(); ?>" disabled>
+            <section class="container-fluid text-dark">
+                <div class="row">
+                    <div class="col mb-3">
+                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..."  aria-describedby="Help">
+                        <div id="Help" class="form-text">Digite o nome do produto...</div>
                     </div>
-                    <label id="unidade" class="form-label">UNIDADE</label>
-                    <label id="valvula" class="form-label">VÁLVULAS</label>
-                    <label id="valorFar" class="form-label">VALOR DE FÁBRICA</label>
-                    <div class="input-group">
-                        <input style="margin-left: 10px;" class="form-control" type="text" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" disabled>
-                        <input style="margin-left: 35px;" class="form-control" type="text" placeholder="VÁLVULAS" value="<?= $valvulas->findOne($produto->getIdvalvulas())->getQuantidade(); ?>" disabled>
-                        <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="VALOR DE FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" disabled>
-                    </div>
-
-                    <label id="fabricação" class="form-label">FABRICAÇÃO</label>
-                    <label id="valorCom" class="form-label">VALOR DE COMPRA</label>
-                    <label id="categoria" class="form-label">CATEGORIA</label>
-                    <div class="input-group">
-                        <input style="margin-left: 10px;" class="form-control" type="text" placeholder="FABRICAÇÃO" value="<?= $fabricacoes->findOne($produto->getIdfabricacao())->getAno(); ?>" disabled>
-                        <input style="margin-left: 35px;" class="form-control" type="text" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" disabled>
-                        <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="CATEGORIA" value="<?= $categorias->findOne($produto->getIdcategoria())->getCategoria(); ?>" disabled>
-                    </div>
-
-                    <label id="icms" class="form-label">ICMS</label>
-                    <label id="marca" class="form-label">MARCA</label>
-                    <label id="ipi" class="form-label">IPI</label>
-                    <div class="input-group">
-                        <input style="margin-left: 10px;" class="form-control" type="text" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" disabled>
-                        <input style="margin-left: 35px;" class="form-control" type="text" placeholder="MARCA" value="<?= $marcas->findOne($produto->getIdmarca())->getMarca(); ?>" disabled>
-                        <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="IPI" value="<?= $produto->getIpi(); ?>" disabled>
-                    </div>
-
-                    <label id="localização" class="form-label">LOCALIZAÇÃO</label>
-                    <label id="frete" class="form-label">FRETE</label>
-                    <label id="referencia" class="form-label">REFERÊNCIA</label>
-                    <div class="input-group">
-                        <input style="margin-left: 10px;" class="form-control" type="text" placeholder="LOCALIZAÇÃO" value="<?= $localizacoes->findOne($produto->getIdlocalizacao())->getDepartamento(); ?>" disabled>
-                        <input style="margin-left: 35px;" class="form-control" type="text" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" disabled>
-                        <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" disabled>
-                    </div>
-                    <label id="quantidade" class="form-label">QUANTIDADE</label>
-                    <label id="valorVenda" class="form-label">VALOR DE VENDA</label>
-                    <label id="lucro" class="form-label">LUCRO</label>
-                    <div style="margin-bottom: 10px;" class="input-group">
-                        <input style="margin-left: 10px;" class="form-control" type="text" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" disabled>
-                        <input style="margin-left: 35px;" class="form-control" type="text" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" disabled>
-                        <input style="margin-left: 35px; margin-right: 10px;" class="form-control" type="text" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" disabled>
+                    <div class="col mb-3">
+                        <div class="float-end">
+                            <a class="btn btn-primary" href="../cadastro/produto.php">NOVO CADASTRO</a>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-        <?php
-            }
-        } ?>
-
-        <table style="margin-top: 3%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORIA/MARCA</th>
-                    <th>REFERÊNCIA</th>
-                    <th>DESCRIÇÃO</th>                    
-                    <th>QUANTIDADE</th>
-                    <th>VALOR DE VENDA</th>
-                    <th>LOCALIZAÇÃO</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($produtos->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdproduto() ?></td>
-                        <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
-                        <td><?= $obj->getReferencia() ?></td>
-                        <td><?= $obj->getDescricao() ?></td>
-                        <td><?= $obj->getQuantidade() ?></td>
-                        <td><?= $obj->getValorvenda() ?></td>
-                        <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
-                        <td>
-                            <div>
-                                <a href="./visualizarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-primary">VISUALIZAR</button></a>
-                                <a href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" class="alert button" href="#" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+            <div class="table-responsive-lg">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">CATEGORIA/MARCA</th>
+                            <th scope="col">REFERÊNCIA</th>
+                            <th scope="col">DESCRIÇÃO</th>                    
+                            <th scope="col">QUANTIDADE</th>
+                            <th scope="col">VALOR DE VENDA</th>
+                            <th scope="col">LOCALIZAÇÃO</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($produtos->findAll() as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIdproduto() ?></td>
+                                <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
+                                <td><?= $obj->getReferencia() ?></td>
+                                <td><?= $obj->getDescricao() ?></td>
+                                <td><?= $obj->getQuantidade() ?></td>
+                                <td><?= $obj->getValorvenda() ?></td>
+                                <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-primary" href="./visualizarProduto.php?id=<?= $obj->getIdproduto() ?>">EDITAR</a>
+                                        <a class="btn btn-danger" href="./editarProduto.php?id=<?= $obj->getIdproduto() ?>">EDITAR</a>
+                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 
     <script>
         function deletar(id, referencia, categoria) {
@@ -243,7 +196,7 @@ $motores = new MotorController();
             });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
 </html>

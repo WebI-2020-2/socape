@@ -15,7 +15,7 @@ $clientes = new ClientesController();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOCAPE | Consultar cliente</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
@@ -74,51 +74,58 @@ $clientes = new ClientesController();
             </div>
         </div>
     </nav>
-
-    <div id="containerlimitado">
-
+    <main>
         <?php if (isset($_GET["id"])) {
             if ($clientes->findOne($_GET["id"])) {
                 $cliente = $clientes->findOne($_GET["id"]);
         ?>
-                <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />   
-        <form action="" method="post">
-            <div class="mb-3">
-            <label class="form-label">NOME</label>
-                    <input style="width: 130%" type="text" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                    <label class="form-label">TELEFONE</label>
-                    <input style="width: 130%" type="text" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" disabled>
-                </div>
-            <div class="mb-3">
-                <?php
-                if (empty($cliente->getCpf())) {
-                ?>
-                    <label class="form-label">CNPJ</label>
-                    <div>
-                        <input style="width: 130%" type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" disabled>
+            <section class="d-flex justify-content-left align-items-left text-light">
+                <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" /> 
+                <form method="POST" action="../consulta/cliente.php">
+                    <div class="row">
+                        <div class="col-6 col-md-12 col-sm-12 mb-3">
+                            <label for="barraPesquisa" class="form-label black-text">NOME</label>
+                            <input type="text"class="form-control" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
+                        </div>
                     </div>
-                <?php
-                } else {
-                ?>
-                    <label class="form-label">CPF</label>
-                    <div>
-                        <input style="width: 130%" type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" disabled>
+                    <div class="row">
+                        <div class="col-6 col-md-12 col-sm-12 mb-3">
+                            <label for="barraPesquisa" class="form-label black-text">TELEFONE</label>
+                            <input type="text"class="form-control" class="form-control" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" disabled>
+                        </div>
                     </div>
-                <?php
-                }
-                ?>
-            </div>
-        </form>
-            <div>
-                <a href="../consulta/cliente.php" style="margin-left: 65%;"><input type="button" class="btn btn-primary" value="VOLTAR"></a>
-            <div>
+                    <div class="row">
+                        <?php
+                        if (empty($cliente->getCpf())) {
+                        ?>
+                        <div class="col-6 col-md-12 col-sm-12 mb-3">
+                            <label for="barraPesquisa" class="form-label black-text">CNPJ</label>
+                            <input type="text" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" disabled>
+                        </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="col-6 col-md-12 col-sm-12 mb-3">
+                                <label for="barraPesquisa" class="form-label black-text">CPF</label>
+                                <input type="text" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" disabled>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end mb-3">
+                            <button type="submit" class="btn btn-primary">VOLTAR</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+                
         <?php
             }
         } ?>
-    </div>
-
+        
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
