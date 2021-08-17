@@ -15,7 +15,7 @@ $motores = new MotorController();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOCAPE | Cadastrar motor</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
@@ -74,44 +74,63 @@ $motores = new MotorController();
             </div>
         </div>
     </nav>
-
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">CONSULTAR POTÊNCIA</span>
-        </h1>
-        <div class="input-group">
-            <div class="mb-3" id="divBusca" style="margin-left:2%;">
-                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar nome..." />
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CONSULTAR POTÊNCIA</h1>
+                </div>
             </div>
-            <div>
-                <a href="../cadastro/motor.php" style="margin-left: 490%;"><input type="button" class="btn btn-primary" value="NOVO CADASTRO"></a>
+        </section>
+
+        <div class="py-5 bg-light">
+            <?php
+            if (isset($_GET['msg'])) {
+                if ($_GET['msg'] == 1) echo '<script>alert("Informe a potencia!");</script>';
+            }
+            ?>
+
+            <section class="container-fluid text-dark">
+                <div class="row">
+                    <div class="col mb-3">
+                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..."  aria-describedby="Help">
+                        <div id="Help" class="form-text">Digite a potencia...</div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="float-end">
+                            <a class="btn btn-primary" href="../cadastro/motor.php">NOVO CADASTRO</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="table-responsive-lg">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">POTÊNCIA</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($motores->findAll() as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIdmotor() ?></td>
+                                <td><?= $obj->getPotencia() ?></td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-danger" href="./editarMotor.php?id=<?= $obj->getIdmotor() ?>">EDITAR</a>
+                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>POTÊNCIA</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($motores->findAll() as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIdmotor() ?></td>
-                        <td><?= $obj->getPotencia() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <a href="./editarMotor.php?id=<?= $obj->getIdmotor() ?>"><button class="btn btn-sm btn-danger">EDITAR</button></a>
-                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+    </main>
 
     <script>
         function deletar(id, motor) {
@@ -144,7 +163,7 @@ $motores = new MotorController();
             });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
 </html>
