@@ -20,7 +20,7 @@ $fabricacoes = new FabricacaoController();
 </head>
 
 <body>
-    <?php include __DIR__ . "/../includes/navbar.php"; ?>
+    <?php include __DIR__ . "/../includes/header.php"; ?>
 
     <main>
         <section class="text-center container">
