@@ -80,30 +80,64 @@ $fornecedores = new FornecedoresController();
             if ($fornecedores->findOne($_GET["id"])) {
                 $fornecedor = $fornecedores->findOne($_GET["id"]);
         ?>
-                <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
-
-                <form style="margin-left: 25%" action="" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">NOME</label>
-                        <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">ENDEREÇO</label>
-                        <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">TELEFONE</label>
-                        <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" disabled>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">CNPJ</label>
-                        <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" disabled>
-                    </div>
-                </form>                
-                    <div>
-                        <a href="../consulta/fornecedor.php" style="margin-left: 38%;"><input type="button" class="btn btn-primary" value="VOLTAR"></a>
-                    <div>
+            
                 
+
+                    <div class="py-5 bg-light">
+            <section class="d-flex justify-content-center align-items-center text-dark">
+            
+                <form method="post" id="form">
+                    
+                    <div class="row mb-3">
+                        
+                        <label for="nome" class="form-label">NOME</label>
+                        <input type="text" name="nome" id="nome" value="<?= $fornecedor->getNome(); ?>"  class="form-control" placeholder="NOME" autocomplete="off" disabled>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="endereco" class="form-label">ENDEREÇO</label>
+                        <input type="text" name="endereco" id="endereco" value="<?= $fornecedor->getEndereco(); ?>" class="form-control" placeholder="ENDEREÇO" autocomplete="off" disabled>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="telefone" class="form-label">TELEFONE</label>
+                        <input type="text" name="telefone" id="telefone" value="<?= $fornecedor->getTelefone(); ?>" class="form-control" placeholder="TELEFONE" autocomplete="off" disabled>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="cnpj" class="form-label">CNPJ</label>
+                        <input type="text" name="cnpj" id="cnpj" value="<?= $fornecedor->getCnpj(); ?>" class="form-control" placeholder="CNPJ" autocomplete="off" disabled>
+                    </div>
+                        <div class="text-end">
+                        <a href="../consulta/fornecedor.php"><input type="button" class="btn btn-primary" value="VOLTAR"></a>
+                     </div>
+                    </form>
+                        <div class="row-mb-3">
+                            <img class="img-fluid w-100" src="./../../../public/imagens/caminhão.png">
+                        </div>
+                    
+            </section>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <?php
             }
         } ?>
