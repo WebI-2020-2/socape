@@ -1,7 +1,6 @@
 <?php
-session_start();
-
-if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+require_once __DIR__ . '/../../controller/SessaoController.php';
+Sessao::verificaLogado();
 
 require_once __DIR__ . '/../../model/Database.php';
 

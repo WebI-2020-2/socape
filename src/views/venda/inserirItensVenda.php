@@ -9,11 +9,15 @@ $itensVenda = new ItensVendaController();
 require_once __DIR__ . '/../../controller/VendasController.php';
 $venda = new VendasController();
 $venda = $venda->findOne($_GET['idvenda']);
+
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
 
 require_once __DIR__ . '/../../controller/ClientesController.php';
 $clientes = new ClientesController();
+
+require_once __DIR__ . '/../../controller/FormaPagamentoController.php';
+$formas = new FormaPagamentoController();
 
 $cliente = $clientes->findOne($venda->getIdcliente());
 ?>
@@ -34,70 +38,8 @@ $cliente = $clientes->findOne($venda->getIdcliente());
 </head>
 
 <body>
-    <img class="img-fluid w-100" src="./../../../public/imagens/titulo.png">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacao" aria-controls="navegacao" aria-expanded="false" aria-label="Alterar navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <?php include __DIR__ . "/../includes/header.php"; ?>
 
-            <div class="collapse navbar-collapse" id="navegacao">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="consultar" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="consultar">
-                            <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="perfil">
-                            <li>
-                                <h6 class="dropdown-header">Olá <?= $_SESSION['nome']; ?></h6>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                            <li><a class="dropdown-item" href="../../../logout.php">SAIR</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="col-6 col-md-6 col-sm-12">
-        <label for="idformapagamento" class="form-label">FORMA DE PAGAMENTO</label>
-        <select id="idformapagamento" name="idformapagamento" class="form-select" required>
-            <option selected disabled value="">SELECIONE</option>
-            <?php foreach ($formas->findAll() as $obj) { ?>
-                <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
-            <?php } ?>
-        </select>
-        <div id="formapagamentoHelp" class="form-text">Informe a forma de pagamento.</div>
-    </div>
     <div id="containerentrada">
         <h1>
             <span class="badge bg-light text-dark">VENDA</span>
@@ -106,49 +48,48 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         <?php
         if ($_POST) {
             $data = $_POST;
-            $itemVenda = new ItensVendaController();
 
             $err = FALSE;
 
             if (!$data['idproduto']) {
                 echo
                 '<script>
-                alert("Pesquise o produto!");
-               </script>';
+                    alert("Pesquise o produto!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['quantidade']) {
                 echo
                 '<script>
-                alert("Informe a quantidade!");
-               </script>';
+                    alert("Informe a quantidade!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['valorvenda']) {
                 echo
                 '<script>
-                alert("O valor da venda deve ser informado!");
-               </script>';
+                    alert("O valor da venda deve ser informado!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['desconto']) {
                 echo
                 '<script>
-                alert("Informe o desconto!");
-               </script>';
+                    alert("Informe o desconto!");
+                </script>';
                 $err = TRUE;
             }
             if (!$data['lucro']) {
                 echo
                 '<script>
-                 alert("O valor do lucro deve ser informado !");
+                    alert("O valor do lucro deve ser informado !");
                 </script>';
                 $err = TRUE;
             }
 
             if (!$err) {
                 try {
-                    $res = $itemVenda->insert(
+                    $itensVenda->insert(
                         $data['idproduto'],
                         $venda->getIdvenda(),
                         $data['quantidade'],
@@ -163,7 +104,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                         window.location.href = "./inserirItensVenda.php?idvenda=' . $venda->getIdvenda() . '";
                     </script>';
                 } catch (PDOException $err) {
-                    if($err->getCode() == "P0001") echo '<script>alert("Quantidade insuficiente em estoque!");</script>';
+                    if ($err->getCode() == "P0001") echo '<script>alert("Quantidade insuficiente em estoque!");</script>';
                 }
             }
         }
@@ -185,6 +126,17 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     </div>
                 </div>
 
+            </div>
+
+            <div class="col-6 col-md-6 col-sm-12">
+                <label for="idformapagamento" class="form-label">FORMA DE PAGAMENTO</label>
+                <select id="idformapagamento" name="idformapagamento" class="form-select" required>
+                    <option selected disabled value="">SELECIONE</option>
+                    <?php foreach ($formas->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
+                    <?php } ?>
+                </select>
+                <div id="formapagamentoHelp" class="form-text">Informe a forma de pagamento.</div>
             </div>
 
             <div style="margin-top:3%;" id="cliente">
@@ -209,10 +161,10 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                         </a>
                     </div>
                     <label class="form-label">QUANTIDADE</label>
-                        <?php if (isset($_GET['idproduto'])) {
-                            echo "<small class='form-text text-muted'>Estoque: " . $produto->getQuantidade() . "</small>";
-                        }
-                        ?>
+                    <?php if (isset($_GET['idproduto'])) {
+                        echo "<small class='form-text text-muted'>Estoque: " . $produto->getQuantidade() . "</small>";
+                    }
+                    ?>
                     <label id="textValor">VALOR</label>
                     <div class="input-group">
                         <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
@@ -226,7 +178,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                         <input type="number" min="0" style="margin-left: 28px;" name="lucro" value="<?= isset($_GET['idproduto']) ? $produto->getLucro() : null; ?>" class="form-control" placeholder="LUCRO" required>
                     </div>
                     <button style="margin-left: 93%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="inserir">INSERIR</button>
-                    
+
 
                     <label>VALOR TOTAL</label>
                     <div id="valorTotal" class="mb3">
@@ -246,12 +198,10 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     <th>DESCONTO</th>
                     <th>LUCRO</th>
                     <th>AÇÕES</th>
-                    <!--<th width="20%">AÇÕES</th>-->
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($itensVenda->findAllByIdVenda($venda->getIdvenda()) as $obj) { ?>
+                <?php foreach ($itensVenda->findAllByIdVenda($venda->getIdvenda()) as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIditensvenda(); ?></td>
                         <td><?= $obj->getIdproduto(); ?></td>
@@ -260,10 +210,10 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                         <td><?= $obj->getDesconto(); ?></td>
                         <td><?= $obj->getLucro(); ?></td>
                         <td>
-                        <div class="button-group clear"> 
-                            <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIditensvenda() ?>', '<?= $cliente->getNome(); ?>')">APAGAR</button>
-                        </div>                        
-                    </td>
+                            <div class="button-group clear">
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIditensvenda() ?>', '<?= $cliente->getNome(); ?>')">APAGAR</button>
+                            </div>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>
@@ -286,11 +236,11 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 }
             });
         });
-      
+
         function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir o itens venda "+ id + " do cliente " + nome + "?")) {
+            if (confirm("Deseja realmente excluir o itens venda " + id + " do cliente " + nome + "?")) {
                 $.ajax({
-                    url: '../apagar/ItensVenda.php',  
+                    url: '../apagar/ItensVenda.php',
                     type: "POST",
                     data: {
                         id
@@ -308,7 +258,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
             }
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
 </html>
