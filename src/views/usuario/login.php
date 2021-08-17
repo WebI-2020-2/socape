@@ -1,7 +1,9 @@
 <?php
-session_start();
+require_once __DIR__ . '/../../controller/SessaoController.php';
 
-require_once __DIR__ . '/src/controller/UsuarioController.php';
+if($_SESSION['logado']) header('Location: ./../index.php');
+
+require_once __DIR__ . '/../../controller/UsuarioController.php';
 $usuario = new UsuarioController();
 ?>
 <!DOCTYPE html>
@@ -14,7 +16,7 @@ $usuario = new UsuarioController();
     <title>SOCAPE | Login</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link href="./public/css/login.css" rel="stylesheet">
+    <link href="./../../../public/css/login.css" rel="stylesheet">
 </head>
 
 <body>
@@ -22,7 +24,7 @@ $usuario = new UsuarioController();
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <img src="./public/imagens/teste1.png">
+                    <img src="./../../../public/imagens/teste1.png">
 
                     <form method="post" action="">
                         <div class="card-body text-center">
