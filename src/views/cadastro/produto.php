@@ -41,7 +41,7 @@ $marcas = new MarcasController();
 </head>
 
 <body>
-    <?php include __DIR__ . "/../includes/navbar.php"; ?>
+    <?php include __DIR__ . "/../includes/header.php"; ?>
 
     <div id="containerlimitado">
         <h1>

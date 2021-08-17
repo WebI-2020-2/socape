@@ -20,7 +20,7 @@ $fornecedores = new FornecedoresController();
 </head>
 
 <body>
-    <?php include __DIR__ . "/../includes/navbar.php"; ?>
+    <?php include __DIR__ . "/../includes/header.php"; ?>
 
     <div id="container">
         <h1>
