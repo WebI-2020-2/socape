@@ -36,7 +36,7 @@ class UsuarioController extends Usuario
                 $_SESSION['idusuario'] = $res['idusuario'];
                 $_SESSION['nome'] = $res['nome'];
                 $_SESSION['usuario'] = $res['usuario'];
-                header('Location: ./index.php');
+                header('Location: ./../index.php');
             } else {
                 echo '<script>alert("Usuário ou senha incorretos.");</script>';
             }
