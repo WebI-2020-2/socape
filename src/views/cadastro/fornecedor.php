@@ -56,6 +56,12 @@ $fornecedores = new FornecedoresController();
                  alert("Informe o telefone!");
                 </script>';
                 $err = TRUE;
+            }else if (strlen($data['telefone']) < 11) {
+                echo
+                '<script>
+                    alert("O telefone deve conter 11 dígitos!");
+                </script>';
+                $err = TRUE;
             }
             if (!$data['cnpj']) {
                 echo
@@ -63,8 +69,14 @@ $fornecedores = new FornecedoresController();
                  alert("Informe o CNPJ do Fornecedor!");
                 </script>';
                 $err = TRUE;
+            }else if (strlen($data['cnpj']) < 11) {
+                echo
+                '<script>
+                    alert("O CNPJ deve conter 14 dígitos!");
+                </script>';
+                $err = TRUE;
             }
-
+            
             $fornecedor->setNome($data['nome']);
             $fornecedor->setEndereco($data['endereco']);
             $fornecedor->setTelefone($data['telefone']);
