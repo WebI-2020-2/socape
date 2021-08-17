@@ -237,103 +237,137 @@ $localizacoes = new LocalizacaoController();
             }
         }
         ?>
-
         <form id="formProduto" action="" method="post">
-            <div class="input-group">
+            <div class="input-group mb-3">
                 <h1 style="text-align: left; margin-left: 10px;">
                     <span class="badge bg-light text-dark">NOME PRODUTO</span>
                 </h1>
                 <input style="margin-left: 10px; margin-top: 13px;margin-bottom:15px;height: 40px; font-size: 15px;" type="button" class="btn btn-danger btn-lg active" name="descricao" placeholder="DESCRICAO" value="<?= $produto->getDescricao()?>" disabled>
             </div>
-            <label style="margin-left: 27%;" class="form-label">DESCRIÇÃO</label>
-            <input style="margin-right:10px; margin-left:35px;" type="text" class="form-control" name="descricao" placeholder="DESCRIÇÃO" value="<?= $produto->getDescricao(); ?>" required>
-            <div>
-                <label style="margin-left: 7px;" class="form-label">ICMS</label>
-                <label style="margin-left: 31%;" class="form-label">IPI</label>
-                <label style="margin-left: 31.6%;" class="form-label">FRETE</label>
-                <div class="input-group">
-                    <input style="margin-left:10px;" type="number" class="form-control" name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" required>
-                    <input style="margin-left:35px;" type="number" class="form-control" name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" required>
-                    <input style="margin-right:10px; margin-left:35px;" type="number" class="form-control" name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" required>
+            <div class="mb-3">
+                <label class="form-label">DESCRIÇÃO</label>
+                <input type="text" class="form-control" name="descricao" placeholder="DESCRIÇÃO" value="<?= $produto->getDescricao(); ?>" required>
+            </div>
+            <div class="input-group">
+                <div id="input" >
+                    <label class="form-label">ICMS</label>
+                    <input type="number" class="form-control" name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" required>
                 </div>
-                <label style="margin-left: 7px;" class="form-label">VALOR NA FÁBRICA</label>
-                <label style="margin-left: 22.8%;" class="form-label">VALOR DE COMPRA</label>
-                <label style="margin-left: 22.4%;" class="form-label">LUCRO</label>
-                <div class="input-group">
-                    <input style="margin-left:10px;" type="number" class="form-control" name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" required>
-                    <input style="margin-left:35px;" type="number" class="form-control" name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" required>
-                    <input style="margin-right:10px; margin-left:35px;" type="number" class="form-control" name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" required>
+                <div  id="input">
+                    <label class="form-label">IPI</label>
+                    <input type="number" class="form-control" name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" required>
                 </div>
-                <label style="margin-left: 7px;" class="form-label">VALOR DE VENDA</label>
-                <label style="margin-left: 23.6%;" class="form-label">DESCONTO</label>
-                <label style="margin-left: 27.3%;" class="form-label">QUANTIDADE</label>
-                <div class="input-group">
-                    <input style="margin-left:10px;" type="number" class="form-control" name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" required>
-                    <input style="margin-left:35px;" type="number" class="form-control" name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" required>
-                    <input style="margin-right:10px; margin-left:35px;" type="number" class="form-control" name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" required>
+                <div  id="input">
+                    <label class="form-label">FRETE</label>
+                    <input type="number" class="form-control" name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" required>
+                </div>  
+            </div>
+            <div class="input-group mb-3">
+                <div class="mb-3"  id="input">
+                    <label class="form-label">VALOR NA FÁBRICA</label>
+                    <input type="number" class="form-control" name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" required>
                 </div>
-                <label style="margin-left: 7px;" class="form-label">UNIDADE</label>
-                <label style="margin-left: 28.3%;" class="form-label">REFERÊNCIA</label>
-                <label style="margin-left: 27.1%;" class="form-label">LOCALIZAÇÃO</label>
-                <div class="input-group">
-                    <input style="margin-left:10px;" type="text" class="form-control" name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
-                    <input style="margin-left:35px;" type="text" class="form-control" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
-                    <select style="margin-left: 35px; margin-right:10px;" name="idlocalizacao" class="form-control" required>
+                <div class="mb-3"  id="input">
+                    <label class="form-label">VALOR DE COMPRA</label>
+                    <input type="number" class="form-control" name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" required>
+                </div>
+                <div class="mb-3"  id="input">
+                    <label class="form-label">LUCRO</label>
+                    <input type="number" class="form-control" name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" required>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="mb-3"  id="input">
+                    <label class="form-label">VALOR DE VENDA</label>
+                    <input type="number" class="form-control" name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" required>
+                </div>
+                <div class="mb-3"  id="input">
+                    <label class="form-label">DESCONTO</label>
+                    <input  type="number" class="form-control" name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" required>
+                </div>
+                <div class="mb-3"  id="input">
+                    <label  class="form-label">QUANTIDADE</label>
+                    <input  type="number" class="form-control" name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" required>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="mb-3"  id="input">
+                    <label class="form-label">UNIDADE</label> 
+                    <input  type="text" class="form-control" name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
+                </div>
+                <div class="mb-3"  id="input">
+                    <label  class="form-label">REFERÊNCIA</label>
+                    <input type="text" class="form-control" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
+                </div>
+                <div class="mb-3"  id="input">
+                    <label class="form-label">LOCALIZAÇÃO</label>
+                    <select name="idlocalizacao" class="form-control" required>
                         <option disabled>SELECIONE</option>
                         <?php foreach ($localizacoes->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdlocalizacao(); ?>" <?= $produto->getIdlocalizacao() == $obj->getIdlocalizacao() ? 'selected' : null; ?>><?= $obj->getDepartamento(); ?></option>
                         <?php } ?>
                     </select>
                 </div>
-                <label style="margin-left: 7px;" class="form-label">MOTOR</label>
-                <label style="margin-left: 29.6%;" class="form-label">MODELO DE CARRO</label>
-                <label style="margin-left: 22%;" class="form-label">VÁLVULAS</label>
-                <div class="input-group">
-                    <select style="margin-left: 10px;" name="idmotor" class="form-control" required>
+            </div>
+            <div class="input-group mb-3">
+                <div class="mb-3"  id="input">
+                    <label class="form-label">MOTOR</label>
+                    <select name="idmotor" class="form-control" required>
                         <option disabled>SELECIONE</option>
                         <?php foreach ($motores->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdmotor(); ?>" <?= $produto->getIdmotor() == $obj->getIdmotor() ? 'selected' : null; ?>><?= $obj->getPotencia(); ?></option>
                         <?php } ?>
                     </select>
-                    <select style="margin-left: 35px;" name="idcarro" class="form-control" required>
+                </div>
+                <div class="mb-3" id="input" >
+                    <label class="form-label">MODELO DE CARRO</label>
+                    <select name="idcarro" class="form-control" required>
                         <option disabled>SELECIONE</option>
                         <?php foreach ($carros->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdcarro(); ?>" <?= $produto->getIdcarro() == $obj->getIdcarro() ? 'selected' : null; ?>><?= $obj->getModelo(); ?></option>
                         <?php } ?>
                     </select>
-                    <select style="margin-left: 35px; margin-right:10px;" name="idvalvulas" class="form-control" required>
+                </div>
+                <div class="mb-3"  id="input">
+                    <label class="form-label">VÁLVULAS</label>
+                    <select name="idvalvulas" class="form-control" required>
                         <option disabled>SELECIONE</option>
                         <?php foreach ($valvulas->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdvalvulas(); ?>" <?= $produto->getIdvalvulas() == $obj->getIdvalvulas() ? 'selected' : null; ?>><?= $obj->getQuantidade(); ?></option>
                         <?php } ?>
                     </select>
                 </div>
-                <label style="margin-left: 7px;" class="form-label">FABRICAÇÃO</label>
-                <label style="margin-left: 26.5%;" class="form-label">CATEGORIA</label>
-                <label style="margin-left: 27%;" class="form-label">MARCA</label>
-                <div class="input-group">
-                    <select style="margin-left: 10px;" name="idfabricacao" class="form-control" required>
+            </div>
+            <div class="input-group mb-3"  id="input">
+                <div class="mb-3"id="input">
+                    <label class="form-label">FABRICAÇÃO</label>
+                    <select name="idfabricacao" class="form-control" required>
                         <option disabled>SELECIONE</option>
                         <?php foreach ($fabricacoes->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdfabricacao(); ?>" <?= $produto->getIdfabricacao() == $obj->getIdfabricacao() ? 'selected' : null; ?>><?= $obj->getAno(); ?></option>
                         <?php } ?>
                     </select>
-                    <select style="margin-left: 35px; " name="idcategoria" class="form-control" required>
+                </div>
+                <div class="mb-3"id="input" >
+                    <label  class="form-label">CATEGORIA</label>
+                    <select  name="idcategoria" class="form-control" required>
                         <option disabled>SELECIONE</option>
                         <?php foreach ($categorias->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdcategoria(); ?>" <?= $produto->getIdcategoria() == $obj->getIdcategoria() ? 'selected' : null; ?>><?= $obj->getCategoria(); ?></option>
                         <?php } ?>
                     </select>
-                    <select style="margin-left: 35px; margin-right:10px; " name="idmarca" class="form-control" required>
+                </div>
+                <div class="mb-3" id="input" >
+                    <label  class="form-label">MARCA</label>
+                    <select name="idmarca" class="form-control" required>
                         <option disabled>SELECIONE</option>
                         <?php foreach ($marcas->findAll() as $obj) { ?>
                             <option value="<?= $obj->getIdmarca(); ?>" <?= $produto->getIdmarca() == $obj->getIdmarca() ? 'selected' : null; ?>><?= $obj->getMarca(); ?></option>
                         <?php } ?>
                     </select>
                 </div>
-                <br>             
+            </div>        
                 <button style="margin-left: 90%;padding: 4px 15px 3px 15px ;border-radius: 50px; margin-bottom: 10px;" class="btn btn-primary" id="salvar">SALVAR</button>
-            </div>
         </form>
     </div>
 
