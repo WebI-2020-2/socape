@@ -21,67 +21,66 @@ $localizacoes = new LocalizacaoController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
-
-    <section class="text-center container">
+    <main>
+        <section class="text-center container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="display-6">CADASTRAR FORNECEDOR</h1>
                 </div>
             </div>
         </section>
-        <?php
-        if ($_POST) {
-            $data = $_POST;
+        <div class="py-5 bg-light">
+            <?php
+            if ($_POST) {
+                $data = $_POST;
 
-            $localizacao = new LocalizacaoController();
+                $localizacao = new LocalizacaoController();
 
-            $err = FALSE;
+                $err = FALSE;
 
-            if (!$data['departamento']) {
-                echo
-                    '<script>
-                        alert("Informe o departamento!");
-                    </script>';
-                $err = TRUE;
-            }
-
-            if (!$err) {
-                try {
-                    $localizacao->insert(
-                        $data['departamento']
-                    );
-
+                if (!$data['departamento']) {
                     echo
-                    '<script>
-                        alert("Departamento cadastrado com sucesso!");
-                        window.location.href = "../consulta/localizacao.php";
-                    </script>';
-                    
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                        '<script>
+                            alert("Informe o departamento!");
+                        </script>';
+                    $err = TRUE;
+                }
+
+                if (!$err) {
+                    try {
+                        $localizacao->insert(
+                            $data['departamento']
+                        );
+
+                        echo
+                        '<script>
+                            alert("Departamento cadastrado com sucesso!");
+                            window.location.href = "../consulta/localizacao.php";
+                        </script>';
+                        
+                    } catch (PDOException $err) {
+                        echo $err->getMessage();
+                    }
                 }
             }
-        }
-        ?>
-
-        <div class="py-5 bg-light">
-            <section class="d-flex justify-content-center align-items-center text-dark">
-            
-                <form method="post" id="form">
-                    
-                    <div class="row mb-3">
-                        
-                        <label for="localizacao" class="form-label">LOCALIZAÇÃO</label>
-                        <input type="text" name="nome" id="localizacao" oninput="validaInput(this, true)" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
+            ?>
+            <section class="container text-start text-dark">
+                <form method="POST" action="" id="form">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="localizacao" class="form-label black-text">LOCALIZAÇÃO</label>
+                            <input type="text" name="categoria" id="localizacao" oninput="validaInput(this, true)" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
+                        </div>
                     </div>
-                    
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-primary" >CADASTRAR</button>
+                    <div class="row text-start">
+                        <div class="col-6 col-md-12 col-sm-6 mb-3">
+                            <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                        </div>
                     </div>
                 </form>
             </section>
         </div>
-
+    </main>
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function() {

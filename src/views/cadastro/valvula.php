@@ -21,56 +21,68 @@ $valvulas = new ValvulasController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CADASTRAR VÁLVULA</h1>
+                </div>
+            </div>
+        </section>
 
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">CADASTRAR VÁLVULA</span>
-        </h1>
+        <div class="py-5 bg-light">
+            <?php
+            if ($_POST) {
+                $data = $_POST;
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
+                $valvula = new ValvulasController();
 
-            $valvula = new ValvulasController();
+                $err = FALSE;
 
-            $err = FALSE;
-
-            if (!$data['quantidade']) {
-                echo
-                    '<script>
-                        alert("Informe a quantidade de válvulas!");
-                    </script>';
-                $err = TRUE;
-            }
-
-            if (!$err) {
-                try {
-                    $valvula->insert(
-                        $data['quantidade']
-                    );
-
+                if (!$data['quantidade']) {
                     echo
-                    '<script>
-                        alert("Quantidade de válvulas cadastrada com sucesso!");
-                        window.location.href = "../consulta/valvula.php";
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                        '<script>
+                            alert("Informe a quantidade de válvulas!");
+                        </script>';
+                    $err = TRUE;
+                }
+
+                if (!$err) {
+                    try {
+                        $valvula->insert(
+                            $data['quantidade']
+                        );
+
+                        echo
+                        '<script>
+                            alert("Quantidade de válvulas cadastrada com sucesso!");
+                            window.location.href = "../consulta/valvula.php";
+                        </script>';
+                    } catch (PDOException $err) {
+                        echo $err->getMessage();
+                    }
                 }
             }
-        }
-        ?>
+            ?>
 
-        <form id="form" action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">QUANTIDADE DE VÁLVULAS</label>
-                <input style="width: 130%" type="text" oninput="validaInputNumber(this)" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
-            </div>
-            
-            <button  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
-        </form>
-    </div>
-
+            <section class="container text-start text-dark">
+                <form  id="form" action="" method="POST">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="potencia" class="form-label black-text">QUANTIDADE DE VÁLVULAS</label>
+                            <input  type="text" oninput="validaInputNumber(this)" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
+                        </div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-6 col-md-12 col-sm-6 mb-3">
+                            <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+    
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function() {
