@@ -87,12 +87,16 @@ $produtos = new ProdutosController();
             </div>
         </div>
     </nav>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">ENTRADA</h1>
+                </div>
+            </div>
+        </section>
 
-    <div id="containerentrada">
-        <h1>
-            <span class="badge bg-light text-dark">ENTRADA</span>
-        </h1>
-
+        <div class="py-5 bg-light">
         <?php
         if ($_POST) {
             $data = $_POST;
@@ -165,133 +169,151 @@ $produtos = new ProdutosController();
             }
         }
         ?>
-
-        <form id="inserirItensEntrada" method="POST" action="">
-            <div id="fornecedor">
-                <h1 id="titulo2">
-                    <span class="badge bg-light text-dark">INFORMAÇÕES DO FORNECEDOR</span>
-                </h1>
-                <div style="margin-top:3%;">
-                    <label id="textNome">NOME</label>
-                    <label id="texteEnd">ENDEREÇO</label>
-                    <label id="textTelefone">TELEFONE</label>
-                    <label id="textCnpj">CNPJ</label>
-
-                    <div id="dadosFor" class="input-group">
-                        <input type="text" name="nome" class="form-control" value="<?= $fornecedor->getNome(); ?>" placeholder="NOME" disabled>
-                        <input style="margin-left:28px;" type="text" name="endereço" class="form-control" value="<?= $fornecedor->getEndereco(); ?>" disabled>
-                        <input style="margin-left:28px;" type="text" name="telefone" class="form-control" value="<?= $fornecedor->getTelefone(); ?>" placeholder="TELEFONE" disabled>
-                        <input style="margin-left:28px;" type="text" name="cnpj" class="form-control" value="<?= $fornecedor->getCnpj(); ?>" placeholder="CNPJ" disabled>
+            <section class=" container text-dark" >
+                <div class="row mb-3 d-flex">
+                    <p class="display-6 ms-auto">INFORMAÇÕES DO FORNECEDOR</p>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <label for="nomeFornecedor" class="form-label black-text">NOME</label>
+                        <input type="text" id="nomeFornecedor" name="nome" class="form-control" value="<?= $fornecedor->getNome(); ?>" disabled>
+                    </div>
+                    <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <label for="enderecoFornecedor" class="form-label black-text">ENDEREÇO</label>
+                        <input type="text" id="enderecoFornecedor" name="endereço" class="form-control" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+                    </div>
+                    <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <label for="telefoneFornecedor" class="form-label black-text">TELEFONE</label>
+                        <input type="text" id="telefoneFornecedor" name="telefone" class="form-control" value="<?= $fornecedor->getTelefone(); ?>" disabled>
+                    </div>
+                    <div class="col-6 col-md-3 col-sm-12 mb-3">
+                        <label for="cnpjFornecedor" class="form-label black-text">CNPJ</label>
+                        <input type="text" id="cnpjFornecedor" name="cnpj" class="form-control" value="<?= $fornecedor->getCnpj(); ?>" disabled>
                     </div>
                 </div>
-
-            </div>
-            <br>
-            <div id="fornecedor">
-                <h1 id="titulo2">
-                    <span class="badge bg-light text-dark">INSERIR ITEM</span>
-                </h1>
-
-                <div id="dadosFor" style="margin-top:3%;">
-                    <label>PRODUTO</label>
-                    <div class="input-group">
-                        <?php
-                        $inputProduto = "";
-                        if (isset($_GET['idproduto'])) {
-                            $produto = $produtos->findOne($_GET['idproduto']);
-                            $inputProduto = "Produto selecionado: " . $produto->getReferencia();
-                        }
-                        ?>
-                        <input style="background-color:#fffed9" id="produto" type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled />
-                        <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required />
-                        <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
-                            PESQUISAR
-                        </a>
+            </section>
+            <section class="content text-dark mb-3">
+                    <div class="row mb-3 d-flex">
+                        <p class="display-6 ms-auto">INSERIR ITENS</p>
                     </div>
-
-                    <label>PREÇO COMPRA</label>
-                    <label id="textQuant">QUANTIDADE</label>
-                    <?php if (isset($_GET['idproduto'])) {
-                        echo "
-                            <small class='form-text text-muted'>Estoque: <span id='qtdEstoque'>" . $produto->getQuantidade() . "</span></small>
-                            <script>
-                                $(document).ready(function() {
-                                    $('#quantidade').change(function(){
-                                        var qtdEstoque = parseInt(" . $produto->getQuantidade() . ");
-                                        var qtdNova = parseInt($('#quantidade').val() != '' ? $('#quantidade').val() : 0);
-
-                                        $('#qtdEstoque').text(qtdNova + qtdEstoque);
-                                    });
-                                });
-                            </script>
-                        ";
-                    }
-                    ?>
-                    <label id="textUnidade">UNIDADE</label>
-                    <div class="input-group">
-                        <input type="number" min="0" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
-                        <input type="number" min="0" id="quantidade" name="quantidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="QUANTIDADE" required>
-                        <input name="unidade" style="margin-left: 28px;" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">
-                    </div>
-
-                    <label>IPI</label>
-                    <label id="textFrete">FRETE</label>
-                    <label id="textIcms">ICMS</label>
-
-                    <div class="input-group">
-                        <input type="number" min="0" name="ipi" class="form-control" type="text" placeholder="IPI" required>
-                        <input type="number" min="0" name="frete" style="margin-left: 28px;" class="form-control" type="text" placeholder="FRETE" required>
-                        <input type="number" min="0" name="icms" style="margin-left: 28px;" class="form-control" type="text" placeholder="ICMS" required>
-                    </div>
-
-                    <button style="margin-left: 93%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" id="inserir" class="btn btn-primary">INSERIR</button>
-                    <div id="valorTotal" class="input-group">
-                        <label id="valorTotal">VALOR TOTAL</label>
-                        <input style="background-color:#6ed486" id="valorTotal" class="form-control" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
-                    </div>
-                </div>
-            </div>
-        </form>
-
-        <table style="margin-top: 1%" class="table">
-            <thead>
-                <tr>
-                    <th>ID ITENS ENTRADA</th>
-                    <th>ID ENTRADA</th>
-                    <th>ID PRODUTO</th>
-                    <th>PREÇO DE COMPRA</th>
-                    <th>QUANTIDADE</th>
-                    <th>UNIDADE</th>
-                    <th>IPI</th>
-                    <th>FRETE</th>
-                    <th>ICMS</th>
-                    <th>AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($itensEntrada->findAllByIdEntrada($entrada->getIdentrada()) as $obj) { ?>
-                    <tr>
-                        <td><?= $obj->getIditensentrada(); ?></td>
-                        <td><?= $obj->getIdentrada(); ?></td>
-                        <td><?= $obj->getIdproduto(); ?></td>
-                        <td><?= $obj->getPrecocompra(); ?></td>
-                        <td><?= $obj->getQuantidade(); ?></td>
-                        <td><?= $obj->getUnidade(); ?></td>
-                        <td><?= $obj->getIpi(); ?></td>
-                        <td><?= $obj->getFrete(); ?></td>
-                        <td><?= $obj->getIcms(); ?></td>
-                        <td>
-                        <div class="button-group clear"> 
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIditensentrada() ?>', '<?= $fornecedor->getNome(); ?>')">APAGAR</button>
+                    <div class="row align-items-end">
+                        <div class="col-6 col-md-6 col-sm-12 mb-3">
+                            <label for="idproduto" class="form-label black-text">PRODUTO</label>
+                            <?php
+                                $inputProduto = "";
+                                if (isset($_GET['idproduto'])) {
+                                    $produto = $produtos->findOne($_GET['idproduto']);
+                                    $inputProduto = "Produto selecionado: " . $produto->getReferencia();
+                                }
+                            ?>
+                            <input type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
+                            <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required >
+                            
                         </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+                        <div class="col-6 col-md-6 col-sm-12 mb-3">
+                            <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                                PESQUISAR
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="precoCompra" class="form-label black-text">PREÇO COMPRA</label>
+                            <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>                          
+                        </div>
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
+                            <?php if (isset($_GET['idproduto'])) {
+                                echo "
+                                    <small class='form-text text-muted'>Estoque: <span id='qtdEstoque'>" . $produto->getQuantidade() . "</span></small>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#quantidade').change(function(){
+                                                var qtdEstoque = parseInt(" . $produto->getQuantidade() . ");
+                                                var qtdNova = parseInt($('#quantidade').val() != '' ? $('#quantidade').val() : 0);
 
+                                                $('#qtdEstoque').text(qtdNova + qtdEstoque);
+                                            });
+                                        });
+                                    </script>
+                                ";
+                            }
+                            ?>
+                            <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE" required>                          
+                        </div>
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="unidade" class="form-label black-text">UNIDADE</label>
+                            <input name="unidade" id="unidade" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">                         
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="ipi" class="form-label black-text">IPI</label>
+                            <input type="number" min="0" id="ipi" name="ipi" class="form-control" type="text" placeholder="IPI" required>          
+                        </div>
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="frete" class="form-label black-text">FRETE</label>
+                            <input type="number" min="0" id="frete" name="frete" class="form-control" type="text" placeholder="FRETE" required>         
+                        </div>
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="icms" class="form-label black-text">ICMS</label>
+                            <input type="number" min="0" id="icms" name="icms" class="form-control" type="text" placeholder="ICMS" required>         
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-md-6 col-sm-12 mb-3">
+                            <label for="valorTotal" class="form-label black-text">VALOR TOTAL</label>
+                            <input class="form-control" id="valorTotal" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
+                            
+                        </div>
+                        <div class="col-6 col-md-6 col-sm-12 mb-3">
+                            <button id="inserir" class="btn btn-primary">INSERIR</button>    
+                        </div>
+                    </div> 
+                </div>
+
+            </section>
+
+            <div class="table-responsive-sm">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th  scope="col">ID ITENS ENTRADA</th>
+                            <th  scope="col">ID ENTRADA</th>
+                            <th  scope="col">ID PRODUTO</th>
+                            <th  scope="col">PREÇO DE COMPRA</th>
+                            <th  scope="col">QUANTIDADE</th>
+                            <th  scope="col">UNIDADE</th>
+                            <th  scope="col">IPI</th>
+                            <th  scope="col">FRETE</th>
+                            <th  scope="col">ICMS</th>
+                            <th  scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($itensEntrada->findAllByIdEntrada($entrada->getIdentrada()) as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIditensentrada(); ?></td>
+                                <td><?= $obj->getIdentrada(); ?></td>
+                                <td><?= $obj->getIdproduto(); ?></td>
+                                <td><?= $obj->getPrecocompra(); ?></td>
+                                <td><?= $obj->getQuantidade(); ?></td>
+                                <td><?= $obj->getUnidade(); ?></td>
+                                <td><?= $obj->getIpi(); ?></td>
+                                <td><?= $obj->getFrete(); ?></td>
+                                <td><?= $obj->getIcms(); ?></td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="deletar('<?= $obj->getIditensentrada() ?>', '<?= $fornecedor->getNome(); ?>')"">APAGAR</button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+  
+ 
     <script>      
         $(document).ready(function() {
             $("#inserirItensEntrada").on("click", "#inserir", function(e) {
