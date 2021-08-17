@@ -21,55 +21,66 @@ $carros = new CarroController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CADASTRAR MODELO DE CARRO</h1>
+                </div>
+            </div>
+        </section>
 
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">CADASTRAR MODELO DE CARRO</span>
-        </h1>
+        <div class="py-5 bg-light">
+            <?php
+            if ($_POST) {
+                $data = $_POST;
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
+                $carro = new CarroController();
 
-            $carro = new CarroController();
+                $err = FALSE;
 
-            $err = FALSE;
-
-            if (!$data['modelo']) {
-                echo
-                '<script>
-                    alert("Informe o modelo do carro!");
-                </script>';
-                $err = TRUE;
-            }
-
-            if (!$err) {
-                try {
-                    $carro->insert(
-                        $data['modelo']
-                    );
-
+                if (!$data['modelo']) {
                     echo
                     '<script>
-                        alert("Modelo de carro cadastrado com sucesso!");
-                        window.location.href = "../consulta/carro.php";
+                        alert("Informe o modelo do carro!");
                     </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                    $err = TRUE;
+                }
+
+                if (!$err) {
+                    try {
+                        $carro->insert(
+                            $data['modelo']
+                        );
+
+                        echo
+                        '<script>
+                            alert("Modelo de carro cadastrado com sucesso!");
+                            window.location.href = "../consulta/carro.php";
+                        </script>';
+                    } catch (PDOException $err) {
+                        echo $err->getMessage();
+                    }
                 }
             }
-        }
-        ?>
-
-        <form action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">MODELO</label>
-                <input style="width: 130%" type="text" name="modelo" oninput="validaInput(this, false)" maxlength="30" class="form-control" placeholder="MODELO" autocomplete="off" required>
-            </div>
-
-            <input  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
-        </form>
-    </div>
+            ?>
+            <section class="container text-start text-dark">
+                <form method="POST" >
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="modelo" class="form-label black-text">MODELO</label>
+                            <input type="text" id="modelo" name="modelo" oninput="validaInput(this, false)" maxlength="30" class="form-control" placeholder="MODELO" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-6 col-md-12 col-sm-6 mb-3">
+                            <input type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="./../../../public/js/validaInput.js"></script>
