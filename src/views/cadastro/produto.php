@@ -249,7 +249,7 @@ $marcas = new MarcasController();
                     <select style="margin-left: 10px;" name="idmotor" class="form-control" required>
                         <option selected disabled value>SELECIONE</option>
                         <?php
-                        foreach ($motores->findAll() as $obj) { ?>
+                        foreach ($motores->findAll() as $obj) { ?>-
                             <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia(); ?></option>
                         <?php } ?>
                     </select>
@@ -306,9 +306,9 @@ $marcas = new MarcasController();
                             <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
                         <?php } ?>
                     </select>
-                    <input style="margin-left: 35px;" type="text" name="referencia" class="form-control" placeholder="REFERÊNCIA" required>
-                    <input style="margin-left: 35px; margin-right:10px;" type="text" name="unidade" class="form-control" placeholder="UNIDADE" required>
-                    <input style="margin-left: 35px; margin-right:10px;" type="text" name="descricao" class="form-control" placeholder="DESCRIÇÃO" required>
+                    <input style="margin-left: 35px;" type="text" name="referencia" oninput="validaInput(this, true)" class="form-control" maxlength="20" placeholder="REFERÊNCIA" autocomplete="off" required>
+                    <input style="margin-left: 35px; margin-right:10px;" type="text" name="unidade" oninput="validaInput(this, false)" class="form-control" maxlength="2" placeholder="UNIDADE" autocomplete="off" required>
+                    <input style="margin-left: 35px; margin-right:10px;" type="text" name="descricao" oninput="validaInput(this, false)" class="form-control" maxlength="50" placeholder="DESCRIÇÃO" autocomplete="off" required>
                 </div>      
                
                 <div class="mb-3" style="margin-top:2%;">
@@ -342,6 +342,7 @@ $marcas = new MarcasController();
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>

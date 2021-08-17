@@ -117,13 +117,13 @@ $categorias = new CategoriaController();
         <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">CATEGORIA</label>
-                <input style="width: 130%" type="text" name="categoria" class="form-control" placeholder="CATEGORIA" required>
+                <input style="width: 130%" type="text" name="categoria" oninput="validaInput(this, false)" class="form-control" maxlength="30" autocomplete="off" placeholder="CATEGORIA" required>
             </div>
 
             <button style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
         </form>
     </div>
-
+maxlength="30"
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function() {
@@ -133,6 +133,7 @@ $categorias = new CategoriaController();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>

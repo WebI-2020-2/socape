@@ -117,7 +117,7 @@ $motores = new MotorController();
         <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">POTÊNCIA DO MOTOR</label>
-                <input style="width: 130%" type="number" name="potencia" class="form-control" placeholder="POTÊNCIA" required>
+                <input style="width: 130%" type="number" name="potencia" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
             </div>
 
             <button style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>

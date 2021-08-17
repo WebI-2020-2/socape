@@ -60,7 +60,7 @@ $produtos = new ProdutosController();
                         <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="perfil">
                             <li>
-                                <h6 class="dropdown-header">Olá <?= $_SESSION['nome']; ?></h6>
+                                <h6 class="dropdown-header text-light">Olá <?= $_SESSION['nome']; ?></h6>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">

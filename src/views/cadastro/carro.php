@@ -117,7 +117,7 @@ $carros = new CarroController();
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">MODELO</label>
-                <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" required>
+                <input style="width: 130%" type="text" name="modelo" oninput="validaInput(this, false)" maxlength="30" class="form-control" placeholder="MODELO" autocomplete="off" required>
             </div>
 
             <input  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
@@ -125,6 +125,7 @@ $carros = new CarroController();
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>
