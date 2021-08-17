@@ -3,7 +3,11 @@
   padding: 0;
 }
 
-html, body { height:100%; width:100%; }
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
 
 body {
   color: #ffffff;
@@ -11,7 +15,6 @@ body {
   background-repeat: no-repeat;
 }
 
-/* INÍCIO NAVEGAÇÃO */
 nav {
   background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
@@ -37,7 +40,8 @@ nav li a {
   background-image: none;
 }
 
-input, select {
+input,
+select {
   border-radius: 30px 30px 30px 30px !important;
 }
 

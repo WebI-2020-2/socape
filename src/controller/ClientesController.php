@@ -46,13 +46,22 @@ class ClientesController extends Cliente
         return $clientes;
     }
 
-    public function insertPF($nome, $telefone, $cpf, $debito)
+    public function insert($tipocliente, $nome, $telefone, $dado, $debito)
     {
-        $query = "INSERT INTO $this->tabela (nome, telefone, cpf, debito) VALUES (:nome, :telefone, :cpf, :debito)";
+        $query = "";
+        if($tipocliente == 'fisico') {
+            $query = "INSERT INTO $this->tabela (nome, telefone, cpf, debito) VALUES (:nome, :telefone, :cpf, :debito)";
+        } else {
+            $query = "INSERT INTO $this->tabela (nome, telefone, cnpj, debito) VALUES (:nome, :telefone, :cnpj, :debito)";
+        }
         $stm = Database::prepare($query);
         $stm->bindParam(':nome', $nome);
         $stm->bindParam(':telefone', $telefone);
-        $stm->bindParam(':cpf', $cpf);
+        if($tipocliente == 'fisico') {
+            $stm->bindParam(':cpf', $dado);
+        } else {
+            $stm->bindParam(':cnpj', $dado);
+        }
         $stm->bindParam(':debito', $debito);
         return $stm->execute();
     }
@@ -65,17 +74,6 @@ class ClientesController extends Cliente
         $stm->bindValue(':nome', $nome);
         $stm->bindValue(':telefone', $telefone);
         $stm->bindValue(':cpf', $cpf);
-        return $stm->execute();
-    }
-
-    public function insertPJ($nome, $telefone, $cnpj, $debito)
-    {
-        $query = "INSERT INTO $this->tabela (nome, telefone, cnpj, debito) VALUES (:nome, :telefone, :cnpj, :debito)";
-        $stm = Database::prepare($query);
-        $stm->bindParam(':nome', $nome);
-        $stm->bindParam(':telefone', $telefone);
-        $stm->bindParam(':cnpj', $cnpj);
-        $stm->bindParam(':debito', $debito);
         return $stm->execute();
     }
 

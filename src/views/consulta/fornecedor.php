@@ -31,7 +31,7 @@ $fornecedores = new FornecedoresController();
             </div>
         </section>
 
-        <div class="py-5 bg-light">
+        <div class="py-5 bg-light vh-100">
             <?php
             if (isset($_GET['msg'])) {
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o fornecedor!");</script>';
@@ -74,7 +74,7 @@ $fornecedores = new FornecedoresController();
                                 <td><?= $obj->getCnpj(); ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="./visualizarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>">EDITAR</a>
+                                        <a class="btn btn-primary" href="./visualizarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>">VISUALIZAR</a>
                                         <a class="btn btn-danger" href="./editarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>">EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
                                     </div>
