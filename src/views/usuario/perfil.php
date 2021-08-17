@@ -1,23 +1,21 @@
 <?php
 session_start();
-
-if(!$_SESSION['logado']) header('Location: ./../../../login.php');
-
-require_once __DIR__ . '/../../controller/ClientesController.php';
-$clientes = new ClientesController();
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
+
+<!doctype html>
+<html class="no-js" lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOCAPE | Venda</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -61,7 +59,7 @@ $clientes = new ClientesController();
                         <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="perfil">
                             <li>
-                                <h6 class="dropdown-header">Olá <?= $_SESSION['nome']; ?></h6>
+                                <h6 class="dropdown-header text-light">Olá <?= $_SESSION['nome']; ?></h6>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -75,25 +73,35 @@ $clientes = new ClientesController();
         </div>
     </nav>
 
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">MEU PERFIL</span>
-        </h1>
-
-        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
-        <form action="" method="post">
-            <div class="mb-3">
-                <label class="form-label">NOME</label>
-                <input style="width: 130%" type="text" class="form-control" placeholder="NOME" value="<?= $_SESSION['nome'] ?>" disabled>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">MEU PERFIL</h1>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label">USUÁRIO</label>
-                <input style="width: 130%" type="text" class="form-control" placeholder="USUÁRIO" value="<?= $_SESSION['usuario'] ?>" disabled>
-            </div>
-        </form>
-    </div>
+        </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <div class="py-5 bg-light">
+            <section class="d-flex justify-content-center align-items-center text-dark">
+                <form>
+                    <div class="row mb-3">
+                        <img class="img-fluid w-100" src="./../../../public/imagens/usuario.png">
+                    </div>
+                    <div class="row mb-3">
+                        <label for="nome" class="form-label">NOME</label>
+                        <input type="text" placeholder="NOME" class="form-control" id="nome" value="<?= $_SESSION['nome'] ?>" disabled>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="usuario" class="form-label">USUÁRIO</label>
+                        <input type="text" placeholder="USUÁRIO" class="form-control" id="usuario" value="<?= $_SESSION['usuario'] ?>" disabled>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
 </html>
