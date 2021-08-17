@@ -191,7 +191,7 @@ $marcas = new MarcasController();
             }
             ?>
             <section class="container text-start text-dark">
-                <form method="POST" id="form">
+                <form method="POST" id="form" action="">
                     <div class="row">
                         <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="idmotor" class="form-label black-text">MOTOR</label>

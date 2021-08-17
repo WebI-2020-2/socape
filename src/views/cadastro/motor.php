@@ -21,12 +21,16 @@ $motores = new MotorController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CADASTRAR POTÊNCIA DO MOTOR</h1>
+                </div>
+            </div>
+        </section>
 
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">CADASTRAR POTÊNCIA DO MOTOR</span>
-        </h1>
-
+        <div class="py-5 bg-light">
         <?php
         if ($_POST) {
             $data = $_POST;
@@ -60,17 +64,24 @@ $motores = new MotorController();
             }
         }
         ?>
-
-        <form id="form" action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">POTÊNCIA DO MOTOR</label>
-                <input style="width: 130%" type="number" name="potencia" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
-            </div>
-
-            <button style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
-        </form>
-    </div>
-
+            <section class="container text-start text-dark">
+                <form  id="form" action="" method="POST">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="potencia" class="form-label black-text">POTÊNCIA DO MOTOR</label>
+                            <input  type="number" id="potencia" name="potencia" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-6 col-md-12 col-sm-6 mb-3">
+                            <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+    
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function() {
