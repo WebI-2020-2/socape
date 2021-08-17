@@ -12,7 +12,7 @@ $cliente = new ClientesController();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOCAPE | Cadastrar cliente Pessoa Física</title>
+    <title>SOCAPE | Cadastrar Cliente</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
@@ -23,14 +23,12 @@ $cliente = new ClientesController();
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
     <section class="text-center container">
-        <div class="row">
-            <h1>
+            <div class="row">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="badge bg-light text-dark display-6">MEU PERFIL</h1>
+                    <h1 class="display-6">CADASTRAR CLIENTE</h1>
                 </div>
-            </h1>
-        </div>
-    </section>
+            </div>
+        </section>
 
     <?php
     if ($_POST) {
@@ -51,7 +49,15 @@ $cliente = new ClientesController();
                 alert("Informe o número de telefone!");
             </script>';
             $err = TRUE;
+        }else if (strlen($data['telefone']) < 11) {
+            echo
+            '<script>
+                alert("O telefone deve conter 11 dígitos!");
+            </script>';
+          
+            $err = TRUE;
         }
+
         if ($data['tipoCliente'] == 'fisico') {
             if (!$data['cpf']) {
                 echo
@@ -59,7 +65,9 @@ $cliente = new ClientesController();
                     alert("Informe o CPF do cliente!");
                 </script>';
                 $err = TRUE;
+                
             }
+            
         } else {
             if (!$data['cnpj']) {
                 echo
