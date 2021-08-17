@@ -118,7 +118,7 @@ $localizacoes = new LocalizacaoController();
         <form id="form" action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">LOCALIZAÇÃO</label>
-                <input style="width: 130%" type="text" name="departamento" class="form-control" placeholder="DEPARTAMENTO" required>
+                <input style="width: 130%" type="text" name="departamento" oninput="validaInput(this, true)" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
             </div>
 
             <button  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
@@ -134,6 +134,7 @@ $localizacoes = new LocalizacaoController();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>

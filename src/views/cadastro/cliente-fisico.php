@@ -140,15 +140,15 @@ $clientes = new ClientesController();
         <form id="form" action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" required>
+                <input style="width: 130%" type="text" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" maxlength="150" autocomplete="off" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input style="width: 130%" type="number" name="telefone" class="form-control" placeholder="TELEFONE" required>
+                <input style="width: 130%" type="text" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CPF</label>
-                <input style="width: 130%" type="number" name="cpf" class="form-control" placeholder="CPF" required>
+                <input style="width: 130%" type="text" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
             </div>
 
             <button  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
@@ -169,6 +169,8 @@ $clientes = new ClientesController();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/mascara.js"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>

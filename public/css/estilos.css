@@ -3,9 +3,12 @@
   padding: 0;
 }
 
+html, body { height:100%; width:100%; }
+
 body {
   color: #ffffff;
-  background-color: #140c0c;
+  background-image: linear-gradient(to bottom, #272020, #8c1818);
+  background-repeat: no-repeat;
 }
 
 /* INÍCIO NAVEGAÇÃO */
@@ -13,7 +16,7 @@ nav {
   background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
 
-.navbar-light .navbar-toggler-icon{
+.navbar-light .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
@@ -22,7 +25,7 @@ nav li a {
 }
 
 .dropdown-menu {
-  background-color: #140C0C !important;
+  background-color: #140c0c !important;
 }
 
 .carousel-control-prev-icon,
@@ -34,19 +37,16 @@ nav li a {
   background-image: none;
 }
 
-#container {
-  height: 100%;
-  background-image: linear-gradient(to bottom, #272020, #8c1818);
-}
-
-#containerlimitado{
+#containerlimitado {
   height: 78vh;
   background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
-#containerentrada{
+
+#containerentrada {
   height: 130vh;
   background-image: linear-gradient(to bottom, #272020, #8c1818);
 }
+
 input,
 select {
   border-radius: 30px 30px 30px 30px !important;
@@ -59,20 +59,6 @@ h1 {
 h1 > span {
   padding: 4px 15px 3px 15px !important;
   border-radius: 50px !important;
-  
-}
-
-
-form {
-  margin-left: 30px;
-  margin-right: 100px;
-  margin-top: 70px;
-  display: inline-block;
-}
-
-.table {
-  color: #000000;
-  background-color: #ffffff;
 }
 
 #produtos {
@@ -82,7 +68,6 @@ form {
   margin-right: 6px;
   margin-left: 6px;
   margin-top: 30px;
-  
 }
 
 #imagemDestaque {
@@ -90,13 +75,13 @@ form {
   width: 100%;
 }
 
-#imagemCadastro{
-   width: 22%;
-   margin-top: 65px;
-   margin-left: 28%;
+#imagemCadastro {
+  width: 22%;
+  margin-top: 65px;
+  margin-left: 28%;
 }
 
-#imagemFornecedor{
+#imagemFornecedor {
   width: 22%;
   margin-right: 30%;
   margin-top: 87px;
@@ -107,93 +92,88 @@ form {
   padding: 4px 15px 3px 15px;
   border-radius: 50px;
 }
-#consultproduct{
+#consultproduct {
   width: 350px;
-  height:42px;
+  height: 42px;
   border-radius: 30px 30px 30px 30px !important;
   margin-left: 40px;
 }
 
-#formProduto{
+#formProduto {
   width: 90%;
   margin-bottom: 3%;
-  margin-left:3%;
+  margin-left: 3%;
   border: double;
 }
-#minhaConta{
-  margin-left:80%;
-
+#minhaConta {
+  margin-left: 80%;
 }
 
-
-#txtBusca{
-  float:left;
+#txtBusca {
+  float: left;
   border-radius: 30px 30px 30px 30px !important;
-  background-color:#ffffff;
-  padding-left:5px;
-  font-size:18px;
-  border:none;
-  height:42px;
-  width:350px;
+  background-color: #ffffff;
+  padding-left: 5px;
+  font-size: 18px;
+  border: none;
+  height: 42px;
+  width: 350px;
 }
-
-
 
 /* tela consultar Produto*/
-@media (min-width: 1200px) { 
-  #motor{
-    margin-left: 7px; 
+@media (min-width: 1200px) {
+  #motor {
+    margin-left: 7px;
   }
-  #desconto{
+  #desconto {
     margin-left: 29.6%;
   }
-  #modeloCar{
+  #modeloCar {
     margin-left: 26.6%;
   }
-  #unidade{
+  #unidade {
     margin-left: 7px;
   }
-  #valvula{
+  #valvula {
     margin-left: 28.6%;
   }
-  #valorFar{
+  #valorFar {
     margin-left: 27.3%;
   }
-  #fabricação{
+  #fabricação {
     margin-left: 7px;
   }
-  #valorCom{
+  #valorCom {
     margin-left: 26.6%;
   }
-  #categoria{
+  #categoria {
     margin-left: 22.8%;
   }
-  #icms{
+  #icms {
     margin-left: 7px;
   }
-  #marca{
+  #marca {
     margin-left: 30.8%;
   }
-  #ipi{
+  #ipi {
     margin-left: 29.5%;
   }
-  #localização{
+  #localização {
     margin-left: 7px;
   }
-  #frete{
+  #frete {
     margin-left: 25.7%;
   }
-  #referencia{
+  #referencia {
     margin-left: 30.3%;
   }
-  #quantidade{
+  #quantidade {
     margin-left: 7px;
   }
-  #valorVenda{
+  #valorVenda {
     margin-left: 26%;
   }
-  #lucro{
+  #lucro {
     margin-left: 24%;
   }
 }
-

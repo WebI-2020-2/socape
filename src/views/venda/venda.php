@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-if(!$_SESSION['logado']) header('Location: ./../../../login.php');
+setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+date_default_timezone_set('America/Sao_Paulo');
+
+if (!$_SESSION['logado']) header('Location: ./../../../login.php');
 
 require_once __DIR__ . '/../../controller/VendasController.php';
 $vendas = new VendasController();
@@ -69,7 +72,7 @@ $formas = new FormaPagamentoController();
                         <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="perfil">
                             <li>
-                                <h6 class="dropdown-header">Olá <?= $_SESSION['nome']; ?></h6>
+                                <h6 class="dropdown-header text-light">Olá <?= $_SESSION['nome']; ?></h6>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -82,67 +85,84 @@ $formas = new FormaPagamentoController();
             </div>
         </div>
     </nav>
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">VENDAS</span>
-        </h1>
 
-        <?php
-        if (isset($_GET['msg'])) {
-            if ($_GET['msg'] == 1) echo '<script>alert("Informe a forma de pagamento!");</script>';
-            if ($_GET['msg'] == 2) echo '<script>alert("Informe o cliente!");</script>';
-        }
-        ?>
-
-        <form style="margin-left: 31%;" id="realizarVenda" method="POST" action="./realizarVenda.php">
-            <label class="form-label">FORMA DE PAGAMENTO</label>
-            <label style="margin-left: 24%;" class="form-label">CLIENTE</label>
-            <div style="width: 132%;" class="input-group">
-                <select id="idformapagamento" name="idformapagamento" class="form-control" required>
-                    <option selected disabled value="">SELECIONE</option>
-                    <?php
-                    foreach ($formas->findAll() as $obj) { ?>
-                        <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
-                    <?php } ?>
-                </select>
-                <input style="margin-left: 35px;" id="barraPesquisa" class="form-control" type="text" placeholder="CLIENTE">
-                <input id="idcliente" type="hidden" name="idcliente" required>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">VENDAS</h1>
+                </div>
             </div>
-            <div style="margin-top: 3%;" class="mb-3">
-                <input style="margin-left: 94%"  type="button" class="btn btn-primary" value="REALIZAR VENDA">             
-            </div>          
-        </form>
+        </section>
 
-        <table style="margin-top: 1%"  class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CLIENTE</th>
-                    <th>FORMA DE PAGAMENTO</th>
-                    <th>DATA</th>
-                    <th>VALOR TOTAL</th>
-                    <th width="20%">AÇÕES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($vendas->findAll() as $obj) {
-                    $forma = $formas->findOne($obj->getIdformapagamento()); ?>
-                    <tr>
-                        <td><?= $obj->getIdvenda() ?></td>
-                        <td><?= $clientes->findOne($obj->getIdcliente())->getNome(); ?></td>
-                        <td><?= $forma->getForma() . ' - ' . $forma->getCondicao(); ?></td>
-                        <td><?= $obj->getData() ?></td>
-                        <td><?= $obj->getValortotal() ?></td>
-                        <td>
-                            <div class="button-group clear">
-                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIdvenda() ?>','<?= $clientes->findOne($obj->getIdcliente())->getNome(); ?>')">APAGAR</button>
-                            </div>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
+        <div class="py-5 bg-light">
+            <?php
+            if (isset($_GET['msg'])) {
+                if ($_GET['msg'] == 1) echo '<script>alert("Informe a forma de pagamento!");</script>';
+                if ($_GET['msg'] == 2) echo '<script>alert("Informe o cliente!");</script>';
+            }
+            ?>
+
+            <section class="d-flex justify-content-center align-items-center text-dark">
+                <form id="realizarVenda" method="POST" action="./realizarVenda.php">
+                    <div class="row">
+                        <div class="col-6 col-md-6 col-sm-12">
+                            <label for="idformapagamento" class="form-label">FORMA DE PAGAMENTO</label>
+                            <select id="idformapagamento" name="idformapagamento" class="form-select" required>
+                                <option selected disabled value="">SELECIONE</option>
+                                <?php foreach ($formas->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
+                                <?php } ?>
+                            </select>
+                            <div id="formapagamentoHelp" class="form-text">Informe a forma de pagamento.</div>
+                        </div>
+
+                        <div class="col-6 col-md-6 col-sm-12 mb-3">
+                            <label for="barraPesquisa" class="form-label black-text">CLIENTE</label>
+                            <input type="text" placeholder="CLIENTE" class="form-control" id="barraPesquisa" aria-describedby="clienteHelp">
+                            <input id="idcliente" type="hidden" name="idcliente" required>
+                            <div id="clienteHelp" class="form-text">Digite o nome do cliente e selecione-o na lista.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end mb-3">
+                            <button type="submit" class="btn btn-primary">REALIZAR VENDA</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <div class="table-responsive-sm">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">CLIENTE</th>
+                            <th scope="col">FORMA DE PAGAMENTO</th>
+                            <th scope="col">DATA</th>
+                            <th scope="col">VALOR TOTAL</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($vendas->findAll() as $obj) {
+                            $forma = $formas->findOne($obj->getIdformapagamento()); ?>
+                            <tr>
+                                <td><?= $obj->getIdvenda(); ?></td>
+                                <td><?= $clientes->findOne($obj->getIdcliente())->getNome(); ?></td>
+                                <td><?= $forma->getForma() . ' - ' . $forma->getCondicao(); ?></td>
+                                <td><?= strftime('%d de %b de %Y', strtotime($obj->getData())); ?></td>
+                                <td>R$<?= $obj->getValortotal(); ?></td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="deletar('<?= $obj->getIdvenda(); ?>', '<?= $clientes->findOne($obj->getIdcliente())->getNome(); ?>')">APAGAR</button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -168,7 +188,7 @@ $formas = new FormaPagamentoController();
                 });
             });
 
-            $("#realizarVenda").on("click", "input[type=button]", function(e) {
+            $("#realizarVenda").on("click", "button[type=submit]", function(e) {
                 e.preventDefault();
 
                 if ($("#idformapagamento").val() == null) {
@@ -181,8 +201,8 @@ $formas = new FormaPagamentoController();
                     return false;
                 } else {
                     $("#realizarVenda").submit();
-                    $("#realizarVenda input[type=button]").prop("disabled", true);
-                    $("#realizarVenda input[type=button]").val("VENDENDO...");
+                    $("#realizarVenda button[type=submit]").prop("disabled", true);
+                    $("#realizarVenda button[type=submit]").val("VENDENDO...");
                 }
             });
         });

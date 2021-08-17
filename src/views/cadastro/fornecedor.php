@@ -140,19 +140,19 @@ $fornecedores = new FornecedoresController();
         <form style="margin-left: 25%" action="" method="post">
             <div class="mb-3">
                 <label class="form-label">NOME</label>
-                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" required>
+                <input style="width: 130%" type="text" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" autocomplete="off" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">ENDEREÇO</label>
-                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" required>
+                <input style="width: 130%" type="text" name="endereco" oninput="validaInput(this, true)" class="form-control" placeholder="ENDEREÇO" autocomplete="off" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">TELEFONE</label>
-                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" required>
+                <input style="width: 130%" type="text" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">CNPJ</label>
-                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" required>
+                <input style="width: 130%" type="text" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off" required>
             </div>
 
             <input  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
@@ -183,6 +183,8 @@ $fornecedores = new FornecedoresController();
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
+    <script src="./../../../public/js/mascara.js"></script>
 </body>
 
 </html>

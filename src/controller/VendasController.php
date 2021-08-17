@@ -31,7 +31,7 @@ class VendasController extends Venda
 
     public function findAll()
     {
-        $query = "SELECT * FROM $this->tabela ORDER BY data DESC";
+        $query = "SELECT * FROM $this->tabela ORDER BY idvenda DESC";
         $stm = Database::prepare($query);
         $stm->execute();
         $vendas = array();
