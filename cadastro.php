@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if($_SESSION['logado']) header('Location: ./index.php');
 require_once __DIR__ . '/src/controller/UsuarioController.php';
+$usuario = new UsuarioController();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,15 +13,19 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SOCAPE | Cadastro</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./public/css/login.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <div class="card card-container">
-        <img  src="./public/imagens/teste1.png" align="center">
-            <p id="profile-name" class="profile-name-card">
+    <div class="login">
+        <div class="row">
+            <div class="card">
+                <img src="./public/imagens/teste1.png">
+                <form method="post" action="">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Cadastro</h5>
+                        </div>
                 <?php
                 if ($_POST) {
                     $data = $_POST;
@@ -58,26 +62,40 @@ require_once __DIR__ . '/src/controller/UsuarioController.php';
                     }
                 }
                 ?>
-            </p>
-            <font style="text-align: center" size=+3 face=Arial color="#ffffff">Cadastro</font>
-            <form class="form-signin" method="post" action="">
-                <label>Nome</label>
-                <input type="text" id="inputNome" class="form-control" name="nome" placeholder="Nome completo" required />
+            <div class="card-body">
 
-                <label>Usuário</label>
-                <input type="text" id="inputUsuario" class="form-control" name="usuario" placeholder="Usuário" required autofocus />
+                            <div class="mb-3">
+                                <label for="nomeusuario" font-family="Arial" class="form-label">Nome</label>
+                                <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" required autofocus>
+                            </div>
 
-                <label>Senha</label>
-                <input type="password" id="inputsenha" class="form-control" name="senha" placeholder="Senha" required />
-                <input href="./index.php?" type="submit" class="btn btn-lg acesso" method="post" onClick="" value="Cadastrar" />
-            </form>
-            <div>
-                <br>
-                <br>
-                <a style="margin-left:35%" href="./login.php" class="link">fazer login ...</a>
+                            <div class="mb-3">
+                                <label for="usuario" class="form-label">Usuário</label>
+                                <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Usuário" required autofocus>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required>
+                            </div>
+                        </div>
+
+                        <div class="card-body text-center">
+                            <div class="mb-4">
+                                <button type="submit" class="btn">Cadastrar</button>
+                            </div>
+
+                            <div class="mb-0">
+                                <a href="./login.php">Entrar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
 </html>
