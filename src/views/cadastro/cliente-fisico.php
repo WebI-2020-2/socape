@@ -20,12 +20,16 @@ $clientes = new ClientesController();
 </head>
 
 <body>
-    <?php include __DIR__ . "/../includes/navbar.php"; ?>
-
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">CADASTRAR CLIENTE PESSOA FÍSICA</span>
-        </h1>
+  <?php include __DIR__ . "/../includes/navbar.php"; ?>
+        <section class="text-center container">
+            <div class="row">
+                <h1>
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="badge bg-light text-dark display-6 ">MEU PERFIL</h1>
+                    </div>
+                </h1>
+            </div>
+        </section>
 
         <?php
         if ($_POST) {
@@ -78,30 +82,40 @@ $clientes = new ClientesController();
         }
         ?>
 
-        <select id="selecionar" class="form-select">
-            <option value="../../views/cadastro/cliente-fisico.php">FÍSICA</option>
-            <option value="../../views/cadastro/cliente-juridico.php">JURIDICO</option>
-        </select>
+    <div class="py-5 bg-light">
+            <section class="d-flex justify-content-center align-items-center text-dark">
+                
+      
+                <form>
+                    
+                    <div class="row mb-3">
+                        <img class="img-fluid w-100" src="./../../../public/imagens/usuario.png">
+                    </div>
+                    <div class="row mb-3">
+                       <select id="selecionar" class="form-select">
+                           <option value="../../views/cadastro/cliente-fisico.php">FÍSICA</option>
+                           <option value="../../views/cadastro/cliente-juridico.php">JURIDICO</option>
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="nome" class="form-label">NOME</label>
+                        <input  type="text" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" maxlength="150" autocomplete="off" required>
+                    </div>
 
-        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" align="left" />
-        <form id="form" action="" method="post">
-            <div class="mb-3">
-                <label class="form-label">NOME</label>
-                <input style="width: 130%" type="text" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" maxlength="150" autocomplete="off" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">TELEFONE</label>
-                <input style="width: 130%" type="text" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">CPF</label>
-                <input style="width: 130%" type="text" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
-            </div>
+                    <div class="row mb-3">
+                        <label for="telefone" class="form-label">TELEFONE</label>
+                        <input  type="text" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
+                    </div>
 
-            <button  style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
-        </form>
-    </div>
-
+                    <div class="row mb-3">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input  type="text" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
+                    </div>
+                    <button style="margin-left: 75% ;padding: 4px 15px 3px 15px;border-radius: 50px;" type="submit" class="btn btn-primary">CADASTRAR</button>
+                </form>
+                
+            </section>
+        </div>
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function(){
@@ -121,3 +135,4 @@ $clientes = new ClientesController();
 </body>
 
 </html>
+
