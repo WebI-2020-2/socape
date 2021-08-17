@@ -1,8 +1,6 @@
 <?php
-session_start();
-
-setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-date_default_timezone_set('America/Sao_Paulo');
+require_once __DIR__ . '/../../controller/SessaoController.php';
+Sessao::verificaLogado();
 
 if (!$_SESSION['logado']) header('Location: ./../../../login.php');
 
@@ -14,6 +12,9 @@ $clientes = new ClientesController();
 
 require_once __DIR__ . '/../../controller/FormaPagamentoController.php';
 $formas = new FormaPagamentoController();
+
+setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+date_default_timezone_set('America/Sao_Paulo');
 ?>
 <!doctype html>
 <html class="no-js" lang="pt-br">

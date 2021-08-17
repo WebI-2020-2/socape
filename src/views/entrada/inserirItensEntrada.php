@@ -1,7 +1,6 @@
 <?php
-session_start();
-
-if (!$_SESSION['logado']) header('Location: ./../../../login.php');
+require_once __DIR__ . '/../../controller/SessaoController.php';
+Sessao::verificaLogado();
 
 if (!$_GET['identrada']) header('Location: ./entrada.php');
 require_once __DIR__ . '/../../controller/ItensEntradaController.php';
@@ -27,7 +26,7 @@ $produtos = new ProdutosController();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SOCAPE | Inserir Itens Entrada</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/inserirItensEntrada.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
