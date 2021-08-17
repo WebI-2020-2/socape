@@ -66,25 +66,23 @@ class ClientesController extends Cliente
         return $stm->execute();
     }
 
-    public function updatePF($idcliente, $nome, $telefone, $cpf)
+    public function update($tipocliente, $idcliente, $nome, $telefone, $dado)
     {
-        $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cpf = :cpf WHERE idcliente = :idcliente";
+        $query = "";
+        if($tipocliente == 'fisico') {
+            $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cpf = :cpf WHERE idcliente = :idcliente";
+        } else {
+            $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cnpj = :cnpj WHERE idcliente = :idcliente";
+        }
         $stm = Database::prepare($query);
         $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
         $stm->bindValue(':nome', $nome);
         $stm->bindValue(':telefone', $telefone);
-        $stm->bindValue(':cpf', $cpf);
-        return $stm->execute();
-    }
-
-    public function updatePJ($idcliente, $nome, $telefone, $cnpj)
-    {
-        $query = "UPDATE $this->tabela SET nome = :nome, telefone = :telefone, cnpj = :cnpj WHERE idcliente = :idcliente";
-        $stm = Database::prepare($query);
-        $stm->bindParam(':idcliente', $idcliente, PDO::PARAM_INT);
-        $stm->bindValue(':nome', $nome);
-        $stm->bindValue(':telefone', $telefone);
-        $stm->bindValue(':cnpj', $cnpj);
+        if($tipocliente == 'fisico') {
+            $stm->bindParam(':cpf', $dado);
+        } else {
+            $stm->bindParam(':cnpj', $dado);
+        }
         return $stm->execute();
     }
 
