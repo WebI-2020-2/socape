@@ -22,11 +22,14 @@ $fabricacoes = new FabricacaoController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main>
-        <section class="text-center container">
-            <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="display-6">CONSULTAR ANO DE FABRICAÇÃO</h1>
+    <main class="container-fluid bg-light text-dark">
+    <section class="container py-3">
+            <div class="row align-items-center d-flex">
+                <div class="col-2 col-md-2 col-sm-2">
+                <a href="../../views/consulta/anofabricacao.php" class="btn btn-primary">VOLTAR</a>
+                </div>
+                <div class="col-8 col-md-8 col-sm-8 text-center">
+                    <span class="display-6">CONSULTAR ANO DE FABRICAÇÃO</span>
                 </div>
             </div>
         </section>
@@ -72,11 +75,7 @@ $fabricacoes = new FabricacaoController();
                         }
                     }
                     ?>
-                        <div class="row">
-                            <div class="col">
-                                <a href="./anofabricacao.php" class="btn btn-primary">VOLTAR</a>
-                            </div>
-                        </div>
+                        
                         <section class="container text-start text-dark">
                             <form id="form" method="POST" action="" >
                                 <div class="row">
