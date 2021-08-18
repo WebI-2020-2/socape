@@ -68,7 +68,7 @@ $localizacoes = new LocalizacaoController();
                                 <td><?= $obj->getDepartamento() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-danger" href="../../views/editar/editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>">EDITAR</a>
+                                        <a class="btn btn-primary" href="../../views/editar/editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
                                     </div>
                                 </td>

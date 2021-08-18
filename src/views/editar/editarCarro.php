@@ -25,112 +25,82 @@ $carro = $carros->findOne($idcarro);
 </head>
 
 <body>
-    <img class="img-fluid w-100" src="./../../../public/imagens/titulo.png">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacao" aria-controls="navegacao" aria-expanded="false" aria-label="Alterar navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navegacao">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="consultar" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="consultar">
-                            <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="perfil">
-                            <li>
-                                <h6 class="dropdown-header">Olá <?= $_SESSION['nome']; ?></h6>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                            <li><a class="dropdown-item" href="../../../logout.php">SAIR</a></li>
-                        </ul>
-                    </li>
-                </ul>
+<?php include __DIR__ . "/../includes/header.php"; ?>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6"> MODELO DE CARRO</h1>
+                </div>
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">EDITAR MODELO DE CARRO</span>
-        </h1>
+        <div class="py-5 bg-light">
+            <?php
+            if ($_POST) {
+                $data = $_POST;
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
+                $carro = new CarroController();
 
-            $err = FALSE;
+                $err = FALSE;
 
-            if (!$data['modelo']) {
-                echo
-                '<script>
-                        alert("Insira o modelo!");
-                    </script>';
-                $err = TRUE;
-            }
-
-            if (!$err) {
-                try {
-                    $carros->update(
-                        $idcarro,
-                        $data['modelo']
-                    );
-
+                if (!$data['modelo']) {
                     echo
                     '<script>
-                        alert("Modelo de carro atualizado com sucesso!");
-                        window.location.href = "./carro.php";
+                        alert("Informe o modelo do carro!");
                     </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                    $err = TRUE;
+                }
+
+                if (!$err) {
+                    try {
+                        $carro->insert(
+                            $data['modelo']
+                        );
+
+                        echo
+                        '<script>
+                            alert("Modelo de carro cadastrado com sucesso!");
+                            window.location.href = "../consulta/carro.php";
+                        </script>';
+                    } catch (PDOException $err) {
+                        echo $err->getMessage();
+                    }
                 }
             }
-        }
-        ?>
+            ?>
+            <div class="py-5 bg-light">
+            <section class="container text-start text-dark">
+                <form method="POST" >
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="modelo" class="form-label black-text">MODELO</label>
+                            <input type="text" id="modelo" name="modelo" value="<?= $carro->getModelo(); ?>" maxlength="30" class="form-control" placeholder="MODELO" autocomplete="off" required>
+                        </div> 
+                    </div>
+                    <div class="text-end">
+                        <a href="../../views/consulta/carro.php" class="btn btn-primary ">VOLTAR</a>
+                            <button type="submit" class="btn btn-dark">SALVAR</button>
+                        </div>
+                </form>
+            </section>
 
-        <form id="form" action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">MODELO</label>
-                <input style="width: 130%" type="text" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="text" name="modelo" class="form-control" placeholder="MODELO" value="<?= $carro->getModelo(); ?>" required>
-            </div>
-            
-            <button style="margin-left: 80%" class="btn btn-primary" type="submit">SALVAR</button>
-        </form>
+
     </div>
 
+
+    
+
+
+
+
+
+
+
+
+
+
+    
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function(){

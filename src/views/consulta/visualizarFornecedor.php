@@ -83,60 +83,39 @@ $fornecedores = new FornecedoresController();
             
                 
 
-                    <div class="py-5 bg-light">
+            <div class="py-5 bg-light">
             <section class="d-flex justify-content-center align-items-center text-dark">
             
                 <form method="post" id="form">
                     
                     <div class="row mb-3">
-                        
+        
                         <label for="nome" class="form-label">NOME</label>
-                        <input type="text" name="nome" id="nome" value="<?= $fornecedor->getNome(); ?>"  class="form-control" placeholder="NOME" autocomplete="off" disabled>
+                        <input type="text" name="nome" id="nome" value="<?= $fornecedor->getNome(); ?>" class="form-control" placeholder="NOME" autocomplete="off" required>
                     </div>
                     <div class="row mb-3">
                         <label for="endereco" class="form-label">ENDEREÇO</label>
-                        <input type="text" name="endereco" id="endereco" value="<?= $fornecedor->getEndereco(); ?>" class="form-control" placeholder="ENDEREÇO" autocomplete="off" disabled>
+                        <input type="text" name="endereco" id="endereco" value="<?= $fornecedor->getEndereco(); ?>"  class="form-control" placeholder="ENDEREÇO" autocomplete="off" required>
                     </div>
                     <div class="row mb-3">
                         <label for="telefone" class="form-label">TELEFONE</label>
-                        <input type="text" name="telefone" id="telefone" value="<?= $fornecedor->getTelefone(); ?>" class="form-control" placeholder="TELEFONE" autocomplete="off" disabled>
+                        <input type="text" name="telefone" id="telefone" value="<?= $fornecedor->getTelefone();?>" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
                     </div>
                     <div class="row mb-3">
                         <label for="cnpj" class="form-label">CNPJ</label>
-                        <input type="text" name="cnpj" id="cnpj" value="<?= $fornecedor->getCnpj(); ?>" class="form-control" placeholder="CNPJ" autocomplete="off" disabled>
+                        <input type="text"  name="cnpj" id="cnpj"  value="<?= $fornecedor->getCnpj(); ?>" class="form-control" placeholder="CNPJ" autocomplete="off" required>
                     </div>
-                        <div class="text-end">
-                        <a href="../consulta/fornecedor.php"><input type="button" class="btn btn-primary" value="VOLTAR"></a>
-                     </div>
-                    </form>
-                        <div class="row-mb-3">
-                            <img class="img-fluid w-100" src="./../../../public/imagens/caminhão.png">
-                        </div>
-                    
+                    <div class="text-end">
+                        <a href="./fornecedor.php" class="btn btn-primary ">VOLTAR</a>
+                        <button type="submit" class="btn btn-dark">SALVAR</button>
+                    </div>
+                </form>
+                    <div class="row-mb-3">
+                        <img class="img-fluid w-100" src="./../../../public/imagens/caminhão.png">
+                    </div>
+               
             </section>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <?php
             }

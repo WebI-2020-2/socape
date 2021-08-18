@@ -25,68 +25,23 @@ $fabricacao = $fabricacoes->findOne($idfabricacao);
 </head>
 
 <body>
-    <img class="img-fluid w-100" src="./../../../public/imagens/titulo.png">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacao" aria-controls="navegacao" aria-expanded="false" aria-label="Alterar navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navegacao">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../../../index.php">INÍCIO</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../views/venda/venda.php">VENDER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../views/entrada/entrada.php">DAR ENTRADA</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="consultar" role="button" data-bs-toggle="dropdown" aria-expanded="false">CONSULTAR</a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="consultar">
-                            <li><a class="dropdown-item" href="../../views/consulta/cliente.php">CLIENTE</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/fornecedor.php">FORNECEDOR</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/produto.php">PRODUTO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/carro.php">CARRO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/localizacao.php">LOCALIZAÇÃO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/valvula.php">VÁLVULA</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/categoria.php">CATEGORIA</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/motor.php">MOTOR</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/anofabricacao.php">FABRICAÇÃO</a></li>
-                            <li><a class="dropdown-item" href="../../views/consulta/marca.php">MARCA</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="perfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">MINHA CONTA</a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="perfil">
-                            <li>
-                                <h6 class="dropdown-header">Olá <?= $_SESSION['nome']; ?></h6>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../../views/usuario/perfil.php">PERFIL</a></li>
-                            <li><a class="dropdown-item" href="../../../logout.php">SAIR</a></li>
-                        </ul>
-                    </li>
-                </ul>
+<body>
+    <?php include __DIR__ . "/../includes/header.php"; ?>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CADASTRAR ANO DE FABRICAÇÃO</h1>
+                </div>
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <div id="containerlimitado">
-        <h1>
-            <span class="badge bg-light text-dark">ATUALIZAR ANO DE FABRICAÇÃO</span>
-        </h1>
-
+        <div class="py-5 bg-light">
         <?php
         if ($_POST) {
             $data = $_POST;
+
+            $fabricacao = new FabricacaoController();
 
             $err = FALSE;
 
@@ -100,14 +55,13 @@ $fabricacao = $fabricacoes->findOne($idfabricacao);
 
             if (!$err) {
                 try {
-                    $fabricacoes->update(
-                        $idfabricacao,
+                    $fabricacao->insert(
                         $data['ano']
                     );
 
                     echo
                     '<script>
-                        alert("Ano de fabricação atualizado com sucesso!");
+                        alert("Ano de Fabricação cadastrado com sucesso!");
                         window.location.href = "../consulta/anofabricacao.php";
                     </script>';
                 } catch (PDOException $err) {
@@ -116,19 +70,23 @@ $fabricacao = $fabricacoes->findOne($idfabricacao);
             }
         }
         ?>
+            <section class="container text-start text-dark">
+                <form id="form" method="POST" action="" >
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="ano" class="form-label black-text">ANO DE FABRICAÇÃO</label>
+                            <input type="text" id="ano" name="ano" value="<?= $fabricacao->getAno(); ?>" maxlength="4" class="form-control" placeholder="ANO DE FABRICAÇÃO" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <a href="../../views/consulta/anofabricacao.php" class="btn btn-primary ">VOLTAR</a>
+                            <button type="submit" class="btn btn-dark">SALVAR</button>
+                        </div>
+                </form>
+            </section>
+        </div>
+    </main>
 
-        <form id="form" action="" method="POST">
-            <div class="mb-3">
-                <label class="form-label">ANO DE FABRICAÇÃO</label>
-                <input style="width: 130%" type="number" class="form-control" placeholder="ANO DE FABRICAÇÃO" value="<?= $fabricacao->getAno(); ?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">ATUALIZAR</label>
-                <input style="width: 130%" type="number" name="ano" class="form-control" placeholder="ANO DE FABRICAÇÃO" value="<?= $fabricacao->getAno(); ?>" required>
-            </div>
-
-            <button style="margin-left: 80%" class="btn btn-primary" type="submit">SALVAR</button>
-        </form>
     </div>
 
     <script>
