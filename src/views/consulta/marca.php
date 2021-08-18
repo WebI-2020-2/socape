@@ -123,6 +123,7 @@ $marcas = new MarcasController();
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-primary" href="?id=<?= $obj->getIdmarca() ?>">VISUALIZAR/EDITAR</a>
+                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
                                     </div>
                                 </td>
                             </tr>

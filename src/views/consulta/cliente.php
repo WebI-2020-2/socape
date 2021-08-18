@@ -99,6 +99,11 @@ $clientes = new ClientesController();
                         }
                     }
             ?>
+                        <div class="row">
+                            <div class="col">
+                                <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
+                            </div>
+                        </div>
                     <div class="py-5 bg-light vh-100">
                         <section class="d-flex justify-content-center align-items-center text-dark">
                             <form method="post" action="">
