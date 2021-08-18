@@ -42,8 +42,8 @@ $marcas = new MarcasController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
-    <main>
-        <section class="text-center container">
+    <main class="container-fluid bg-light text-dark">
+        <section class="container py-3 text-center container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="display-6">CADASTRAR PRODUTO</h1>
@@ -182,8 +182,8 @@ $marcas = new MarcasController();
                 }
             }
             ?>
-            <section class="container text-start text-dark">
-                <form method="POST" id="form" action="">
+            <section class="container min-vh-40 py-5 container text-start text-dark">
+                <form method="POST"  id="form">
                     <div class="row">
                         <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="idmotor" class="form-label black-text">MOTOR</label>
@@ -270,7 +270,7 @@ $marcas = new MarcasController();
                         </div>
                     </div>
                     <div class="row text-end">
-                        <div class="col-6 col-md-12 col-sm-6 mb-3">
+                        <div class="col-6 col-md-12 col-sm-6 mb-3">    
                             <button type="submit" class="btn btn-primary">CADASTRAR</button>
                         </div>
                     </div>
@@ -278,7 +278,14 @@ $marcas = new MarcasController();
             </section>
         </div>
     </main>
-  
+    <script>
+        $(document).ready(function() {
+            $("#form").on("submit", function() {
+                $("button[type=submit]").prop("disabled", true);
+                $("button[type=submit]").text("CADASTRANDO...");
+            });
+        });
+    </script>
     <script>
         function deletar(id, referencia) {
             if (confirm("Deseja realmente excluir o produto de referencia " + referencia + "?")) {

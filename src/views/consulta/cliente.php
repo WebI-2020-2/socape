@@ -22,10 +22,13 @@ $clientes = new ClientesController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main>
-        <section class="text-center container">
+    <main class="container-fluid bg-light text-dark">
+        <section class="container py-3 text-center container">
             <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="col-6 col-md-1 col-sm-6 ">
+                    <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
+                </div>
+                <div class="col-lg-6 col-md-6 mx-auto">
                     <h1 class="display-6">CONSULTAR CLIENTE</h1>
                 </div>
             </div>
@@ -100,32 +103,30 @@ $clientes = new ClientesController();
                     }
             ?>
                         <div class="row">
-                            <div class="col">
-                                <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
-                            </div>
+                           
                         </div>
                     <div class="py-5 bg-light vh-100">
-                        <section class="d-flex justify-content-center align-items-center text-dark">
+                        <section class="container min-vh-100 py-5 d-flex justify-content-center align-items-center text-dark">
                             <form method="post" action="">
                                 <div class="row mb-3">
                                     <img class="img-fluid w-100" src="./../../../public/imagens/usuario.png">
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nome" class="form-label">NOME</label>
-                                    <input type="text" id="nome" class="form-control" name="nome" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
+                                    <input type="text" id="nome" class="form-control" oninput="validaInput(this, false)"  name="nome" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="telefone" class="form-label black-text">TELEFONE</label>
-                                    <input type="text" id="telefone" class="form-control" name="telefone" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
+                                    <input type="text" id="telefone" class="form-control" name="telefone"  oninput="mascara(this, 'tel')" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required >
                                 </div>
                                 <div class="row mb-3">
                                     <?php if (empty($cliente->getCpf())) { ?>
                                         <label for="cnpj" class="form-label black-text">CNPJ</label>
-                                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
+                                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ"  oninput="mascara(this, 'cnpj')" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
                                     <?php } else { ?>
                                         <div class="col-6 col-md-12 col-sm-12 mb-3">
                                             <label for="cpf" class="form-label black-text">CPF</label>
-                                            <input type="text" id="cpf" name="cpf" placeholder="CPF" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
+                                            <input type="text" id="cpf" name="cpf" placeholder="CPF" oninput="mascara(this, 'cpf')" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -133,6 +134,7 @@ $clientes = new ClientesController();
                                     <div class="text-end">
                                         <button type="submit" class="btn btn-dark">SALVAR</button>
                                     </div>
+                                </div>
                             </form>
                         </section>
                     <?php }
@@ -217,6 +219,8 @@ $clientes = new ClientesController();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/mascara.js"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>

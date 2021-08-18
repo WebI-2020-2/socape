@@ -22,10 +22,13 @@ $fornecedores = new FornecedoresController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main>
-        <section class="text-center container">
+    <main class="container-fluid bg-light text-dark">
+        <section class=" container py-3 text-center container">
             <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="col-6 col-md-1 col-sm-6">
+                    <a href="./fornecedor.php" class="btn btn-primary">VOLTAR</a>
+                </div>
+                <div class="col-lg-6 col-md-6 mx-auto">
                     <h1 class="display-6">CONSULTAR FORNECEDOR</h1>
                 </div>
             </div>
@@ -97,33 +100,27 @@ $fornecedores = new FornecedoresController();
                         }
                     }
             ?>
-                    <section class="d-flex justify-content-left align-items-left text-light">
-                        <div class="row">
-                            <div class="col">
-                                <a href="./fornecedor.php" class="btn btn-primary">VOLTAR</a>
-                            </div>
-                        </div>
-
-                        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png">
-                        <form id="form" style="margin-left: 25%" action="" method="post">
-                            <div class="mb-3">
+                    <section class="container min-vh-10 py-5 d-flex justify-content-center align-items-center">
+                        <img  src="./../../../public/imagens/caminhão.png">
+                        <form id="form" style="margin-left: 5%" action="" method="post">
+                            <div class="row mb-3">
                                 <label class="form-label">NOME</label>
-                                <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
+                                <input type="text" name="nome"  oninput="validaInput(this, false)" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="row  mb-3">
                                 <label class="form-label">ENDEREÇO</label>
-                                <input type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
+                                <input type="text" name="endereco" oninput="validaInput(this, true)" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="row  mb-3">
                                 <label class="form-label">TELEFONE</label>
-                                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
+                                <input type="text" name="telefone"  oninput="mascara(this, 'tel')"  class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
                             </div>
-                            <div class="mb-3">
+                            <div class="row  mb-3">
                                 <label class="form-label">CNPJ</label>
-                                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
+                                <input type="text" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
                             </div>
 
-                            <button class="btn btn-primary" id="salvar">SALVAR</button>
+                            <button class="btn btn-dark" id="salvar">SALVAR</button>
                         </form>
                     </section>
                 <?php }
@@ -209,6 +206,8 @@ $fornecedores = new FornecedoresController();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
+    <script src="./../../../public/js/mascara.js"></script>
 </body>
 
 </html>
