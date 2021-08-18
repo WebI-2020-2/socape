@@ -37,7 +37,100 @@ $fornecedores = new FornecedoresController();
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o fornecedor!");</script>';
             }
             ?>
+            <div class="py-5 bg-light vh-100">
+                <?php if (isset($_GET["id"])) {
+                    if ($fornecedores->findOne($_GET["id"])) {
+                        $fornecedor = $fornecedores->findOne($_GET["id"]);
+                        if ($_POST) {
+                            $data = $_POST;
+                
+                            $err = FALSE;
+            
+                            if (!$data['nome']) {
+                                echo
+                                    '<script>
+                                        alert("Informe o nome do Fornecedor!");
+                                    </script>';
+                                $err = TRUE;
+                            }
+                            if (!$data['endereco']) {
+                                echo
+                                    '<script>
+                                        alert("Informe o endereço!");
+                                    </script>';
+                                $err = TRUE;
+                            }
+                            if (!$data['telefone']) {
+                                echo
+                                    '<script>
+                                        alert("Informe o telefone!");
+                                    </script>';
+                                $err = TRUE;
+                            }
+                            if (!$data['cnpj']) {
+                                echo
+                                    '<script>
+                                        alert("Informe o CNPJ");
+                                    </script>';
+                                $err = TRUE;
+                            }
+                
+                            if (!$err) {
+                                try {
+                                    $fornecedores->update(
+                                        $fornecedor->getIdfornecedor(),
+                                        $data['nome'],
+                                        $data['endereco'],
+                                        $data['telefone'],
+                                        $data['cnpj']
+                                    );
+                                    
+                                    echo
+                                    '<script>
+                                        alert("Fornecedor atualizado com sucesso!");
+                                        window.location.href = "../consulta/fornecedor.php";
+                                    </script>';
+                                
+                                } catch (PDOException $e) {
+                                    echo $e->getMessage();
+                                }
+                            }
+                        }
+            ?>
+                    <section class="d-flex justify-content-left align-items-left text-light">
+                        <div class="row">
+                            <div class="col">
+                                <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-danger" onclick="deletar('<?= $fornecedor->getIdfornecedor(); ?>', '<?= $fornecedor->getNome() ?>')">APAGAR</button>
+                            </div>
+                        </div>
+                        
+                        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
+                        <form id="form" style="margin-left: 25%" action="" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">NOME</label>
+                                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ENDEREÇO</label>
+                                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">TELEFONE</label>
+                                <input style="width: 130%" type="number" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">CNPJ</label>
+                                <input style="width: 130%" type="number" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
+                            </div>
 
+                            <button style="margin-left: 90%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="salvar">SALVAR</button>
+                        </form>
+                    </section>
+                <?php }
+            } else { ?>
             <section class="container-fluid text-dark">
                 <div class="row">
                     <div class="col mb-3">
@@ -74,8 +167,8 @@ $fornecedores = new FornecedoresController();
                                 <td><?= $obj->getCnpj(); ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="./visualizarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>">VISUALIZAR</a>
-                                        <a class="btn btn-danger" href="../../views/editar/editarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>">EDITAR</a>
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdfornecedor(); ?>">VISUALIZAR</a>
+                                        <a class="btn btn-danger" href="?id=<?= $obj->getIdfornecedor(); ?>">EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
                                     </div>
                                 </td>
@@ -83,6 +176,7 @@ $fornecedores = new FornecedoresController();
                         <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
             </div>
         </div>
     </main>
