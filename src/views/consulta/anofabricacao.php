@@ -37,7 +37,61 @@ $fabricacoes = new FabricacaoController();
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o ano de fabricação!");</script>';
             }
             ?>
-
+            <div class="py-5 bg-light vh-100">
+            <?php if (isset($_GET["id"])) {
+                if ($fabricacoes->findOne($_GET["id"])) {
+                    $fabricacao = $fabricacoes->findOne($_GET["id"]);
+                    if ($_POST) {
+                        $data = $_POST;
+                        
+                        $err = FALSE;
+            
+                        if (!$data['ano']) {
+                            echo
+                            '<script>
+                             alert("Informe o ano de Fabricação!");
+                            </script>';
+                            $err = TRUE;
+                        }
+            
+                        if (!$err) {
+                            try {
+                                $fabricacoes->update(
+                                    $fabricacao->getIdfabricacao(),
+                                    $data['ano']
+                                );
+            
+                                echo
+                                '<script>
+                                    alert("Ano de Fabricação atualizado com sucesso!");
+                                    window.location.href = "../consulta/anofabricacao.php";
+                                </script>';
+                            } catch (PDOException $err) {
+                                echo $err->getMessage();
+                            }
+                        }
+                    }
+                    ?>
+                        <div class="row">
+                            <div class="col">
+                                <a href="./anofabricacao.php" class="btn btn-primary">VOLTAR</a>
+                            </div>
+                        </div>
+                        <section class="container text-start text-dark">
+                            <form id="form" method="POST" action="" >
+                                <div class="row">
+                                    <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                        <label for="ano" class="form-label black-text">ANO DE FABRICAÇÃO</label>
+                                        <input type="text" id="ano" name="ano" value="<?= $fabricacao->getAno(); ?>" maxlength="4" class="form-control" placeholder="ANO DE FABRICAÇÃO" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                        <button type="submit" class="btn btn-dark">SALVAR</button>
+                                    </div>
+                            </form>
+                        </section>
+                <?php }
+            } else { ?>
             <section class="container-fluid text-dark">
                 <div class="row">
                     <div class="col mb-3">
@@ -68,7 +122,7 @@ $fabricacoes = new FabricacaoController();
                                 <td><?= $obj->getAno() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="../../views/editar/editarFabricacao.php?id=<?= $obj->getIdfabricacao() ?>">VISUALIZAR/EDITAR</a>
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdfabricacao() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
                                     </div>
                                 </td>
@@ -76,6 +130,8 @@ $fabricacoes = new FabricacaoController();
                         <?php } ?>
                     </tbody>
                 </table>
+                </table>
+                <?php } ?>
             </div>
         </div>
     </main>

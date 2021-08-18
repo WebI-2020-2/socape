@@ -57,7 +57,7 @@ class ValvulasController extends Valvulas
         $query = "UPDATE $this->tabela SET quantidade = :quantidade WHERE idvalvulas = :idvalvulas";
         $stm = Database::prepare($query);
         $stm->bindParam(':idvalvulas', $idvalvulas, PDO::PARAM_INT);
-        $stm->bindValue(':quantidade', $quantidade);
+        $stm->bindParam(':quantidade', $quantidade);
 
         return $stm->execute();
     }

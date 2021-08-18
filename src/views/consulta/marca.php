@@ -38,10 +38,64 @@ $marcas = new MarcasController();
             }
             ?>
 
+        <div class="py-5 bg-light vh-100">
+            <?php if (isset($_GET["id"])) {
+                if ($marcas->findOne($_GET["id"])) {
+                    $marca = $marcas->findOne($_GET["id"]);
+                    
+                    if ($_POST) {
+                        $data = $_POST;
+            
+                        $err = FALSE;
+            
+                        if (!$data['marca']) {
+                            echo
+                                '<script>
+                                    alert("Informe a marca do produto!");
+                                </script>';
+                            $err = TRUE;
+                        }
+            
+                        if (!$err) {
+                            try {
+                                $marcas->update(
+                                    $marca->getIdmarca(),
+                                    $data['marca']
+                                );
+            
+                                echo
+                                '<script>
+                                    alert("Marca atualizada com sucesso!");
+                                    window.location.href = "../consulta/marca.php";
+                                </script>';
+                            } catch (PDOException $err) {
+                                echo $err->getMessage();
+                            }
+                        }
+                    }
+                    ?>
+                        <div class="row">
+                            <div class="col">
+                                <a href="./marca.php" class="btn btn-primary">VOLTAR</a>
+                            </div>
+                        </div>
+                        <form method="POST" action="" id="form">
+                <div class="row">
+                    <div class="col-6 col-md-4 col-sm-12 mb-3">
+                        <label for="marca" class="form-label black-text dark">MARCA</label>
+                        <input type="text" id="marca" name="marca" value="<?= $marca->getMarca(); ?>"  class="form-control" placeholder="MARCA" autocomplete="off" required>
+                    </div>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-dark">SALVAR</button>
+                    </div>
+                    </form>
+                    <?php }
+            } else { ?>
             <section class="container-fluid text-dark">
                 <div class="row">
                     <div class="col mb-3">
-                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..." aria-describedby="Help">
+                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..." aria-describedby="Help">
                         <div id="Help" class="form-text">Digite a marca...</div>
                     </div>
                     <div class="col mb-3">
@@ -68,14 +122,15 @@ $marcas = new MarcasController();
                                 <td><?= $obj->getMarca() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="../../views/editar/editarMarca.php?id=<?= $obj->getIdmarca() ?>">VISUALIZAR/EDITAR</a>
-                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdmarca() ?>">VISUALIZAR/EDITAR</a>
                                     </div>
                                 </td>
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
+                </div>
             </div>
         </div>
     </main>

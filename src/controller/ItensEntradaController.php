@@ -89,13 +89,13 @@ class ItensEntradaController extends ItensEntrada
         unidade = :unidade, ipi = :ipi, frete = :frete, icms = :icms WHERE iditensentrada = :iditensentrada";
         $stm = Database::prepare($query);
         $stm->bindParam(':iditensentrada', $iditensentrada, PDO::PARAM_INT);
-        $stm->bindValue(':idproduto', $this->getIdproduto());
-        $stm->bindValue(':precocompra', $this->getPrecocompra());
-        $stm->bindValue(':quantidade', $this->getQuantidade());
-        $stm->bindValue(':unidade', $this->getUnidade());
-        $stm->bindValue(':ipi', $this->getIpi());
-        $stm->bindValue(':frete', $this->getFrete());
-        $stm->bindValue(':icms', $this->getIcms());
+        $stm->bindParam(':idproduto', $this->getIdproduto());
+        $stm->bindParam(':precocompra', $this->getPrecocompra());
+        $stm->bindParam(':quantidade', $this->getQuantidade());
+        $stm->bindParam(':unidade', $this->getUnidade());
+        $stm->bindParam(':ipi', $this->getIpi());
+        $stm->bindParam(':frete', $this->getFrete());
+        $stm->bindParam(':icms', $this->getIcms());
 
         return $stm->execute();
     }

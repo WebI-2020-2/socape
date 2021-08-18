@@ -57,7 +57,7 @@ class LocalizacaoController extends Localizacao
         $query = "UPDATE $this->tabela SET departamento = :departamento WHERE idlocalizacao = :idlocalizacao";
         $stm = Database::prepare($query);
         $stm->bindParam(':idlocalizacao', $idlocalizacao, PDO::PARAM_INT);
-        $stm->bindValue(':departamento', $departamento);
+        $stm->bindParam(':departamento', $departamento);
 
         return $stm->execute();
     }

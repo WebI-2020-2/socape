@@ -37,7 +37,61 @@ $carros = new CarroController();
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o modelo do carro!");</script>';
             }
             ?>
-
+            
+        <div class="py-5 bg-light vh-100">
+            <?php if (isset($_GET["id"])) {
+                if ($carros->findOne($_GET["id"])) {
+                    $carro = $carros->findOne($_GET["id"]);
+                    
+                    if ($_POST) {
+                        $data = $_POST;
+            
+                        $err = FALSE;
+        
+                        if (!$data['modelo']) {
+                            echo
+                            '<script>
+                                alert("Informe o modelo do carro!");
+                            </script>';
+                            $err = TRUE;
+                        }
+        
+                        if (!$err) {
+                            try {
+                                $carros->update(
+                                    $carro->getIdcarro(),
+                                    $data['modelo']
+                                );
+        
+                                echo
+                                '<script>
+                                    alert("Modelo de carro atualizado com sucesso!");
+                                    window.location.href = "../consulta/carro.php";
+                                </script>';
+                            } catch (PDOException $err) {
+                                echo $err->getMessage();
+                            }
+                        }
+                    }
+                    ?>
+                        <div class="row">
+                            <div class="col">
+                                <a href="./carro.php" class="btn btn-primary">VOLTAR</a>
+                            </div>
+                        </div>
+                        <form method="POST" >
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="modelo" class="form-label black-text">MODELO</label>
+                            <input type="text" id="modelo" name="modelo" value="<?= $carro->getModelo(); ?>" maxlength="30" class="form-control" placeholder="MODELO" autocomplete="off" required>
+                        </div> 
+                    </div>
+                    <div class="text-end">
+                                <button type="submit" class="btn btn-dark">SALVAR</button>
+                        </div>
+                    </form>
+                    <?php }
+            } else { ?>
             <section class="container-fluid text-dark">
                 <div class="row">
                     <div class="col mb-3">
@@ -68,7 +122,7 @@ $carros = new CarroController();
                                 <td><?= $obj->getModelo() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="../../views/editar/editarCarro.php?id=<?= $obj->getIdcarro() ?>">VISUALIZAR/EDITAR</a>
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdcarro() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
                                     </div>
                                 </td>
@@ -76,6 +130,8 @@ $carros = new CarroController();
                         <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
+                </div>
             </div>
         </div>
     </main>

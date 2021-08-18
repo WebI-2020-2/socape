@@ -158,14 +158,12 @@ $motores = new MotorController();
                 $idmarca = isset($_POST["idmarca"]) ? $_POST["idmarca"] : null;
                 $idlocalizacao = isset($_POST["idlocalizacao"]) ? $_POST["idlocalizacao"] : null;
                 $referencia = isset($_POST["referencia"]) ? $_POST["referencia"] : null;
-                $descricao = isset($_POST["descricao"]) ? $_POST["descricao"] : null;
 
-                foreach ($produtos->findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia, $descricao) as $obj) { ?>
+                foreach ($produtos->findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia) as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIdproduto() ?></td>
                         <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
                         <td><?= $obj->getReferencia() ?></td>
-                        <td><?= $obj->getDescricao() ?></td>
                         <td><?= $obj->getQuantidade() ?></td>
                         <td><?= $obj->getValorvenda() ?></td>
                         <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>

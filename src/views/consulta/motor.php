@@ -38,6 +38,61 @@ $motores = new MotorController();
             }
             ?>
 
+        <div class="py-5 bg-light vh-100">
+            <?php if (isset($_GET["id"])) {
+                if ($motores->findOne($_GET["id"])) {
+                    $motor = $motores->findOne($_GET["id"]);
+                    if ($_POST) {
+                        $data = $_POST;
+                        
+                        $err = FALSE;
+            
+                        if (!$data['potencia']) {
+                            echo
+                                '<script>
+                                    alert("Informe a potência do motor!");
+                                </script>';
+                            $err = TRUE;
+                        }
+            
+                        if (!$err) {
+                            try {
+                                $motores->update(
+                                    $motor->getIdmotor(),
+                                    $data['potencia']
+                                );
+            
+                                echo
+                                '<script>
+                                    alert("Potência de motor atualizado com sucesso!");
+                                    window.location.href = "../consulta/motor.php";
+                                </script>';
+                            } catch (PDOException $err) {
+                                echo $err->getMessage();
+                            }
+                        }
+                    }
+                    ?>
+                        <div class="row">
+                            <div class="col">
+                                <a href="./motor.php" class="btn btn-primary">VOLTAR</a>
+                            </div>
+                        </div>
+                <section class="container text-start text-dark">
+                <form  id="form" action="" method="POST">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="potencia" class="form-label black-text">POTÊNCIA DO MOTOR</label>
+                            <input  type="number" id="potencia" name="potencia" value="<?= $motor->getPotencia() ?>" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                            <button type="submit" class="btn btn-dark">SALVAR</button>
+                        </div>
+                </form>
+                <?php }
+            } else { ?>
+            </section>
             <section class="container-fluid text-dark">
                 <div class="row">
                     <div class="col mb-3">
@@ -68,7 +123,7 @@ $motores = new MotorController();
                                 <td><?= $obj->getPotencia() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="../../views/editar/editarMotor.php?id=<?= $obj->getIdmotor() ?>">VISUALIZAR/EDITAR</a>
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdmotor() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
                                     </div>
                                 </td>
@@ -76,6 +131,8 @@ $motores = new MotorController();
                         <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
+                </div>
             </div>
         </div>
     </main>
@@ -91,7 +148,7 @@ $motores = new MotorController();
                     },
                     success: (res) => {
                         if (res["status"]) {
-                            alert("Potência de motor excluída com sucesso!");
+                            alert("Potência de motor elcluída com sucesso!");
                             window.location.href = './motor.php';
                         } else {
                             alert(res["msg"]);

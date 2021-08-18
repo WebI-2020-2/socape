@@ -100,10 +100,7 @@ $fornecedores = new FornecedoresController();
                     <section class="d-flex justify-content-left align-items-left text-light">
                         <div class="row">
                             <div class="col">
-                                <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
-                            </div>
-                            <div class="col">
-                                <button class="btn btn-danger" onclick="deletar('<?= $fornecedor->getIdfornecedor(); ?>', '<?= $fornecedor->getNome() ?>')">APAGAR</button>
+                                <a href="./fornecedor.php" class="btn btn-primary">VOLTAR</a>
                             </div>
                         </div>
                         
@@ -119,11 +116,11 @@ $fornecedores = new FornecedoresController();
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">TELEFONE</label>
-                                <input style="width: 130%" type="number" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
+                                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">CNPJ</label>
-                                <input style="width: 130%" type="number" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
+                                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
                             </div>
 
                             <button style="margin-left: 90%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="salvar">SALVAR</button>
@@ -167,7 +164,7 @@ $fornecedores = new FornecedoresController();
                                 <td><?= $obj->getCnpj(); ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="./visualizarFornecedor.php?id=<?= $obj->getIdfornecedor(); ?>">VISUALIZAR/EDITAR</a>
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdfornecedor(); ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
                                     </div>
                                 </td>

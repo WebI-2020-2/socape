@@ -37,6 +37,62 @@ $localizacoes = new LocalizacaoController();
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o departamento!");</script>';
             }
             ?>
+
+        <div class="py-5 bg-light vh-100">
+            <?php if (isset($_GET["id"])) {
+                if ($localizacoes->findOne($_GET["id"])) {
+                    $localizacao = $localizacoes->findOne($_GET["id"]);
+
+                    if ($_POST) {
+                        $data = $_POST;
+        
+                        $err = FALSE;
+        
+                        if (!$data['departamento']) {
+                            echo
+                                '<script>
+                                    alert("Informe o departamento!");
+                                </script>';
+                            $err = TRUE;
+                        }
+        
+                        if (!$err) {
+                            try {
+                                $localizacoes->update(
+                                    $localizacao->getIdlocalizacao(),
+                                    $data['departamento']
+                                );
+        
+                                echo
+                                '<script>
+                                    alert("Departamento atualizado com sucesso!");
+                                    window.location.href = "../consulta/localizacao.php";
+                                </script>';
+                                
+                            } catch (PDOException $err) {
+                                echo $err->getMessage();
+                            }
+                        }
+                    }
+                    ?>
+                        <div class="row">
+                            <div class="col">
+                                <a href="./localizacao.php" class="btn btn-primary">VOLTAR</a>
+                            </div>
+                        </div>
+                            <form method="POST" action="" id="form">
+                            <div class="row">
+                                <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                    <label for="departamento" class="form-label black-text">LOCALIZAÇÃO</label>
+                                    <input type="text" name="departamento" id="departamento" value="<?= $localizacao->getDepartamento(); ?>"class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                    <button type="submit" class="btn btn-dark">SALVAR</button>
+                                </div>
+                        </form>
+                    <?php }
+            } else { ?>
             <section class="container-fluid text-dark">
                 <div class="row">
                     <div class="col mb-3">
@@ -67,7 +123,7 @@ $localizacoes = new LocalizacaoController();
                                 <td><?= $obj->getDepartamento() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="../../views/editar/editarLocalizacao.php?id=<?= $obj->getIdlocalizacao() ?>">VISUALIZAR/EDITAR</a>
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdlocalizacao() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
                                     </div>
                                 </td>
@@ -75,6 +131,8 @@ $localizacoes = new LocalizacaoController();
                         <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
+                </div>
             </div>
         </div>
     </main>
