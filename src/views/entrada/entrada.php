@@ -49,16 +49,16 @@ $produtos = new ProdutosController();
 
                     $entrada = $entradas->findOne($_GET["identrada"]);
                     $fornecedor = $fornecedores->findOne($entrada->getIdfornecedor());
-                    
+
                     if ($_POST) {
                         $data = $_POST;
-        
+
                         $itemEntrada = new ItensEntradaController();
 
                         $err = FALSE;
-        
+
                         $msg = "";
-        
+
                         if (!$data['idproduto']) {
                             $msg .= 'Informe o produto!';
                             $err = TRUE;
@@ -90,7 +90,7 @@ $produtos = new ProdutosController();
                             $msg .= '\nInforme o ICMS!';
                             $err = TRUE;
                         }
-        
+
                         if ($err) {
                             echo "
                                 <script>
@@ -109,7 +109,7 @@ $produtos = new ProdutosController();
                                     $data['frete'],
                                     $data['icms']
                                 );
-        
+
                                 echo
                                 '<script>
                                     alert("Item inserido!");
@@ -120,17 +120,17 @@ $produtos = new ProdutosController();
                             }
                         }
                     }
-                    ?>
+            ?>
                     <section class="d-flex justify-content-left align-items-left text-light">
                         <div class="row">
                             <div class="col">
                                 <a href="./entrada.php" class="btn btn-primary">VOLTAR</a>
                             </div>
-                            <div class="col"> 
+                            <div class="col">
                             </div>
                         </div>
                     </section>
-                    <section class="container text-dark mb-5" >
+                    <section class="container text-dark mb-5">
                         <div class="row mb-3 d-flex">
                             <p class="display-6 ms-auto">INFORMAÇÕES DO FORNECEDOR</p>
                         </div>
@@ -162,18 +162,18 @@ $produtos = new ProdutosController();
                                 <div class="col-6 col-md-10 col-sm-12 mb-3">
                                     <label for="idproduto" class="form-label black-text">PRODUTO</label>
                                     <?php
-                                        $inputProduto = "";
-                                        if (isset($_GET['idproduto'])) {
-                                            $produto = $produtos->findOne($_GET['idproduto']);
-                                            $inputProduto = "Produto selecionado: " . $produto->getReferencia();
-                                        }
+                                    $inputProduto = "";
+                                    if (isset($_GET['idproduto'])) {
+                                        $produto = $produtos->findOne($_GET['idproduto']);
+                                        $inputProduto = "Produto selecionado: " . $produto->getReferencia();
+                                    }
                                     ?>
                                     <input type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
-                                    <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required >
-                                    
+                                    <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required>
+
                                 </div>
                                 <div class="col-6 col-md-2 col-sm-12 mb-3">
-                                    <a  class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                                    <a class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                                         PESQUISAR
                                     </a>
                                 </div>
@@ -181,7 +181,7 @@ $produtos = new ProdutosController();
                             <div class="row">
                                 <div class="col-6 col-md-4 col-sm-12 mb-3">
                                     <label for="precoCompra" class="form-label black-text">PREÇO COMPRA</label>
-                                    <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>                          
+                                    <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>
                                 </div>
                                 <div class="col-6 col-md-4 col-sm-12 mb-3">
                                     <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
@@ -201,33 +201,33 @@ $produtos = new ProdutosController();
                                         ";
                                     }
                                     ?>
-                                    <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE" required>                          
+                                    <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE" required>
                                 </div>
                                 <div class="col-6 col-md-4 col-sm-12 mb-3">
                                     <label for="unidade" class="form-label black-text">UNIDADE</label>
-                                    <input name="unidade" id="unidade" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">                         
+                                    <input name="unidade" id="unidade" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-4 col-sm-12 mb-3">
                                     <label for="ipi" class="form-label black-text">IPI</label>
-                                    <input type="number" min="0" id="ipi" name="ipi" class="form-control" type="text" placeholder="IPI" required>          
+                                    <input type="number" min="0" id="ipi" name="ipi" class="form-control" type="text" placeholder="IPI" required>
                                 </div>
                                 <div class="col-6 col-md-4 col-sm-12 mb-3">
                                     <label for="frete" class="form-label black-text">FRETE</label>
-                                    <input type="number" min="0" id="frete" name="frete" class="form-control" type="text" placeholder="FRETE" required>         
+                                    <input type="number" min="0" id="frete" name="frete" class="form-control" type="text" placeholder="FRETE" required>
                                 </div>
                                 <div class="col-6 col-md-4 col-sm-12 mb-3">
                                     <label for="icms" class="form-label black-text">ICMS</label>
-                                    <input type="number" min="0" id="icms" name="icms" class="form-control" type="text" placeholder="ICMS" required>         
+                                    <input type="number" min="0" id="icms" name="icms" class="form-control" type="text" placeholder="ICMS" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 text-end col-sm-6 mb-3">
-                                    <button id="inserir" class="btn btn-primary">INSERIR</button>    
+                                    <button id="inserir" class="btn btn-primary">INSERIR</button>
                                 </div>
-                            </div> 
-                    
+                            </div>
+
                             <div class="row">
                                 <div class="col-6 col-md-4 col-sm-12 mb-3">
                                     <label for="valorTotal" class="form-label black-text">VALOR TOTAL</label>
@@ -238,55 +238,63 @@ $produtos = new ProdutosController();
                     </section>
                 <?php }
             } else { ?>
-                <section class="d-flex justify-content-center align-items-center text-dark">
-                    <form id="realizarEntrada" method="POST" action="./realizarEntrada.php">
-                        <div class="row">    
-                            <div class="col mb-3">
-                                <label for="barraPesquisa" class="form-label black-text">FORNECEDOR</label>
-                                <input type="text" placeholder="FORNECEDOR" class="form-control" id="barraPesquisa" aria-describedby="fornecedorHelp">
-                                <input id="idfornecedor" name="idfornecedor" type="hidden" required>
-                                <div id="fornecedorHelp" class="form-text">Digite o nome do fornecedor e selecione-o na lista.</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col d-flex justify-content-end mb-3">
-                                <button type="submit" class="btn btn-primary">DAR ENTRADA</button>
-                            </div>
-                        </div>
-                    </form>
-                </section>
 
-            <div class="table-responsive-lg">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">FORNECEDOR</th>
-                            <th scope="col">VALOR TOTAL</th>
-                            <th scope="col">DATA</th>
-                            <th scope="col">AÇÕES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($entradas->findAll() as $obj) { ?>
-                            <tr>
-                                <td><?= $obj->getIdentrada(); ?></td>
-                                <td><?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?></td>
-                                <td>R$<?= $obj->getValortotalnota(); ?></td>
-                                <td><?= strftime('%d de %b de %Y', strtotime($obj->getDataCompra())); ?></td>
-                                <td>
-                                    <a class="btn btn-danger" href="?identrada=<?= $obj->getIdentrada(); ?>">EDITAR</a>
-                                    <button class="btn btn-dark" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?>')">APAGAR</button>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-                <?php } ?>
-            </div>
-        </div>
+                <div class="py-5 bg-light vh-100">
+                    <?php
+                    if (isset($_GET['msg'])) {
+                        if ($_GET['msg'] == 1) echo '<script>alert("Informe o fornecedor!");</script>';
+                        if ($_GET['msg'] == 2) echo '<script>alert("Entrada finalizada!");</script>';
+                    }
+                    ?>
+                    <section class="d-flex justify-content-center align-items-center text-dark">
+                        <form id="realizarEntrada" method="POST" action="./realizarEntrada.php">
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <label for="barraPesquisa" class="form-label black-text">FORNECEDOR</label>
+                                    <input type="text" placeholder="FORNECEDOR" class="form-control" id="barraPesquisa" aria-describedby="fornecedorHelp">
+                                    <input id="idfornecedor" name="idfornecedor" type="hidden" required>
+                                    <div id="fornecedorHelp" class="form-text">Digite o nome do fornecedor e selecione-o na lista.</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col d-flex justify-content-end mb-3">
+                                    <button type="submit" class="btn btn-primary">DAR ENTRADA</button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+                    <div class="table-responsive-lg">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">FORNECEDOR</th>
+                                    <th scope="col">VALOR TOTAL</th>
+                                    <th scope="col">DATA</th>
+                                    <th scope="col">AÇÕES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($entradas->findAll() as $obj) { ?>
+                                    <tr>
+                                        <td><?= $obj->getIdentrada(); ?></td>
+                                        <td><?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?></td>
+                                        <td>R$<?= $obj->getValortotalnota(); ?></td>
+                                        <td><?= strftime('%d de %b de %Y', strtotime($obj->getDataCompra())); ?></td>
+                                        <td>
+                                            <a class="btn btn-danger" href="?identrada=<?= $obj->getIdentrada(); ?>">EDITAR</a>
+                                            <button class="btn btn-dark" onclick="deletar('<?= $obj->getIdentrada() ?>', '<?= $fornecedores->findOne($obj->getIdfornecedor())->getNome(); ?>')">APAGAR</button>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php } ?>
+                    </div>
+                </div>
     </main>
-   
+
     <script type="text/javascript">
         $(document).ready(function() {
             $.getJSON('./retornaFornecedor.php', function(data) {
