@@ -37,65 +37,65 @@ $fornecedores = new FornecedoresController();
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o fornecedor!");</script>';
             }
             ?>
-            <div class="py-5 bg-light vh-100">
-                <?php if (isset($_GET["id"])) {
-                    if ($fornecedores->findOne($_GET["id"])) {
-                        $fornecedor = $fornecedores->findOne($_GET["id"]);
-                        if ($_POST) {
-                            $data = $_POST;
-                
-                            $err = FALSE;
-            
-                            if (!$data['nome']) {
+
+            <?php if (isset($_GET["id"])) {
+                if ($fornecedores->findOne($_GET["id"])) {
+                    $fornecedor = $fornecedores->findOne($_GET["id"]);
+
+                    if ($_POST) {
+                        $data = $_POST;
+
+                        $err = FALSE;
+
+                        if (!$data['nome']) {
+                            echo
+                            '<script>
+                                alert("Informe o nome do Fornecedor!");
+                            </script>';
+                            $err = TRUE;
+                        }
+                        if (!$data['endereco']) {
+                            echo
+                            '<script>
+                                alert("Informe o endereço!");
+                            </script>';
+                            $err = TRUE;
+                        }
+                        if (!$data['telefone']) {
+                            echo
+                            '<script>
+                                alert("Informe o telefone!");
+                            </script>';
+                            $err = TRUE;
+                        }
+                        if (!$data['cnpj']) {
+                            echo
+                            '<script>
+                                alert("Informe o CNPJ");
+                            </script>';
+                            $err = TRUE;
+                        }
+
+                        if (!$err) {
+                            try {
+                                $fornecedores->update(
+                                    $fornecedor->getIdfornecedor(),
+                                    $data['nome'],
+                                    $data['endereco'],
+                                    $data['telefone'],
+                                    $data['cnpj']
+                                );
+
                                 echo
-                                    '<script>
-                                        alert("Informe o nome do Fornecedor!");
-                                    </script>';
-                                $err = TRUE;
-                            }
-                            if (!$data['endereco']) {
-                                echo
-                                    '<script>
-                                        alert("Informe o endereço!");
-                                    </script>';
-                                $err = TRUE;
-                            }
-                            if (!$data['telefone']) {
-                                echo
-                                    '<script>
-                                        alert("Informe o telefone!");
-                                    </script>';
-                                $err = TRUE;
-                            }
-                            if (!$data['cnpj']) {
-                                echo
-                                    '<script>
-                                        alert("Informe o CNPJ");
-                                    </script>';
-                                $err = TRUE;
-                            }
-                
-                            if (!$err) {
-                                try {
-                                    $fornecedores->update(
-                                        $fornecedor->getIdfornecedor(),
-                                        $data['nome'],
-                                        $data['endereco'],
-                                        $data['telefone'],
-                                        $data['cnpj']
-                                    );
-                                    
-                                    echo
-                                    '<script>
-                                        alert("Fornecedor atualizado com sucesso!");
-                                        window.location.href = "../consulta/fornecedor.php";
-                                    </script>';
-                                
-                                } catch (PDOException $e) {
-                                    echo $e->getMessage();
-                                }
+                                '<script>
+                                    alert("Fornecedor atualizado com sucesso!");
+                                    window.location.href = "../consulta/fornecedor.php";
+                                </script>';
+                            } catch (PDOException $e) {
+                                echo $e->getMessage();
                             }
                         }
+                    }
             ?>
                     <section class="d-flex justify-content-left align-items-left text-light">
                         <div class="row">
@@ -103,77 +103,77 @@ $fornecedores = new FornecedoresController();
                                 <a href="./fornecedor.php" class="btn btn-primary">VOLTAR</a>
                             </div>
                         </div>
-                        
-                        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png" align="right">
+
+                        <img id="imagemFornecedor" src="./../../../public/imagens/caminhão.png">
                         <form id="form" style="margin-left: 25%" action="" method="post">
                             <div class="mb-3">
                                 <label class="form-label">NOME</label>
-                                <input style="width: 130%" type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
+                                <input type="text" name="nome" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">ENDEREÇO</label>
-                                <input style="width: 130%" type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
+                                <input type="text" name="endereco" class="form-control" placeholder="ENDEREÇO" value="<?= $fornecedor->getEndereco(); ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">TELEFONE</label>
-                                <input style="width: 130%" type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
+                                <input type="text" name="telefone" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">CNPJ</label>
-                                <input style="width: 130%" type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
+                                <input type="text" name="cnpj" class="form-control" placeholder="CNPJ" value="<?= $fornecedor->getCnpj(); ?>" required>
                             </div>
 
-                            <button style="margin-left: 90%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="salvar">SALVAR</button>
+                            <button class="btn btn-primary" id="salvar">SALVAR</button>
                         </form>
                     </section>
                 <?php }
             } else { ?>
-            <section class="container-fluid text-dark">
-                <div class="row">
-                    <div class="col mb-3">
-                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..." aria-describedby="Help">
-                        <div id="Help" class="form-text">Digite o fornecedor...</div>
-                    </div>
-                    <div class="col mb-3">
-                        <div class="float-end">
-                            <a class="btn btn-primary" href="../cadastro/fornecedor.php">NOVO CADASTRO</a>
+                <section class="container-fluid text-dark">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar fornecedor..." aria-describedby="fornecedorHelp">
+                            <div id="fornecedorHelp" class="form-text">Digite o nome do fornecedor...</div>
+                        </div>
+                        <div class="col mb-3">
+                            <div class="float-end">
+                                <a class="btn btn-primary" href="../cadastro/fornecedor.php">NOVO CADASTRO</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <div class="table-responsive-lg">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">NOME</th>
-                            <th scope="col">ENDEREÇO</th>
-                            <th scope="col">TELEFONE</th>
-                            <th scope="col">CNPJ</th>
-                            <th scope="col">AÇÕES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($fornecedores->findAll() as $obj) { ?>
+                <div class="table-responsive-lg">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <td><?= $obj->getIdfornecedor(); ?></td>
-                                <td><?= $obj->getNome(); ?></td>
-                                <td><?= $obj->getEndereco(); ?></td>
-                                <td><?= $obj->getTelefone(); ?></td>
-                                <td><?= $obj->getCnpj(); ?></td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdfornecedor(); ?>">VISUALIZAR/EDITAR</a>
-                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
-                                    </div>
-                                </td>
+                                <th scope="col">#</th>
+                                <th scope="col">NOME</th>
+                                <th scope="col">ENDEREÇO</th>
+                                <th scope="col">TELEFONE</th>
+                                <th scope="col">CNPJ</th>
+                                <th scope="col">AÇÕES</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-                <?php } ?>
-            </div>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($fornecedores->findAll() as $obj) { ?>
+                                <tr>
+                                    <td><?= $obj->getIdfornecedor(); ?></td>
+                                    <td><?= $obj->getNome(); ?></td>
+                                    <td><?= $obj->getEndereco(); ?></td>
+                                    <td><?= $obj->getTelefone(); ?></td>
+                                    <td><?= $obj->getCnpj(); ?></td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-primary" href="?id=<?= $obj->getIdfornecedor(); ?>">VISUALIZAR/EDITAR</a>
+                                            <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfornecedor(); ?>', '<?= $obj->getNome(); ?>')">APAGAR</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php } ?>
         </div>
     </main>
 
@@ -200,12 +200,10 @@ $fornecedores = new FornecedoresController();
         }
 
         $(document).ready(function() {
-
             $("#txtBusca").on("keyup", function() {
-
-                const value = $(this).val().toLowerCase();
+                const value = $(this).val().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
                 $("table tbody tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                    $(this).toggle($(this).text().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(value) > -1);
                 });
             });
         });

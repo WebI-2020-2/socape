@@ -11,7 +11,7 @@ if ($idcliente == 0) header("Location: ./venda.php?msg=1");
 
 try {
     $idvenda = $venda->insert($idcliente, date("Y-m-d"), 0);
-    header("Location: ./inserirItensVenda.php?idvenda=" . $idvenda);
+    header("Location: ./itensVenda.php?idvenda=" . $idvenda);
 } catch (PDOException $err) {
     echo $err->getMessage();
 }

@@ -64,6 +64,16 @@ class ItensVendaController extends ItensVenda
         return $itensvenda;
     }
 
+    public function countItensByIdVenda($idvenda)
+    {
+        $query = "SELECT SUM(QUANTIDADE) FROM $this->tabela WHERE idvenda = :idvenda";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':idvenda', $idvenda, PDO::PARAM_INT);
+        $stm->execute();
+
+        return intval($stm->fetchColumn());
+    }
+
     public function insert($idproduto, $idvenda, $quantidade, $valorvenda, $desconto)
     {
         $query = "INSERT INTO $this->tabela (idproduto, idvenda, quantidade, valorvenda, desconto, lucro) VALUES (:idproduto, :idvenda, :quantidade, :valorvenda, :desconto, :lucro)";
@@ -78,17 +88,17 @@ class ItensVendaController extends ItensVenda
         return $stm->execute();
     }
 
-    public function update($iditensvenda)
-     {
-         $query = "UPDATE $this->tabela SET idcliente = :idcliente, idformapagamento = :idformapagamento, data = :data, valortotal = :valortotal WHERE idvenda = :idvenda";
-         $stm = Database::prepare($query);
-         $stm->bindParam(':idvenda', $idvenda, PDO::PARAM_INT);
-         $stm->bindValue(':idcliente', $this->getIdcliente());
-         $stm->bindValue(':idformapagamento', $this->getIdformapagamento());
-         $stm->bindValue(':data', $this->getData());
-         $stm->bindValue(':valortotal', $this->getValortotal());
-         return $stm->execute();
-    }
+    // public function update($iditensvenda)
+    //  {
+    //      $query = "UPDATE $this->tabela SET idcliente = :idcliente, idformapagamento = :idformapagamento, data = :data, valortotal = :valortotal WHERE idvenda = :idvenda";
+    //      $stm = Database::prepare($query);
+    //      $stm->bindParam(':idvenda', $idvenda, PDO::PARAM_INT);
+    //      $stm->bindValue(':idcliente', $this->getIdcliente());
+    //      $stm->bindValue(':idformapagamento', $this->getIdformapagamento());
+    //      $stm->bindValue(':data', $this->getData());
+    //      $stm->bindValue(':valortotal', $this->getValortotal());
+    //      return $stm->execute();
+    // }
 
     public function delete($iditensvenda)
     {

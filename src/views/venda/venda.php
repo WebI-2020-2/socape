@@ -100,10 +100,17 @@ date_default_timezone_set('America/Sao_Paulo');
                                 <td><?= $forma; ?></td>
                                 <td><?= strftime('%d de %b de %Y', strtotime($obj->getData())); ?></td>
                                 <td><?= $obj->getStatus() == 0 ? 'EM ANDAMENTO' : 'FINALIZADA'; ?></td>
-                                <td><?= count($itensVenda->findAllByIdVenda($obj->getIdvenda())); ?></td>
-                                <td>R$<?= $obj->getValortotal(); ?></td>
+                                <td><?= $itensVenda->countItensByIdVenda($obj->getIdvenda()); ?></td>
+                                <td>R$<?= round($obj->getValortotal(), 2); ?></td>
                                 <td>
-                                    <button class="btn btn-danger" onclick="deletar('<?= $obj->getIdvenda(); ?>', '<?= $clientes->findOne($obj->getIdcliente())->getNome(); ?>')">APAGAR</button>
+                                    <div class="btn-group" role="group">
+                                        <?php if ($obj->getStatus() == 0) { ?>
+                                            <a class="btn btn-danger" href="itensVenda.php?idvenda=<?= $obj->getIdvenda(); ?>">FINALIZAR</a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-primary" href="itensVenda.php?idvenda=<?= $obj->getIdvenda(); ?>">VISUALIZAR</a>
+                                        <?php } ?>
+                                        <button class="btn btn-dark" onclick="deletar('<?= $obj->getIdvenda(); ?>', '<?= $clientes->findOne($obj->getIdcliente())->getNome(); ?>')">APAGAR</button>
+                                    </div>
                                 </td>
                             </tr>
                         <?php } ?>
