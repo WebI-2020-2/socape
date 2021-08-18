@@ -125,9 +125,6 @@ $motores = new MotorController();
                             <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" placeholder="PROCURAR POR REFERÊNCIA"  />
                     </div>                   
                 </div>
-                <label id="REFERÊNCIA">DESCRIÇÃO</label>
-                    <input style="margin-left: 28px;" class="form-control" type="text" name="descricao" placeholder="PROCURAR POR DESCRIÇÃO" />   
-
                 <div id="pesquisar" class="mb-3">
                     <input  class="btn btn-primary" type="submit" value="PESQUISAR"/>     
                 </div>
