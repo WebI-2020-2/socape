@@ -45,186 +45,186 @@ $produtos = new ProdutosController();
             </div>
         </section>
 
-        <div class="py-5 bg-light vh-100">
-        <?php
-        if ($_POST) {
-            $data = $_POST;
+        <div class="py-5 bg-light vh-130">
+            <?php
+            if ($_POST) {
+                $data = $_POST;
 
-            $itemEntrada = new ItensEntradaController();
+                $itemEntrada = new ItensEntradaController();
 
-            $err = FALSE;
+                $err = FALSE;
 
-            $msg = "";
+                $msg = "";
 
-            if (!$data['idproduto']) {
-                $msg .= 'Informe o produto!';
-                $err = TRUE;
-            }
-            if (!$data['precoCompra']) {
-                $msg .= '\nInforme o preço de compra!';
-                $err = TRUE;
-            }
-            if (!$data['quantidade']) {
-                $msg .= '\nInforme quantidade!';
-                $err = TRUE;
-            }
-            if (!$data['unidade']) {
-                $msg .= '\nInforme a unidade!';
-                $err = TRUE;
-            } else if (strlen($data['unidade']) > 2) {
-                $msg .= 'A unidade deve ter no máximo 2 caracteres!';
-                $err = TRUE;
-            }
-            if (!$data['ipi']) {
-                $msg .= '\nInforme o IPI!';
-                $err = TRUE;
-            }
-            if (!$data['frete']) {
-                $msg .= '\nInforme o frete!';
-                $err = TRUE;
-            }
-            if (!$data['icms']) {
-                $msg .= '\nInforme o ICMS!';
-                $err = TRUE;
-            }
+                if (!$data['idproduto']) {
+                    $msg .= 'Informe o produto!';
+                    $err = TRUE;
+                }
+                if (!$data['precoCompra']) {
+                    $msg .= '\nInforme o preço de compra!';
+                    $err = TRUE;
+                }
+                if (!$data['quantidade']) {
+                    $msg .= '\nInforme quantidade!';
+                    $err = TRUE;
+                }
+                if (!$data['unidade']) {
+                    $msg .= '\nInforme a unidade!';
+                    $err = TRUE;
+                } else if (strlen($data['unidade']) > 2) {
+                    $msg .= 'A unidade deve ter no máximo 2 caracteres!';
+                    $err = TRUE;
+                }
+                if (!$data['ipi']) {
+                    $msg .= '\nInforme o IPI!';
+                    $err = TRUE;
+                }
+                if (!$data['frete']) {
+                    $msg .= '\nInforme o frete!';
+                    $err = TRUE;
+                }
+                if (!$data['icms']) {
+                    $msg .= '\nInforme o ICMS!';
+                    $err = TRUE;
+                }
 
-            if ($err) {
-                echo "
-                    <script>
-                    alert('" . $msg . "');
-                    </script>
-                ";
-            } else {
-                try {
-                    $itemEntrada->insert(
-                        $entrada->getIdentrada(),
-                        $data['idproduto'],
-                        $data['precoCompra'],
-                        $data['quantidade'],
-                        $data['unidade'],
-                        $data['ipi'],
-                        $data['frete'],
-                        $data['icms']
-                    );
+                if ($err) {
+                    echo "
+                        <script>
+                        alert('" . $msg . "');
+                        </script>
+                    ";
+                } else {
+                    try {
+                        $itemEntrada->insert(
+                            $entrada->getIdentrada(),
+                            $data['idproduto'],
+                            $data['precoCompra'],
+                            $data['quantidade'],
+                            $data['unidade'],
+                            $data['ipi'],
+                            $data['frete'],
+                            $data['icms']
+                        );
 
-                    echo
-                    '<script>
-                        alert("Item inserido!");
-                        window.location.href = "./inserirItensEntrada.php?identrada=' . $entrada->getIdentrada() . '";
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                        echo
+                        '<script>
+                            alert("Item inserido!");
+                            window.location.href = "./inserirItensEntrada.php?identrada=' . $entrada->getIdentrada() . '";
+                        </script>';
+                    } catch (PDOException $err) {
+                        echo $err->getMessage();
+                    }
                 }
             }
-        }
-        ?>
-            <section class=" container text-dark mb-5" >
-                <div class="row mb-3 d-flex">
-                    <p class="display-6 ms-auto">INFORMAÇÕES DO FORNECEDOR</p>
-                </div>
-                <div class="row">
-                    <div class="col-6 col-md-3 col-sm-12 mb-3">
-                        <label for="nomeFornecedor" class="form-label black-text">NOME</label>
-                        <input type="text" id="nomeFornecedor" name="nome" class="form-control" value="<?= $fornecedor->getNome(); ?>" disabled>
+            ?>
+                <section class=" container text-dark mb-5" >
+                    <div class="row mb-3 d-flex">
+                        <p class="display-6 ms-auto">INFORMAÇÕES DO FORNECEDOR</p>
                     </div>
-                    <div class="col-6 col-md-3 col-sm-12 mb-3">
-                        <label for="enderecoFornecedor" class="form-label black-text">ENDEREÇO</label>
-                        <input type="text" id="enderecoFornecedor" name="endereço" class="form-control" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+                    <div class="row">
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="nomeFornecedor" class="form-label black-text">NOME</label>
+                            <input type="text" id="nomeFornecedor" name="nome" class="form-control" value="<?= $fornecedor->getNome(); ?>" disabled>
+                        </div>
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="enderecoFornecedor" class="form-label black-text">ENDEREÇO</label>
+                            <input type="text" id="enderecoFornecedor" name="endereço" class="form-control" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+                        </div>
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="telefoneFornecedor" class="form-label black-text">TELEFONE</label>
+                            <input type="text" id="telefoneFornecedor" name="telefone" class="form-control" value="<?= $fornecedor->getTelefone(); ?>" disabled>
+                        </div>
+                        <div class="col-6 col-md-3 col-sm-12 mb-3">
+                            <label for="cnpjFornecedor" class="form-label black-text">CNPJ</label>
+                            <input type="text" id="cnpjFornecedor" name="cnpj" class="form-control" value="<?= $fornecedor->getCnpj(); ?>" disabled>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-3 col-sm-12 mb-3">
-                        <label for="telefoneFornecedor" class="form-label black-text">TELEFONE</label>
-                        <input type="text" id="telefoneFornecedor" name="telefone" class="form-control" value="<?= $fornecedor->getTelefone(); ?>" disabled>
-                    </div>
-                    <div class="col-6 col-md-3 col-sm-12 mb-3">
-                        <label for="cnpjFornecedor" class="form-label black-text">CNPJ</label>
-                        <input type="text" id="cnpjFornecedor" name="cnpj" class="form-control" value="<?= $fornecedor->getCnpj(); ?>" disabled>
-                    </div>
-                </div>
-            </section>
-            <section class="container text-start text-dark ">
+                </section>
+                <section class="container text-start text-dark ">
                     <div class="row mb-3">
                         <p class="display-6 ms-auto">INSERIR ITENS</p>
                     </div>
-                    <div class="row align-items-end">
-                        <div class="col-6 col-md-10 col-sm-12 mb-3">
-                            <label for="idproduto" class="form-label black-text">PRODUTO</label>
-                            <?php
-                                $inputProduto = "";
-                                if (isset($_GET['idproduto'])) {
-                                    $produto = $produtos->findOne($_GET['idproduto']);
-                                    $inputProduto = "Produto selecionado: " . $produto->getReferencia();
-                                }
-                            ?>
-                            <input type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
-                            <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required >
-                            
+                    <form method="POST" id="inserirItensEntrada" action="">
+                        <div class="row align-items-end">
+                            <div class="col-6 col-md-10 col-sm-12 mb-3">
+                                <label for="idproduto" class="form-label black-text">PRODUTO</label>
+                                <?php
+                                    $inputProduto = "";
+                                    if (isset($_GET['idproduto'])) {
+                                        $produto = $produtos->findOne($_GET['idproduto']);
+                                        $inputProduto = "Produto selecionado: " . $produto->getReferencia();
+                                    }
+                                ?>
+                                <input type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
+                                <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required >
+                                
+                            </div>
+                            <div class="col-6 col-md-2 col-sm-12 mb-3">
+                                <a  class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                                    PESQUISAR
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-6 col-md-2 col-sm-12 mb-3">
-                            <a  class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?identrada=<?= $entrada->getIdentrada(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
-                                PESQUISAR
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="precoCompra" class="form-label black-text">PREÇO COMPRA</label>
-                            <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>                          
-                        </div>
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
-                            <?php if (isset($_GET['idproduto'])) {
-                                echo "
-                                    <small class='form-text text-muted'>Estoque: <span id='qtdEstoque'>" . $produto->getQuantidade() . "</span></small>
-                                    <script>
-                                        $(document).ready(function() {
-                                            $('#quantidade').change(function(){
-                                                var qtdEstoque = parseInt(" . $produto->getQuantidade() . ");
-                                                var qtdNova = parseInt($('#quantidade').val() != '' ? $('#quantidade').val() : 0);
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="precoCompra" class="form-label black-text">PREÇO COMPRA</label>
+                                <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>                          
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
+                                <?php if (isset($_GET['idproduto'])) {
+                                    echo "
+                                        <small class='form-text text-muted'>Estoque: <span id='qtdEstoque'>" . $produto->getQuantidade() . "</span></small>
+                                        <script>
+                                            $(document).ready(function() {
+                                                $('#quantidade').change(function(){
+                                                    var qtdEstoque = parseInt(" . $produto->getQuantidade() . ");
+                                                    var qtdNova = parseInt($('#quantidade').val() != '' ? $('#quantidade').val() : 0);
 
-                                                $('#qtdEstoque').text(qtdNova + qtdEstoque);
+                                                    $('#qtdEstoque').text(qtdNova + qtdEstoque);
+                                                });
                                             });
-                                        });
-                                    </script>
-                                ";
-                            }
-                            ?>
-                            <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE" required>                          
+                                        </script>
+                                    ";
+                                }
+                                ?>
+                                <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE" required>                          
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="unidade" class="form-label black-text">UNIDADE</label>
+                                <input name="unidade" id="unidade" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">                         
+                            </div>
                         </div>
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="unidade" class="form-label black-text">UNIDADE</label>
-                            <input name="unidade" id="unidade" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">                         
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="ipi" class="form-label black-text">IPI</label>
+                                <input type="number" min="0" id="ipi" name="ipi" class="form-control" type="text" placeholder="IPI" required>          
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="frete" class="form-label black-text">FRETE</label>
+                                <input type="number" min="0" id="frete" name="frete" class="form-control" type="text" placeholder="FRETE" required>         
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="icms" class="form-label black-text">ICMS</label>
+                                <input type="number" min="0" id="icms" name="icms" class="form-control" type="text" placeholder="ICMS" required>         
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="ipi" class="form-label black-text">IPI</label>
-                            <input type="number" min="0" id="ipi" name="ipi" class="form-control" type="text" placeholder="IPI" required>          
+                        <div class="row">
+                            <div class="col-6 col-md-12 text-end col-sm-6 mb-3">
+                                <button id="inserir" class="btn btn-primary">INSERIR</button>    
+                            </div>
+                        </div> 
+                
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="valorTotal" class="form-label black-text">VALOR TOTAL</label>
+                                <input class="form-control" id="valorTotal" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
+                            </div>
                         </div>
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="frete" class="form-label black-text">FRETE</label>
-                            <input type="number" min="0" id="frete" name="frete" class="form-control" type="text" placeholder="FRETE" required>         
-                        </div>
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="icms" class="form-label black-text">ICMS</label>
-                            <input type="number" min="0" id="icms" name="icms" class="form-control" type="text" placeholder="ICMS" required>         
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-md-12 col-sm-6 mb-3">
-                            <button id="inserir" class="btn btn-primary">INSERIR</button>    
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-6 col-md-6 col-sm-12 mb-3">
-                            <label for="valorTotal" class="form-label black-text">VALOR TOTAL</label>
-                            <input class="form-control" id="valorTotal" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
-                            
-                        </div>
-                    </div> 
-                </div>
-
+                </form>
             </section>
-
+        
             <div class="table-responsive-sm">
                 <table class="table table-hover">
                     <thead>
@@ -254,7 +254,7 @@ $produtos = new ProdutosController();
                                 <td><?= $obj->getFrete(); ?></td>
                                 <td><?= $obj->getIcms(); ?></td>
                                 <td>
-                                    <button class="btn btn-danger" onclick="deletar('<?= $obj->getIditensentrada() ?>', '<?= $fornecedor->getNome(); ?>')"">APAGAR</button>
+                                    <button class="btn btn-danger" onclick="deletar('<?= $obj->getIditensentrada() ?>', '<?= $fornecedor->getNome(); ?>')">APAGAR</button>
                                 </td>
                             </tr>
                         <?php } ?>

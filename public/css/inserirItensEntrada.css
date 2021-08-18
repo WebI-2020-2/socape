@@ -15,11 +15,6 @@ nav li a {
 color: #ffffff !important;
 }
 
-#containerentrada{
-    margin-top: 5px;
-    height: 130vh;
-    background-image: linear-gradient(to bottom, #272020, #8c1818);
-}
 
 input,
 select {
@@ -43,81 +38,5 @@ background-color: #ffffff;
 }
 
     /* FIM NAVEGAÇÃO */
-form{
-    width:52%;
-    margin-left:5%;
-    margin-top: 2%;
-}
-#pesquisar{
-    margin-left: 28px;
-    padding: 4px 15px 3px 15px;
-    border-radius: 50px;
-}
 
-@media (min-width: 1200px) { 
-    #valorTotal{
-        margin-top: 0%;
-        width: 55%; 
-    
-    }
-    #produto{
-        width:23.4%;
-    }
-    #titulo2{
-        text-align: left;
-        margin-top:3%;
-        margin-bottom:1%;
-        margin-left:10px;
-    }
-    #titulo3{
-        text-align: left;
-        margin-top:5%;
-        margin-bottom:0%;
-    }
 
-    #dadosFor{
-        width: 95%;
-        margin-top: 1px;
-        margin-bottom:20px;
-        margin-left: 20px;
-    }
-    #fornecedor{
-        background-image: linear-gradient(to bottom, #272020, #8c1818);
-        width: 173%;
-        border: double;
-    }
-    #textNome{
-        margin-left:1%;
-    }
-    #textTelefone{
-        margin-left:18.4%;
-    }
-    #texteEnd{
-        margin-left:20.4%;
-    }
-    #textCnpj{
-        margin-left:18%;
-    }
-    #dadosItens{
-        margin-top:4%;
-        margin-left: 1%;
-        
-    }
-    #inserir{
-        margin-left: 93%;
-        margin-top: 1%;
-    }
-    #textQuant{
-        margin-left:23.8%;
-    }
-    #textFrete{
-        margin-left:32%;
-    }
-    #textUnidade{
-        margin-left:25.3%;
-    }
-    #textIcms{
-        margin-left:30%;
-    }
-
-} 

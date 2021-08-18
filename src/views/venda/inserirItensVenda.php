@@ -39,72 +39,56 @@ $cliente = $clientes->findOne($venda->getIdcliente());
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
+    <main>
+        <section class="text-center container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">VENDA</h1>
+                </div>
+            </div>
+        </section>
 
-    <div id="containerentrada">
-        <h1>
-            <span class="badge bg-light text-dark">VENDA</span>
-        </h1>
+        <div class="py-5 bg-light vh-100">
+            <?php
+            if ($_POST) {
+                $data = $_POST;
 
-        <?php
-        if ($_POST) {
-            $data = $_POST;
+                $err = FALSE;
 
-            $err = FALSE;
-
-            if (!$data['idproduto']) {
-                echo
-                '<script>
-                    alert("Pesquise o produto!");
-                </script>';
-                $err = TRUE;
-            }
-            if (!$data['quantidade']) {
-                echo
-                '<script>
-                    alert("Informe a quantidade!");
-                </script>';
-                $err = TRUE;
-            }
-            if (!$data['valorvenda']) {
-                echo
-                '<script>
-                    alert("O valor da venda deve ser informado!");
-                </script>';
-                $err = TRUE;
-            }
-            if (!$data['desconto']) {
-                echo
-                '<script>
-                    alert("Informe o desconto!");
-                </script>';
-                $err = TRUE;
-            }
-            if (!$data['lucro']) {
-                echo
-                '<script>
-                    alert("O valor do lucro deve ser informado !");
-                </script>';
-                $err = TRUE;
-            }
-
-            if (!$err) {
-                try {
-                    $itensVenda->insert(
-                        $data['idproduto'],
-                        $venda->getIdvenda(),
-                        $data['quantidade'],
-                        $data['valorvenda'],
-                        $data['desconto'],
-                        $data['lucro']
-                    );
-
+                if (!$data['idproduto']) {
                     echo
                     '<script>
-                        alert("Item cadastrado com sucesso!");
-                        window.location.href = "./inserirItensVenda.php?idvenda=' . $venda->getIdvenda() . '";
+                        alert("Pesquise o produto!");
                     </script>';
-                } catch (PDOException $err) {
-                    if ($err->getCode() == "P0001") echo '<script>alert("Quantidade insuficiente em estoque!");</script>';
+                    $err = TRUE;
+                }
+                if (!$data['quantidade']) {
+                    echo
+                    '<script>
+                        alert("Informe a quantidade!");
+                    </script>';
+                    $err = TRUE;
+                }
+                if (!$data['valorvenda']) {
+                    echo
+                    '<script>
+                        alert("O valor da venda deve ser informado!");
+                    </script>';
+                    $err = TRUE;
+                }
+                if (!$data['desconto']) {
+                    echo
+                    '<script>
+                        alert("Informe o desconto!");
+                    </script>';
+                    $err = TRUE;
+                }
+                if (!$data['lucro']) {
+                    echo
+                    '<script>
+                        alert("O valor do lucro deve ser informado !");
+                    </script>';
+                    $err = TRUE;
                 }
             }
         }
@@ -152,18 +136,21 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     <?php if (isset($_GET['idproduto'])) {
                         echo "<small class='form-text text-muted'>Estoque: " . $produto->getQuantidade() . "</small>";
                     }
-                    ?>
-                    <label id="textValor">VALOR</label>
-                    <div class="input-group">
-                        <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>
-                        <input type="number" min="0" style="margin-left: 28px;" name="valorvenda" value="<?= isset($_GET['idproduto']) ? $produto->getValorvenda() : null; ?>" class="form-control" placeholder="VALOR" required>
+                }
+            }
+            ?>
+            <section class=" container text-dark mb-5" >
+                <div class="row mb-3 d-flex">
+                    <p class="display-6 ms-auto">INFORMAÇÕES DO CLIENTE</p>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-4 col-sm-12 mb-3">
+                        <label for="nomeCliente" class="form-label black-text">NOME</label>
+                        <input type="text" id="nomeCliente" name="nomeCliente" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
                     </div>
-
-                    <label class="form-label">DESCONTO</label>
-                    <label id="textLucro">LUCRO</label>
-                    <div class="input-group">
-                        <input type="number" min="0" name="desconto" value="<?= isset($_GET['idproduto']) ? $produto->getDesconto() : null; ?>" class="form-control" placeholder="DESCONTO" required>
-                        <input type="number" min="0" style="margin-left: 28px;" name="lucro" value="<?= isset($_GET['idproduto']) ? $produto->getLucro() : null; ?>" class="form-control" placeholder="LUCRO" required>
+                    <div class="col-6 col-md-4 col-sm-12 mb-3">
+                        <label for="telefoneCliente" class="form-label black-text">TELEFONE</label>
+                        <input type="number" id="telefoneCliente" name="telefoneCliente" class="form-control"  value="<?= $cliente->getTelefone(); ?>" placeholder="TELEFONE" disabled>
                     </div>
                     <button style="margin-left: 93%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="inserir">INSERIR</button>
 
@@ -224,6 +211,39 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         </form>
     </div>
 
+            <div class="table-responsive-sm">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID ITENS VENDA</th>
+                            <th scope="col">ID DO PRODUTO</th>
+                            <th scope="col">QUANTIDADE</th>
+                            <th scope="col">VALOR DE VENDA</th>
+                            <th scope="col">DESCONTO</th>
+                            <th scope="col">LUCRO</th>
+                            <th  scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($itensVenda->findAllByIdVenda($venda->getIdvenda()) as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIditensvenda(); ?></td>
+                                <td><?= $obj->getIdproduto(); ?></td>
+                                <td><?= $obj->getQuantidade(); ?></td>
+                                <td><?= $obj->getValorvenda(); ?></td>
+                                <td><?= $obj->getDesconto(); ?></td>
+                                <td><?= $obj->getLucro(); ?></td>
+                                <td>
+                                    <button class="btn btn-danger" onclick="deletar('<?= $obj->getIditensvenda() ?>', '<?= $cliente->getNome(); ?>')">APAGAR</button>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    
     <script>
         $(document).ready(function() {
             $("#dadosFor").on("click", "#inserir", function(e) {
