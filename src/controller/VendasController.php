@@ -25,6 +25,7 @@ class VendasController extends Venda
             $venda->setIdformapagamento($obj->idformapagamento);
             $venda->setData($obj->data);
             $venda->setValortotal($obj->valortotal);
+            $venda->setStatus($obj->status);
         }
         return $venda;
     }
@@ -39,7 +40,7 @@ class VendasController extends Venda
         foreach ($stm->fetchAll() as $obj) {
             array_push(
                 $vendas,
-                new Venda($obj->idvenda, $obj->idcliente, $obj->idformapagamento, $obj->data, $obj->valortotal)
+                new Venda($obj->idvenda, $obj->idcliente, $obj->idformapagamento, $obj->data, $obj->valortotal, $obj->status)
             );
         }
         return $vendas;
@@ -57,15 +58,13 @@ class VendasController extends Venda
         return Database::lastInsertId();
     }
 
-    public function update($idvenda)
+    public function update($idvenda, $idformapagamento, $status)
     {
-        $query = "UPDATE $this->tabela SET idcliente = :idcliente, idformapagamento = :idformapagamento, data = :data, valortotal = :valortotal WHERE idvenda = :idvenda";
+        $query = "UPDATE $this->tabela SET idformapagamento = :idformapagamento, status = :status WHERE idvenda = :idvenda";
         $stm = Database::prepare($query);
         $stm->bindParam(':idvenda', $idvenda, PDO::PARAM_INT);
-        $stm->bindValue(':idcliente', $this->getIdcliente());
-        $stm->bindValue(':idformapagamento', $this->getIdformapagamento());
-        $stm->bindValue(':data', $this->getData());
-        $stm->bindValue(':valortotal', $this->getValortotal());
+        $stm->bindParam(':idformapagamento', $idformapagamento, PDO::PARAM_INT);
+        $stm->bindParam(':status', $status, PDO::PARAM_INT);
 
         return $stm->execute();
     }
