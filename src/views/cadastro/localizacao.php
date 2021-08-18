@@ -69,7 +69,7 @@ $localizacoes = new LocalizacaoController();
                     <div class="row">
                         <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="localizacao" class="form-label black-text">LOCALIZAÇÃO</label>
-                            <input type="text" name="categoria" id="localizacao" oninput="validaInput(this, true)" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
+                            <input type="text" name="departamento" id="localizacao" oninput="validaInput(this, true)" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="row text-start">

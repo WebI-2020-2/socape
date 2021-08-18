@@ -11,6 +11,9 @@ $clientes = new ClientesController();
 require_once __DIR__ . '/../../controller/FormaPagamentoController.php';
 $formas = new FormaPagamentoController();
 
+require_once __DIR__ . '/../../controller/ItensVendaController.php';
+$itensVenda = new ItensVendaController();
+
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 ?>
@@ -98,6 +101,7 @@ date_default_timezone_set('America/Sao_Paulo');
             <?php
             if (isset($_GET['msg'])) {
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o cliente!");</script>';
+                if ($_GET['msg'] == 2) echo '<script>alert("Venda finalizada!");</script>';
             }
             ?>
 
@@ -127,18 +131,28 @@ date_default_timezone_set('America/Sao_Paulo');
                             <th scope="col">CLIENTE</th>
                             <th scope="col">FORMA DE PAGAMENTO</th>
                             <th scope="col">DATA</th>
+                            <th scope="col">STATUS</th>
+                            <th scope="col">ITENS</th>
                             <th scope="col">VALOR TOTAL</th>
                             <th scope="col">AÇÕES</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($vendas->findAll() as $obj) {
-                            $forma = $formas->findOne($obj->getIdformapagamento()); ?>
+                            if ($obj->getIdformapagamento() != '') {
+                                $formaPagamento = $formas->findOne($obj->getIdformapagamento());
+                                $forma = $formaPagamento->getForma() . ' - ' . $formaPagamento->getCondicao();
+                            } else {
+                                $forma = 'VENDA EM ANDAMENTO';
+                            }
+                        ?>
                             <tr>
                                 <td><?= $obj->getIdvenda(); ?></td>
                                 <td><?= $clientes->findOne($obj->getIdcliente())->getNome(); ?></td>
-                                <td><?= $forma->getForma() . ' - ' . $forma->getCondicao(); ?></td>
+                                <td><?= $forma; ?></td>
                                 <td><?= strftime('%d de %b de %Y', strtotime($obj->getData())); ?></td>
+                                <td><?= $obj->getStatus() == 0 ? 'EM ANDAMENTO' : 'FINALIZADA'; ?></td>
+                                <td><?= count($itensVenda->findAllByIdVenda($obj->getIdvenda())); ?></td>
                                 <td>R$<?= $obj->getValortotal(); ?></td>
                                 <td>
                                     <button class="btn btn-danger" onclick="deletar('<?= $obj->getIdvenda(); ?>', '<?= $clientes->findOne($obj->getIdcliente())->getNome(); ?>')">APAGAR</button>

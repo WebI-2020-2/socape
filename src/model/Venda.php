@@ -7,14 +7,16 @@ class Venda
     private $idformapagamento;
     private $data;
     private $valortotal;
+    private $status;
 
-    public function __construct($idvenda, $idcliente, $idformapagamento, $data, $valortotal)
+    public function __construct($idvenda, $idcliente, $idformapagamento, $data, $valortotal, $status)
     {
         $this->idvenda = $idvenda;
         $this->idcliente = $idcliente;
         $this->idformapagamento = $idformapagamento;
         $this->data = $data;
         $this->valortotal = $valortotal;
+        $this->status = $status;
     }
 
     public function getIdvenda()
@@ -65,5 +67,15 @@ class Venda
     public function setValortotal($valortotal)
     {
         $this->valortotal = $valortotal;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 }

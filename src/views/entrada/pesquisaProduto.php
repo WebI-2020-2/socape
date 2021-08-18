@@ -117,16 +117,14 @@ $motores = new MotorController();
                     <label id="REFERÊNCIA">REFERÊNCIA</label>
                     <div class="input-group">
                         <select class="form-control" name="idlocalizacao" class="form-control">
-                                <option selected disabled>TODAS</option>
-                                <?php
-                                foreach ($localizacoes->findAll() as $obj) { ?>
-                                    <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
-                                <?php } ?>
-                            </select>
-                            <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" placeholder="PROCURAR POR REFERÊNCIA" />   
+                            <option selected disabled>TODAS</option>
+                            <?php
+                            foreach ($localizacoes->findAll() as $obj) { ?>
+                                <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
+                            <?php } ?>
+                        </select>
+                        <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" placeholder="PROCURAR POR REFERÊNCIA" />   
                     </div>
-                    <label id="REFERÊNCIA">DESCRIÇÃO</label>
-                    <input style="margin-left: 28px;" class="form-control" type="text" name="descricao" placeholder="PROCURAR POR DESCRIÇÃO" />   
                 </div>
                 <div id="pesquisar" class="mb-3">
                     <input class="btn btn-primary" type="submit" value="PESQUISAR" />
