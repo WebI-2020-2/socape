@@ -127,13 +127,7 @@ $marcas = new MarcasController();
                         alert("Informe a referência do produto!");
                     </script>';
                     $err = TRUE;
-                if(!$data['descricao']) {
-                    echo
-                    '<script>
-                        alert("Informe a descrição do produto!");
-                    </script>';
-                    $err = TRUE;
-                }
+
                 }
 
                 $produto->setIdmotor($data['idmotor']);
@@ -154,7 +148,6 @@ $marcas = new MarcasController();
                 $produto->setLucro(0);
                 $produto->setValorvenda(0);
                 $produto->setQuantidade(0);
-                $produto->setDescricao($data['descricao']);
 
                 if (!$err) {
                     try {
@@ -177,7 +170,6 @@ $marcas = new MarcasController();
                             $produto->getUnidade(),
                             $produto->getIdlocalizacao(),
                             $produto->getReferencia(),
-                            $produto->getDescricao(),
                         );
                         echo
                         '<script>

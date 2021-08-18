@@ -194,13 +194,6 @@ $localizacoes = new LocalizacaoController();
                     </script>';
                 $err = TRUE;
             }
-            if (!$data['descricao']) {
-                echo
-                '<script>
-                        alert("Informe a Descrição!");
-                    </script>';
-                $err = TRUE;
-            }
             if (!$err) {
                 try {
                     $produtos->update(
@@ -223,7 +216,6 @@ $localizacoes = new LocalizacaoController();
                         $data['idfabricacao'],
                         $data['idcategoria'],
                         $data['idmarca'],
-                        $data['descricao'],
                     );
 
                     echo
@@ -242,11 +234,7 @@ $localizacoes = new LocalizacaoController();
                 <h1 style="text-align: left; margin-left: 10px;">
                     <span class="badge bg-light text-dark">NOME PRODUTO</span>
                 </h1>
-                <input style="margin-left: 10px; margin-top: 13px;margin-bottom:15px;height: 40px; font-size: 15px;" type="button" class="btn btn-danger btn-lg active" name="descricao" placeholder="DESCRICAO" value="<?= $produto->getDescricao()?>" disabled>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">DESCRIÇÃO</label>
-                <input type="text" class="form-control" name="descricao" placeholder="DESCRIÇÃO" value="<?= $produto->getDescricao(); ?>" required>
+                <input style="margin-left: 10px; margin-top: 13px;margin-bottom:15px;height: 40px; font-size: 15px;" type="button" class="btn btn-danger btn-lg active" name="descricao" placeholder="DESCRICAO" value="<?= $produto->getReferencia()?>" disabled>
             </div>
             <div class="input-group">
                 <div id="input" >
