@@ -45,7 +45,7 @@ date_default_timezone_set('America/Sao_Paulo');
             </div>
         </section>
 
-        <div class="py-5 bg-light vh-100">
+        <div class="py-5 bg-light min-vh-100 mb-5">
             <?php
             if (isset($_GET['msg'])) {
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o cliente!");</script>';
