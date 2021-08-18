@@ -121,7 +121,7 @@ class ProdutosController extends Produto
         }
         if ($referencia) {
             if ($need) $params .= " AND ";
-            $params .= "REFERENCIA LIKE '%$referencia%'";
+            $params .= "REFERENCIA LIKE '$referencia%'";
             $need = TRUE;
         }
 
@@ -157,7 +157,7 @@ class ProdutosController extends Produto
                     $obj->quantidade,
                     $obj->unidade,
                     $obj->idlocalizacao,
-                    $obj->referencia,
+                    $obj->referencia
                 )
             );
         }
@@ -269,7 +269,7 @@ class ProdutosController extends Produto
                     $produto->getQuantidade(),
                     $produto->getUnidade(),
                     $produto->getIdlocalizacao(),
-                    $produto->getReferencia(),
+                    $produto->getReferencia()
                 )
             );
         }
