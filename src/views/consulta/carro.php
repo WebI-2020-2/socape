@@ -68,7 +68,7 @@ $carros = new CarroController();
                                 <td><?= $obj->getModelo() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-danger" href="../../views/editar/editarCarro.php?id=<?= $obj->getIdcarro() ?>">EDITAR</a>
+                                        <a class="btn btn-primary" href="../../views/editar/editarCarro.php?id=<?= $obj->getIdcarro() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
                                     </div>
                                 </td>

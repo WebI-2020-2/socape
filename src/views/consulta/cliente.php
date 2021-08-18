@@ -99,38 +99,30 @@ $clientes = new ClientesController();
                         }
                     }
             ?>
-                    <section class="d-flex justify-content-left align-items-left text-light">
-                        <div class="row">
-                            <div class="col">
-                                <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
-                            </div>
-                            <div class="col">
-                                <button class="btn btn-danger" onclick="deletar('<?= $cliente->getIdcliente(); ?>', '<?= $cliente->getNome() ?>')">APAGAR</button>
-                            </div>
-                        </div>
 
-                        <img id="imagemCadastro" src="./../../../public/imagens/usuario.png" />
-                        <form method="POST" action="">
-                            <div class="row">
-                                <div class="col-6 col-md-12 col-sm-12 mb-3">
-                                    <label for="nome" class="form-label black-text">NOME</label>
-                                    <input type="text" class="form-control" name="nome" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
-                                </div>
+                    <div class="py-5 bg-light vh-100">
+                        <section class="d-flex justify-content-center align-items-center text-dark">
+                        <form method="post" action="">
+                    <div class="row mb-3">
+                        <img class="img-fluid w-100" src="./../../../public/imagens/usuario.png">
+                    </div>
+                            <div class="row mb-3">
+                                
+                                    <label for="nome" class="form-label">NOME</label>
+                                    <input type="text" id="nome" class="form-control" name="nome" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
+                                
                             </div>
-                            <div class="row">
-                                <div class="col-6 col-md-12 col-sm-12 mb-3">
+                            <div class="row mb-3">
                                     <label for="telefone" class="form-label black-text">TELEFONE</label>
-                                    <input type="text" id="telefone" class="form-control" name="telefone" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
-                                </div>
+                                    <input type="text" id="telefone" class="form-control" name="telefone" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required> 
                             </div>
-                            <div class="row">
+                            <div class="row mb-3">
                                 <?php if (empty($cliente->getCpf())) { ?>
-                                    <div class="col-6 col-md-12 col-sm-12 mb-3">
-                                        <label for="cnpj" class="form-label black-text">CNPJ</label>
-                                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
-                                    </div>
+                                            <label for="cnpj" class="form-label black-text">CNPJ</label>
+                                            <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
                                 <?php
-                                } else {
+                                } 
+                                else {
                                 ?>
                                     <div class="col-6 col-md-12 col-sm-12 mb-3">
                                         <label for="cpf" class="form-label black-text">CPF</label>
@@ -138,11 +130,14 @@ $clientes = new ClientesController();
                                     </div>
                                 <?php } ?>
                             </div>
-                            <div class="row">
-                                <div class="col d-flex justify-content-end mb-3">
-                                    <button type="submit" class="btn btn-primary">SALVAR</button>
+                                <div class="row mb-3"> 
+                                    
+                                    <div class="text-end">    
+                                        <a href="./cliente.php" class="btn btn-primary ">VOLTAR</a>
+                                        <button type="submit" class="btn btn-dark">SALVAR</button>
+                                    <div>
                                 </div>
-                            </div>
+                                
                         </form>
                     </section>
                 <?php }
@@ -160,7 +155,6 @@ $clientes = new ClientesController();
                         </div>
                     </div>
                 </section>
-
                 <div class="table-responsive-lg">
                     <table class="table table-hover">
                         <thead>
@@ -183,8 +177,8 @@ $clientes = new ClientesController();
                                     <td>R$<?= $obj->getDebito(); ?></td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <a class="btn btn-primary" href="?id=<?= $obj->getIdcliente(); ?>">VISUALIZAR</a>
-                                            <a class="btn btn-danger" href="?id=<?= $obj->getIdcliente(); ?>">EDITAR</a>
+                                            
+                                            <a class="btn btn-primary" href="?id=<?= $obj->getIdcliente(); ?>">VISUALIZAR/EDITAR</a>
                                             <button class="btn btn-dark" onclick="deletar('<?= $obj->getIdcliente(); ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                                         </div>
                                     </td>

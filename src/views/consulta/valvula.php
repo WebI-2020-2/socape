@@ -68,7 +68,7 @@ $valvulas = new ValvulasController();
                                 <td><?= $obj->getQuantidade() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-danger" href="../../views/editar/editarValvula.php?id=<?= $obj->getIdValvulas() ?>">EDITAR</a>
+                                        <a class="btn btn-primary" href="../../views/editar/editarValvula.php?id=<?= $obj->getIdValvulas() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdvalvulas() ?>', '<?= $obj->getQuantidade() ?>')">APAGAR</button>
                                     </div>
                                 </td>
