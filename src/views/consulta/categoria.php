@@ -37,8 +37,62 @@ $categorias = new CategoriaController();
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe a categoria!");</script>';
             }
             ?>
+        <div class="py-5 bg-light vh-100">
+            <?php if (isset($_GET["id"])) {
+                if ($categorias->findOne($_GET["id"])) {
+                    $categoria = $categorias->findOne($_GET["id"]);
+                    if ($_POST) {
+                        $data = $_POST;
+                
+                        $err = FALSE;
+        
+                        if (!$data['categoria']) {
+                            echo
+                            '<script>
+                            alert("Informe a categoria!");
+                            </script>';
+                            $err = TRUE;
+                        }
+        
+                        if (!$err) {
+                            try {
+                                $categorias->update(
+                                    $categoria->getIdcategoria(),
+                                    $data['categoria']
+                                );
+        
+                                echo
+                                '<script>
+                                    alert("Categoria atualizada com sucesso!");
+                                    window.location.href = "../consulta/categoria.php";
+                                </script>';
+                            } catch (PDOException $err) {
+                                echo $err->getMessage();
+                            }
+                        }
+                    }
+                    ?>
+                        <div class="row">
+                            <div class="col">
+                                <a href="./categoria.php" class="btn btn-primary">VOLTAR</a>
+                            </div>
+                        </div>
+                        <section class="container text-start text-dark">
+                <form method="POST" id="form">
+                    <div class="row">
+                        <div class="col-6 col-md-4 col-sm-12 mb-3">
+                            <label for="categoria" class="form-label black-text">CATEGORIA</label>
+                            <input type="text" id="categoria" name="categoria" value="<?= $categoria->getCategoria() ?>" class="form-control" maxlength="30" autocomplete="off" placeholder="CATEGORIA" required>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                            <button type="submit" class="btn btn-dark">SALVAR</button>
+                        </div>
+                    </div>
+                </form>
 
-            <section class="container-fluid text-dark">
+                <?php }
+            } else { ?>
                 <div class="row">
                     <div class="col mb-3">
                         <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..."  aria-describedby="Help">
@@ -68,7 +122,7 @@ $categorias = new CategoriaController();
                                 <td><?= $obj->getCategoria() ?></td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="../../views/editar/editarCategoria.php?id=<?= $obj->getIdcategoria() ?>">VISUALIZAR/EDITAR</a>
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdcategoria() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
                                     </div>
                                 </td>
@@ -76,6 +130,8 @@ $categorias = new CategoriaController();
                         <?php } ?>
                     </tbody>
                 </table>
+                <?php } ?>
+                </div>
             </div>
         </div>
     </main>
