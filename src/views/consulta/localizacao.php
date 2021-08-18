@@ -37,7 +37,6 @@ $localizacoes = new LocalizacaoController();
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o departamento!");</script>';
             }
             ?>
-
             <section class="container-fluid text-dark">
                 <div class="row">
                     <div class="col mb-3">
