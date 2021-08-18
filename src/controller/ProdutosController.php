@@ -19,7 +19,7 @@ class ProdutosController extends Produto
         $stm->execute();
 
         foreach ($stm->fetchAll() as $obj) {
-            $produto = new Produto(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,null);
+            $produto = new Produto(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
             $produto->setIdproduto($obj->idproduto);
             $produto->setIdmotor($obj->idmotor);
             $produto->setIdcarro($obj->idcarro);
@@ -39,7 +39,6 @@ class ProdutosController extends Produto
             $produto->setUnidade($obj->unidade);
             $produto->setIdlocalizacao($obj->idlocalizacao);
             $produto->setReferencia($obj->referencia);
-            $produto->setDescricao($obj->descricao);
         }
         return $produto;
     }
@@ -73,8 +72,7 @@ class ProdutosController extends Produto
                     $obj->quantidade,
                     $obj->unidade,
                     $obj->idlocalizacao,
-                    $obj->referencia,
-                    $obj->descricao
+                    $obj->referencia
                 )
             );
         }
@@ -82,7 +80,7 @@ class ProdutosController extends Produto
     }
 
 
-    public function findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia, $descricao)
+    public function findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia)
     {
         $params = "";
         $need = FALSE;
@@ -126,11 +124,6 @@ class ProdutosController extends Produto
             $params .= "REFERENCIA LIKE '%$referencia%'";
             $need = TRUE;
         }
-        if ($descricao) {
-            if ($need) $params .= " AND ";
-            $params .= "DESCRICAO LIKE '%$descricao%'";
-            $need = TRUE;
-        }
 
         $where = "";
 
@@ -165,19 +158,18 @@ class ProdutosController extends Produto
                     $obj->unidade,
                     $obj->idlocalizacao,
                     $obj->referencia,
-                    $obj->descricao
                 )
             );
         }
         return $produtos;
     }
 
-    public function insert($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia, $descricao)
+    public function insert($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia)
     {
         $query = "INSERT INTO $this->tabela (idmotor, idcarro, idvalvulas, idfabricacao, idcategoria, idmarca, icms, ipi, frete, 
-        valornafabrica, valordecompra, lucro, valorvenda, desconto, quantidade, unidade, idlocalizacao, referencia, descricao)
+        valornafabrica, valordecompra, lucro, valorvenda, desconto, quantidade, unidade, idlocalizacao, referencia)
         VALUES (:idmotor, :idcarro, :idvalvulas, :idfabricacao, :idcategoria, :idmarca, :icms, :ipi, :frete, :valornafabrica, 
-        :valordecompra, :lucro, :valorvenda, :desconto, :quantidade, :unidade, :idlocalizacao, :referencia, :descricao)";
+        :valordecompra, :lucro, :valorvenda, :desconto, :quantidade, :unidade, :idlocalizacao, :referencia)";
         $stm = Database::prepare($query);
         $stm->bindParam(':idmotor', $idmotor);
         $stm->bindParam(':idcarro', $idcarro);
@@ -197,16 +189,15 @@ class ProdutosController extends Produto
         $stm->bindParam(':unidade', $unidade);
         $stm->bindParam(':idlocalizacao', $idlocalizacao);
         $stm->bindParam(':referencia', $referencia);
-        $stm->bindParam(':descricao', $descricao);
         return $stm->execute();
     }
 
-    public function update($idproduto, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $referencia, $idlocalizacao, $idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $descricao)
+    public function update($idproduto, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $referencia, $idlocalizacao, $idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca)
     {
         $query = "UPDATE $this->tabela SET  icms = :icms, ipi = :ipi, frete = :frete, valornafabrica = :valornafabrica, valordecompra = :valordecompra, 
         lucro = :lucro, valorvenda = :valorvenda, desconto = :desconto, quantidade = :quantidade, unidade = :unidade, referencia = :referencia,
         idlocalizacao = :idlocalizacao, idmotor = :idmotor, idcarro = :idcarro, idvalvulas = :idvalvulas, idfabricacao = :idfabricacao,
-        idcategoria = :idcategoria, idmarca = :idmarca, descricao = :descricao WHERE idproduto = :idproduto";
+        idcategoria = :idcategoria, idmarca = :idmarca WHERE idproduto = :idproduto";
         $stm = Database::prepare($query);
         $stm->bindParam(':idproduto', $idproduto, PDO::PARAM_INT);
         $stm->bindValue(':icms', $icms);
@@ -227,7 +218,6 @@ class ProdutosController extends Produto
         $stm->bindValue(':idfabricacao', $idfabricacao);
         $stm->bindValue(':idcategoria', $idcategoria);
         $stm->bindValue(':idmarca', $idmarca);
-        $stm->bindParam(':descricao', $descricao);
         return $stm->execute();
     }
 
@@ -280,7 +270,6 @@ class ProdutosController extends Produto
                     $produto->getUnidade(),
                     $produto->getIdlocalizacao(),
                     $produto->getReferencia(),
-                    $produto->getDescricao(),
                 )
             );
         }
