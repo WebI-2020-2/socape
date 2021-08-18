@@ -131,7 +131,6 @@ $clientes = new ClientesController();
                                 </div>
                                 <div class="row mb-3">
                                     <div class="text-end">
-                                        <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
                                         <button type="submit" class="btn btn-dark">SALVAR</button>
                                     </div>
                             </form>
