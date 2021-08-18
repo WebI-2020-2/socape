@@ -46,30 +46,34 @@ $cliente = $clientes->findOne($venda->getIdcliente());
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main>
-        <section class="text-center container">
-            <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="display-6">ITENS - VENDA #<?= $venda->getIdvenda(); ?></h1>
+    <main class="container-fluid bg-light text-dark">
+        <section class="container py-3">
+            <div class="row align-items-center d-flex">
+                <div class="col-2 col-md-2 col-sm-2">
+                    <a href="./venda.php" class="btn btn-primary">VOLTAR</a>
+                </div>
+                <div class="col-8 col-md-8 col-sm-8 text-center">
+                    <span class="display-6">ITENS - VENDA #<?= $venda->getIdvenda(); ?></span>
                 </div>
             </div>
         </section>
 
-        <div class="py-5 bg-light min-vh-100 mb-5">
-            <section class="container text-dark mb-5">
-                <div class="row mb-3 d-flex">
+        <section class="container min-vh-100 py-5">
+            <section class="text-start mb-3">
+                <div class="row">
                     <p class="display-6 ms-auto">INFORMAÇÕES DO CLIENTE</p>
                 </div>
+
                 <div class="row">
-                    <div class="col-6 col-md-4 col-sm-4 mb-3">
+                    <div class="col-12 col-md-4 col-sm-6 mb-3">
                         <label for="nomeCliente" class="form-label black-text">NOME</label>
                         <input type="text" id="nomeCliente" class="form-control" value="<?= $cliente->getNome(); ?>" disabled>
                     </div>
-                    <div class="col-6 col-md-4 col-sm-4 mb-3">
+                    <div class="col-12 col-md-4 col-sm-6 mb-3">
                         <label for="telefoneCliente" class="form-label black-text">TELEFONE</label>
                         <input type="text" id="telefoneCliente" class="form-control" value="<?= $cliente->getTelefone(); ?>" disabled>
                     </div>
-                    <div class="col-6 col-md-4 col-sm-4 mb-3">
+                    <div class="col-12 col-md-4 col-sm-6 mb-3">
                         <?php if (empty($cliente->getCpf())) { ?>
                             <label for="cnpj" class="form-label black-text">CNPJ</label>
                             <input type="text" id="cnpj" class="form-control" value="<?= $cliente->getCnpj(); ?>" disabled>
@@ -82,8 +86,8 @@ $cliente = $clientes->findOne($venda->getIdcliente());
             </section>
 
             <?php if ($venda->getStatus() == 0) { ?>
-                <section class="container text-start text-dark mb-5">
-                    <div class="row mb-3">
+                <section class="text-start mb-3">
+                    <div class="row">
                         <p class="display-6 ms-auto">INSERIR ITENS</p>
                     </div>
 
@@ -137,8 +141,8 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     }
                     ?>
                     <form method="POST" id="inserirItensVenda" action="">
-                        <div class="row align-items-end mw-100">
-                            <div class="col-6 col-md-11 col-sm-11 mb-3">
+                        <div class="row align-items-end d-flex">
+                            <div class="col-12 col-md-10 col-sm-10 mb-3">
                                 <label for="idproduto" class="form-label black-text">PRODUTO</label>
                                 <?php
                                 $inputProduto = "";
@@ -150,14 +154,14 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                 <input type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
                                 <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required>
                             </div>
-                            <div class="col-6 col-md-1 col-sm-1 mb-3">
-                                <a class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $venda->getIdvenda(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                            <div class="col-12 col-md-2 col-sm-2 mb-3 ms-auto d-flex align-items-end">
+                                <a class="btn btn-primary ms-auto" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $venda->getIdvenda(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
                                     PESQUISAR
                                 </a>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6 col-md-3 col-sm-6 mb-3">
+                            <div class="col-12 col-md-4 col-sm-6 mb-3">
                                 <label for="valorvenda" class="form-label black-text">PREÇO</label>
                                 <?php if (isset($_GET['idproduto'])) {
                                     echo "
@@ -165,9 +169,9 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                     ";
                                 }
                                 ?>
-                                <input type="number" id="valorvenda" oninput="validaInputNumber(this);" name="valorvenda" class="form-control" value="<?= isset($_GET['idproduto']) ? $produto->getValorvenda() : null; ?>" placeholder="PREÇO DE VENDA" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
+                                <input type="number" min="0" id="valorvenda" oninput="validaInputNumber(this);" name="valorvenda" class="form-control" value="<?= isset($_GET['idproduto']) ? $produto->getValorvenda() : null; ?>" placeholder="PREÇO DE VENDA" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
-                            <div class="col-6 col-md-3 col-sm-6 mb-3">
+                            <div class="col-12 col-md-4 col-sm-6 mb-3">
                                 <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
                                 <?php if (isset($_GET['idproduto'])) {
                                     echo "
@@ -175,20 +179,20 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                     ";
                                 }
                                 ?>
-                                <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
+                                <input type="number" min="0" id="quantidade" max="<?= isset($_GET['idproduto']) ? $produto->getQuantidade() : null; ?>" name="quantidade" oninput="validaInputNumber(this);" class="form-control" placeholder="QUANTIDADE" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
-                            <div class="col-6 col-md-3 col-sm-6 mb-3">
+                            <div class="col-12 col-md-4 col-sm-6 mb-3">
                                 <label for="desconto" class="form-label black-text">DESCONTO (%)</label>
-                                <input type="number" min="0" id="desconto" name="desconto" class="form-control" value="<?= isset($_GET['idproduto']) ? 0.0 : null; ?>" placeholder="DESCONTO" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
+                                <input type="number" min="0" max="100" id="desconto" name="desconto" oninput="validaInputNumber(this);" class="form-control" value="<?= isset($_GET['idproduto']) ? 0.0 : null; ?>" placeholder="DESCONTO" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
-                            <div class="col-6 col-md-3 col-sm-6 mb-3">
+                            <div class="col-12 col-md-4 col-sm-6 mb-3">
                                 <label for="valorTotalItem" class="form-label black-text">VALOR TOTAL</label>
                                 <input type="text" id="valorTotalItem" class="form-control" value="R$0.0" disabled>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12 text-end col-sm-12 mb-3">
-                                <button id="inserir" class="btn btn-primary" <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>INSERIR</button>
+                        <div class="row d-flex">
+                            <div class="col-12 col-md-4 col-sm-6 mb-3 ms-auto d-flex align-items-end">
+                                <button id="inserir" class="btn btn-primary ms-auto" <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>INSERIR</button>
                             </div>
                         </div>
                     </form>
@@ -200,10 +204,15 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                 desconto = $("#desconto"),
                                 total = $("#valorTotalItem");
                             desconto.change(function() {
-                                var valor = parseFloat(<?= $produto->getValorvenda(); ?> - (<?= $produto->getValorvenda(); ?> * (desconto.val() / 100))).toFixed(2);
+                                if (desconto.val() < 0 || desconto.val() > 100) {
+                                    alert("Desconto inválido...");
+                                    desconto.val("0");
+                                } else {
+                                    var valor = parseFloat(<?= $produto->getValorvenda(); ?> - (<?= $produto->getValorvenda(); ?> * (desconto.val() / 100))).toFixed(2);
 
-                                preco.val(valor);
-                                calculaValor();
+                                    preco.val(valor);
+                                    calculaValor();
+                                }
                             });
                             qtd.change(function() {
                                 if (qtd.val() < 0 || qtd.val() > <?= $produto->getQuantidade(); ?>) {
@@ -216,6 +225,9 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                 if (preco.val() < 0) {
                                     alert("Valor não pode ser menor que zero!");
                                     preco.val("0");
+                                } else if (preco.val() == "") {
+                                    preco.val("<?= $produto->getValorvenda(); ?>");
+                                    calculaValor();
                                 } else if (preco.val() > <?= $produto->getValorvenda(); ?>) {
                                     alert("Valor de venda não pode ser maior que o do produto!");
                                     preco.val("<?= $produto->getValorvenda(); ?>");
@@ -245,12 +257,12 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                 </section>
             <?php } ?>
 
-            <section class="container text-start text-dark mb-5">
-                <div class="row mb-3">
+            <section class="text-start mb-5">
+                <div class="row">
                     <p class="display-6 ms-auto">ITENS</p>
                 </div>
 
-                <div class="table-responsive-sm mb-3">
+                <div class="table-responsive-sm">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -293,15 +305,15 @@ $cliente = $clientes->findOne($venda->getIdcliente());
             </section>
 
             <?php if ($venda->getStatus() == 0) { ?>
-                <section class="container text-start text-dark">
-                    <div class="row mb-3">
+                <section class="text-start">
+                    <div class="row">
                         <p class="display-6 ms-auto">FINALIZAR VENDA</p>
                     </div>
 
-                    <form method="post" action="./finalizarVenda.php">
+                    <form id="finalizarVenda" method="post" action="./finalizarVenda.php">
                         <div class="row align-items-end mb-3 d-flex">
                             <input type="hidden" name="idvenda" value="<?= $venda->getIdvenda(); ?>">
-                            <div class="col-6 col-md-4 col-sm-6 me-auto">
+                            <div class="col-12 col-md-4 col-sm-6">
                                 <label for="idformapagamento" class="form-label">FORMA DE PAGAMENTO</label>
                                 <select id="idformapagamento" name="idformapagamento" class="form-select" required>
                                     <option selected disabled value="">SELECIONE</option>
@@ -310,18 +322,20 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                     <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-6 col-md-4 col-sm-6">
+                            <div class="col-12 col-md-4 col-sm-6 ms-auto">
                                 <label for="valorTotalVenda" class="form-label black-text">VALOR TOTAL DA VENDA</label>
                                 <input type="text" id="valorTotalVenda" class="form-control" value="R$<?= round($venda->getValortotal(), 2); ?>" disabled>
                             </div>
-                            <div class="col-6 col-md-1 col-sm-6 py-2">
-                                <button type="submit" class="btn btn-primary">FINALIZAR</button>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-12 col-md-4 col-sm-6 ms-auto d-flex align-items-end">
+                                <button type="button" id="finalizar" class="btn btn-primary ms-auto">FINALIZAR</button>
                             </div>
                         </div>
                     </form>
                 </section>
             <?php } ?>
-        </div>
+        </section>
     </main>
 
     <script>
@@ -337,6 +351,27 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     $("#inserirItensVenda").submit();
                     $("#inserirItensVenda #inserir").prop("disabled", true);
                     $("#inserirItensVenda #inserir").val("INSERINDO ITEM...");
+                }
+            });
+
+            $("#finalizarVenda").on("click", "#finalizar", function(e) {
+                e.preventDefault();
+
+                if ($("#idformapagamento").val() == null) {
+                    alert("Informe a forma de pagamento!");
+
+                    return false;
+                } else {
+                    var url = new URL(window.location.href);
+                    if (url.searchParams.get("idproduto")) {
+                        if (confirm("Possui produto selecionado! Deseja mesmo finalizar a venda sem inserir o item?")) {
+                            $("#finalizarVenda").submit();
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        $("#finalizarVenda").submit();
+                    }
                 }
             });
         });

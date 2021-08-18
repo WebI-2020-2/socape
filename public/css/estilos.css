@@ -31,18 +31,7 @@ nav li a {
   background-color: #140c0c !important;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  background-size: 100%, 100%;
-  border-radius: 50%;
-  background-image: none;
-}
-
 input,
 select {
   border-radius: 30px 30px 30px 30px !important;
 }
-
-
