@@ -63,15 +63,13 @@ $motores = new MotorController();
                     <div class="input-group">
                         <select class="form-control" name="idmotor">
                             <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($motores->findAll() as $obj) { ?>
+                            <?php foreach ($motores->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia() ?></option>
                             <?php } ?>
                         </select>
                         <select style="margin-left: 28px;" class="form-control" name="idcarro">
                             <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($carros->findAll() as $obj) { ?>
+                            <?php foreach ($carros->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo() ?></option>
                             <?php } ?>
                         </select>
@@ -81,15 +79,13 @@ $motores = new MotorController();
                     <div class="input-group">
                         <select class="form-control" name="idvalvulas">
                             <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($valvulas->findAll() as $obj) { ?>
+                            <?php foreach ($valvulas->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade() ?></option>
                             <?php } ?>
                         </select>
                         <select style="margin-left: 28px;" class="form-control" name="idfabricacao">
                             <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($fabricacoes->findAll() as $obj) { ?>
+                            <?php foreach ($fabricacoes->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno() ?></option>
                             <?php } ?>
                         </select>
@@ -99,15 +95,13 @@ $motores = new MotorController();
                     <div class="input-group">
                         <select class="form-control" name="idcategoria">
                             <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($categorias->findAll() as $obj) { ?>
+                            <?php foreach ($categorias->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria() ?></option>
                             <?php } ?>
                         </select>
                         <select style="margin-left: 28px;" class="form-control" name="idmarca">
                             <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($marcas->findAll() as $obj) { ?>
+                            <?php foreach ($marcas->findAll() as $obj) { ?>
                                 <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
                             <?php } ?>
                         </select>
@@ -117,8 +111,7 @@ $motores = new MotorController();
                     <div class="input-group">
                             <select class="form-control" name="idlocalizacao" class="form-control">
                                 <option selected disabled>TODAS</option>
-                                <?php
-                                foreach ($localizacoes->findAll() as $obj) { ?>
+                                <?php foreach ($localizacoes->findAll() as $obj) { ?>
                                     <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
                                 <?php } ?>
                             </select>
@@ -138,7 +131,6 @@ $motores = new MotorController();
                     <th>ID</th>
                     <th>CATEGORIA/MARCA</th>
                     <th>REFERÊNCIA</th>
-                    <th>DESCRIÇÃO</th>
                     <th>QUANTIDADE</th>
                     <th>VALOR DE VENDA</th>
                     <th>LOCALIZAÇÃO</th>
@@ -155,19 +147,17 @@ $motores = new MotorController();
                 $idmarca = isset($_POST["idmarca"]) ? $_POST["idmarca"] : null;
                 $idlocalizacao = isset($_POST["idlocalizacao"]) ? $_POST["idlocalizacao"] : null;
                 $referencia = isset($_POST["referencia"]) ? $_POST["referencia"] : null;
-                $descricao = isset($_POST["descricao"]) ? $_POST["descricao"] : null;
 
-                foreach ($produtos->findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia, $descricao) as $obj) { ?>
+                foreach ($produtos->findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia) as $obj) { ?>
                     <tr>
-                        <td><?= $obj->getIdproduto() ?></td>
-                        <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
-                        <td><?= $obj->getReferencia() ?></td>
-                        <td><?= $obj->getDescricao() ?></td>
-                        <td><?= $obj->getQuantidade() ?></td>
-                        <td><?= $obj->getValorvenda() ?></td>
-                        <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
+                        <td><?= $obj->getIdproduto(); ?></td>
+                        <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca(); ?></td>
+                        <td><?= $obj->getReferencia(); ?></td>
+                        <td><?= $obj->getQuantidade(); ?></td>
+                        <td><?= $obj->getValorvenda(); ?></td>
+                        <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento(); ?></td>
                         <td>
-                            <button class="btn btn-sm btn-primary" onclick="refreshParent(<?= $obj->getIdproduto() ?>);">SELECIONAR</button>
+                            <button class="btn btn-sm btn-primary" onclick="refreshParent(<?= $obj->getIdproduto(); ?>);">SELECIONAR</button>
                         </td>
                     </tr>
                 <?php } ?>

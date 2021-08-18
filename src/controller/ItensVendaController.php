@@ -64,7 +64,7 @@ class ItensVendaController extends ItensVenda
         return $itensvenda;
     }
 
-    public function insert($idproduto, $idvenda, $quantidade, $valorvenda, $desconto, $lucro)
+    public function insert($idproduto, $idvenda, $quantidade, $valorvenda, $desconto)
     {
         $query = "INSERT INTO $this->tabela (idproduto, idvenda, quantidade, valorvenda, desconto, lucro) VALUES (:idproduto, :idvenda, :quantidade, :valorvenda, :desconto, :lucro)";
         $stm = Database::prepare($query);
@@ -73,7 +73,7 @@ class ItensVendaController extends ItensVenda
         $stm->bindParam(':quantidade', $quantidade);
         $stm->bindParam(':valorvenda', $valorvenda);
         $stm->bindParam(':desconto', $desconto);
-        $stm->bindParam(':lucro', $lucro);
+        $stm->bindValue(':lucro', 0);
 
         return $stm->execute();
     }

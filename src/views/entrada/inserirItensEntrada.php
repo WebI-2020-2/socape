@@ -125,27 +125,27 @@ $produtos = new ProdutosController();
                     <div class="row">
                         <div class="col-6 col-md-3 col-sm-12 mb-3">
                             <label for="nomeFornecedor" class="form-label black-text">NOME</label>
-                            <input type="text" id="nomeFornecedor" name="nome" class="form-control" value="<?= $fornecedor->getNome(); ?>" disabled>
+                            <input type="text" id="nomeFornecedor" class="form-control" value="<?= $fornecedor->getNome(); ?>" disabled>
                         </div>
                         <div class="col-6 col-md-3 col-sm-12 mb-3">
                             <label for="enderecoFornecedor" class="form-label black-text">ENDEREÇO</label>
-                            <input type="text" id="enderecoFornecedor" name="endereço" class="form-control" value="<?= $fornecedor->getEndereco(); ?>" disabled>
+                            <input type="text" id="enderecoFornecedor" class="form-control" value="<?= $fornecedor->getEndereco(); ?>" disabled>
                         </div>
                         <div class="col-6 col-md-3 col-sm-12 mb-3">
                             <label for="telefoneFornecedor" class="form-label black-text">TELEFONE</label>
-                            <input type="text" id="telefoneFornecedor" name="telefone" class="form-control" value="<?= $fornecedor->getTelefone(); ?>" disabled>
+                            <input type="text" id="telefoneFornecedor" class="form-control" value="<?= $fornecedor->getTelefone(); ?>" disabled>
                         </div>
                         <div class="col-6 col-md-3 col-sm-12 mb-3">
                             <label for="cnpjFornecedor" class="form-label black-text">CNPJ</label>
-                            <input type="text" id="cnpjFornecedor" name="cnpj" class="form-control" value="<?= $fornecedor->getCnpj(); ?>" disabled>
+                            <input type="text" id="cnpjFornecedor" class="form-control" value="<?= $fornecedor->getCnpj(); ?>" disabled>
                         </div>
                     </div>
                 </section>
+
                 <section class="container text-start text-dark ">
                     <div class="row mb-3">
                         <p class="display-6 ms-auto">INSERIR ITENS</p>
                     </div>
-                    <form method="POST" id="inserirItensEntrada" action="">
                         <div class="row align-items-end">
                             <div class="col-6 col-md-10 col-sm-12 mb-3">
                                 <label for="idproduto" class="form-label black-text">PRODUTO</label>
@@ -169,7 +169,7 @@ $produtos = new ProdutosController();
                         <div class="row">
                             <div class="col-6 col-md-4 col-sm-12 mb-3">
                                 <label for="precoCompra" class="form-label black-text">PREÇO COMPRA</label>
-                                <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>                          
+                                <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" placeholder="PREÇO DE COMPRA" required>                          
                             </div>
                             <div class="col-6 col-md-4 col-sm-12 mb-3">
                                 <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
@@ -189,30 +189,32 @@ $produtos = new ProdutosController();
                                     ";
                                 }
                                 ?>
-                                <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE" required>                          
+                                <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required>                          
                             </div>
                             <div class="col-6 col-md-4 col-sm-12 mb-3">
                                 <label for="unidade" class="form-label black-text">UNIDADE</label>
-                                <input name="unidade" id="unidade" class="form-control" type="text" placeholder="UNIDADE" required maxlength="2">                         
+                                <input name="unidade" id="unidade" class="form-control" placeholder="UNIDADE" required maxlength="2">                         
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-4 col-sm-12 mb-3">
                                 <label for="ipi" class="form-label black-text">IPI</label>
-                                <input type="number" min="0" id="ipi" name="ipi" class="form-control" type="text" placeholder="IPI" required>          
+                                <input type="number" min="0" id="ipi" name="ipi" class="form-control" placeholder="IPI" required>          
                             </div>
                             <div class="col-6 col-md-4 col-sm-12 mb-3">
                                 <label for="frete" class="form-label black-text">FRETE</label>
-                                <input type="number" min="0" id="frete" name="frete" class="form-control" type="text" placeholder="FRETE" required>         
+                                <input type="number" min="0" id="frete" name="frete" class="form-control" placeholder="FRETE" required>         
                             </div>
                             <div class="col-6 col-md-4 col-sm-12 mb-3">
                                 <label for="icms" class="form-label black-text">ICMS</label>
-                                <input type="number" min="0" id="icms" name="icms" class="form-control" type="text" placeholder="ICMS" required>         
+                                <input type="number" min="0" id="icms" name="icms" class="form-control" placeholder="ICMS" required>         
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6 col-md-12 text-end col-sm-6 mb-3">
-                                <button id="inserir" class="btn btn-primary">INSERIR</button>    
+                                <form method="POST" id="inserirItensEntrada" action="">
+                                    <button id="inserir" class="btn btn-primary">INSERIR</button>  
+                                </form>  
                             </div>
                         </div> 
                 
@@ -222,8 +224,8 @@ $produtos = new ProdutosController();
                                 <input class="form-control" id="valorTotal" type="text" placeholder="R$<?= $entrada->getValortotalnota(); ?>" disabled>
                             </div>
                         </div>
-                </form>
-            </section>
+                   
+                </section>
         
             <div class="table-responsive-sm">
                 <table class="table table-hover">

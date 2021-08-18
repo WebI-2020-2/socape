@@ -141,7 +141,6 @@ $motores = new MotorController();
                     <th>ID</th>
                     <th>CATEGORIA/MARCA</th>
                     <th>REFERÊNCIA</th>
-                    <th>DESCRIÇÃO</th>
                     <th>QUANTIDADE</th>
                     <th>VALOR DE VENDA</th>
                     <th>LOCALIZAÇÃO</th>
@@ -162,7 +161,7 @@ $motores = new MotorController();
                 foreach ($produtos->findWithFilter($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $idlocalizacao, $referencia) as $obj) { ?>
                     <tr>
                         <td><?= $obj->getIdproduto() ?></td>
-                        <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
+                        <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca(); ?></td>
                         <td><?= $obj->getReferencia() ?></td>
                         <td><?= $obj->getQuantidade() ?></td>
                         <td><?= $obj->getValorvenda() ?></td>
