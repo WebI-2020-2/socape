@@ -234,5 +234,4 @@ class Produto
     {
         $this->referencia = $referencia;
     }
-    
 }

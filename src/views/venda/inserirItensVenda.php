@@ -90,25 +90,51 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     </script>';
                     $err = TRUE;
                 }
+            }
+        }
+        ?>
 
-                if (!$err) {
-                    try {
-                        $itensVenda->insert(
-                            $data['idproduto'],
-                            $venda->getIdvenda(),
-                            $data['quantidade'],
-                            $data['valorvenda'],
-                            $data['desconto'],
-                            $data['lucro']
-                        );
+        <div id="cliente">
+            <h1 id="titulo2">
+                <span class="badge bg-light text-dark">INFORMAÇÕES DO CLIENTE</span>
+            </h1>
+            <div style="margin-top:3%;">
+                <label id="textNome">NOME</label>
+                <label id="textTelefone">TELEFONE</label>
+                <label id="textCpf">CPF</label>
+                <div id="dadosClientes" class="input-group">
+                    <input type="text" class="form-control" placeholder="NOME" value="<?= $cliente->getNome(); ?>" disabled>
+                    <input style="margin-left:28px;" type="text" class="form-control" value="<?= $cliente->getTelefone(); ?>" placeholder="TELEFONE" disabled>
+                    <input style="margin-left:28px;" type="text" class="form-control" value="<?= $cliente->getCpf(); ?>" placeholder="CPF" disabled>
+                </div>
+            </div>
+        </div>
 
-                        echo
-                        '<script>
-                            alert("Item cadastrado com sucesso!");
-                            window.location.href = "./inserirItensVenda.php?idvenda=' . $venda->getIdvenda() . '";
-                        </script>';
-                    } catch (PDOException $err) {
-                        if ($err->getCode() == "P0001") echo '<script>alert("Quantidade insuficiente em estoque!");</script>';
+        <div style="margin-top:3%;" id="cliente">
+            <h1 id="titulo3">
+                <span style="margin-left:10px;" class="badge bg-light text-dark">INSERIR ITEM</span>
+            </h1>
+
+            <form id="dadosFor" method="POST" action="">
+                <div id="dadosItens" a style="margin-top:3%;">
+                    <label>PRODUTO</label>
+                    <div class="input-group">
+                        <?php
+                        $inputProduto = "";
+                        if (isset($_GET['idproduto'])) {
+                            $produto = $produtos->findOne($_GET['idproduto']);
+                            $inputProduto = "Produto selecionado: " . $produto->getReferencia();
+                        }
+                        ?>
+                        <input style="background-color:#fffed9" id="produto" type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
+                        <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required>
+                        <a id="pesquisar" class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $venda->getIdvenda(); ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
+                            PESQUISAR
+                        </a>
+                    </div>
+                    <label class="form-label">QUANTIDADE</label>
+                    <?php if (isset($_GET['idproduto'])) {
+                        echo "<small class='form-text text-muted'>Estoque: " . $produto->getQuantidade() . "</small>";
                     }
                 }
             }
@@ -126,87 +152,64 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                         <label for="telefoneCliente" class="form-label black-text">TELEFONE</label>
                         <input type="number" id="telefoneCliente" name="telefoneCliente" class="form-control"  value="<?= $cliente->getTelefone(); ?>" placeholder="TELEFONE" disabled>
                     </div>
-                    <div class="col-6 col-md-4 col-sm-12 mb-3">
-                        <label for="cpfCliente" class="form-label black-text">CPF</label>
-                        <input type="number" id="cpfCliente" name="cpfCliente" class="form-control"  value="<?= $cliente->getCpf(); ?>" placeholder="CPF" disabled>
+                    <button style="margin-left: 93%;padding: 4px 15px 3px 15px !important;border-radius: 50px !important;" class="btn btn-primary" id="inserir">INSERIR</button>
+
+                    <label>VALOR TOTAL</label>
+                    <div id="valorTotal" class="mb3">
+                        <input style="background-color:#6ed486; margin-bottom:3%" type="text" class="form-control" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
                     </div>
                 </div>
-            </section>
-            <section class="container text-start text-dark ">
-                <form id="dadosFor" method="POST" action="">
-                    <div class="row mb-3">
-                        <p class="display-6 ms-auto">INSERIR ITENS</p>
-                    </div>
-                    <div class="row align-items-end">
-                        <div class="col-6 col-md-10 col-sm-12 mb-3">
-                            <label for="idproduto" class="form-label black-text">PRODUTO</label>
-                            <?php
-                                $inputProduto = "";
-                                if (isset($_GET['idproduto'])) {
-                                    $produto = $produtos->findOne($_GET['idproduto']);
-                                    $inputProduto = "Produto selecionado: " . $produto->getReferencia();
-                                }
-                            ?>
-                            <input id="produto" type="text" class="form-control" placeholder="Pesquise pelo produto..." value="<?= $inputProduto ?>" disabled>
-                            <input type="hidden" id="idproduto" name="idproduto" value="<?= isset($_GET['idproduto']) ? $_GET['idproduto'] : null; ?>" required>     
-                        </div>
-                        <div class="col-6 col-md-2 col-sm-12 mb-3">
-                            <a  class="btn btn-primary" title="Editar" onclick="window.open(`./pesquisaProduto.php?idvenda=<?= $_GET['idvenda'] ?>`, 'Pesquisar produto', 'width=1000,height=800'); return false;">
-                                PESQUISAR
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="precoCompra" class="form-label black-text">PREÇO COMPRA</label>
-                            <input type="number" min="0" id="precoCompra" name="precoCompra" class="form-control" type="text" placeholder="PREÇO DE COMPRA" required>                          
-                        </div>
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
-                            <?php if (isset($_GET['idproduto'])) {
-                                echo "<small class='form-text text-muted'>Estoque: " . $produto->getQuantidade() . "</small>";
-                            }
-                            ?>
-                            <input type="number" min="0" id="quantidade" name="quantidade" class="form-control" type="text" placeholder="QUANTIDADE" required>                          
-                        </div>
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="valorVenda" class="form-label black-text">VALOR VENDA</label>
-                            <input type="number" min="0" id="valorVenda" name="valorVenda" value="<?= isset($_GET['idproduto']) ? $produto->getValorvenda() : null; ?>" class="form-control" placeholder="VALOR" required>               
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="desconto" class="form-label black-text">DESCONTO</label>
-                            <input type="number" min="0" id="desconto" name="desconto" value="<?= isset($_GET['idproduto']) ? $produto->getDesconto() : null; ?>" class="form-control" placeholder="DESCONTO" required>
-                        </div>
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="lucro" class="form-label black-text">LUCRO</label>
-                            <input type="number" min="0" id="lucro" name="lucro" value="<?= isset($_GET['idproduto']) ? $produto->getLucro() : null; ?>" class="form-control" placeholder="LUCRO" required>
-                        </div>
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="idformapagamento" class="form-label black-text">FORMA DE PAGAMENTO</label>
-                            <select id="idformapagamento" name="idformapagamento" class="form-select" required>
-                                <option selected disabled value="">SELECIONE</option>
-                                <?php foreach ($formas->findAll() as $obj) { ?>
-                                    <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
-                                <?php } ?>
-                            </select>        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-md-12 col-sm-6 mb-3">
-                            <button id="inserir" class="btn btn-primary">INSERIR</button>    
-                        </div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-6 col-md-6 col-sm-12 mb-3">
-                            <label for="valorTotal" class="form-label black-text">VALOR TOTAL</label>
-                            <input type="text" id="valorTotal" class="form-control" placeholder="R$ <?= $venda->getValortotal(); ?>" disabled>
-                            
-                        </div>
-                    </div> 
-                </form>
-            </section>
+        </div>
+        </form>
+
+        <table style="margin-top: 1%" class="table">
+            <thead>
+                <tr>
+                    <th>ID ITENS VENDA</th>
+                    <th>ID DO PRODUTO</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR DE VENDA</th>
+                    <th>DESCONTO</th>
+                    <th>LUCRO</th>
+                    <th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($itensVenda->findAllByIdVenda($venda->getIdvenda()) as $obj) { ?>
+                    <tr>
+                        <td><?= $obj->getIditensvenda(); ?></td>
+                        <td><?= $obj->getIdproduto(); ?></td>
+                        <td><?= $obj->getQuantidade(); ?></td>
+                        <td><?= $obj->getValorvenda(); ?></td>
+                        <td><?= $obj->getDesconto(); ?></td>
+                        <td><?= $obj->getLucro(); ?></td>
+                        <td>
+                            <div class="button-group clear">
+                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIditensvenda() ?>', '<?= $cliente->getNome(); ?>')">APAGAR</button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+
+        <form method="post" action="./finalizarVenda.php">
+            <input type="hidden" name="idvenda" value="<?= $venda->getIdvenda(); ?>">
+            <div class="col-6 col-md-6 col-sm-12">
+                <label for="idformapagamento" class="form-label">FORMA DE PAGAMENTO</label>
+                <select id="idformapagamento" name="idformapagamento" class="form-select" required>
+                    <option selected disabled value="">SELECIONE</option>
+                    <?php foreach ($formas->findAll() as $obj) { ?>
+                        <option value="<?= $obj->getIdformapagamento(); ?>"><?= $obj->getForma() . ' - ' . $obj->getCondicao(); ?></option>
+                    <?php } ?>
+                </select>
+                <div id="formapagamentoHelp" class="form-text">Informe a forma de pagamento.</div>
+            </div>
+            <div class="mb-4">
+                <button type="submit" class="btn">Finalizar venda</button>
+            </div>
+        </form>
+    </div>
 
             <div class="table-responsive-sm">
                 <table class="table table-hover">
