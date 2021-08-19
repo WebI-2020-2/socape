@@ -85,7 +85,7 @@ $localizacoes = new LocalizacaoController();
                                 <input type="text" name="departamento" id="departamento" value="<?= $localizacao->getDepartamento(); ?>" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
                             </div>
                         </div>
-                        <div class="text-end">
+                        <div class="text-start">
                             <button type="submit" class="btn btn-dark">SALVAR</button>
                         </div>
                     </form>
@@ -132,33 +132,6 @@ $localizacoes = new LocalizacaoController();
                     </div>
                 </div>
             </section>
-
-            <div class="table-responsive-lg">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">LOCALIZAÇÃO</th>
-                            <th scope="col">AÇÕES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($localizacoes->findAll() as $obj) { ?>
-                            <tr>
-                                <td><?= $obj->getIdlocalizacao() ?></td>
-                                <td><?= $obj->getDepartamento() ?></td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdlocalizacao() ?>">VISUALIZAR/EDITAR</a>
-                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php } ?>
     </main>
 
     <script>

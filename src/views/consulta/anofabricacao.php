@@ -105,24 +105,24 @@ $fabricacoes = new FabricacaoController();
                     </div>
                 </section>
 
-                <div class="table-responsive-lg">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <td><?= $obj->getIdfabricacao(); ?></td>
-                                <td><?= $obj->getAno(); ?></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdfabricacao(); ?>">VISUALIZAR/EDITAR</a>
-                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao(); ?>', '<?= $obj->getAno(); ?>')">APAGAR</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php } ?>
+                    <div class="table-responsive-lg">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <td><?= $obj->getIdfabricacao(); ?></td>
+                                    <td><?= $obj->getAno(); ?></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="?id=<?= $obj->getIdfabricacao(); ?>">VISUALIZAR/EDITAR</a>
+                                            <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao(); ?>', '<?= $obj->getAno(); ?>')">APAGAR</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+        </section>
     </main>
 
     <script>

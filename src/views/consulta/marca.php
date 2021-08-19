@@ -127,31 +127,6 @@ $marcas = new MarcasController();
                                 </div>
                             </div>
                         </section>
-
-                        <div class="table-responsive-lg">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">MARCA</th>
-                                        <th scope="col">AÇÕES</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($marcas->findAll() as $obj) { ?>
-                                        <tr>
-                                            <td><?= $obj->getIdmarca() ?></td>
-                                            <td><?= $obj->getMarca() ?></td>
-                                            <td>
-                                                <div class="btn-group" role="group">
-                                                    <a class="btn btn-primary" href="?id=<?= $obj->getIdmarca() ?>">VISUALIZAR/EDITAR</a>
-                                                    <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
                         <?php } ?>
                     </tbody>
                 </table>
