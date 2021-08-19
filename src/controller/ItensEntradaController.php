@@ -66,6 +66,16 @@ class ItensEntradaController extends ItensEntrada
         return $itensEntradas;
     }
 
+    public function countItensByIdEntrada($identrada)
+    {
+        $query = "SELECT SUM(QUANTIDADE) FROM $this->tabela WHERE identrada = :identrada";
+        $stm = Database::prepare($query);
+        $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
+        $stm->execute();
+
+        return intval($stm->fetchColumn());
+    }
+
     public function insert($identrada, $idproduto, $precocompra, $quantidade, $unidade, $ipi, $frete, $icms)
     {
         $query = "INSERT INTO $this->tabela (identrada, idproduto, precocompra, quantidade, unidade, ipi, frete, icms)
@@ -117,4 +127,3 @@ class ItensEntradaController extends ItensEntrada
         }
     }
 }
-

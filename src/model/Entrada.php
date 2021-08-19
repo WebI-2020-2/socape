@@ -6,13 +6,15 @@ class Entrada
     private $idfornecedor;
     private $valortotalnota;
     private $datacompra;
+    private $status;
 
-    public function __construct($identrada, $idfornecedor, $valortotalnota, $datacompra)
+    public function __construct($identrada, $idfornecedor, $valortotalnota, $datacompra, $status)
     {
         $this->identrada = $identrada;
         $this->idfornecedor = $idfornecedor;
         $this->valortotalnota = $valortotalnota;
         $this->datacompra = $datacompra;
+        $this->status = $status;
     }
 
     public function getIdentrada()
@@ -53,5 +55,15 @@ class Entrada
     public function setDatacompra($datacompra)
     {
         $this->datacompra = $datacompra;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 }

@@ -3,12 +3,12 @@ require_once __DIR__ . '/../../controller/SessaoController.php';
 Sessao::verificaLogado();
 
 if (!$_GET['idvenda']) header('Location: ./venda.php');
+
 require_once __DIR__ . '/../../controller/ItensVendaController.php';
 $itensVenda = new ItensVendaController();
 
 require_once __DIR__ . '/../../controller/VendasController.php';
 $venda = new VendasController();
-$venda = $venda->findOne($_GET['idvenda']);
 
 require_once __DIR__ . '/../../controller/ProdutosController.php';
 $produtos = new ProdutosController();
@@ -25,6 +25,7 @@ $marcas = new MarcasController();
 require_once __DIR__ . '/../../controller/CategoriaController.php';
 $categorias = new CategoriaController();
 
+$venda = $venda->findOne($_GET['idvenda']);
 $cliente = $clientes->findOne($venda->getIdcliente());
 ?>
 <!doctype html>
@@ -169,7 +170,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                     ";
                                 }
                                 ?>
-                                <input type="number" min="0" id="valorvenda" oninput="validaInputNumber(this);" name="valorvenda" class="form-control" value="<?= isset($_GET['idproduto']) ? $produto->getValorvenda() : null; ?>" placeholder="PREÇO DE VENDA" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
+                                <input type="number" min="0" autocomplete="off" id="valorvenda" oninput="validaInputNumber(this);" name="valorvenda" class="form-control" value="<?= isset($_GET['idproduto']) ? $produto->getValorvenda() : null; ?>" placeholder="PREÇO DE VENDA" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
                             <div class="col-12 col-md-4 col-sm-6 mb-3">
                                 <label for="quantidade" class="form-label black-text">QUANTIDADE</label>
@@ -179,11 +180,11 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                     ";
                                 }
                                 ?>
-                                <input type="number" min="0" id="quantidade" max="<?= isset($_GET['idproduto']) ? $produto->getQuantidade() : null; ?>" name="quantidade" oninput="validaInputNumber(this);" class="form-control" placeholder="QUANTIDADE" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
+                                <input type="number" min="1" autocomplete="off" id="quantidade" max="<?= isset($_GET['idproduto']) ? $produto->getQuantidade() : null; ?>" name="quantidade" oninput="validaInputNumber(this);" class="form-control" placeholder="QUANTIDADE" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
                             <div class="col-12 col-md-4 col-sm-6 mb-3">
                                 <label for="desconto" class="form-label black-text">DESCONTO (%)</label>
-                                <input type="number" min="0" max="100" id="desconto" name="desconto" oninput="validaInputNumber(this);" class="form-control" value="<?= isset($_GET['idproduto']) ? 0.0 : null; ?>" placeholder="DESCONTO" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
+                                <input type="number" min="0" autocomplete="off" max="100" id="desconto" name="desconto" oninput="validaInputNumber(this);" class="form-control" value="<?= isset($_GET['idproduto']) ? 0.0 : null; ?>" placeholder="DESCONTO" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
                             <div class="col-12 col-md-4 col-sm-6 mb-3">
                                 <label for="valorTotalItem" class="form-label black-text">VALOR TOTAL</label>
@@ -196,8 +197,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                             </div>
                         </div>
                     </form>
-                    <?php if (isset($_GET['idproduto'])) {
-                    ?>
+                    <?php if (isset($_GET['idproduto'])) { ?>
                         <script>
                             var qtd = $("#quantidade"),
                                 preco = $("#valorvenda"),
@@ -249,7 +249,9 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                             function calculaValor() {
                                 total.val("");
 
-                                var valor = parseFloat((preco.val()) * (qtd.val() != "" ? qtd.val() : 0)).toFixed(2);
+                                var valor, QTD = qtd.val() != "" ? qtd.val() : 0;
+
+                                valor = parseFloat(QTD * preco.val()).toFixed(2);
                                 total.val("R$" + valor);
                             }
                         </script>
@@ -311,7 +313,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                     </div>
 
                     <form id="finalizarVenda" method="post" action="./finalizarVenda.php">
-                        <div class="row align-items-end mb-3 d-flex">
+                        <div class="row mb-3">
                             <input type="hidden" name="idvenda" value="<?= $venda->getIdvenda(); ?>">
                             <div class="col-12 col-md-4 col-sm-6">
                                 <label for="idformapagamento" class="form-label">FORMA DE PAGAMENTO</label>
@@ -322,12 +324,12 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                     <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-12 col-md-4 col-sm-6 ms-auto">
+                        </div>
+                        <div class="row align-items-end mb-3 d-flex">
+                            <div class="col-12 col-md-4 col-sm-6 me-auto mb-3">
                                 <label for="valorTotalVenda" class="form-label black-text">VALOR TOTAL DA VENDA</label>
                                 <input type="text" id="valorTotalVenda" class="form-control" value="R$<?= round($venda->getValortotal(), 2); ?>" disabled>
                             </div>
-                        </div>
-                        <div class="row d-flex">
                             <div class="col-12 col-md-4 col-sm-6 ms-auto d-flex align-items-end">
                                 <button type="button" id="finalizar" class="btn btn-primary ms-auto">FINALIZAR</button>
                             </div>
