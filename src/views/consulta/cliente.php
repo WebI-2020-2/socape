@@ -57,6 +57,13 @@ $clientes = new ClientesController();
                                 alert("Informe o telefone!");
                             </script>';
                             $err = TRUE;
+                        }else if (strlen($data['telefone']) < 11) {
+                            echo
+                            '<script>
+                                alert("O telefone deve conter 11 dígitos!");
+                            </script>';
+                        
+                            $err = TRUE;
                         }
                         if ($cliente->getCpf() != "") {
                             if (!$data['cpf']) {
@@ -65,6 +72,13 @@ $clientes = new ClientesController();
                                     alert("Informe o CPF!");
                                 </script>';
                                 $err = TRUE;
+                            }else if (strlen($data['cpf']) < 14) {
+                                echo
+                                '<script>
+                                    alert("O cpf deve conter 14 dígitos!");
+                                </script>';
+                            
+                                $err = TRUE;
                             }
                         } else {
                             if (!$data['cnpj']) {
@@ -72,6 +86,13 @@ $clientes = new ClientesController();
                                 '<script>
                                     alert("Informe o CNPJ!");
                                 </script>';
+                                $err = TRUE;
+                            }else if (strlen($data['cnpj']) < 18) {
+                                echo
+                                '<script>
+                                    alert("O cnpj deve conter 15 dígitos!");
+                                </script>';
+                            
                                 $err = TRUE;
                             }
                         }
@@ -100,7 +121,6 @@ $clientes = new ClientesController();
                     <div class="col-6 col-md-1 col-sm-6 ">
                         <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
                     </div>
-
                     <div class="py-5 bg-light vh-100">
                         <section class="container min-vh-100 py-5 d-flex justify-content-center align-items-center text-dark">
                             <form method="post" action="">
