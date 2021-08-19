@@ -126,19 +126,19 @@ $cliente = new ClientesController();
                     </div>
                     <div class="row mb-3">
                         <label for="nome" class="form-label">NOME</label>
-                        <input type="text" id="nome" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" maxlength="150" autocomplete="off" required>
+                        <input type="text" id="nome" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" autocomplete="off" required>
                     </div>
                     <div class="row mb-3">
                         <label for="telefone" class="form-label">TELEFONE</label>
-                        <input type="text" id="telefone" minlength="15" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
+                        <input type="text" id="telefone" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
                     </div>
                     <div class="row mb-3 rowCpf">
                         <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" id="cpf" name="cpf" minlength="14" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
+                        <input type="text" id="cpf" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
                     </div>
                     <div class="row mb-3 rowCnpj visually-hidden">
                         <label for="cnpj" class="form-label">CNPJ</label>
-                        <input type="text" id="cnpj" name="cnpj" minlength="18" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off">
+                        <input type="text" id="cnpj" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off">
                     </div>
                     <button type="submit" class="btn btn-primary">CADASTRAR</button>
                 </form>
