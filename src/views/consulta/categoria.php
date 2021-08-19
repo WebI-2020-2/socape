@@ -79,7 +79,7 @@ $categorias = new CategoriaController();
                             <div class="row">
                                 <div class="col-6 col-md-4 col-sm-12 mb-3">
                                     <label for="categoria" class="form-label black-text">CATEGORIA</label>
-                                    <input type="text" id="categoria" name="categoria" value="<?= $categoria->getCategoria() ?>" class="form-control" maxlength="30" placeholder="CATEGORIA" required>
+                                    <input type="text" id="categoria" name="categoria" oninput="validaInput(this, false)" value="<?= $categoria->getCategoria() ?>" class="form-control" maxlength="30" placeholder="CATEGORIA" required>
                                 </div>
                             </div>
                             <div class="text-end">
@@ -164,6 +164,7 @@ $categorias = new CategoriaController();
     </script>
     <script src="./../../../public/js/validaInput.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>

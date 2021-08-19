@@ -49,6 +49,13 @@ $fabricacoes = new FabricacaoController();
                              alert("Informe o ano de Fabricação!");
                             </script>';
                             $err = TRUE;
+                        }else if (strlen($data['ano']) < 4) {
+                            echo
+                            '<script>
+                                alert("O ano de fabricação deve conter 4 dígitos!");
+                            </script>';
+                        
+                            $err = TRUE;
                         }
 
                         if (!$err) {
