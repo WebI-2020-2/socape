@@ -21,7 +21,7 @@ $produtos = new ProdutosController();
 
 <body>
     <img class="img-fluid w-100" src="./../../public/imagens/titulo.png">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-1">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacao">
                 <span class="navbar-toggler-icon"></span>

@@ -298,7 +298,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                             <tr>
                                 <td colspan="2">TOTAL</td>
                                 <td colspan="2"><?= $itensVenda->countItensByIdVenda($venda->getIdvenda()); ?></td>
-                                <td>R$<?= $venda->getValortotal(); ?></td>
+                                <td>R$<?= round($venda->getValortotal(), 2); ?></td>
                                 <?= $venda->getStatus() == 0 ? '<td></td>' : null; ?>
                             </tr>
                         </tbody>
