@@ -152,15 +152,15 @@ $motores = new MotorController();
                                 $data['idfabricacao'],
                                 $data['idcategoria'],
                                 $data['idmarca'],
-                                $produto->getIcms(), // ICMS
-                                $produto->getIpi(), // IPI
-                                $produto->getFrete(), // FRETE
-                                $produto->getValornafabrica(), // VALOR NA FABRICA
-                                $produto->getValordecompra(), // VALOR DE COMPRA
-                                $produto->getLucro(), // LUCRO
-                                $produto->getValorvenda(), //VALOR VENDA
+                                $produto->getIcms(),
+                                $produto->getIpi(),
+                                $produto->getFrete(), 
+                                $produto->getValornafabrica(),
+                                $produto->getValordecompra(),
+                                $produto->getLucro(), 
+                                $produto->getValorvenda(),
                                 $produto->getDesconto(),
-                                $produto->getQuantidade(), // QUANTIDADE
+                                $produto->getQuantidade(), 
                                 $data['unidade'],
                                 $data['idlocalizacao'],
                                 $data['referencia'],
