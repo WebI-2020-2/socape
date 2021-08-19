@@ -209,7 +209,7 @@ $fornecedor = $fornecedores->findOne($entrada->getIdfornecedor());
                                     ";
                                 }
                                 ?>
-                                <input type="number" min="1" id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
+                                <input type="number" min="1" id="quantidade" name="quantidade" class="form-control" placeholder="QUANTIDADE" autocomplete="off" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
                             <div class="col-12 col-md-4 col-sm-6 mb-3">
                                 <label for="unidade" class="form-label black-text">UNIDADE</label>
@@ -218,15 +218,15 @@ $fornecedor = $fornecedores->findOne($entrada->getIdfornecedor());
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-4 col-sm-6 mb-3">
-                                <label for="ipi" class="form-label black-text">IPI</label>
+                                <label for="ipi" class="form-label black-text">IPI (%)</label>
                                 <input type="number" min="1" id="ipi" autocomplete="off" oninput="validaInputNumber(this);" name="ipi" class="form-control" placeholder="IPI" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
                             <div class="col-12 col-md-4 col-sm-6 mb-3">
-                                <label for="frete" class="form-label black-text">FRETE</label>
+                                <label for="frete" class="form-label black-text">FRETE (%)</label>
                                 <input type="number" min="1" id="frete" autocomplete="off" oninput="validaInputNumber(this);" name="frete" class="form-control" placeholder="FRETE" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
                             <div class="col-12 col-md-4 col-sm-6 mb-3">
-                                <label for="icms" class="form-label black-text">ICMS</label>
+                                <label for="icms" class="form-label black-text">ICMS (%)</label>
                                 <input type="number" min="1" id="icms" autocomplete="off" oninput="validaInputNumber(this);" name="icms" class="form-control" placeholder="ICMS" required <?= isset($_GET['idproduto']) ? null : 'disabled'; ?>>
                             </div>
                             <div class="col-12 col-md-4 col-sm-6 mb-3">

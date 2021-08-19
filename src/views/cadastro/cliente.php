@@ -68,6 +68,7 @@ $cliente = new ClientesController();
                     
                 }
                 
+                
             } else {
                 if (!$data['cnpj']) {
                     echo
@@ -76,6 +77,7 @@ $cliente = new ClientesController();
                     </script>';
                     $err = TRUE;
                 }
+                
             }
 
             if (!$err) {
@@ -123,11 +125,11 @@ $cliente = new ClientesController();
                     </div>
                     <div class="row mb-3 rowCpf">
                         <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" id="cpf" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
+                        <input type="text" id="cpf" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" minlength="11" required>
                     </div>
                     <div class="row mb-3 rowCnpj visually-hidden">
                         <label for="cnpj" class="form-label">CNPJ</label>
-                        <input type="text" id="cnpj" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off">
+                        <input type="text" id="cnpj" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" minlength="14" autocomplete="off">
                     </div>
                     <button type="submit" class="btn btn-primary">CADASTRAR</button>
                 </form>

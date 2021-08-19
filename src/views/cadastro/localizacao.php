@@ -27,6 +27,7 @@ $localizacoes = new LocalizacaoController();
                 <div class="col-2 col-md-2 col-sm-2">
                 <a href="../../views/consulta/categoria.php" class="btn btn-primary">VOLTAR</a>
                 </div>
+                
                 <div class="col-8 col-md-8 col-sm-8 text-center">
                     <span class="display-6">CADASTRAR FORNECEDOR</span>
                 </div>
