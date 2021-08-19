@@ -122,7 +122,7 @@ $categorias = new CategoriaController();
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-primary" href="?id=<?= $obj->getIdcategoria() ?>">VISUALIZAR/EDITAR</a>
-                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
+                                        <button class="btn btn-sm btn-dark" oninput="validaInput(this, false)" onclick="deletar('<?= $obj->getIdcategoria() ?>', '<?= $obj->getCategoria() ?>')">APAGAR</button>
                                     </div>
                                 </td>
                             </tr>
