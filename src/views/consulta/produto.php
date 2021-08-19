@@ -152,24 +152,15 @@ $motores = new MotorController();
                                 $data['idfabricacao'],
                                 $data['idcategoria'],
                                 $data['idmarca'],
-                                $produto->getIcms(),
-                                $produto->getIpi(),
-                                $produto->getFrete(), 
-                                $produto->getValornafabrica(),
-                                $produto->getValordecompra(),
-                                $produto->getLucro(), 
-                                $produto->getValorvenda(),
-                                $produto->getDesconto(),
-                                $produto->getQuantidade(), 
-                                $data['unidade'],
                                 $data['idlocalizacao'],
+                                $data['unidade'],
                                 $data['referencia'],
                             );
 
                             echo
                             '<script>
                                     alert("Produto atualizado com sucesso!");
-                                    window.location.href = "../consulta/produto.php";
+                                    window.location.href = "./produto.php?id=' . $produto->getIdproduto() . '";
                                 </script>';
                         } catch (PDOException $e) {
                             echo $e->getMessage();
