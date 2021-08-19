@@ -105,10 +105,8 @@ $motores = new MotorController();
         <div style="width: 90%; margin-left:3%; border: double;">
             <h1 style="text-align: left; margin-left: 10px;">
             <span class="badge bg-light text-dark">INFORMAÇÕES PRODUTO</span>
-            <input style="margin-left: 10px; margin-top: 13px;margin-bottom:15px;height: 40px; font-size: 15px;" type="button" class="btn btn-danger btn-lg active" name="descricao" placeholder="DESCRIÇÃO" value="<?= $produto->getDescricao()?>" disabled>
             </h1>
             <label id="motor" class="form-label">DESCRIÇÃO</label>
-            <input style="margin-left: 10px;" class="form-control" type="text" placeholder="MOTOR" value="<?= $produto->getDescricao() ?>" disabled>
             <label id="motor" class="form-label">MOTOR</label>
             <label id="desconto" class="form-label">DESCONTO</label>
             <label id="modeloCar" class="form-label">MODELO DE CARRO</label>

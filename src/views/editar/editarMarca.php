@@ -53,7 +53,7 @@ $marca = $marcas->findOne($idmarca);
 
             if (!$err) {
                 try {
-                    $marca->insert(
+                    $marcas->insert(
                         $data['marca']
                     );
 
@@ -78,9 +78,9 @@ $marca = $marcas->findOne($idmarca);
                     </div>
                 </div>
                 <div class="text-end">
-                        <a href="../../views/consulta/marca.php" class="btn btn-primary ">VOLTAR</a>
-                            <button type="submit" class="btn btn-dark">SALVAR</button>
-                        </div>
+                    <a href="../../views/consulta/marca.php" class="btn btn-primary ">VOLTAR</a>
+                    <button type="submit" class="btn btn-dark">SALVAR</button>
+                </div>
             </form>
         </section>
         </div>

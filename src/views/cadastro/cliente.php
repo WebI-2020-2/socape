@@ -21,119 +21,119 @@ $cliente = new ClientesController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
-
-    <section class="text-center container">
-            <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="display-6">CADASTRAR CLIENTE</h1>
+    <main class="container-fluid bg-light text-dark">
+        <section class="container py-3 text-center container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="display-6">CADASTRAR CLIENTE</h1>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-    <?php
-    if ($_POST) {
-        $data = $_POST;
+        <?php
+        if ($_POST) {
+            $data = $_POST;
 
-        $err = FALSE;
+            $err = FALSE;
 
-        if (!$data['nome']) {
-            echo
-            '<script>
-                alert("Informe o nome do cliente!");
-            </script>';
-            $err = TRUE;
-        }
-        if (!$data['telefone']) {
-            echo
-            '<script>
-                alert("Informe o número de telefone!");
-            </script>';
-            $err = TRUE;
-        }else if (strlen($data['telefone']) < 11) {
-            echo
-            '<script>
-                alert("O telefone deve conter 11 dígitos!");
-            </script>';
-          
-            $err = TRUE;
-        }
-
-        if ($data['tipoCliente'] == 'fisico') {
-            if (!$data['cpf']) {
+            if (!$data['nome']) {
                 echo
                 '<script>
-                    alert("Informe o CPF do cliente!");
+                    alert("Informe o nome do cliente!");
                 </script>';
                 $err = TRUE;
-                
             }
+            if (!$data['telefone']) {
+                echo
+                '<script>
+                    alert("Informe o número de telefone!");
+                </script>';
+                $err = TRUE;
+            }else if (strlen($data['telefone']) < 11) {
+                echo
+                '<script>
+                    alert("O telefone deve conter 11 dígitos!");
+                </script>';
             
-        } else {
-            if (!$data['cnpj']) {
-                echo
-                '<script>
-                    alert("Informe o CNPJ do cliente!");
-                </script>';
                 $err = TRUE;
             }
-        }
 
-        if (!$err) {
-            try {
-                $cliente->insert(
-                    $data['tipoCliente'],
-                    $data['nome'],
-                    $data['telefone'],
-                    $data['tipoCliente'] == 'fisico' ? $data['cpf'] : $data['cnpj'],
-                    0
-                );
+            if ($data['tipoCliente'] == 'fisico') {
+                if (!$data['cpf']) {
+                    echo
+                    '<script>
+                        alert("Informe o CPF do cliente!");
+                    </script>';
+                    $err = TRUE;
+                    
+                }
+                
+            } else {
+                if (!$data['cnpj']) {
+                    echo
+                    '<script>
+                        alert("Informe o CNPJ do cliente!");
+                    </script>';
+                    $err = TRUE;
+                }
+            }
 
-                $pessoa = $data['tipoCliente'] == 'fisico' ? 'Física' : 'Jurídica';
-                echo
-                "<script>
-                    alert('Cliente Pessoa ".$pessoa." cadastrada com sucesso!');
-                    window.location.href = '../consulta/cliente.php';
-                </script>";
-            } catch (PDOException $err) {
-                echo $err->getMessage();
+            if (!$err) {
+                try {
+                    $cliente->insert(
+                        $data['tipoCliente'],
+                        $data['nome'],
+                        $data['telefone'],
+                        $data['tipoCliente'] == 'fisico' ? $data['cpf'] : $data['cnpj'],
+                        0
+                    );
+
+                    $pessoa = $data['tipoCliente'] == 'fisico' ? 'Física' : 'Jurídica';
+                    echo
+                    "<script>
+                        alert('Cliente Pessoa ".$pessoa." cadastrada com sucesso!');
+                        window.location.href = '../consulta/cliente.php';
+                    </script>";
+                } catch (PDOException $err) {
+                    echo $err->getMessage();
+                }
             }
         }
-    }
-    ?>
+        ?>
 
-    <div class="py-5 bg-light vh-100">
-        <section class="d-flex justify-content-center align-items-center text-dark">
-            <form method="post" action="">
-                <div class="row mb-3">
-                    <img class="img-fluid w-100" src="./../../../public/imagens/usuario.png">
-                </div>
-                <div class="row mb-3">
-                    <select id="selecionar" name="tipoCliente" class="form-select">
-                        <option selected value="fisico">FÍSICO</option>
-                        <option value="juridico">JURIDICO</option>
-                    </select>
-                </div>
-                <div class="row mb-3">
-                    <label for="nome" class="form-label">NOME</label>
-                    <input type="text" id="nome" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" maxlength="150" autocomplete="off" required>
-                </div>
-                <div class="row mb-3">
-                    <label for="telefone" class="form-label">TELEFONE</label>
-                    <input type="text" id="telefone" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
-                </div>
-                <div class="row mb-3 rowCpf">
-                    <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" id="cpf" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
-                </div>
-                <div class="row mb-3 rowCnpj visually-hidden">
-                    <label for="cnpj" class="form-label">CNPJ</label>
-                    <input type="text" id="cnpj" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off">
-                </div>
-                <button type="submit" class="btn btn-primary">CADASTRAR</button>
-            </form>
-        </section>
-    </div>
-
+        <div class="py-5 bg-light vh-100">
+            <section class="container min-vh-100 py-5 d-flex justify-content-center align-items-center text-dark">
+                <form method="post" action="">
+                    <div class="row mb-3">
+                        <img class="img-fluid w-100" src="./../../../public/imagens/usuario.png">
+                    </div>
+                    <div class="row mb-3">
+                        <select id="selecionar" name="tipoCliente" class="form-select">
+                            <option selected value="fisico">FÍSICO</option>
+                            <option value="juridico">JURIDICO</option>
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="nome" class="form-label">NOME</label>
+                        <input type="text" id="nome" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" maxlength="150" autocomplete="off" required>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="telefone" class="form-label">TELEFONE</label>
+                        <input type="text" id="telefone" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
+                    </div>
+                    <div class="row mb-3 rowCpf">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" id="cpf" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
+                    </div>
+                    <div class="row mb-3 rowCnpj visually-hidden">
+                        <label for="cnpj" class="form-label">CNPJ</label>
+                        <input type="text" id="cnpj" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                </form>
+            </section>
+        </div>
+    </main>
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function() {
