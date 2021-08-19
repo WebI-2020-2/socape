@@ -47,104 +47,123 @@ $motores = new MotorController();
 </script>
 
 <body>
-    <div id="container">
-    <h1>
-        <span class="badge bg-light text-dark">PESQUISAR PRODUTO</span>
-    </h1>
-
-
-        <form method="post" action="">
-            <div id="preferencias">
-                <h1 id="titulo2">
-                    <span class="badge bg-light text-dark">PREFERÊNCIAS DA PESQUISA</span>
-                </h1>
-                <div id="dados">
-                    <label>MOTOR</label>
-                    <label id="MODELO">MODELO DO CARRO</label>
-                    <div class="input-group">
-                        <select class="form-control" name="idmotor">
-                            <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($motores->findAll() as $obj) { ?>
-                                <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia() ?></option>
-                            <?php } ?>
-                        </select>
-                        <select style="margin-left: 28px;"  class="form-control" name="idcarro">
-                            <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($carros->findAll() as $obj) { ?>
-                                <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo() ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <label>QUANTIDADE DE VÁLVULAS</label>
-                    <label id="ANO">ANO DE FABRICAÇÃO</label>
-                    <div class="input-group">
-                        <select class="form-control" name="idvalvulas">
-                            <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($valvulas->findAll() as $obj) { ?>
-                                <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade() ?></option>
-                            <?php } ?>
-                        </select>
-                        <select style="margin-left: 28px;" class="form-control" name="idfabricacao">
-                            <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($fabricacoes->findAll() as $obj) { ?>
-                                <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno() ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <label>CATEGORIA</label>
-                    <label id="MARCA">MARCA</label>
-                    <div class="input-group">        
-                        <select class="form-control" name="idcategoria">
-                            <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($categorias->findAll() as $obj) { ?>
-                                <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria() ?></option>
-                            <?php } ?>
-                        </select>
-                        <select style="margin-left: 28px;" class="form-control" name="idmarca">
-                            <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($marcas->findAll() as $obj) { ?>
-                                <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <label>LOCALIZAÇÃO</label>
-                    <label id="REFERÊNCIA">REFERÊNCIA</label>
-                    <div class="input-group">
-                        <select class="form-control" name="idlocalizacao" class="form-control">
-                            <option selected disabled>TODAS</option>
-                            <?php
-                            foreach ($localizacoes->findAll() as $obj) { ?>
-                                <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
-                            <?php } ?>
-                        </select>
-                        <input style="margin-left: 28px;" class="form-control" type="text" name="referencia" placeholder="PROCURAR POR REFERÊNCIA" />   
-                    </div>
-                </div>
-                <div id="pesquisar" class="mb-3">
-                    <input class="btn btn-primary" type="submit" value="PESQUISAR" />
+    <main class="container-fluid bg-light text-dark">
+        <section class="container py-3 text-start container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">PESQUISAR PRODUTO</h1>
                 </div>
             </div>
-           
-            
-    
-        </form>
-
-        <table style="margin-top: 1%"  class="table">
+        </section>
+        <div  class="py-5 bg-light vh-70">
+            <section class="container text-start text-dark">
+                <div class="row mb-3">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="display-6">PREFERÊNCIAS DA PESQUISA</h1>
+                    </div>
+                </div>
+                <form method="post" action="">
+                    <div class="row mb-3">
+                        <div  class="col-6 col-md-4 col-sm-6 mb-3">
+                            <label for="idmotor" class="form-label">MOTOR</label>
+                            <select class="form-control" name="idmotor">
+                                <option selected disabled>TODAS</option>
+                                <?php
+                                foreach ($motores->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdmotor(); ?>"><?= $obj->getPotencia() ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div  class="col-6 col-md-4 col-sm-6 mb-3">
+                            <label for="idmotor" class="form-label">MODELO DO CARRO</label>
+                            <select class="form-control" name="idcarro">
+                                <option selected disabled>TODAS</option>
+                                <?php
+                                foreach ($carros->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdcarro(); ?>"><?= $obj->getModelo() ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div  class="col-6 col-md-4 col-sm-6 mb-3">
+                            <label for="idmotor" class="form-label">QUANTIDADE DE VÁLVULAS</label>
+                            <select class="form-control" name="idvalvulas">
+                                <option selected disabled>TODAS</option>
+                                <?php
+                                foreach ($valvulas->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdvalvulas(); ?>"><?= $obj->getQuantidade() ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div  class="col-6 col-md-4 col-sm-6 mb-3">
+                            <label for="idmotor" class="form-label">ANO DE FABRICAÇÃO</label>
+                            <select class="form-control" name="idfabricacao">
+                                <option selected disabled>TODAS</option>
+                                <?php
+                                foreach ($fabricacoes->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdfabricacao(); ?>"><?= $obj->getAno() ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div  class="col-6 col-md-4 col-sm-6 mb-3">
+                            <label for="idmotor" class="form-label">CATEGORIA</label>
+                            <select class="form-control" name="idcategoria">
+                                <option selected disabled>TODAS</option>
+                                <?php
+                                foreach ($categorias->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdcategoria(); ?>"><?= $obj->getCategoria() ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div  class="col-6 col-md-4 col-sm-6 mb-3">
+                            <label for="idmotor" class="form-label">MARCA</label>
+                            <select class="form-control" name="idmarca">
+                                <option selected disabled>TODAS</option>
+                                <?php
+                                foreach ($marcas->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdmarca(); ?>"><?= $obj->getMarca(); ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div  class="col-6 col-md-4 col-sm-6 mb-3">
+                            <label for="idmotor" class="form-label">LOCALIZAÇÃO</label>
+                            <select class="form-control" name="idlocalizacao" class="form-control">
+                                <option selected disabled>TODAS</option>
+                                <?php
+                                foreach ($localizacoes->findAll() as $obj) { ?>
+                                    <option value="<?= $obj->getIdlocalizacao(); ?>"><?= $obj->getDepartamento() ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div  class="col-6 col-md-8 col-sm-6 mb-3">
+                            <label for="idmotor" class="form-label">REFERÊNCIA</label>
+                            <input class="form-control" type="text" name="referencia" placeholder="PROCURAR POR REFERÊNCIA" />   
+                        </div>
+                    </div>
+                    <div class="row text-end">
+                        <div id="pesquisar" class="mb-3">
+                            <input class="btn btn-primary" type="submit" value="PESQUISAR" />
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+       
+    </main>
+    <div  class="table-responsive-lg">
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>CATEGORIA/MARCA</th>
-                    <th>REFERÊNCIA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR DE VENDA</th>
-                    <th>LOCALIZAÇÃO</th>
-                    <th>AÇÃO</th>
+                    <th  scope="col">ID</th>
+                    <th  scope="col">CATEGORIA/MARCA</th>
+                    <th  scope="col">REFERÊNCIA</th>
+                    <th  scope="col">QUANTIDADE</th>
+                    <th  scope="col">VALOR DE VENDA</th>
+                    <th  scope="col">LOCALIZAÇÃO</th>
+                    <th  scope="col">AÇÃO</th>
                 </tr>
             </thead>
             <tbody>
@@ -173,6 +192,6 @@ $motores = new MotorController();
                 <?php } ?>
             </tbody>
         </table>
-
+    </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
