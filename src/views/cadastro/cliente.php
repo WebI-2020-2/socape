@@ -23,12 +23,12 @@ $cliente = new ClientesController();
     <?php include __DIR__ . "/../includes/header.php"; ?>
     <main class="container-fluid bg-light text-dark">
         <section class="container py-3 text-center container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                        <h1 class="display-6">CADASTRAR CLIENTE</h1>
-                    </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="display-6">CADASTRAR CLIENTE</h1>
                 </div>
-            </section>
+            </div>
+        </section>
 
         <?php
         if ($_POST) {
@@ -49,15 +49,14 @@ $cliente = new ClientesController();
                     alert("Informe o número de telefone!");
                 </script>';
                 $err = TRUE;
-            }else if (strlen($data['telefone']) < 11) {
+            } else if (strlen($data['telefone']) < 11) {
                 echo
                 '<script>
                     alert("O telefone deve conter 11 dígitos!");
                 </script>';
-            
+
                 $err = TRUE;
             }
-
             if ($data['tipoCliente'] == 'fisico') {
                 if (!$data['cpf']) {
                     echo
@@ -65,9 +64,7 @@ $cliente = new ClientesController();
                         alert("Informe o CPF do cliente!");
                     </script>';
                     $err = TRUE;
-                    
                 }
-                
             } else {
                 if (!$data['cnpj']) {
                     echo
@@ -91,7 +88,7 @@ $cliente = new ClientesController();
                     $pessoa = $data['tipoCliente'] == 'fisico' ? 'Física' : 'Jurídica';
                     echo
                     "<script>
-                        alert('Cliente Pessoa ".$pessoa." cadastrada com sucesso!');
+                        alert('Cliente Pessoa " . $pessoa . " cadastrada com sucesso!');
                         window.location.href = '../consulta/cliente.php';
                     </script>";
                 } catch (PDOException $err) {
@@ -119,21 +116,22 @@ $cliente = new ClientesController();
                     </div>
                     <div class="row mb-3">
                         <label for="telefone" class="form-label">TELEFONE</label>
-                        <input type="text" id="telefone" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
+                        <input type="text" id="telefone" minlength="15" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
                     </div>
                     <div class="row mb-3 rowCpf">
                         <label for="cpf" class="form-label">CPF</label>
-                        <input type="text" id="cpf" name="cpf" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
+                        <input type="text" id="cpf" name="cpf" minlength="14" oninput="mascara(this, 'cpf')" class="form-control" placeholder="CPF" autocomplete="off" required>
                     </div>
                     <div class="row mb-3 rowCnpj visually-hidden">
                         <label for="cnpj" class="form-label">CNPJ</label>
-                        <input type="text" id="cnpj" name="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off">
+                        <input type="text" id="cnpj" name="cnpj" minlength="18" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off">
                     </div>
                     <button type="submit" class="btn btn-primary">CADASTRAR</button>
                 </form>
             </section>
         </div>
     </main>
+
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function() {

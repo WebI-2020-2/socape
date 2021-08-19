@@ -22,80 +22,81 @@ $motores = new MotorController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main class="container-fluid bg-light text-dark">
-    <section class="container py-3">
-            <div class="row align-items-center d-flex">
-                <div class="col-2 col-md-2 col-sm-2">
-                <a href="../../views/consulta/motor.php" class="btn btn-primary">VOLTAR</a>
-                </div>
-                <div class="col-8 col-md-8 col-sm-8 text-center">
-                    <span class="display-6">CONSULTAR POTÊNCIA DO MOTOR</span>
+    <main class="container-fluid bg-light min-vh-100 text-dark">
+        <section class="container py-3 text-center container">
+            <div class="row">
+                <?php if (isset($_GET["id"])) { ?>
+                    <div class="col-6 col-md-1 col-sm-6">
+                        <a href="./motor.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
+                <?php } ?>
+                <div class="col-6 col-md-6 col-sm-6 mx-auto">
+                    <h1 class="display-6">CONSULTAR POTÊNCIA DO MOTOR</h1>
                 </div>
             </div>
         </section>
 
-        <div class="py-5 bg-light vh-100">
-            <?php
-            if (isset($_GET['msg'])) {
-                if ($_GET['msg'] == 1) echo '<script>alert("Informe a potencia!");</script>';
-            }
-            ?>
+        <?php
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] == 1) echo '<script>alert("Informe a potencia!");</script>';
+        }
+        ?>
 
-        <div class="py-5 bg-light vh-100">
-            <?php if (isset($_GET["id"])) {
-                if ($motores->findOne($_GET["id"])) {
-                    $motor = $motores->findOne($_GET["id"]);
-                    if ($_POST) {
-                        $data = $_POST;
-                        
-                        $err = FALSE;
-            
-                        if (!$data['potencia']) {
-                            echo
-                                '<script>
+        <?php if (isset($_GET["id"])) {
+            if ($motores->findOne($_GET["id"])) {
+                $motor = $motores->findOne($_GET["id"]);
+
+                if ($_POST) {
+                    $data = $_POST;
+
+                    $err = FALSE;
+
+                    if (!$data['potencia']) {
+                        echo
+                        '<script>
                                     alert("Informe a potência do motor!");
                                 </script>';
-                            $err = TRUE;
-                        }
-            
-                        if (!$err) {
-                            try {
-                                $motores->update(
-                                    $motor->getIdmotor(),
-                                    $data['potencia']
-                                );
-            
-                                echo
-                                '<script>
+                        $err = TRUE;
+                    }
+
+                    if (!$err) {
+                        try {
+                            $motores->update(
+                                $motor->getIdmotor(),
+                                $data['potencia']
+                            );
+
+                            echo
+                            '<script>
                                     alert("Potência de motor atualizado com sucesso!");
                                     window.location.href = "../consulta/motor.php";
                                 </script>';
-                            } catch (PDOException $err) {
-                                echo $err->getMessage();
-                            }
+                        } catch (PDOException $err) {
+                            echo $err->getMessage();
                         }
                     }
-                    ?>
-                        
+                }
+        ?>
+
                 <section class="container text-start text-dark">
-                <form  id="form" action="" method="POST">
-                    <div class="row">
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="potencia" class="form-label black-text">POTÊNCIA DO MOTOR</label>
-                            <input  type="number" id="potencia" name="potencia" value="<?= $motor->getPotencia() ?>" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
+                    <form id="form" action="" method="POST">
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="potencia" class="form-label black-text">POTÊNCIA DO MOTOR</label>
+                                <input type="number" id="potencia" name="potencia" value="<?= $motor->getPotencia() ?>" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="text-end">
+                        <div class="text-end">
                             <button type="submit" class="btn btn-dark">SALVAR</button>
                         </div>
-                </form>
-                <?php }
-            } else { ?>
-            </section>
+                    </form>
+                </section>
+            <?php }
+        } else { ?>
             <section class="container-fluid text-dark">
                 <div class="row">
                     <div class="col mb-3">
-                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..." aria-describedby="Help">
+                        <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar potência de motor..." aria-describedby="Help">
                         <div id="Help" class="form-text">Digite a potencia...</div>
                     </div>
                     <div class="col mb-3">
@@ -130,10 +131,8 @@ $motores = new MotorController();
                         <?php } ?>
                     </tbody>
                 </table>
-                <?php } ?>
-                </div>
             </div>
-        </div>
+        <?php } ?>
     </main>
 
     <script>
@@ -160,7 +159,7 @@ $motores = new MotorController();
 
         $(document).ready(function() {
             $("#txtBusca").on("keyup", function() {
-                const value = $(this).val().toLowerCase();
+                const value = $(this).val().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
                 $("table tbody tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });

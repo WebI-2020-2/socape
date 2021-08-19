@@ -21,89 +21,89 @@ $categorias = new CategoriaController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
-    
-    <main class="container-fluid bg-light text-dark">
-    <section class="container py-3">
-            <div class="row align-items-center d-flex">
-                <div class="col-2 col-md-2 col-sm-2">
-                <a href="../../views/consulta/categoria.php" class="btn btn-primary">VOLTAR</a>
-                </div>
-                <div class="col-8 col-md-8 col-sm-8 text-center">
-                    <span class="display-6">CONSULTAR CATEGORIA</span>
+
+    <main class="container-fluid bg-light min-vh-100 text-dark">
+        <section class="container py-3 text-center container">
+            <div class="row">
+                <?php if (isset($_GET["id"])) { ?>
+                    <div class="col-6 col-md-1 col-sm-6">
+                        <a href="./categoria.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
+                <?php } ?>
+                <div class="col-6 col-md-6 col-sm-6 mx-auto">
+                    <h1 class="display-6">CONSULTAR CATEGORIA</h1>
                 </div>
             </div>
         </section>
 
-        <div class="py-5 bg-light vh-100">
-            <?php
-            if (isset($_GET['msg'])) {
-                if ($_GET['msg'] == 1) echo '<script>alert("Informe a categoria!");</script>';
-            }
-            ?>
-        <div class="py-5 bg-light vh-100">
-            <?php if (isset($_GET["id"])) {
-                if ($categorias->findOne($_GET["id"])) {
-                    $categoria = $categorias->findOne($_GET["id"]);
-                    if ($_POST) {
-                        $data = $_POST;
-                
-                        $err = FALSE;
-        
-                        if (!$data['categoria']) {
-                            echo
-                            '<script>
+        <?php
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] == 1) echo '<script>alert("Informe a categoria!");</script>';
+        }
+        ?>
+
+        <?php if (isset($_GET["id"])) {
+            if ($categorias->findOne($_GET["id"])) {
+                $categoria = $categorias->findOne($_GET["id"]);
+
+                if ($_POST) {
+                    $data = $_POST;
+
+                    $err = FALSE;
+
+                    if (!$data['categoria']) {
+                        echo
+                        '<script>
                             alert("Informe a categoria!");
                             </script>';
-                            $err = TRUE;
-                        }
-        
-                        if (!$err) {
-                            try {
-                                $categorias->update(
-                                    $categoria->getIdcategoria(),
-                                    $data['categoria']
-                                );
-        
-                                echo
-                                '<script>
+                        $err = TRUE;
+                    }
+
+                    if (!$err) {
+                        try {
+                            $categorias->update(
+                                $categoria->getIdcategoria(),
+                                $data['categoria']
+                            );
+
+                            echo
+                            '<script>
                                     alert("Categoria atualizada com sucesso!");
                                     window.location.href = "../consulta/categoria.php";
                                 </script>';
-                            } catch (PDOException $err) {
-                                echo $err->getMessage();
-                            }
+                        } catch (PDOException $err) {
+                            echo $err->getMessage();
                         }
                     }
-                    ?>
-                        
-                        <section class="container text-start text-dark">
-                            <form method="POST" id="form">
-                                <div class="row">
-                                     <div class="col-6 col-md-4 col-sm-12 mb-3">
-                                        <label for="categoria" class="form-label black-text">CATEGORIA</label>
-                                        <input type="text" id="categoria" name="categoria" value="<?= $categoria->getCategoria() ?>" class="form-control" maxlength="30"  placeholder="CATEGORIA" required>
-                                    </div>
-                                </div>
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-dark">SALVAR</button>
-                                </div>
-                            </div>
-                            </form>
+                }
+        ?>
 
-                <?php }
-                    } else { ?>
+                <section class="container text-start text-dark">
+                    <form method="POST" id="form">
                         <div class="row">
-                            <div class="col mb-3">
-                                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..."  aria-describedby="Help">
-                                <div id="Help" class="form-text">Digite a categoria...</div>
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="categoria" class="form-label black-text">CATEGORIA</label>
+                                <input type="text" id="categoria" name="categoria" value="<?= $categoria->getCategoria() ?>" class="form-control" maxlength="30" placeholder="CATEGORIA" required>
                             </div>
-                         <div class="col mb-3">
-                            <div class="float-end">
-                            <a class="btn btn-primary" href="../cadastro/categoria.php">NOVO CADASTRO</a>
                         </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-dark">SALVAR</button>
+                        </div>
+                    </form>
+                </section>
+            <?php }
+        } else { ?>
+            <div class="row">
+                <div class="col mb-3">
+                    <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar categoria..." aria-describedby="Help">
+                    <div id="Help" class="form-text">Digite a categoria...</div>
+                </div>
+                <div class="col mb-3">
+                    <div class="float-end">
+                        <a class="btn btn-primary" href="../cadastro/categoria.php">NOVO CADASTRO</a>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <div class="table-responsive-lg">
                 <table class="table table-hover">
@@ -129,12 +129,10 @@ $categorias = new CategoriaController();
                         <?php } ?>
                     </tbody>
                 </table>
-                <?php } ?>
-                </div>
             </div>
-        </div>
+        <?php } ?>
     </main>
-    
+
     <script>
         function deletar(id, categoria) {
             if (confirm("Deseja realmente excluir a categoria " + categoria + "?")) {
@@ -156,10 +154,10 @@ $categorias = new CategoriaController();
                 return false;
             }
         }
-        
+
         $(document).ready(function() {
             $("#txtBusca").on("keyup", function() {
-                const value = $(this).val().toLowerCase();
+                const value = $(this).val().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
                 $("table tbody tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });

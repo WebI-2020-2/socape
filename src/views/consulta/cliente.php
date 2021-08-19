@@ -22,13 +22,15 @@ $clientes = new ClientesController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main class="container-fluid bg-light text-dark">
+    <main class="container-fluid bg-light min-vh-100 text-dark">
         <section class="container py-3 text-center container">
             <div class="row">
-                <div class="col-6 col-md-1 col-sm-6 ">
-                    <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
-                </div>
-                <div class="col-lg-6 col-md-6 mx-auto">
+                <?php if (isset($_GET["id"])) { ?>
+                    <div class="col-6 col-md-1 col-sm-6">
+                        <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
+                <?php } ?>
+                <div class="col-6 col-md-6 col-sm-6 mx-auto">
                     <h1 class="display-6">CONSULTAR CLIENTE</h1>
                 </div>
             </div>
@@ -39,152 +41,147 @@ $clientes = new ClientesController();
         }
         ?>
 
-        <div class="py-5 bg-light vh-100">
-            <?php if (isset($_GET["id"])) {
-                if ($clientes->findOne($_GET["id"])) {
-                    $cliente = $clientes->findOne($_GET["id"]);
+        <?php if (isset($_GET["id"])) {
+            if ($clientes->findOne($_GET["id"])) {
+                $cliente = $clientes->findOne($_GET["id"]);
 
-                    if ($_POST) {
-                        $data = $_POST;
+                if ($_POST) {
+                    $data = $_POST;
 
-                        $err = FALSE;
+                    $err = FALSE;
 
-                        if (!$data['nome']) {
-                            echo
-                            '<script>
+                    if (!$data['nome']) {
+                        echo
+                        '<script>
                                 alert("Informe o nome do cliente!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['telefone']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['telefone']) {
+                        echo
+                        '<script>
                                 alert("Informe o telefone!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if ($cliente->getCpf() != "") {
-                            if (!$data['cpf']) {
-                                echo
-                                '<script>
+                        $err = TRUE;
+                    }
+                    if ($cliente->getCpf() != "") {
+                        if (!$data['cpf']) {
+                            echo
+                            '<script>
                                     alert("Informe o CPF!");
                                 </script>';
-                                $err = TRUE;
-                            }
-                        } else {
-                            if (!$data['cnpj']) {
-                                echo
-                                '<script>
+                            $err = TRUE;
+                        }
+                    } else {
+                        if (!$data['cnpj']) {
+                            echo
+                            '<script>
                                     alert("Informe o CNPJ!");
                                 </script>';
-                                $err = TRUE;
-                            }
+                            $err = TRUE;
                         }
+                    }
 
-                        if (!$err) {
-                            try {
-                                $clientes->update(
-                                    $cliente->getCpf() != "" ? 'fisico' : 'juridico',
-                                    $cliente->getIdcliente(),
-                                    $data['nome'],
-                                    $data['telefone'],
-                                    $cliente->getCpf() != "" ? $data['cpf'] : $data['cnpj']
-                                );
+                    if (!$err) {
+                        try {
+                            $clientes->update(
+                                $cliente->getCpf() != "" ? 'fisico' : 'juridico',
+                                $cliente->getIdcliente(),
+                                $data['nome'],
+                                $data['telefone'],
+                                $cliente->getCpf() != "" ? $data['cpf'] : $data['cnpj']
+                            );
 
-                                echo
-                                '<script>
+                            echo
+                            '<script>
                                     alert("Cliente atualizado com sucesso!");
                                     window.location.href = "./cliente.php?id=' . $cliente->getIdcliente() . '";
                                 </script>';
-                            } catch (PDOException $e) {
-                                echo $e->getMessage();
-                            }
+                        } catch (PDOException $e) {
+                            echo $e->getMessage();
                         }
                     }
-            ?>
-                        <div class="row">
-                           
+                }
+        ?>
+                <section class="container min-vh-100 py-5 d-flex justify-content-center align-items-center text-dark">
+                    <form method="post" action="">
+                        <div class="row mb-3">
+                            <img class="img-fluid w-100" src="./../../../public/imagens/usuario.png">
                         </div>
-                    <div class="py-5 bg-light vh-100">
-                        <section class="container min-vh-100 py-5 d-flex justify-content-center align-items-center text-dark">
-                            <form method="post" action="">
-                                <div class="row mb-3">
-                                    <img class="img-fluid w-100" src="./../../../public/imagens/usuario.png">
+                        <div class="row mb-3">
+                            <label for="nome" class="form-label">NOME</label>
+                            <input type="text" id="nome" class="form-control" oninput="validaInput(this, false)" name="nome" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="telefone" class="form-label black-text">TELEFONE</label>
+                            <input type="text" id="telefone" class="form-control" minlength="15" name="telefone" oninput="mascara(this, 'tel')" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
+                        </div>
+                        <div class="row mb-3">
+                            <?php if (empty($cliente->getCpf())) { ?>
+                                <label for="cnpj" class="form-label black-text">CNPJ</label>
+                                <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" oninput="mascara(this, 'cnpj')" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
+                            <?php } else { ?>
+                                <div class="col-6 col-md-12 col-sm-12 mb-3">
+                                    <label for="cpf" class="form-label black-text">CPF</label>
+                                    <input type="text" id="cpf" name="cpf" placeholder="CPF" oninput="mascara(this, 'cpf')" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
                                 </div>
-                                <div class="row mb-3">
-                                    <label for="nome" class="form-label">NOME</label>
-                                    <input type="text" id="nome" class="form-control" oninput="validaInput(this, false)"  name="nome" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="telefone" class="form-label black-text">TELEFONE</label>
-                                    <input type="text" id="telefone" class="form-control" name="telefone"  oninput="mascara(this, 'tel')" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required >
-                                </div>
-                                <div class="row mb-3">
-                                    <?php if (empty($cliente->getCpf())) { ?>
-                                        <label for="cnpj" class="form-label black-text">CNPJ</label>
-                                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ"  oninput="mascara(this, 'cnpj')" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
-                                    <?php } else { ?>
-                                        <div class="col-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="cpf" class="form-label black-text">CPF</label>
-                                            <input type="text" id="cpf" name="cpf" placeholder="CPF" oninput="mascara(this, 'cpf')" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
-                                        </div>
-                                    <?php } ?>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="text-end">
-                                        <button type="submit" class="btn btn-dark">SALVAR</button>
+                            <?php } ?>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-dark">SALVAR</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            <?php }
+        } else { ?>
+            <section class="container-fluid text-dark">
+                <div class="row">
+                    <div class="col mb-3">
+                        <input type="text" class="form-control border border-5 border-dark" placeholder="Pesquisar nome..." id="txtBusca" aria-describedby="clienteHelp">
+                        <div id="clienteHelp" class="form-text">Digite o nome do cliente...</div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="float-end">
+                            <a class="btn btn-primary" href="../cadastro/cliente.php">NOVO CADASTRO</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="table-responsive-lg">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">NOME</th>
+                            <th scope="col">TELEFONE</th>
+                            <th scope="col">TIPO/IDENTIFICAÇÃO</th>
+                            <th scope="col">DÉBITO</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($clientes->findAll() as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIdcliente(); ?></td>
+                                <td><?= $obj->getNome(); ?></td>
+                                <td><?= $obj->getTelefone(); ?></td>
+                                <td><?= $obj->getCpf() != "" ? "Cliente PF / CPF: " . $obj->getCpf() : "Cliente PJ / CNPJ " . $obj->getCnpj(); ?></td>
+                                <td>R$<?= $obj->getDebito(); ?></td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdcliente(); ?>">VISUALIZAR/EDITAR</a>
+                                        <button class="btn btn-dark" onclick="deletar('<?= $obj->getIdcliente(); ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
                                     </div>
-                                </div>
-                            </form>
-                        </section>
-                    <?php }
-            } else { ?>
-                    <section class="container-fluid text-dark">
-                        <div class="row">
-                            <div class="col mb-3">
-                                <input type="text" class="form-control border border-5 border-dark" placeholder="Pesquisar nome..." id="txtBusca" aria-describedby="clienteHelp">
-                                <div id="clienteHelp" class="form-text">Digite o nome do cliente...</div>
-                            </div>
-                            <div class="col mb-3">
-                                <div class="float-end">
-                                    <a class="btn btn-primary" href="../cadastro/cliente.php">NOVO CADASTRO</a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <div class="table-responsive-lg">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">NOME</th>
-                                    <th scope="col">TELEFONE</th>
-                                    <th scope="col">TIPO/IDENTIFICAÇÃO</th>
-                                    <th scope="col">DÉBITO</th>
-                                    <th scope="col">AÇÕES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($clientes->findAll() as $obj) { ?>
-                                    <tr>
-                                        <td><?= $obj->getIdcliente(); ?></td>
-                                        <td><?= $obj->getNome(); ?></td>
-                                        <td><?= $obj->getTelefone(); ?></td>
-                                        <td><?= $obj->getCpf() != "" ? "Cliente PF / CPF: " . $obj->getCpf() : "Cliente PJ / CNPJ " . $obj->getCnpj(); ?></td>
-                                        <td>R$<?= $obj->getDebito(); ?></td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <a class="btn btn-primary" href="?id=<?= $obj->getIdcliente(); ?>">VISUALIZAR/EDITAR</a>
-                                                <button class="btn btn-dark" onclick="deletar('<?= $obj->getIdcliente(); ?>', '<?= $obj->getNome() ?>')">APAGAR</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    <?php } ?>
-                    </div>
-                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } ?>
     </main>
 
     <script>

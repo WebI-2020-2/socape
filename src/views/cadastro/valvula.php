@@ -21,25 +21,24 @@ $valvulas = new ValvulasController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
+
     <main class="container-fluid bg-light text-dark">
-    <section class="container py-3">
+        <section class="container py-3">
             <div class="row align-items-center d-flex">
                 <div class="col-2 col-md-2 col-sm-2">
-                <a href="../../views/consulta/valvula.php" class="btn btn-primary">VOLTAR</a>
+                    <a href="../../views/consulta/valvula.php" class="btn btn-primary">VOLTAR</a>
                 </div>
                 <div class="col-8 col-md-8 col-sm-8 text-center">
                     <span class="display-6">CADASTRAR VÁLVULA</span>
                 </div>
             </div>
         </section>
-        
+
 
         <div class="py-5 bg-light">
             <?php
             if ($_POST) {
                 $data = $_POST;
-
-                $valvula = new ValvulasController();
 
                 $err = FALSE;
                 if (!$data['quantidade']) {
@@ -48,7 +47,7 @@ $valvulas = new ValvulasController();
                         alert("Informe a quantidade!");
                     </script>';
                     $err = TRUE;
-                }else if (strlen($data['quantidade']) > 2) {
+                } else if (strlen($data['quantidade']) > 2) {
                     echo
                     '<script>
                         alert("A quantidade não deve ser maior que 2 dígitos!");
@@ -58,7 +57,7 @@ $valvulas = new ValvulasController();
 
                 if (!$err) {
                     try {
-                        $valvula->insert(
+                        $valvulas->insert(
                             $data['quantidade']
                         );
 
@@ -73,29 +72,25 @@ $valvulas = new ValvulasController();
                 }
             }
             ?>
-            
+
             <section class="container min-vh-100 py-5">
-                
-                <form  id="form" action="" method="POST">
-                      
+                <form id="form" action="" method="POST">
                     <div class="row">
                         <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="potencia" class="form-label black-text">QUANTIDADE DE VÁLVULAS</label>
-                            <input  type="text" oninput="validaInputNumber(this)" name="quantidade" class="form-control" placeholder="QUANTIDADE" required maxlength="2"> 
+                            <input type="text" oninput="validaInputNumber(this);" name="quantidade" class="form-control" placeholder="QUANTIDADE" required maxlength="2">
                         </div>
                     </div>
-                    
                     <div class="row">
                         <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <button type="submit" class="btn btn-primary" >CADASTRAR</button>
+                            <button type="submit" class="btn btn-primary">CADASTRAR</button>
                         </div>
                     </div>
-                       
                 </form>
             </section>
         </div>
     </main>
-    
+
     <script>
         $(document).ready(function() {
             $("#form").on("submit", function() {

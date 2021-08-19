@@ -289,7 +289,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
                                     <?php if ($venda->getStatus() == 0) { ?>
                                         <td>
                                             <div class="button-group clear">
-                                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIditensvenda() ?>', '<?= $cliente->getNome(); ?>')">APAGAR</button>
+                                                <button class="btn btn-sm btn-danger" onclick="deletar('<?= $obj->getIditensvenda() ?>')">APAGAR</button>
                                             </div>
                                         </td>
                                     <?php } ?>
@@ -379,7 +379,7 @@ $cliente = $clientes->findOne($venda->getIdcliente());
         });
 
         function deletar(id, nome) {
-            if (confirm("Deseja realmente excluir o itens venda " + id + " do cliente " + nome + "?")) {
+            if (confirm("Deseja realmente excluir o item" + id + "?")) {
                 $.ajax({
                     url: '../apagar/ItensVenda.php',
                     type: "POST",
