@@ -164,12 +164,10 @@ class ProdutosController extends Produto
         return $produtos;
     }
 
-    public function insert($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $icms, $ipi, $frete, $valornafabrica, $valordecompra, $lucro, $valorvenda, $desconto, $quantidade, $unidade, $idlocalizacao, $referencia)
+    public function insert($idmotor, $idcarro, $idvalvulas, $idfabricacao, $idcategoria, $idmarca, $unidade, $idlocalizacao, $referencia)
     {
-        $query = "INSERT INTO $this->tabela (idmotor, idcarro, idvalvulas, idfabricacao, idcategoria, idmarca, icms, ipi, frete, 
-        valornafabrica, valordecompra, lucro, valorvenda, desconto, quantidade, unidade, idlocalizacao, referencia)
-        VALUES (:idmotor, :idcarro, :idvalvulas, :idfabricacao, :idcategoria, :idmarca, :icms, :ipi, :frete, :valornafabrica, 
-        :valordecompra, :lucro, :valorvenda, :desconto, :quantidade, :unidade, :idlocalizacao, :referencia)";
+        $query = "INSERT INTO $this->tabela (idmotor, idcarro, idvalvulas, idfabricacao, idcategoria, idmarca, unidade, idlocalizacao, referencia)
+        VALUES (:idmotor, :idcarro, :idvalvulas, :idfabricacao, :idcategoria, :idmarca, :unidade, :idlocalizacao, :referencia)";
         $stm = Database::prepare($query);
         $stm->bindParam(':idmotor', $idmotor);
         $stm->bindParam(':idcarro', $idcarro);
@@ -177,18 +175,10 @@ class ProdutosController extends Produto
         $stm->bindParam(':idfabricacao', $idfabricacao);
         $stm->bindParam(':idcategoria', $idcategoria);
         $stm->bindParam(':idmarca', $idmarca);
-        $stm->bindParam(':icms', $icms);
-        $stm->bindParam(':ipi', $ipi);
-        $stm->bindParam(':frete', $frete);
-        $stm->bindParam(':valornafabrica', $valornafabrica);
-        $stm->bindParam(':valordecompra', $valordecompra);
-        $stm->bindParam(':lucro', $lucro);
-        $stm->bindParam(':valorvenda', $valorvenda);
-        $stm->bindParam(':desconto', $desconto);
-        $stm->bindParam(':quantidade', $quantidade);
         $stm->bindParam(':unidade', $unidade);
         $stm->bindParam(':idlocalizacao', $idlocalizacao);
         $stm->bindParam(':referencia', $referencia);
+
         return $stm->execute();
     }
 

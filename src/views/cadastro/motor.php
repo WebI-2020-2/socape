@@ -21,11 +21,12 @@ $motores = new MotorController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
+
     <main class="container-fluid bg-light text-dark">
-    <section class="container py-3">
+        <section class="container py-3">
             <div class="row align-items-center d-flex">
                 <div class="col-2 col-md-2 col-sm-2">
-                <a href="../../views/consulta/motor.php" class="btn btn-primary">VOLTAR</a>
+                    <a href="../../views/consulta/motor.php" class="btn btn-primary">VOLTAR</a>
                 </div>
                 <div class="col-8 col-md-8 col-sm-8 text-center">
                     <span class="display-6">CADASTRAR POTÊNCIA DO MOTOR</span>
@@ -34,62 +35,66 @@ $motores = new MotorController();
         </section>
 
         <div class="py-5 bg-light">
-        <?php
-        if ($_POST) {
-            $data = $_POST;
+            <?php
+            if ($_POST) {
+                $data = $_POST;
 
-            $motor = new MotorController();
+                $err = FALSE;
 
-            $err = FALSE;
-
-            if (!$data['potencia']) {
-                echo
+                if (!$data['potencia']) {
+                    echo
                     '<script>
                         alert("Informe a potência do motor!");
                     </script>';
-                $err = TRUE;
-            }
+                    $err = TRUE;
+                }
 
-            if (!$err) {
-                try {
-                    $motor->insert(
-                        $data['potencia']
-                    );
+                if (!$err) {
+                    try {
+                        $motores->insert(
+                            $data['potencia']
+                        );
 
-                    echo
-                    '<script>
-                        alert("Potência de motor cadastrada com sucesso!");
-                        window.location.href = "../consulta/motor.php";
-                    </script>';
-                } catch (PDOException $err) {
-                    echo $err->getMessage();
+                        echo
+                        '<script>
+                            alert("Potência de motor cadastrada com sucesso!");
+                            window.location.href = "../consulta/motor.php";
+                        </script>';
+                    } catch (PDOException $err) {
+                        echo $err->getMessage();
+                    }
                 }
             }
-        }
-        ?> 
-        <section class="container min-vh-100 py-5">
-                <form  id="form" action="" method="POST">
+            ?>
+            <section class="container min-vh-100 py-5">
+                <form id="form" action="" method="POST">
                     <div class="row">
                         <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="potencia" class="form-label black-text">POTÊNCIA DO MOTOR</label>
-                            <input  type="number" oninput="validaInputNumber(this)" id="potencia" name="potencia" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
+                            <input type="text" oninput="validaInput(this, true)" id="potencia" name="potencia" class="form-control" maxlength="3" placeholder="POTÊNCIA" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="row text-start">
                         <div class="col-6 col-md-12 col-sm-6 mb-3">
-                            <button type="submit" class="btn btn-primary">CADASTRAR</button>
+                            <button type="button" id="cadastrar" class="btn btn-primary">CADASTRAR</button>
                         </div>
                     </div>
                 </form>
             </section>
         </div>
     </main>
-    
+
     <script>
         $(document).ready(function() {
-            $("#form").on("submit", function() {
-                $("button[type=submit]").prop("disabled", true);
-                $("button[type=submit]").text("CADASTRANDO...");
+            $("#form").on("click", "#cadastrar", function() {
+                if(isNaN($("#potencia").val())){
+                    alert("Potência deve ser um número!");
+                    $("#potencia").val("");
+                } else {
+                    $("#form").submit();
+                    $("#cadastrar").prop("disabled", true);
+                    $("#cadastrar").text("CADASTRANDO...");
+                }
             });
         });
     </script>

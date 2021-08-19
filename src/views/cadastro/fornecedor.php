@@ -21,6 +21,7 @@ $fornecedores = new FornecedoresController();
 
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
+    
     <main class="container-fluid bg-light text-dark">
         <section class="container py-3 text-center container">
             <div class="row">
@@ -29,10 +30,10 @@ $fornecedores = new FornecedoresController();
                 </div>
             </div>
         </section>
+
         <?php
         if ($_POST) {
             $data = $_POST;
-            $fornecedor = new FornecedoresController();
 
             $err = FALSE;
 
@@ -77,14 +78,15 @@ $fornecedores = new FornecedoresController();
                 $err = TRUE;
             }
 
-            $fornecedor->setNome($data['nome']);
-            $fornecedor->setEndereco($data['endereco']);
-            $fornecedor->setTelefone($data['telefone']);
-            $fornecedor->setCnpj($data['cnpj']);
-
             if (!$err) {
                 try {
-                    $fornecedor->insert($fornecedor->getNome(), $fornecedor->getEndereco(), $fornecedor->getTelefone(), $fornecedor->getCnpj());
+                    $fornecedores->insert(
+                        $data['nome'],
+                        $data['endereco'],
+                        $data['telefone'],
+                        $data['cnpj']
+                    );
+
                     echo
                     '<script>
                             alert("Fornecedor cadastrado com sucesso!");
@@ -110,11 +112,11 @@ $fornecedores = new FornecedoresController();
                     </div>
                     <div class="row mb-3">
                         <label for="telefone" class="form-label">TELEFONE</label>
-                        <input type="text" name="telefone" minlength="15" id="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
+                        <input type="text" name="telefone" id="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" autocomplete="off" required>
                     </div>
                     <div class="row mb-3">
                         <label for="cnpj" class="form-label">CNPJ</label>
-                        <input type="text" name="cnpj" id="cnpj" minlength="18" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off" required>
+                        <input type="text" name="cnpj" id="cnpj" oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off" required>
                     </div>
                     <button type="submit" class="btn btn-primary">CADASTRAR</button>
                 </form>

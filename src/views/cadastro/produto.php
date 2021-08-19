@@ -138,15 +138,6 @@ $marcas = new MarcasController();
                         $data['idfabricacao'],
                         $data['idcategoria'],
                         $data['idmarca'],
-                        0, // ICMS
-                        0, // IPI
-                        0, // FRETE
-                        0, // VALOR NA FABRICA
-                        0, // VALOR DE COMPRA
-                        0, // LUCRO
-                        0, //VALOR VENDA
-                        $data['desconto'],
-                        0, // QUANTIDADE
                         $data['unidade'],
                         $data['idlocalizacao'],
                         $data['referencia'],
@@ -255,6 +246,10 @@ $marcas = new MarcasController();
             $("#form").on("submit", function() {
                 $("button[type=submit]").prop("disabled", true);
                 $("button[type=submit]").text("CADASTRANDO...");
+            });
+
+            $('#unidade').on('keyup', (ev) => {
+                $('#unidade').val($('#unidade').val().toUpperCase());
             });
         });
     </script>

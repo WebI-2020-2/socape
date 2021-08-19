@@ -65,7 +65,7 @@ $fabricacoes = new FabricacaoController();
                                 $fabricacao->getIdfabricacao(),
                                 $data['ano']
                             );
-                          
+
                             echo
                             '<script>
                                 alert("Ano de Fabricação atualizado com sucesso!");
@@ -103,26 +103,35 @@ $fabricacoes = new FabricacaoController();
                             <a class="btn btn-primary" href="../cadastro/anofabricacao.php">NOVO CADASTRO</a>
                         </div>
                     </div>
-                </section>
-
-                    <div class="table-responsive-lg">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <td><?= $obj->getIdfabricacao(); ?></td>
-                                    <td><?= $obj->getAno(); ?></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a class="btn btn-primary" href="?id=<?= $obj->getIdfabricacao(); ?>">VISUALIZAR/EDITAR</a>
-                                            <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao(); ?>', '<?= $obj->getAno(); ?>')">APAGAR</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
                 </div>
-        </section>
+            </section>
+
+            <div class="table-responsive-lg">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ANO</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($fabricacoes->findAll() as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIdfabricacao(); ?></td>
+                                <td><?= $obj->getAno(); ?></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdfabricacao(); ?>">VISUALIZAR/EDITAR</a>
+                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao(); ?>', '<?= $obj->getAno(); ?>')">APAGAR</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } ?>
     </main>
 
     <script>
