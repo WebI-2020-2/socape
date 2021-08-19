@@ -24,10 +24,6 @@ $fornecedores = new FornecedoresController();
 
     <main class="container-fluid bg-light text-dark">
         <section class=" container py-3 text-center container">
-            <div class="row">
-                <div class="col-6 col-md-1 col-sm-6">
-                    <a href="./fornecedor.php" class="btn btn-primary">VOLTAR</a>
-                </div>
                 <div class="col-lg-6 col-md-6 mx-auto">
                     <h1 class="display-6">CONSULTAR FORNECEDOR</h1>
                 </div>
@@ -100,12 +96,15 @@ $fornecedores = new FornecedoresController();
                         }
                     }
             ?>
+                    <div class="col-6 col-md-1 col-sm-6">
+                        <a href="./fornecedor.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
                     <section class="container min-vh-10 py-5 d-flex justify-content-center align-items-center">
-                        <img  src="./../../../public/imagens/caminhão.png">
+                        <img src="./../../../public/imagens/caminhão.png">
                         <form id="form" style="margin-left: 5%" action="" method="post">
                             <div class="row mb-3">
                                 <label class="form-label">NOME</label>
-                                <input type="text" name="nome"  oninput="validaInput(this, false)" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
+                                <input type="text" name="nome" oninput="validaInput(this, false)" class="form-control" placeholder="NOME" value="<?= $fornecedor->getNome(); ?>" required>
                             </div>
                             <div class="row  mb-3">
                                 <label class="form-label">ENDEREÇO</label>
@@ -113,7 +112,7 @@ $fornecedores = new FornecedoresController();
                             </div>
                             <div class="row  mb-3">
                                 <label class="form-label">TELEFONE</label>
-                                <input type="text" name="telefone"  oninput="mascara(this, 'tel')"  class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
+                                <input type="text" name="telefone" oninput="mascara(this, 'tel')" class="form-control" placeholder="TELEFONE" value="<?= $fornecedor->getTelefone(); ?>" required>
                             </div>
                             <div class="row  mb-3">
                                 <label class="form-label">CNPJ</label>

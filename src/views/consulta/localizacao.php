@@ -23,116 +23,112 @@ $localizacoes = new LocalizacaoController();
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
     <main class="container-fluid bg-light text-dark">
-    <section class="container py-3">
-            <div class="row align-items-center d-flex">
-                <div class="col-2 col-md-2 col-sm-2">
-                <a href="../../views/consulta/localizacao.php" class="btn btn-primary">VOLTAR</a>
+        <section class=" container py-3 text-center container">
+                <div class="col-lg-6 col-md-6 mx-auto">
+                    <h1 class="display-6">CONSULTAR LOCALIZAÇÃO</h1>
                 </div>
-                <div class="col-8 col-md-8 col-sm-8 text-center">
-                    <span class="display-6">CONSULTAR LOCALIZAÇÃO</span>
-                </div>
-            </div>
         </section>
 
-        <div class="py-5 bg-light vh-100">
             <?php
             if (isset($_GET['msg'])) {
                 if ($_GET['msg'] == 1) echo '<script>alert("Informe o departamento!");</script>';
             }
             ?>
 
-        <div class="py-5 bg-light vh-100">
-            <?php if (isset($_GET["id"])) {
-                if ($localizacoes->findOne($_GET["id"])) {
-                    $localizacao = $localizacoes->findOne($_GET["id"]);
+            <div class="py-5 bg-light vh-100">
+                <?php if (isset($_GET["id"])) {
+                    if ($localizacoes->findOne($_GET["id"])) {
+                        $localizacao = $localizacoes->findOne($_GET["id"]);
 
-                    if ($_POST) {
-                        $data = $_POST;
-        
-                        $err = FALSE;
-        
-                        if (!$data['departamento']) {
-                            echo
+                        if ($_POST) {
+                            $data = $_POST;
+
+                            $err = FALSE;
+
+                            if (!$data['departamento']) {
+                                echo
                                 '<script>
                                     alert("Informe o departamento!");
                                 </script>';
-                            $err = TRUE;
-                        }
-        
-                        if (!$err) {
-                            try {
-                                $localizacoes->update(
-                                    $localizacao->getIdlocalizacao(),
-                                    $data['departamento']
-                                );
-        
-                                echo
-                                '<script>
+                                $err = TRUE;
+                            }
+
+                            if (!$err) {
+                                try {
+                                    $localizacoes->update(
+                                        $localizacao->getIdlocalizacao(),
+                                        $data['departamento']
+                                    );
+
+                                    echo
+                                    '<script>
                                     alert("Departamento atualizado com sucesso!");
                                     window.location.href = "../consulta/localizacao.php";
                                 </script>';
-                                
-                            } catch (PDOException $err) {
-                                echo $err->getMessage();
+                                } catch (PDOException $err) {
+                                    echo $err->getMessage();
+                                }
                             }
                         }
-                    }
-                    ?>
-                    <section class="container text-start text-dark">
+                ?>
+                        <div class="col-2 col-md-2 col-sm-2">
+                            <a href="../../views/consulta/localizacao.php" class="btn btn-primary">VOLTAR</a>
+                        </div>
+                        <section class="container text-start text-dark">
                             <form method="POST" action="" id="form">
                                 <div class="row">
                                     <div class="col-6 col-md-4 col-sm-12 mb-3">
                                         <label for="departamento" class="form-label black-text">LOCALIZAÇÃO</label>
-                                        <input type="text" name="departamento" id="departamento" value="<?= $localizacao->getDepartamento(); ?>"class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
+                                        <input type="text" name="departamento" id="departamento" value="<?= $localizacao->getDepartamento(); ?>" class="form-control" placeholder="DEPARTAMENTO" autocomplete="off" required>
                                     </div>
                                 </div>
                                 <div class="text-end">
                                     <button type="submit" class="btn btn-dark">SALVAR</button>
-                                    </div>
+                                </div>
                             </form>
-                    </section>
+                        </section>
                     <?php }
-            } else { ?>
-            <section class="container-fluid text-dark">
-                <div class="row">
-                    <div class="col mb-3">
-                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..." aria-describedby="Help">
-                        <div id="Help" class="form-text">Digite o departamento...</div>
-                    </div>
-                    <div class="col mb-3">
-                        <div class="float-end">
-                            <a class="btn btn-primary" href="../cadastro/localizacao.php">NOVO CADASTRO</a>
+                } else { ?>
+                    <section class="container-fluid text-dark">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar ..." aria-describedby="Help">
+                                <div id="Help" class="form-text">Digite o departamento...</div>
+                            </div>
+                            <div class="col mb-3">
+                                <div class="float-end">
+                                    <a class="btn btn-primary" href="../cadastro/localizacao.php">NOVO CADASTRO</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </section>
 
-            <div class="table-responsive-lg">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">LOCALIZAÇÃO</th>
-                            <th scope="col">AÇÕES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($localizacoes->findAll() as $obj) { ?>
-                            <tr>
-                                <td><?= $obj->getIdlocalizacao() ?></td>
-                                <td><?= $obj->getDepartamento() ?></td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdlocalizacao() ?>">VISUALIZAR/EDITAR</a>
-                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-                <?php } ?>
-                </div>
+                    <div class="table-responsive-lg">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">LOCALIZAÇÃO</th>
+                                    <th scope="col">AÇÕES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($localizacoes->findAll() as $obj) { ?>
+                                    <tr>
+                                        <td><?= $obj->getIdlocalizacao() ?></td>
+                                        <td><?= $obj->getDepartamento() ?></td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a class="btn btn-primary" href="?id=<?= $obj->getIdlocalizacao() ?>">VISUALIZAR/EDITAR</a>
+                                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php } ?>
+                    </div>
             </div>
         </div>
     </main>
