@@ -72,7 +72,7 @@ $motores = new MotorController();
                     <div class="row">
                         <div class="col-6 col-md-4 col-sm-12 mb-3">
                             <label for="potencia" class="form-label black-text">POTÊNCIA DO MOTOR</label>
-                            <input  type="number" id="potencia" name="potencia" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
+                            <input  type="number" oninput="validaInputNumber(this)" id="potencia" name="potencia" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="row text-start">
@@ -94,6 +94,7 @@ $motores = new MotorController();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>

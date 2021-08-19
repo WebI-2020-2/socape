@@ -22,10 +22,17 @@ $fabricacoes = new FabricacaoController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main class="container-fluid bg-light text-dark">
-        <section class=" container py-3 text-center container">
-            <div class="col-lg-6 col-md-6 mx-auto">
-                <h1 class="display-6">CONSULTAR ANO FABRICAÇÃO</h1>
+    <main class="container-fluid bg-light min-vh-100 text-dark">
+        <section class="container py-3 text-center container">
+            <div class="row">
+                <?php if (isset($_GET["id"])) { ?>
+                    <div class="col-6 col-md-1 col-sm-6">
+                        <a href="./anofabricacao.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
+                <?php } ?>
+                <div class="col-6 col-md-6 col-sm-6 mx-auto">
+                    <h1 class="display-6">CONSULTAR ANO DE FABRICAÇÃO</h1>
+                </div>
             </div>
         </section>
 
@@ -34,76 +41,66 @@ $fabricacoes = new FabricacaoController();
             if ($_GET['msg'] == 1) echo '<script>alert("Informe o ano de fabricação!");</script>';
         }
         ?>
-        <div class="py-5 bg-light vh-100">
-            <?php if (isset($_GET["id"])) {
-                if ($fabricacoes->findOne($_GET["id"])) {
-                    $fabricacao = $fabricacoes->findOne($_GET["id"]);
-                    if ($_POST) {
-                        $data = $_POST;
 
-                        $err = FALSE;
+        <?php if (isset($_GET["id"])) {
+            if ($fabricacoes->findOne($_GET["id"])) {
+                $fabricacao = $fabricacoes->findOne($_GET["id"]);
 
-                        if (!$data['ano']) {
-                            echo
-                            '<script>
+                if ($_POST) {
+                    $data = $_POST;
+
+                    $err = FALSE;
+
+                    if (!$data['ano']) {
+                        echo
+                        '<script>
                              alert("Informe o ano de Fabricação!");
                             </script>';
-                            $err = TRUE;
-                        }else if (strlen($data['ano']) < 4) {
+                        $err = TRUE;
+                    }
+
+                    if (!$err) {
+                        try {
+                            $fabricacoes->update(
+                                $fabricacao->getIdfabricacao(),
+                                $data['ano']
+                            );
+                          
                             echo
                             '<script>
-                                alert("O ano de fabricação deve conter 4 dígitos!");
+                                alert("Ano de Fabricação atualizado com sucesso!");
+                                window.location.href = "../consulta/anofabricacao.php";
                             </script>';
-                        
-                            $err = TRUE;
-                        }
-
-                        if (!$err) {
-                            try {
-                                $fabricacoes->update(
-                                    $fabricacao->getIdfabricacao(),
-                                    $data['ano']
-                                );
-
-                                echo
-                                '<script>
-                                    alert("Ano de Fabricação atualizado com sucesso!");
-                                    window.location.href = "../consulta/anofabricacao.php";
-                                </script>';
-                            } catch (PDOException $err) {
-                                echo $err->getMessage();
-                            }
+                        } catch (PDOException $err) {
+                            echo $err->getMessage();
                         }
                     }
-            ?>
-                    <div class="col-2 col-md-2 col-sm-2">
-                        <a href="../../views/consulta/anofabricacao.php" class="btn btn-primary">VOLTAR</a>
-                    </div>
-                    <section class="container text-start text-dark">
-                        <form id="form" method="POST" action="">
-                            <div class="row">
-                                <div class="col-6 col-md-4 col-sm-12 mb-3">
-                                    <label for="ano" class="form-label black-text">ANO DE FABRICAÇÃO</label>
-                                    <input type="text" id="ano" name="ano" value="<?= $fabricacao->getAno(); ?>" maxlength="4" class="form-control" placeholder="ANO DE FABRICAÇÃO" autocomplete="off" required>
-                                </div>
+                }
+        ?>
+                <section class="container text-start text-dark">
+                    <form id="form" method="POST" action="">
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="ano" class="form-label black-text">ANO DE FABRICAÇÃO</label>
+                                <input type="text" id="ano" name="ano" value="<?= $fabricacao->getAno(); ?>" maxlength="4" class="form-control" placeholder="ANO DE FABRICAÇÃO" autocomplete="off" required>
                             </div>
-                            <div class="text-end">
-                                <button type="submit" class="btn btn-dark">SALVAR</button>
-                            </div>
-                        </form>
-                    </section>
-                <?php }
-            } else { ?>
-                <section class="container-fluid text-dark">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <input type="text" class="form-control border border-5 border-dark" placeholder="Pesquisar nome..." id="txtBusca" aria-describedby="Help">
-                            <div id="Help" class="form-text">Digite o ano de fabricação...</div>
                         </div>
-                        <div class="col mb-3">
-                            <div class="float-end">
-                                <a class="btn btn-primary" href="../cadastro/anofabricacao.php">NOVO CADASTRO</a>
-                            </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-dark">SALVAR</button>
+                        </div>
+                    </form>
+                </section>
+            <?php }
+        } else { ?>
+            <section class="container-fluid text-dark">
+                <div class="row">
+                    <div class="col mb-3">
+                        <input type="text" class="form-control border border-5 border-dark" placeholder="Pesquisar ano..." id="txtBusca" aria-describedby="Help">
+                        <div id="Help" class="form-text">Digite o ano de fabricação...</div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="float-end">
+                            <a class="btn btn-primary" href="../cadastro/anofabricacao.php">NOVO CADASTRO</a>
                         </div>
                     </div>
                 </section>
@@ -112,30 +109,20 @@ $fabricacoes = new FabricacaoController();
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">ANO DE FABRICAÇÃO</th>
-                                <th scope="col">AÇÕES</th>
+                                <td><?= $obj->getIdfabricacao(); ?></td>
+                                <td><?= $obj->getAno(); ?></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdfabricacao(); ?>">VISUALIZAR/EDITAR</a>
+                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao(); ?>', '<?= $obj->getAno(); ?>')">APAGAR</button>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($fabricacoes->findAll() as $obj) { ?>
-                                <tr>
-                                    <td><?= $obj->getIdfabricacao() ?></td>
-                                    <td><?= $obj->getAno() ?></td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a class="btn btn-primary" href="?id=<?= $obj->getIdfabricacao() ?>">VISUALIZAR/EDITAR</a>
-                                            <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdfabricacao() ?>', '<?= $obj->getAno() ?>')">APAGAR</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                    </table>
-                <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        <?php } ?>
     </main>
 
     <script>
@@ -162,7 +149,7 @@ $fabricacoes = new FabricacaoController();
 
         $(document).ready(function() {
             $("#txtBusca").on("keyup", function() {
-                const value = $(this).val().toLowerCase();
+                const value = $(this).val().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
                 $("table tbody tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });

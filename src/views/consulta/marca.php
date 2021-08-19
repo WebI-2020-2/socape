@@ -22,9 +22,15 @@ $marcas = new MarcasController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main class="container-fluid bg-light text-dark">
-        <section class=" container py-3 text-center container">
-                <div class="col-lg-6 col-md-6 mx-auto">
+    <main class="container-fluid bg-light min-vh-100 text-dark">
+        <section class="container py-3 text-center container">
+            <div class="row">
+                <?php if (isset($_GET["id"])) { ?>
+                    <div class="col-6 col-md-1 col-sm-6">
+                        <a href="./marca.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
+                <?php } ?>
+                <div class="col-6 col-md-6 col-sm-6 mx-auto">
                     <h1 class="display-6">CONSULTAR MARCA</h1>
                 </div>
             </div>
@@ -35,70 +41,88 @@ $marcas = new MarcasController();
             if ($_GET['msg'] == 1) echo '<script>alert("Informe a marca!");</script>';
         }
         ?>
+        <?php if (isset($_GET["id"])) {
+            if ($marcas->findOne($_GET["id"])) {
+                $marca = $marcas->findOne($_GET["id"]);
 
-        <div class="py-5 bg-light vh-100">
-            <?php if (isset($_GET["id"])) {
-                if ($marcas->findOne($_GET["id"])) {
-                    $marca = $marcas->findOne($_GET["id"]);
+                if ($_POST) {
+                    $data = $_POST;
 
-                    if ($_POST) {
-                        $data = $_POST;
+                    $err = FALSE;
 
-                        $err = FALSE;
-
-                        if (!$data['marca']) {
-                            echo
-                            '<script>
+                    if (!$data['marca']) {
+                        echo
+                        '<script>
                                     alert("Informe a marca do produto!");
                                 </script>';
-                            $err = TRUE;
-                        }
+                        $err = TRUE;
+                    }
 
-                        if (!$err) {
-                            try {
-                                $marcas->update(
-                                    $marca->getIdmarca(),
-                                    $data['marca']
-                                );
+                    if (!$err) {
+                        try {
+                            $marcas->update(
+                                $marca->getIdmarca(),
+                                $data['marca']
+                            );
 
-                                echo
-                                '<script>
+                            echo
+                            '<script>
                                     alert("Marca atualizada com sucesso!");
                                     window.location.href = "../consulta/marca.php";
                                 </script>';
-                            } catch (PDOException $err) {
-                                echo $err->getMessage();
-                            }
+                        } catch (PDOException $err) {
+                            echo $err->getMessage();
                         }
                     }
-            ?>
-                    <div class="col-2 col-md-2 col-sm-2">
-                        <a href="../../views/consulta/marca.php" class="btn btn-primary">VOLTAR</a>
+                }
+        ?>
+                <section class="container text-start text-dark">
+                    <form method="POST" action="" id="form">
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                <label for="marca" class="form-label black-text dark">MARCA</label>
+                                <input type="text" id="marca" name="marca" value="<?= $marca->getMarca(); ?>" class="form-control" placeholder="MARCA" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-dark">SALVAR</button>
+                        </div>
+                    </form>
+                </section>
+            <?php }
+        } else { ?>
+            <section class="container-fluid text-dark">
+                <div class="row">
+                    <div class="col mb-3">
+                        <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar marca..." aria-describedby="Help">
+                        <div id="Help" class="form-text">Digite a marca...</div>
                     </div>
-                    <section class="container text-start text-dark">
-                        <form method="POST" action="" id="form">
-                            <div class="row">
-                                <div class="col-6 col-md-4 col-sm-12 mb-3">
-                                    <label for="marca" class="form-label black-text dark">MARCA</label>
-                                    <input type="text" id="marca" name="marca" oninput="validaInput(this, false)" value="<?= $marca->getMarca(); ?>" class="form-control" placeholder="MARCA" autocomplete="off" required>
-                                </div>
-                            </div>
-                            <div class="text-end">
-                                <button type="submit" class="btn btn-dark">SALVAR</button>
-                            </div>
-                        </form>
-                        <section>
-                        <?php }
-                } else { ?>
-                        <section class="container-fluid text-dark">
-                            <div class="row">
-                                <div class="col mb-3">
-                                    <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar..." aria-describedby="Help">
-                                    <div id="Help" class="form-text">Digite a marca...</div>
-                                </div>
-                                <div class="col mb-3">
-                                    <div class="float-end">
-                                        <a class="btn btn-primary" href="../cadastro/marca.php">NOVO CADASTRO</a>
+                    <div class="col mb-3">
+                        <div class="float-end">
+                            <a class="btn btn-primary" href="../cadastro/marca.php">NOVO CADASTRO</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="table-responsive-lg">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">MARCA</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($marcas->findAll() as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIdmarca() ?></td>
+                                <td><?= $obj->getMarca() ?></td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdmarca() ?>">VISUALIZAR/EDITAR</a>
+                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
                                     </div>
                                 </div>
                             </div>
@@ -129,9 +153,10 @@ $marcas = new MarcasController();
                                 </tbody>
                             </table>
                         <?php } ?>
-                        </div>
-        </div>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+        <?php } ?>
     </main>
 
     <script>
@@ -158,7 +183,7 @@ $marcas = new MarcasController();
 
         $(document).ready(function() {
             $("#txtBusca").on("keyup", function() {
-                const value = $(this).val().toLowerCase();
+                const value = $(this).val().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "");
                 $("table tbody tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });

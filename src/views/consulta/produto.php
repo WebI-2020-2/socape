@@ -43,351 +43,347 @@ $motores = new MotorController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main class="container-fluid bg-light text-dark">
-        <section class=" container py-3 text-center container">
+    <main class="container-fluid bg-light min-vh-100 text-dark">
+        <section class="container py-3 text-center container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 mx-auto">
+                <?php if (isset($_GET["id"])) { ?>
+                    <div class="col-6 col-md-1 col-sm-6">
+                        <a href="./produto.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
+                <?php } ?>
+                <div class="col-6 col-md-6 col-sm-6 mx-auto">
                     <h1 class="display-6">CONSULTAR PRODUTO</h1>
                 </div>
             </div>
         </section>
 
-        <div class="py-5 bg-light vh-100">
-            <?php
-            if (isset($_GET['msg'])) {
-                if ($_GET['msg'] == 1) echo '<script>alert("Informe o produto!");</script>';
-            }
-            ?>
+        <?php
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] == 1) echo '<script>alert("Informe o produto!");</script>';
+        }
+        ?>
 
-            <?php if (isset($_GET["id"])) {
-                if ($produtos->findOne($_GET["id"])) {
-                    $produto = $produtos->findOne($_GET["id"]);
+        <?php if (isset($_GET["id"])) {
+            if ($produtos->findOne($_GET["id"])) {
+                $produto = $produtos->findOne($_GET["id"]);
 
-                    if ($_POST) {
-                        $data = $_POST;
+                if ($_POST) {
+                    $data = $_POST;
 
-                        $err = FALSE;
+                    $err = FALSE;
 
-                        if (!$data['icms']) {
-                            echo
-                            '<script>
+                    if (!$data['icms']) {
+                        echo
+                        '<script>
                                 alert("Informe o valor do ICMS!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['ipi']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['ipi']) {
+                        echo
+                        '<script>
                                 alert("Informe o valor do IPI!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['frete']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['frete']) {
+                        echo
+                        '<script>
                                 alert("Informe o valor do frete!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['valornafabrica']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['valornafabrica']) {
+                        echo
+                        '<script>
                                 alert("Informe o valor na fábrica!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['valordecompra']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['valordecompra']) {
+                        echo
+                        '<script>
                                 alert("Informe o valor de compra!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['lucro']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['lucro']) {
+                        echo
+                        '<script>
                                 alert("Informe o lucro!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['valorvenda']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['valorvenda']) {
+                        echo
+                        '<script>
                                 alert("Informe o valor de venda!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['desconto']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['desconto']) {
+                        echo
+                        '<script>
                                 alert("Informe o valor de desconto!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['quantidade']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['quantidade']) {
+                        echo
+                        '<script>
                                 alert("Informe a quantidade!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['unidade']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['unidade']) {
+                        echo
+                        '<script>
                                 alert("Informe a Unidade!");
                             </script>';
-                            $err = TRUE;
-                        } else if (strlen($data['unidade']) > 2) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    } else if (strlen($data['unidade']) > 2) {
+                        echo
+                        '<script>
                                 alert("A unidade não pode ser maior que 2 campos!");
                             </script>';
-                            $err = TRUE;
-                        }
-                        if (!$data['referencia']) {
-                            echo
-                            '<script>
+                        $err = TRUE;
+                    }
+                    if (!$data['referencia']) {
+                        echo
+                        '<script>
                                 alert("Informe a Referência!");
                             </script>';
-                            $err = TRUE;
-                        }
+                        $err = TRUE;
+                    }
 
-                        if (!$err) {
-                            try {
-                                $produtos->update(
-                                    $produto->getIdproduto(),
-                                    $data['icms'],
-                                    $data['ipi'],
-                                    $data['frete'],
-                                    $data['valornafabrica'],
-                                    $data['valordecompra'],
-                                    $data['lucro'],
-                                    $data['valorvenda'],
-                                    $data['desconto'],
-                                    $data['quantidade'],
-                                    $data['unidade'],
-                                    $data['referencia'],
-                                    $data['idlocalizacao'],
-                                    $data['idmotor'],
-                                    $data['idcarro'],
-                                    $data['idvalvulas'],
-                                    $data['idfabricacao'],
-                                    $data['idcategoria'],
-                                    $data['idmarca'],
-                                );
+                    if (!$err) {
+                        try {
+                            $produtos->update(
+                                $produto->getIdproduto(),
+                                $data['icms'],
+                                $data['ipi'],
+                                $data['frete'],
+                                $data['valornafabrica'],
+                                $data['valordecompra'],
+                                $data['lucro'],
+                                $data['valorvenda'],
+                                $data['desconto'],
+                                $data['quantidade'],
+                                $data['unidade'],
+                                $data['referencia'],
+                                $data['idlocalizacao'],
+                                $data['idmotor'],
+                                $data['idcarro'],
+                                $data['idvalvulas'],
+                                $data['idfabricacao'],
+                                $data['idcategoria'],
+                                $data['idmarca'],
+                            );
 
-                                echo
-                                '<script>
+                            echo
+                            '<script>
                                     alert("Produto atualizado com sucesso!");
                                     window.location.href = "../consulta/produto.php";
                                 </script>';
-                            } catch (PDOException $e) {
-                                echo $e->getMessage();
-                            }
+                        } catch (PDOException $e) {
+                            echo $e->getMessage();
                         }
                     }
-            ?>
-                    <div class="col-6 col-md-1 col-sm-6 ">
-                        <a href="./produto.php" class="btn btn-primary">VOLTAR</a>
-                    </div>
-                    <section class="container min-vh-100 py-5 container text-start text-dark">
-                        <form id="formProduto" action="" method="post">
-                            <div class="row mb-3">
-                                <div class="col-lg-5 col-md-5 ">
-                                    <h1 class="display-6">NOME PRODUTO</h1>
-                                </div>
-                                <div class="col-lg-7 col-md-7 ">
-                                    <input type="button" class="btn btn-danger btn-lg active" name="descricao" placeholder="DESCRICAO" value="<?= $produto->getReferencia() ?>" disabled>
-                                </div>
+                }
+        ?>
+                <section class="container min-vh-100 py-5 container text-start text-dark">
+                    <form id="formProduto" action="" method="post">
+                        <div class="row mb-3">
+                            <div class="col-lg-5 col-md-5 ">
+                                <h1 class="display-6">NOME PRODUTO</h1>
                             </div>
-                            <div class="row">
-                                <p class="display-6 ms-auto">INFORMAÇÕES DO PRODUTO</p>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label black-text">ICMS</label>
-                                    <input type="number" class="form-control" name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" disabled>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">IPI</label>
-                                    <input type="number" class="form-control" name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" disabled>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">FRETE</label>
-                                    <input type="number" class="form-control" name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" disabled>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">VALOR NA FÁBRICA</label>
-                                    <input type="number" class="form-control" name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" disabled>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">VALOR DE COMPRA</label>
-                                    <input type="number" class="form-control" name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" disabled>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">LUCRO</label>
-                                    <input type="number" class="form-control" name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" disabled>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">VALOR DE VENDA</label>
-                                    <input type="number" class="form-control" name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" disabled>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">DESCONTO</label>
-                                    <input type="number" class="form-control" name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" disabled>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">QUANTIDADE</label>
-                                    <input type="number" class="form-control" name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" disabled>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <p class="display-6 ms-auto">EDITAR</p>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">UNIDADE</label>
-                                    <input type="text" class="form-control" maxlength="2" oninput="validaInput(this, false)" name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">REFERÊNCIA</label>
-                                    <input type="text" class="form-control" maxlength="20" oninput="validaInput(this, true)" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">LOCALIZAÇÃO</label>
-                                    <select name="idlocalizacao" class="form-control" required>
-                                        <option disabled>SELECIONE</option>
-                                        <?php foreach ($localizacoes->findAll() as $obj) { ?>
-                                            <option value="<?= $obj->getIdlocalizacao(); ?>" <?= $produto->getIdlocalizacao() == $obj->getIdlocalizacao() ? 'selected' : null; ?>><?= $obj->getDepartamento(); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">MOTOR</label>
-                                    <select name="idmotor" class="form-control" required>
-                                        <option disabled>SELECIONE</option>
-                                        <?php foreach ($motores->findAll() as $obj) { ?>
-                                            <option value="<?= $obj->getIdmotor(); ?>" <?= $produto->getIdmotor() == $obj->getIdmotor() ? 'selected' : null; ?>><?= $obj->getPotencia(); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">MODELO DE CARRO</label>
-                                    <select name="idcarro" class="form-control" required>
-                                        <option disabled>SELECIONE</option>
-                                        <?php foreach ($carros->findAll() as $obj) { ?>
-                                            <option value="<?= $obj->getIdcarro(); ?>" <?= $produto->getIdcarro() == $obj->getIdcarro() ? 'selected' : null; ?>><?= $obj->getModelo(); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">VÁLVULAS</label>
-                                    <select name="idvalvulas" class="form-control" required>
-                                        <option disabled>SELECIONE</option>
-                                        <?php foreach ($valvulas->findAll() as $obj) { ?>
-                                            <option value="<?= $obj->getIdvalvulas(); ?>" <?= $produto->getIdvalvulas() == $obj->getIdvalvulas() ? 'selected' : null; ?>><?= $obj->getQuantidade(); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">FABRICAÇÃO</label>
-                                    <select name="idfabricacao" class="form-control" required>
-                                        <option disabled>SELECIONE</option>
-                                        <?php foreach ($fabricacoes->findAll() as $obj) { ?>
-                                            <option value="<?= $obj->getIdfabricacao(); ?>" <?= $produto->getIdfabricacao() == $obj->getIdfabricacao() ? 'selected' : null; ?>><?= $obj->getAno(); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">CATEGORIA</label>
-                                    <select name="idcategoria" class="form-control" required>
-                                        <option disabled>SELECIONE</option>
-                                        <?php foreach ($categorias->findAll() as $obj) { ?>
-                                            <option value="<?= $obj->getIdcategoria(); ?>" <?= $produto->getIdcategoria() == $obj->getIdcategoria() ? 'selected' : null; ?>><?= $obj->getCategoria(); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col-6 col-md-4 col-sm-6 mb-3">
-                                    <label class="form-label">MARCA</label>
-                                    <select name="idmarca" class="form-control" required>
-                                        <option disabled>SELECIONE</option>
-                                        <?php foreach ($marcas->findAll() as $obj) { ?>
-                                            <option value="<?= $obj->getIdmarca(); ?>" <?= $produto->getIdmarca() == $obj->getIdmarca() ? 'selected' : null; ?>><?= $obj->getMarca(); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-
-                                <div class="col-6 col-md-6 col-sm-6 mb-3 ">
-                                    <button class="btn btn-dark" id="salvar">SALVAR</button>
-                                </div>
-                            </div>
-
-                        </form>
-                    </section>
-
-                <?php }
-            } else { ?>
-                <section class="container-fluid text-dark">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar por categoria, marca ou referência..." aria-describedby="produtoHelp" autofocus>
-                            <div id="produtoHelp" class="form-text">Digite a categoria, marca ou referência do produto...</div>
-                        </div>
-                        <div class="col mb-3">
-                            <div class="float-end">
-                                <a class="btn btn-primary" href="../cadastro/produto.php">NOVO CADASTRO</a>
+                            <div class="col-lg-7 col-md-7 ">
+                                <input type="button" class="btn btn-danger btn-lg active" name="descricao" placeholder="DESCRICAO" value="<?= $produto->getReferencia() ?>" disabled>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <p class="display-6 ms-auto">INFORMAÇÕES DO PRODUTO</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label black-text">ICMS</label>
+                                <input type="number" class="form-control" name="icms" placeholder="ICMS" value="<?= $produto->getIcms(); ?>" disabled>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">IPI</label>
+                                <input type="number" class="form-control" name="ipi" placeholder="IPI" value="<?= $produto->getIpi(); ?>" disabled>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">FRETE</label>
+                                <input type="number" class="form-control" name="frete" placeholder="FRETE" value="<?= $produto->getFrete(); ?>" disabled>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">VALOR NA FÁBRICA</label>
+                                <input type="number" class="form-control" name="valornafabrica" placeholder="VALOR NA FÁBRICA" value="<?= $produto->getValornafabrica(); ?>" disabled>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">VALOR DE COMPRA</label>
+                                <input type="number" class="form-control" name="valordecompra" placeholder="VALOR DE COMPRA" value="<?= $produto->getValordecompra(); ?>" disabled>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">LUCRO</label>
+                                <input type="number" class="form-control" name="lucro" placeholder="LUCRO" value="<?= $produto->getLucro(); ?>" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">VALOR DE VENDA</label>
+                                <input type="number" class="form-control" name="valorvenda" placeholder="VALOR DE VENDA" value="<?= $produto->getValorvenda(); ?>" disabled>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">DESCONTO</label>
+                                <input type="number" class="form-control" name="desconto" placeholder="DESCONTO" value="<?= $produto->getDesconto(); ?>" disabled>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">QUANTIDADE</label>
+                                <input type="number" class="form-control" name="quantidade" placeholder="QUANTIDADE" value="<?= $produto->getQuantidade(); ?>" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <p class="display-6 ms-auto">EDITAR</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">UNIDADE</label>
+                                <input type="text" class="form-control" maxlength="2" oninput="validaInput(this, false)" name="unidade" placeholder="UNIDADE" value="<?= $produto->getUnidade(); ?>" required>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">REFERÊNCIA</label>
+                                <input type="text" class="form-control" maxlength="20" oninput="validaInput(this, true)" name="referencia" placeholder="REFERÊNCIA" value="<?= $produto->getReferencia(); ?>" required>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">LOCALIZAÇÃO</label>
+                                <select name="idlocalizacao" class="form-control" required>
+                                    <option disabled>SELECIONE</option>
+                                    <?php foreach ($localizacoes->findAll() as $obj) { ?>
+                                        <option value="<?= $obj->getIdlocalizacao(); ?>" <?= $produto->getIdlocalizacao() == $obj->getIdlocalizacao() ? 'selected' : null; ?>><?= $obj->getDepartamento(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">MOTOR</label>
+                                <select name="idmotor" class="form-control" required>
+                                    <option disabled>SELECIONE</option>
+                                    <?php foreach ($motores->findAll() as $obj) { ?>
+                                        <option value="<?= $obj->getIdmotor(); ?>" <?= $produto->getIdmotor() == $obj->getIdmotor() ? 'selected' : null; ?>><?= $obj->getPotencia(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">MODELO DE CARRO</label>
+                                <select name="idcarro" class="form-control" required>
+                                    <option disabled>SELECIONE</option>
+                                    <?php foreach ($carros->findAll() as $obj) { ?>
+                                        <option value="<?= $obj->getIdcarro(); ?>" <?= $produto->getIdcarro() == $obj->getIdcarro() ? 'selected' : null; ?>><?= $obj->getModelo(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">VÁLVULAS</label>
+                                <select name="idvalvulas" class="form-control" required>
+                                    <option disabled>SELECIONE</option>
+                                    <?php foreach ($valvulas->findAll() as $obj) { ?>
+                                        <option value="<?= $obj->getIdvalvulas(); ?>" <?= $produto->getIdvalvulas() == $obj->getIdvalvulas() ? 'selected' : null; ?>><?= $obj->getQuantidade(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">FABRICAÇÃO</label>
+                                <select name="idfabricacao" class="form-control" required>
+                                    <option disabled>SELECIONE</option>
+                                    <?php foreach ($fabricacoes->findAll() as $obj) { ?>
+                                        <option value="<?= $obj->getIdfabricacao(); ?>" <?= $produto->getIdfabricacao() == $obj->getIdfabricacao() ? 'selected' : null; ?>><?= $obj->getAno(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">CATEGORIA</label>
+                                <select name="idcategoria" class="form-control" required>
+                                    <option disabled>SELECIONE</option>
+                                    <?php foreach ($categorias->findAll() as $obj) { ?>
+                                        <option value="<?= $obj->getIdcategoria(); ?>" <?= $produto->getIdcategoria() == $obj->getIdcategoria() ? 'selected' : null; ?>><?= $obj->getCategoria(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-6 col-md-4 col-sm-6 mb-3">
+                                <label class="form-label">MARCA</label>
+                                <select name="idmarca" class="form-control" required>
+                                    <option disabled>SELECIONE</option>
+                                    <?php foreach ($marcas->findAll() as $obj) { ?>
+                                        <option value="<?= $obj->getIdmarca(); ?>" <?= $produto->getIdmarca() == $obj->getIdmarca() ? 'selected' : null; ?>><?= $obj->getMarca(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6 col-md-6 col-sm-6 mb-3 ">
+                                <button class="btn btn-dark" id="salvar">SALVAR</button>
+                            </div>
+                        </div>
+                    </form>
                 </section>
-
-                <div class="table-responsive-lg">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">CATEGORIA/MARCA</th>
-                                <th scope="col">REFERÊNCIA</th>
-                                <th scope="col">QUANTIDADE</th>
-                                <th scope="col">VALOR DE VENDA</th>
-                                <th scope="col">LOCALIZAÇÃO</th>
-                                <th scope="col">AÇÕES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($produtos->findAll() as $obj) { ?>
-                                <tr>
-                                    <td><?= $obj->getIdproduto() ?></td>
-                                    <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
-                                    <td><?= $obj->getReferencia() ?></td>
-                                    <td><?= $obj->getQuantidade() ?></td>
-                                    <td><?= $obj->getValorvenda() ?></td>
-                                    <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a class="btn btn-primary" href="?id=<?= $obj->getIdproduto() ?>">VISUALIZAR/EDITAR</a>
-                                            <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                <?php } ?>
+            <?php }
+        } else { ?>
+            <section class="container-fluid text-dark">
+                <div class="row">
+                    <div class="col mb-3">
+                        <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar por categoria, marca ou referência..." aria-describedby="produtoHelp" autofocus>
+                        <div id="produtoHelp" class="form-text">Digite a categoria, marca ou referência do produto...</div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="float-end">
+                            <a class="btn btn-primary" href="../cadastro/produto.php">NOVO CADASTRO</a>
+                        </div>
+                    </div>
                 </div>
-        </div>
-        </div>
+            </section>
+
+            <div class="table-responsive-lg">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">CATEGORIA/MARCA</th>
+                            <th scope="col">REFERÊNCIA</th>
+                            <th scope="col">QUANTIDADE</th>
+                            <th scope="col">VALOR DE VENDA</th>
+                            <th scope="col">LOCALIZAÇÃO</th>
+                            <th scope="col">AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($produtos->findAll() as $obj) { ?>
+                            <tr>
+                                <td><?= $obj->getIdproduto() ?></td>
+                                <td><?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?></td>
+                                <td><?= $obj->getReferencia() ?></td>
+                                <td><?= $obj->getQuantidade() ?></td>
+                                <td><?= $obj->getValorvenda() ?></td>
+                                <td><?= $localizacoes->findOne($obj->getIdlocalizacao())->getDepartamento() ?></td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdproduto() ?>">VISUALIZAR/EDITAR</a>
+                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdproduto() ?>', '<?= $obj->getReferencia() ?>','<?= $categorias->findOne($obj->getIdcategoria())->getCategoria() . '/' . $marcas->findOne($obj->getIdmarca())->getMarca() ?>')">APAGAR</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } ?>
     </main>
 
     <script>

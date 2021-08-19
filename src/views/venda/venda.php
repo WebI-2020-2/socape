@@ -26,7 +26,7 @@ date_default_timezone_set('America/Sao_Paulo');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SOCAPE | Venda</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="./../../../public/css/estilos.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -52,12 +52,13 @@ date_default_timezone_set('America/Sao_Paulo');
             if ($_GET['msg'] == 2) echo '<script>alert("Venda finalizada!");</script>';
         }
         ?>
+        
         <section class="d-flex justify-content-center">
             <form id="realizarVenda" method="POST" action="./realizarVenda.php">
                 <div class="row align-items-end mb-3 d-flex">
                     <div class="col-12 col-md-12 col-sm-12 me-auto mb-3">
                         <label for="barraPesquisa" class="form-label black-text">CLIENTE</label>
-                        <input type="text" placeholder="CLIENTE" class="form-control" id="barraPesquisa" aria-describedby="clienteHelp">
+                        <input type="text" autocomplete="off" placeholder="CLIENTE" class="form-control" id="barraPesquisa" aria-describedby="clienteHelp">
                         <input id="idcliente" type="hidden" name="idcliente" required>
                         <div id="clienteHelp" class="form-text">Digite o nome do cliente e selecione-o na lista.</div>
                     </div>
