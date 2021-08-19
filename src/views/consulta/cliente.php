@@ -23,14 +23,9 @@ $clientes = new ClientesController();
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
     <main class="container-fluid bg-light text-dark">
-        <section class="container py-3 text-center container">
-            <div class="row">
-                <div class="col-6 col-md-1 col-sm-6 ">
-                    <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
-                </div>
-                <div class="col-lg-6 col-md-6 mx-auto">
-                    <h1 class="display-6">CONSULTAR CLIENTE</h1>
-                </div>
+        <section class=" container py-3 text-center container">
+            <div class="col-lg-6 col-md-6 mx-auto">
+                <h1 class="display-6">CONSULTAR CLIENTE</h1>
             </div>
         </section>
 
@@ -94,7 +89,7 @@ $clientes = new ClientesController();
                                 echo
                                 '<script>
                                     alert("Cliente atualizado com sucesso!");
-                                    window.location.href = "./cliente.php?id=' . $cliente->getIdcliente() . '";
+                                    window.location.href = "./cliente.php";
                                 </script>';
                             } catch (PDOException $e) {
                                 echo $e->getMessage();
@@ -102,9 +97,10 @@ $clientes = new ClientesController();
                         }
                     }
             ?>
-                        <div class="row">
-                           
-                        </div>
+                    <div class="col-6 col-md-1 col-sm-6 ">
+                        <a href="./cliente.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
+
                     <div class="py-5 bg-light vh-100">
                         <section class="container min-vh-100 py-5 d-flex justify-content-center align-items-center text-dark">
                             <form method="post" action="">
@@ -113,16 +109,16 @@ $clientes = new ClientesController();
                                 </div>
                                 <div class="row mb-3">
                                     <label for="nome" class="form-label">NOME</label>
-                                    <input type="text" id="nome" class="form-control" oninput="validaInput(this, false)"  name="nome" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
+                                    <input type="text" id="nome" class="form-control" oninput="validaInput(this, false)" name="nome" placeholder="NOME" value="<?= $cliente->getNome(); ?>" required>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="telefone" class="form-label black-text">TELEFONE</label>
-                                    <input type="text" id="telefone" class="form-control" name="telefone"  oninput="mascara(this, 'tel')" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required >
+                                    <input type="text" id="telefone" class="form-control" name="telefone" oninput="mascara(this, 'tel')" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
                                 </div>
                                 <div class="row mb-3">
                                     <?php if (empty($cliente->getCpf())) { ?>
                                         <label for="cnpj" class="form-label black-text">CNPJ</label>
-                                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ"  oninput="mascara(this, 'cnpj')" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
+                                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" oninput="mascara(this, 'cnpj')" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
                                     <?php } else { ?>
                                         <div class="col-6 col-md-12 col-sm-12 mb-3">
                                             <label for="cpf" class="form-label black-text">CPF</label>

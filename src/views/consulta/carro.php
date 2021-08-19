@@ -23,34 +23,28 @@ $carros = new CarroController();
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
     <main class="container-fluid bg-light text-dark">
-    <section class="container py-3">
-            <div class="row align-items-center d-flex">
-                <div class="col-2 col-md-2 col-sm-2">
-                <a href="../../views/consulta/carro.php" class="btn btn-primary">VOLTAR</a>
-                </div>
-                <div class="col-8 col-md-8 col-sm-8 text-center">
-                    <span class="display-6">CONSULTAR MODELO DE CARRO</span>
-                </div>
+        <section class=" container py-3 text-center container">
+            <div class="col-lg-6 col-md-6 mx-auto">
+                <h1 class="display-6">CONSULTAR CARRO</h1>
             </div>
         </section>
 
-        <div class="py-5 bg-light vh-100">
-            <?php
-            if (isset($_GET['msg'])) {
-                if ($_GET['msg'] == 1) echo '<script>alert("Informe o modelo do carro!");</script>';
-            }
-            ?>
-            
+        <?php
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] == 1) echo '<script>alert("Informe o modelo do carro!");</script>';
+        }
+        ?>
+
         <div class="py-5 bg-light vh-100">
             <?php if (isset($_GET["id"])) {
                 if ($carros->findOne($_GET["id"])) {
                     $carro = $carros->findOne($_GET["id"]);
-                    
+
                     if ($_POST) {
                         $data = $_POST;
-            
+
                         $err = FALSE;
-        
+
                         if (!$data['modelo']) {
                             echo
                             '<script>
@@ -58,14 +52,14 @@ $carros = new CarroController();
                             </script>';
                             $err = TRUE;
                         }
-        
+
                         if (!$err) {
                             try {
                                 $carros->update(
                                     $carro->getIdcarro(),
                                     $data['modelo']
                                 );
-        
+
                                 echo
                                 '<script>
                                     alert("Modelo de carro atualizado com sucesso!");
@@ -76,63 +70,65 @@ $carros = new CarroController();
                             }
                         }
                     }
-                    ?>
-                          <section class="container text-start text-dark">
-                            <form method="POST" >
-                                 <div class="row">
-                                    <div class="col-6 col-md-4 col-sm-12 mb-3">
-                                        <label for="modelo" class="form-label black-text">MODELO</label>
-                                        <input type="text" id="modelo" name="modelo" value="<?= $carro->getModelo(); ?>" maxlength="30" class="form-control" placeholder="MODELO" autocomplete="off" required>
-                                    </div> 
+            ?>
+                    <div class="col-2 col-md-2 col-sm-2">
+                        <a href="../../views/consulta/carro.php" class="btn btn-primary">VOLTAR</a>
+                    </div>
+                    <section class="container text-start text-dark">
+                        <form method="POST">
+                            <div class="row">
+                                <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                    <label for="modelo" class="form-label black-text">MODELO</label>
+                                    <input type="text" id="modelo" name="modelo" value="<?= $carro->getModelo(); ?>" maxlength="30" class="form-control" placeholder="MODELO" autocomplete="off" required>
                                 </div>
-                                    <div class="text-end">
-                                        <button type="submit" class="btn btn-dark">SALVAR</button>
-                                    </div>
-                            </form>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-dark">SALVAR</button>
+                            </div>
+                        </form>
                         <section>
-                    <?php }
-            } else { ?>
-            <section class="container-fluid text-dark">
-                <div class="row">
-                    <div class="col mb-3">
-                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar..." aria-describedby="Help">
-                        <div id="Help" class="form-text">Digite o modelo do carro...</div>
-                    </div>
-                    <div class="col mb-3">
-                        <div class="float-end">
-                            <a class="btn btn-primary" href="../cadastro/carro.php">NOVO CADASTRO</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <div class="table-responsive-lg">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">MODELO</th>
-                            <th scope="col">AÇÕES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($carros->findAll() as $obj) { ?>
-                            <tr>
-                                <td><?= $obj->getIdcarro() ?></td>
-                                <td><?= $obj->getModelo() ?></td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdcarro() ?>">VISUALIZAR/EDITAR</a>
-                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
+                        <?php }
+                } else { ?>
+                        <section class="container-fluid text-dark">
+                            <div class="row">
+                                <div class="col mb-3">
+                                    <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar..." aria-describedby="Help">
+                                    <div id="Help" class="form-text">Digite o modelo do carro...</div>
+                                </div>
+                                <div class="col mb-3">
+                                    <div class="float-end">
+                                        <a class="btn btn-primary" href="../cadastro/carro.php">NOVO CADASTRO</a>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="table-responsive-lg">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">MODELO</th>
+                                        <th scope="col">AÇÕES</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($carros->findAll() as $obj) { ?>
+                                        <tr>
+                                            <td><?= $obj->getIdcarro() ?></td>
+                                            <td><?= $obj->getModelo() ?></td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a class="btn btn-primary" href="?id=<?= $obj->getIdcarro() ?>">VISUALIZAR/EDITAR</a>
+                                                    <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdcarro() ?>', '<?= $obj->getModelo() ?>')">APAGAR</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         <?php } ?>
-                    </tbody>
-                </table>
-                <?php } ?>
-                </div>
-            </div>
+                    </div>
         </div>
     </main>
 
