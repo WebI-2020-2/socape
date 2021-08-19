@@ -30,7 +30,7 @@ function mascara(i, type) {
   }
 
   if (type == "tel") {
-    i.setAttribute("maxlength", "12");
+    i.setAttribute("maxlength", "14");
     if (valor.length == 2) i.value += " ";
   }
 }

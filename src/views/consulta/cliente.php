@@ -95,7 +95,7 @@ $clientes = new ClientesController();
                             echo
                             '<script>
                                     alert("Cliente atualizado com sucesso!");
-                                    window.location.href = "./cliente.php";
+                                    window.location.href = "./cliente.php?id=' . $cliente->getIdcliente() . '";
                                 </script>';
                         } catch (PDOException $e) {
                             echo $e->getMessage();
@@ -119,11 +119,11 @@ $clientes = new ClientesController();
                         <div class="row mb-3">
                             <?php if (empty($cliente->getCpf())) { ?>
                                 <label for="cnpj" class="form-label black-text">CNPJ</label>
-                                <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" oninput="mascara(this, 'cnpj')" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
+                                <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" oninput="mascara(this, 'cnpj');" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
                             <?php } else { ?>
                                 <div class="col-6 col-md-12 col-sm-12 mb-3">
                                     <label for="cpf" class="form-label black-text">CPF</label>
-                                    <input type="text" id="cpf" name="cpf" placeholder="CPF" oninput="mascara(this, 'cpf')" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
+                                    <input type="text" id="cpf" name="cpf" placeholder="CPF" oninput="mascara(this, 'cpf');" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
                                 </div>
                             <?php } ?>
                         </div>
