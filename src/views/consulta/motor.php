@@ -23,23 +23,18 @@ $motores = new MotorController();
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
     <main class="container-fluid bg-light text-dark">
-    <section class="container py-3">
-            <div class="row align-items-center d-flex">
-                <div class="col-2 col-md-2 col-sm-2">
-                <a href="../../views/consulta/motor.php" class="btn btn-primary">VOLTAR</a>
-                </div>
-                <div class="col-8 col-md-8 col-sm-8 text-center">
-                    <span class="display-6">CONSULTAR POTÊNCIA DO MOTOR</span>
-                </div>
+        <section class=" container py-3 text-center container">
+            <div class="col-lg-6 col-md-6 mx-auto">
+                <h1 class="display-6">CONSULTAR MOTOR</h1>
+            </div>
             </div>
         </section>
 
-        <div class="py-5 bg-light vh-100">
-            <?php
-            if (isset($_GET['msg'])) {
-                if ($_GET['msg'] == 1) echo '<script>alert("Informe a potencia!");</script>';
-            }
-            ?>
+        <?php
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] == 1) echo '<script>alert("Informe a potencia!");</script>';
+        }
+        ?>
 
         <div class="py-5 bg-light vh-100">
             <?php if (isset($_GET["id"])) {
@@ -47,24 +42,24 @@ $motores = new MotorController();
                     $motor = $motores->findOne($_GET["id"]);
                     if ($_POST) {
                         $data = $_POST;
-                        
+
                         $err = FALSE;
-            
+
                         if (!$data['potencia']) {
                             echo
-                                '<script>
+                            '<script>
                                     alert("Informe a potência do motor!");
                                 </script>';
                             $err = TRUE;
                         }
-            
+
                         if (!$err) {
                             try {
                                 $motores->update(
                                     $motor->getIdmotor(),
                                     $data['potencia']
                                 );
-            
+
                                 echo
                                 '<script>
                                     alert("Potência de motor atualizado com sucesso!");
@@ -75,62 +70,64 @@ $motores = new MotorController();
                             }
                         }
                     }
-                    ?>
-                        
-                <section class="container text-start text-dark">
-                <form  id="form" action="" method="POST">
-                    <div class="row">
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="potencia" class="form-label black-text">POTÊNCIA DO MOTOR</label>
-                            <input  type="number" id="potencia" name="potencia" value="<?= $motor->getPotencia() ?>" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
-                        </div>
+            ?>
+                    <div class="col-2 col-md-2 col-sm-2">
+                        <a href="../../views/consulta/motor.php" class="btn btn-primary">VOLTAR</a>
                     </div>
-                    <div class="text-end">
-                            <button type="submit" class="btn btn-dark">SALVAR</button>
-                        </div>
-                </form>
-                <?php }
+                    <section class="container text-start text-dark">
+                        <form id="form" action="" method="POST">
+                            <div class="row">
+                                <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                    <label for="potencia" class="form-label black-text">POTÊNCIA DO MOTOR</label>
+                                    <input type="number" id="potencia" name="potencia" value="<?= $motor->getPotencia() ?>" class="form-control" min="1" max="8" placeholder="POTÊNCIA" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-dark">SALVAR</button>
+                            </div>
+                        </form>
+                    <?php }
             } else { ?>
-            </section>
-            <section class="container-fluid text-dark">
-                <div class="row">
-                    <div class="col mb-3">
-                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..." aria-describedby="Help">
-                        <div id="Help" class="form-text">Digite a potencia...</div>
-                    </div>
-                    <div class="col mb-3">
-                        <div class="float-end">
-                            <a class="btn btn-primary" href="../cadastro/motor.php">NOVO CADASTRO</a>
+                    </section>
+                    <section class="container-fluid text-dark">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <input type="text" id="txtBusca" class="form-control border border-5 border-dark" placeholder="Pesquisar ..." aria-describedby="Help">
+                                <div id="Help" class="form-text">Digite a potencia...</div>
+                            </div>
+                            <div class="col mb-3">
+                                <div class="float-end">
+                                    <a class="btn btn-primary" href="../cadastro/motor.php">NOVO CADASTRO</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </section>
 
-            <div class="table-responsive-lg">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">POTÊNCIA</th>
-                            <th scope="col">AÇÕES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($motores->findAll() as $obj) { ?>
-                            <tr>
-                                <td><?= $obj->getIdmotor() ?></td>
-                                <td><?= $obj->getPotencia() ?></td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-primary" href="?id=<?= $obj->getIdmotor() ?>">VISUALIZAR/EDITAR</a>
-                                        <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-                <?php } ?>
+                    <div class="table-responsive-lg">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">POTÊNCIA</th>
+                                    <th scope="col">AÇÕES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($motores->findAll() as $obj) { ?>
+                                    <tr>
+                                        <td><?= $obj->getIdmotor() ?></td>
+                                        <td><?= $obj->getPotencia() ?></td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a class="btn btn-primary" href="?id=<?= $obj->getIdmotor() ?>">VISUALIZAR/EDITAR</a>
+                                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmotor() ?>', '<?= $obj->getPotencia() ?>')">APAGAR</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php } ?>
                 </div>
             </div>
         </div>
