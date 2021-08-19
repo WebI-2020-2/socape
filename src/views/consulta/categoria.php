@@ -22,11 +22,14 @@ $categorias = new CategoriaController();
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
     
-    <main>
-        <section class="text-center container">
-            <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="display-6">CONSULTAR CATEGORIA</h1>
+    <main class="container-fluid bg-light text-dark">
+    <section class="container py-3">
+            <div class="row align-items-center d-flex">
+                <div class="col-2 col-md-2 col-sm-2">
+                <a href="../../views/consulta/categoria.php" class="btn btn-primary">VOLTAR</a>
+                </div>
+                <div class="col-8 col-md-8 col-sm-8 text-center">
+                    <span class="display-6">CONSULTAR CATEGORIA</span>
                 </div>
             </div>
         </section>
@@ -72,34 +75,30 @@ $categorias = new CategoriaController();
                         }
                     }
                     ?>
-                        <div class="row">
-                            <div class="col">
-                                <a href="./categoria.php" class="btn btn-primary">VOLTAR</a>
-                            </div>
-                        </div>
+                        
                         <section class="container text-start text-dark">
-                <form method="POST" id="form">
-                    <div class="row">
-                        <div class="col-6 col-md-4 col-sm-12 mb-3">
-                            <label for="categoria" class="form-label black-text">CATEGORIA</label>
-                            <input type="text" id="categoria" name="categoria" value="<?= $categoria->getCategoria() ?>" class="form-control" maxlength="30" autocomplete="off" placeholder="CATEGORIA" required>
-                        </div>
-                    </div>
-                    <div class="text-end">
-                            <button type="submit" class="btn btn-dark">SALVAR</button>
-                        </div>
-                    </div>
-                </form>
+                            <form method="POST" id="form">
+                                <div class="row">
+                                     <div class="col-6 col-md-4 col-sm-12 mb-3">
+                                        <label for="categoria" class="form-label black-text">CATEGORIA</label>
+                                        <input type="text" id="categoria" name="categoria" value="<?= $categoria->getCategoria() ?>" class="form-control" maxlength="30"  placeholder="CATEGORIA" required>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-dark">SALVAR</button>
+                                </div>
+                            </div>
+                            </form>
 
                 <?php }
-            } else { ?>
-                <div class="row">
-                    <div class="col mb-3">
-                        <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..."  aria-describedby="Help">
-                        <div id="Help" class="form-text">Digite a categoria...</div>
-                    </div>
-                    <div class="col mb-3">
-                        <div class="float-end">
+                    } else { ?>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <input type="text" id="txtBusca" class="form-control" placeholder="Pesquisar ..."  aria-describedby="Help">
+                                <div id="Help" class="form-text">Digite a categoria...</div>
+                            </div>
+                         <div class="col mb-3">
+                            <div class="float-end">
                             <a class="btn btn-primary" href="../cadastro/categoria.php">NOVO CADASTRO</a>
                         </div>
                     </div>
@@ -167,6 +166,7 @@ $categorias = new CategoriaController();
             });
         });
     </script>
+    <script src="./../../../public/js/validaInput.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </body>
 
