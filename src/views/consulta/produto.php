@@ -72,86 +72,72 @@ $motores = new MotorController();
 
                     $err = FALSE;
 
-                    if (!$data['icms']) {
+                    if (!$data['idmotor']) {
                         echo
-                        '<script>
-                                alert("Informe o valor do ICMS!");
+                           '<script>
+                                alert("Informe a potência do motor!");
                             </script>';
                         $err = TRUE;
                     }
-                    if (!$data['ipi']) {
+                    if (!$data['idcarro']) {
                         echo
                         '<script>
-                                alert("Informe o valor do IPI!");
+                                alert("Informe o nome do carro!");
                             </script>';
                         $err = TRUE;
                     }
-                    if (!$data['frete']) {
+                    if (!$data['idvalvulas']) {
                         echo
                         '<script>
-                                alert("Informe o valor do frete!");
+                                alert("Informe a quantidade de válvulas!");
                             </script>';
                         $err = TRUE;
                     }
-                    if (!$data['valornafabrica']) {
+                    if (!$data['idfabricacao']) {
                         echo
                         '<script>
-                                alert("Informe o valor na fábrica!");
+                                alert("Informe o ano de fabricação!");
                             </script>';
                         $err = TRUE;
                     }
-                    if (!$data['valordecompra']) {
+                    if (!$data['idcategoria']) {
                         echo
                         '<script>
-                                alert("Informe o valor de compra!");
+                                alert("Informe a categoria do produto!");
                             </script>';
                         $err = TRUE;
                     }
-                    if (!$data['lucro']) {
+                    if (!$data['idmarca']) {
                         echo
                         '<script>
-                                alert("Informe o lucro!");
-                            </script>';
-                        $err = TRUE;
-                    }
-                    if (!$data['valorvenda']) {
-                        echo
-                        '<script>
-                                alert("Informe o valor de venda!");
-                            </script>';
-                        $err = TRUE;
-                    }
-                    if (!$data['desconto']) {
-                        echo
-                        '<script>
-                                alert("Informe o valor de desconto!");
-                            </script>';
-                        $err = TRUE;
-                    }
-                    if (!$data['quantidade']) {
-                        echo
-                        '<script>
-                                alert("Informe a quantidade!");
+                                alert("Informe a marca do produto!");
                             </script>';
                         $err = TRUE;
                     }
                     if (!$data['unidade']) {
                         echo
                         '<script>
-                                alert("Informe a Unidade!");
+                                alert("Informe a unidade!");
                             </script>';
                         $err = TRUE;
                     } else if (strlen($data['unidade']) > 2) {
                         echo
                         '<script>
-                                alert("A unidade não pode ser maior que 2 campos!");
+                                alert("A unidade só pode conter 2 dígitos!");
+                            </script>';
+                        $err = TRUE;
+                    }
+                    if (!$data['idlocalizacao']) {
+                        echo
+                        '<script>
+                                alert("Informe o departamento que o produto será armazenado!");
                             </script>';
                         $err = TRUE;
                     }
                     if (!$data['referencia']) {
                         echo
                         '<script>
-                                alert("Informe a Referência!");
+                                alert("Informe a referência do produto!");
                             </script>';
                         $err = TRUE;
                     }
@@ -160,24 +146,24 @@ $motores = new MotorController();
                         try {
                             $produtos->update(
                                 $produto->getIdproduto(),
-                                $data['icms'],
-                                $data['ipi'],
-                                $data['frete'],
-                                $data['valornafabrica'],
-                                $data['valordecompra'],
-                                $data['lucro'],
-                                $data['valorvenda'],
-                                $data['desconto'],
-                                $data['quantidade'],
-                                $data['unidade'],
-                                $data['referencia'],
-                                $data['idlocalizacao'],
                                 $data['idmotor'],
                                 $data['idcarro'],
                                 $data['idvalvulas'],
                                 $data['idfabricacao'],
                                 $data['idcategoria'],
                                 $data['idmarca'],
+                                $produto->getIcms(),
+                                $produto->getIpi(),
+                                $produto->getFrete(), 
+                                $produto->getValornafabrica(),
+                                $produto->getValordecompra(),
+                                $produto->getLucro(), 
+                                $produto->getValorvenda(),
+                                $produto->getDesconto(),
+                                $produto->getQuantidade(), 
+                                $data['unidade'],
+                                $data['idlocalizacao'],
+                                $data['referencia'],
                             );
 
                             echo
