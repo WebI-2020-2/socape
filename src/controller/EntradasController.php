@@ -19,11 +19,12 @@ class EntradasController extends Entrada
         $stm->execute();
 
         foreach ($stm->fetchAll() as $obj) {
-            $entrada = new Entrada(null, null, null, null);
+            $entrada = new Entrada(null, null, null, null, null);
             $entrada->setIdentrada($obj->identrada);
             $entrada->setIdfornecedor($obj->idfornecedor);
             $entrada->setValortotalnota($obj->valortotalnota);
             $entrada->setDatacompra($obj->datacompra);
+            $entrada->setStatus($obj->status);
         }
         return $entrada;
     }
@@ -38,33 +39,29 @@ class EntradasController extends Entrada
         foreach ($stm->fetchAll() as $obj) {
             array_push(
                 $entradas,
-                new Entrada($obj->identrada, $obj->idfornecedor, $obj->valortotalnota, $obj->datacompra)
+                new Entrada($obj->identrada, $obj->idfornecedor, $obj->valortotalnota, $obj->datacompra, $obj->status)
             );
         }
         return $entradas;
     }
-    
-    public function insert($idfornecedor, $valortotalnota, $datacompra)
+
+    public function insert($idfornecedor, $datacompra)
     {
-        $query = "INSERT INTO $this->tabela (idfornecedor, valortotalnota, datacompra)
-        VALUES (:idfornecedor, :valortotalnota, :datacompra)";
+        $query = "INSERT INTO $this->tabela (idfornecedor, datacompra) VALUES (:idfornecedor, :datacompra)";
         $stm = Database::prepare($query);
         $stm->bindParam(':idfornecedor', $idfornecedor);
-        $stm->bindParam(':valortotalnota', $valortotalnota);
         $stm->bindParam(':datacompra', $datacompra);
-
         $stm->execute();
+
         return Database::lastInsertId();
     }
 
-    public function update($identrada)
+    public function update($identrada, $status)
     {
-        $query = "UPDATE $this->tabela SET idfornecedor = :idfornecedor, valortotalnota = :valortotalnota, datacompra = :datacompra WHERE identrada = :identrada";
+        $query = "UPDATE $this->tabela SET status = :status WHERE identrada = :identrada";
         $stm = Database::prepare($query);
         $stm->bindParam(':identrada', $identrada, PDO::PARAM_INT);
-        $stm->bindValue(':idfornecedor', $this->getIdfornecedor());
-        $stm->bindValue(':valortotalnota', $this->getValortotalnota());
-        $stm->bindValue(':datacompra', $this->getDatacompra());
+        $stm->bindParam(':status', $status, PDO::PARAM_INT);
 
         return $stm->execute();
     }

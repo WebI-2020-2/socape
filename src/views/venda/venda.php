@@ -36,42 +36,40 @@ date_default_timezone_set('America/Sao_Paulo');
 <body>
     <?php include __DIR__ . "/../includes/header.php"; ?>
 
-    <main>
-        <section class="text-center container">
-            <div class="row">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="display-6">VENDAS</h1>
+    <main class="container-fluid bg-light min-vh-100 text-dark">
+        <section class="container py-3">
+            <div class="row align-items-center d-flex">
+                <div class="col-2 col-md-2 col-sm-2"></div>
+                <div class="col-8 col-md-8 col-sm-8 text-center">
+                    <span class="display-6">VENDAS</span>
                 </div>
             </div>
         </section>
 
-        <div class="py-5 bg-light min-vh-100 mb-5">
-            <?php
-            if (isset($_GET['msg'])) {
-                if ($_GET['msg'] == 1) echo '<script>alert("Informe o cliente!");</script>';
-                if ($_GET['msg'] == 2) echo '<script>alert("Venda finalizada!");</script>';
-            }
-            ?>
-
-            <section class="d-flex justify-content-center align-items-center text-dark">
-                <form id="realizarVenda" method="POST" action="./realizarVenda.php">
-                    <div class="row">
-                        <div class="col-6 col-md-12 col-sm-12 mb-3">
-                            <label for="barraPesquisa" class="form-label black-text">CLIENTE</label>
-                            <input type="text" placeholder="CLIENTE" class="form-control" id="barraPesquisa" aria-describedby="clienteHelp">
-                            <input id="idcliente" type="hidden" name="idcliente" required>
-                            <div id="clienteHelp" class="form-text">Digite o nome do cliente e selecione-o na lista.</div>
-                        </div>
+        <?php
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] == 1) echo '<script>alert("Informe o cliente!");</script>';
+            if ($_GET['msg'] == 2) echo '<script>alert("Venda finalizada!");</script>';
+        }
+        ?>
+        <section class="d-flex justify-content-center">
+            <form id="realizarVenda" method="POST" action="./realizarVenda.php">
+                <div class="row align-items-end mb-3 d-flex">
+                    <div class="col-12 col-md-12 col-sm-12 me-auto mb-3">
+                        <label for="barraPesquisa" class="form-label black-text">CLIENTE</label>
+                        <input type="text" placeholder="CLIENTE" class="form-control" id="barraPesquisa" aria-describedby="clienteHelp">
+                        <input id="idcliente" type="hidden" name="idcliente" required>
+                        <div id="clienteHelp" class="form-text">Digite o nome do cliente e selecione-o na lista.</div>
                     </div>
-                    <div class="row">
-                        <div class="col d-flex justify-content-end mb-3">
-                            <button type="submit" class="btn btn-primary">REALIZAR VENDA</button>
-                        </div>
+                    <div class="col-12 col-md-12 col-sm-12 ms-auto d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary ms-auto">REALIZAR VENDA</button>
                     </div>
-                </form>
-            </section>
+                </div>
+            </form>
+        </section>
 
-            <div class="table-responsive-sm">
+        <section class="container-fluid text-start mb-5">
+            <div class="table-responsive-lg">
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -103,7 +101,7 @@ date_default_timezone_set('America/Sao_Paulo');
                                 <td><?= $itensVenda->countItensByIdVenda($obj->getIdvenda()); ?></td>
                                 <td>R$<?= round($obj->getValortotal(), 2); ?></td>
                                 <td>
-                                    <div class="btn-group" role="group">
+                                    <div class="btn-group">
                                         <?php if ($obj->getStatus() == 0) { ?>
                                             <a class="btn btn-danger" href="itensVenda.php?idvenda=<?= $obj->getIdvenda(); ?>">FINALIZAR</a>
                                         <?php } else { ?>
@@ -117,7 +115,7 @@ date_default_timezone_set('America/Sao_Paulo');
                     </tbody>
                 </table>
             </div>
-        </div>
+        </section>
     </main>
 
     <script type="text/javascript">
