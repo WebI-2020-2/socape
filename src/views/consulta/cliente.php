@@ -133,16 +133,16 @@ $clientes = new ClientesController();
                                 </div>
                                 <div class="row mb-3">
                                     <label for="telefone" class="form-label black-text">TELEFONE</label>
-                                    <input type="text" id="telefone" class="form-control" name="telefone" oninput="mascara(this, 'tel')" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" required>
+                                    <input type="text" id="telefone" class="form-control" name="telefone"  oninput="mascara(this, 'tel')" placeholder="TELEFONE" value="<?= $cliente->getTelefone(); ?>" minlength="11" required >
                                 </div>
                                 <div class="row mb-3">
                                     <?php if (empty($cliente->getCpf())) { ?>
                                         <label for="cnpj" class="form-label black-text">CNPJ</label>
-                                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" oninput="mascara(this, 'cnpj')" class="form-control" value="<?= $cliente->getCnpj(); ?>" required>
+                                        <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ"  oninput="mascara(this, 'cnpj')" class="form-control" value="<?= $cliente->getCnpj(); ?>" minlength="14" required>
                                     <?php } else { ?>
                                         <div class="col-6 col-md-12 col-sm-12 mb-3">
                                             <label for="cpf" class="form-label black-text">CPF</label>
-                                            <input type="text" id="cpf" name="cpf" placeholder="CPF" oninput="mascara(this, 'cpf')" class="form-control" value="<?= $cliente->getCpf(); ?>" required>
+                                            <input type="text" id="cpf" name="cpf" placeholder="CPF" oninput="mascara(this, 'cpf')" class="form-control" value="<?= $cliente->getCpf(); ?>" minlength="11" required>
                                         </div>
                                     <?php } ?>
                                 </div>

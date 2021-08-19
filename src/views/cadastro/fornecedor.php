@@ -119,8 +119,8 @@ $fornecedores = new FornecedoresController();
                             <label for="cnpj" class="form-label">CNPJ</label>
                             <input type="text"  name="cnpj" id="cnpj"  oninput="mascara(this, 'cnpj')" class="form-control" placeholder="CNPJ" autocomplete="off" required>
                         </div>
-                        <div class="text-end">
-                            <input  type="button" class="btn btn-primary" onClick="this.form.submit(); this.disabled=true; this.value='CADASTRANDO…';" value="CADASTRAR">
+                        <div class="col-8 col-md-8 col-sm-8 text-center">
+                            <input  type="submit" class="btn btn-primary" value="CADASTRAR">
                         </div>
                     </form>
                         <div class="row-mb-3">
