@@ -33,7 +33,6 @@ $valvulas = new ValvulasController();
                 <div class="col-6 col-md-6 col-sm-6 mx-auto">
                     <h1 class="display-6">CONSULTAR VÁLVULA</h1>
                 </div>
-            </div>
         </section>
 
         <?php

@@ -102,6 +102,33 @@ $localizacoes = new LocalizacaoController();
                         <div class="float-end">
                             <a class="btn btn-primary" href="../cadastro/localizacao.php">NOVO CADASTRO</a>
                         </div>
+                    </section>
+
+                    <div class="table-responsive-lg">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">LOCALIZAÇÃO</th>
+                                    <th scope="col">AÇÕES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($localizacoes->findAll() as $obj) { ?>
+                                    <tr>
+                                        <td><?= $obj->getIdlocalizacao() ?></td>
+                                        <td><?= $obj->getDepartamento() ?></td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a class="btn btn-primary" href="?id=<?= $obj->getIdlocalizacao() ?>">VISUALIZAR/EDITAR</a>
+                                                <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdlocalizacao() ?>', '<?= $obj->getDepartamento() ?>')">APAGAR</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php } ?>
                     </div>
                 </div>
             </section>

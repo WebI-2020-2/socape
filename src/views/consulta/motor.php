@@ -103,9 +103,7 @@ $motores = new MotorController();
                         <div class="float-end">
                             <a class="btn btn-primary" href="../cadastro/motor.php">NOVO CADASTRO</a>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </section>
 
             <div class="table-responsive-lg">
                 <table class="table table-hover">

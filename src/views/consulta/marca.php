@@ -41,7 +41,6 @@ $marcas = new MarcasController();
             if ($_GET['msg'] == 1) echo '<script>alert("Informe a marca!");</script>';
         }
         ?>
-
         <?php if (isset($_GET["id"])) {
             if ($marcas->findOne($_GET["id"])) {
                 $marca = $marcas->findOne($_GET["id"]);
@@ -125,8 +124,34 @@ $marcas = new MarcasController();
                                         <a class="btn btn-primary" href="?id=<?= $obj->getIdmarca() ?>">VISUALIZAR/EDITAR</a>
                                         <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="table-responsive-lg">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">MARCA</th>
+                                        <th scope="col">AÇÕES</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($marcas->findAll() as $obj) { ?>
+                                        <tr>
+                                            <td><?= $obj->getIdmarca() ?></td>
+                                            <td><?= $obj->getMarca() ?></td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a class="btn btn-primary" href="?id=<?= $obj->getIdmarca() ?>">VISUALIZAR/EDITAR</a>
+                                                    <button class="btn btn-sm btn-dark" onclick="deletar('<?= $obj->getIdmarca() ?>', '<?= $obj->getMarca() ?>')">APAGAR</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -166,6 +191,7 @@ $marcas = new MarcasController();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="./../../../public/js/validaInput.js"></script>
 </body>
 
 </html>

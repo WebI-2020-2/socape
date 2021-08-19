@@ -95,7 +95,7 @@ $clientes = new ClientesController();
                             echo
                             '<script>
                                     alert("Cliente atualizado com sucesso!");
-                                    window.location.href = "./cliente.php?id=' . $cliente->getIdcliente() . '";
+                                    window.location.href = "./cliente.php";
                                 </script>';
                         } catch (PDOException $e) {
                             echo $e->getMessage();

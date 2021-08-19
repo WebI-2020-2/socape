@@ -64,6 +64,13 @@ $cliente = new ClientesController();
                         alert("Informe o CPF do cliente!");
                     </script>';
                     $err = TRUE;
+                } else if (strlen($data['cpf']) < 14) {
+                    echo
+                    '<script>
+                        alert("O cpf deve conter 14 dígitos!");
+                    </script>';
+                
+                    $err = TRUE;
                 }
             } else {
                 if (!$data['cnpj']) {
@@ -71,6 +78,13 @@ $cliente = new ClientesController();
                     '<script>
                         alert("Informe o CNPJ do cliente!");
                     </script>';
+                    $err = TRUE;
+                } else if (strlen($data['cnpj']) < 18) {
+                    echo
+                    '<script>
+                        alert("O cnpj deve conter 18 dígitos!");
+                    </script>';
+                
                     $err = TRUE;
                 }
             }

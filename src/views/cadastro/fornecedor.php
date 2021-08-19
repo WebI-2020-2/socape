@@ -99,7 +99,6 @@ $fornecedores = new FornecedoresController();
         </div>
         <div class="py-5 bg-light">
             <section class="container min-vh-30 py-5 d-flex justify-content-center align-items-center text-dark">
-
                 <form method="post" id="form">
                     <div class="row mb-3">
                         <label for="nome" class="form-label">NOME</label>
